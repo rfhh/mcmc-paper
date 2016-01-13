@@ -1,0 +1,272 @@
+Command line: ./apps/main/main --mcmc.replicated-graph -f /mnt/data/datasets/sparsehash/com-friendster-H0.01 -c preprocessed --mcmc.sampler.max-source 16K --mcmc.c 0 --mcmc.a 1e-06 -K 256 -m 16K -n 32 -i 256 -x 2K 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+PID 23819
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 1
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed [42,75]
+Random seed [42,76]
+Random seed [42,77]
+Random seed [42,78]
+Random seed [42,79]
+Random seed [42,80]
+Random seed [42,81]
+Random seed [42,82]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /mnt/data/datasets/sparsehash/com-friendster-H0.01/graph.gz
+Node + edgeset read 0
+For memory query file /proc/23819/statm
+0.000 Memory usage: total 7656MB resident 7514MB 
+Node + edgeset read 1048576
+0.660 Memory usage: total 7689MB resident 7547MB 
+Node + edgeset read 2097152
+2.131 Memory usage: total 7724MB resident 7582MB 
+Node + edgeset read 3145728
+3.733 Memory usage: total 7760MB resident 7618MB 
+Node + edgeset read 4194304
+5.720 Memory usage: total 7797MB resident 7655MB 
+Node + edgeset read 5242880
+7.458 Memory usage: total 7836MB resident 7694MB 
+Node + edgeset read 6291456
+9.572 Memory usage: total 7876MB resident 7734MB 
+Node + edgeset read 7340032
+11.784 Memory usage: total 7920MB resident 7778MB 
+Node + edgeset read 8388608
+13.447 Memory usage: total 7966MB resident 7824MB 
+Node + edgeset read 9437184
+15.100 Memory usage: total 8016MB resident 7874MB 
+Node + edgeset read 10485760
+17.579 Memory usage: total 8072MB resident 7930MB 
+Node + edgeset read 11534336
+20.581 Memory usage: total 8130MB resident 7988MB 
+Node + edgeset read 12582912
+23.644 Memory usage: total 8197MB resident 8055MB 
+Node + edgeset read 13631488
+28.078 Memory usage: total 8266MB resident 8124MB 
+Node + edgeset read 14680064
+32.912 Memory usage: total 8342MB resident 8200MB 
+Node + edgeset read 15728640
+36.201 Memory usage: total 8426MB resident 8284MB 
+Node + edgeset read 16777216
+40.271 Memory usage: total 8516MB resident 8374MB 
+Node + edgeset read 17825792
+45.151 Memory usage: total 8627MB resident 8485MB 
+Node + edgeset read 18874368
+50.031 Memory usage: total 8750MB resident 8608MB 
+Node + edgeset read 19922944
+55.924 Memory usage: total 8888MB resident 8746MB 
+Node + edgeset read 20971520
+63.460 Memory usage: total 9050MB resident 8908MB 
+Node + edgeset read 22020096
+79.721 Memory usage: total 9432MB resident 9290MB 
+Node + edgeset read 23068672
+96.212 Memory usage: total 9829MB resident 9687MB 
+Node + edgeset read 24117248
+112.891 Memory usage: total 10238MB resident 10096MB 
+Node + edgeset read 25165824
+130.107 Memory usage: total 10661MB resident 10520MB 
+Node + edgeset read 26214400
+148.330 Memory usage: total 11100MB resident 10958MB 
+Node + edgeset read 27262976
+165.838 Memory usage: total 11548MB resident 11406MB 
+Node + edgeset read 28311552
+183.923 Memory usage: total 12005MB resident 11863MB 
+Node + edgeset read 29360128
+202.999 Memory usage: total 12471MB resident 12329MB 
+Node + edgeset read 30408704
+222.323 Memory usage: total 12939MB resident 12798MB 
+Node + edgeset read 31457280
+240.764 Memory usage: total 13411MB resident 13269MB 
+Node + edgeset read 32505856
+258.010 Memory usage: total 13874MB resident 13732MB 
+Node + edgeset read 33554432
+275.315 Memory usage: total 14339MB resident 14197MB 
+Node + edgeset read 34603008
+290.695 Memory usage: total 14805MB resident 14663MB 
+Node + edgeset read 35651584
+310.125 Memory usage: total 15267MB resident 15125MB 
+Node + edgeset read 36700160
+328.350 Memory usage: total 15723MB resident 15581MB 
+Node + edgeset read 37748736
+347.534 Memory usage: total 16172MB resident 16030MB 
+Node + edgeset read 38797312
+364.759 Memory usage: total 16621MB resident 16479MB 
+Node + edgeset read 39845888
+383.411 Memory usage: total 17071MB resident 16929MB 
+Node + edgeset read 40894464
+401.475 Memory usage: total 17541MB resident 17400MB 
+Node + edgeset read 41943040
+417.874 Memory usage: total 18002MB resident 17860MB 
+Node + edgeset read 42991616
+436.885 Memory usage: total 18465MB resident 18323MB 
+Node + edgeset read 44040192
+453.788 Memory usage: total 18945MB resident 18803MB 
+Node + edgeset read 45088768
+470.777 Memory usage: total 19434MB resident 19292MB 
+Node + edgeset read 46137344
+488.174 Memory usage: total 19923MB resident 19781MB 
+Node + edgeset read 47185920
+505.902 Memory usage: total 20409MB resident 20267MB 
+Node + edgeset read 48234496
+524.026 Memory usage: total 20884MB resident 20742MB 
+Node + edgeset read 49283072
+541.541 Memory usage: total 21332MB resident 21190MB 
+Node + edgeset read 50331648
+556.558 Memory usage: total 21681MB resident 21539MB 
+Node + edgeset read 51380224
+570.476 Memory usage: total 22020MB resident 21878MB 
+Node + edgeset read 52428800
+585.046 Memory usage: total 22351MB resident 22210MB 
+Node + edgeset read 53477376
+598.223 Memory usage: total 22678MB resident 22536MB 
+Node + edgeset read 54525952
+611.845 Memory usage: total 23012MB resident 22870MB 
+Node + edgeset read 55574528
+626.069 Memory usage: total 23345MB resident 23203MB 
+Node + edgeset read 56623104
+639.352 Memory usage: total 23677MB resident 23535MB 
+Node + edgeset read 57671680
+652.801 Memory usage: total 24010MB resident 23868MB 
+Node + edgeset read 58720256
+666.118 Memory usage: total 24328MB resident 24186MB 
+Node + edgeset read 59768832
+679.050 Memory usage: total 24638MB resident 24496MB 
+Node + edgeset read 60817408
+690.821 Memory usage: total 24922MB resident 24780MB 
+Node + edgeset read 61865984
+701.651 Memory usage: total 25173MB resident 25031MB 
+Node + edgeset read 62914560
+711.072 Memory usage: total 25396MB resident 25254MB 
+Node + edgeset read 63963136
+720.577 Memory usage: total 25610MB resident 25468MB 
+Node + edgeset read 65011712
+729.207 Memory usage: total 25812MB resident 25670MB 
+733.940 Memory usage: total 25923MB resident 25781MB 
+WARNING: Expect held-out size 180606716, get 18060671N 65608366 E 1806067135 link ratio 8.39161e-07 K 256
+minibatch size 16384 epsilon 1e-07 alpha 0.00390625 iterations 2048 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 40
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+Use D-KV store type rdma
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+mem_total 980496880 pi_total 976681717 max pi cache entries 30521303
+minibatch size param 16384 max 43081 my max 43081 chunk 897685 #neighbors(total) 1421673 cache max entries 30521302 computed max pi cache entries 30521303
+perplexity nodes total 36121342 local 36121342 mine 30521302 chunk 15260651
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+ubuntu: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store includes the master node
+failed to find any InfiniBand devices: Function not implemented
+*** No working Infiniband. Sequential run, continue
+MR/value addr=0x7f2a47c36010 size fb40f22b8
+MR/cache addr=0x7f22f99d2010 size 74e263758
+MR/write addr=0x7f3a0d5c3010 size 2a3c524
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 1164.3MB
+Master is a worker, does host pi values
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+run():614 1019.936 Memory usage: total 126440MB resident 93455MB 
+average_count is: 2 step count: 1 time: 10.433 perplexity for hold out set: 3.135098695755
+average_count is: 3 step count: 101 time: 203.799 perplexity for hold out set: 2.932632446289
+average_count is: 4 step count: 201 time: 394.368 perplexity for hold out set: 2.878601789474
+average_count is: 5 step count: 301 time: 584.817 perplexity for hold out set: 2.853246927261
+average_count is: 6 step count: 401 time: 777.728 perplexity for hold out set: 2.838259696960
+average_count is: 7 step count: 501 time: 969.225 perplexity for hold out set: 2.828365564346
+average_count is: 8 step count: 601 time: 1174.773 perplexity for hold out set: 2.821456193924
+average_count is: 9 step count: 701 time: 1420.840 perplexity for hold out set: 2.816230773926
+average_count is: a step count: 800 time: 1609.903 perplexity for hold out set: 2.812161207199
+timer                                    total (s)    ticks  per tick (us)
+  load network graph                      783.249        1  783249763.959
+  initialize DKV store                      0.883        1     883767.763
+  populate pi                             251.765        1  251765477.121
+  iteration                              1599.598      7ff     781435.559
+    deploy minibatch                      133.235      7ff      65088.238
+      scatter subgraph              <unused>
+        marshall edge count         <unused>
+        scatterv edges              <unused>
+        marshall edges              <unused>
+        scatterv edges              <unused>
+        unmarshall edges            <unused>
+      sample_mini_batch                    74.028      7ff      36164.618
+      nodes_in_mini_batch                  39.363      7ff      19229.993
+    broadcast theta/beta                    5.019      7ff       2452.234
+    update_phi_pi                        1178.005      7ff     575478.897
+      sample_neighbor_nodes               104.672      7ff      51134.645
+      load minibatch pi                    15.502      7ff       7573.264
+      load neighbor pi                    513.057      7ff     250638.945
+      update_phi                          467.769      7ff     228514.608
+      barrier after update phi              0.034      7ff         17.019
+      update_pi                            18.148      7ff       8865.764
+      store minibatch pi                   58.713      7ff      28682.935
+      barrier after update pi               0.042      7ff         20.765
+    update_beta_theta                     183.607      7ff      89695.792
+      zero beta grads                       7.301      7ff       3567.148
+      rank minibatch nodes                 38.723      7ff      18917.207
+      load pi update_beta                  15.489      7ff       7567.130
+      beta calc grads                      39.962      7ff      19522.637
+      beta sum grads                       11.097      7ff       5421.360
+      beta reduce(+) grads                  1.958      7ff        956.990
+      update theta                         16.068      7ff       7849.940
+  perplexity                               97.897        9   10877457.707
+      load perplexity pi                   74.186       12    4121498.308
+      calc edge likelihood                  3.578        9     397583.769
+      purge perplexity pi                   0.000       12          2.438
+      reduce/plus perplexity                0.000        9         31.777
+Linger a bit to allow gracious shutdown
+timer                                    total (s)    ticks  per tick (us)
+RDMA poll cq                        <unused>
+RDMA read                                 618.147     180f     100364.861
+     local read                           311.164 59897674          0.207
+     per-host read                  <unused>
+     post read                      <unused>
+     finish read                    <unused>
+RDMA write                                152.727      df2      42780.876
+     local write                          124.343  5ea4636          1.253
+     per-host write                 <unused>
+     post write                     <unused>
+     finish write                   <unused>
+RDMA barrier                        <unused>
+posts 0 messages 0 msgs/post -nan
+Local read   1678bffa9d0B 4.622GB/s
+Remote read  0B 0.000GB/s per-host loop -nanGB/s
+Local write  17c0c1f0d8B 0.764GB/s
+Remote write 0B 0.000GB/s per-host loop -nanGB/s
+                                           15.342      479      13399.554
+                                           14.421     9e94        355.244
+                                            0.325      40e        313.532

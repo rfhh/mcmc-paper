@@ -1,0 +1,1757 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 12K -m 16K -n 32 -i 256 --mcmc.sampler.max-source 16K -x 1M --mcmc.c 0 --mcmc.a 1e-06 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+PID 8710
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 65
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01/graph.gz
+Node + edgeset read 0
+For memory query file /proc/8710/statm
+0.000 Memory usage: total 7607MB resident 7523MB 
+Node + edgeset read 1048576
+0.467 Memory usage: total 7640MB resident 7556MB 
+Node + edgeset read 2097152
+0.956 Memory usage: total 7674MB resident 7591MB 
+Node + edgeset read 3145728
+1.464 Memory usage: total 7711MB resident 7627MB 
+Node + edgeset read 4194304
+1.984 Memory usage: total 7748MB resident 7664MB 
+Node + edgeset read 5242880
+2.517 Memory usage: total 7787MB resident 7703MB 
+Node + edgeset read 6291456
+3.070 Memory usage: total 7827MB resident 7743MB 
+Node + edgeset read 7340032
+3.636 Memory usage: total 7871MB resident 7787MB 
+Node + edgeset read 8388608
+4.221 Memory usage: total 7917MB resident 7833MB 
+Node + edgeset read 9437184
+4.836 Memory usage: total 7967MB resident 7883MB 
+Node + edgeset read 10485760
+5.496 Memory usage: total 8023MB resident 7939MB 
+Node + edgeset read 11534336
+6.135 Memory usage: total 8081MB resident 7997MB 
+Node + edgeset read 12582912
+6.851 Memory usage: total 8148MB resident 8064MB 
+Node + edgeset read 13631488
+7.597 Memory usage: total 8217MB resident 8133MB 
+Node + edgeset read 14680064
+8.394 Memory usage: total 8293MB resident 8209MB 
+Node + edgeset read 15728640
+9.409 Memory usage: total 8377MB resident 8293MB 
+Node + edgeset read 16777216
+10.325 Memory usage: total 8467MB resident 8383MB 
+Node + edgeset read 17825792
+11.701 Memory usage: total 8578MB resident 8494MB 
+Node + edgeset read 18874368
+12.979 Memory usage: total 8701MB resident 8617MB 
+Node + edgeset read 19922944
+14.338 Memory usage: total 8839MB resident 8755MB 
+Node + edgeset read 20971520
+15.758 Memory usage: total 9001MB resident 8917MB 
+Node + edgeset read 22020096
+18.960 Memory usage: total 9383MB resident 9299MB 
+Node + edgeset read 23068672
+22.285 Memory usage: total 9779MB resident 9695MB 
+Node + edgeset read 24117248
+25.701 Memory usage: total 10189MB resident 10105MB 
+Node + edgeset read 25165824
+29.273 Memory usage: total 10612MB resident 10528MB 
+Node + edgeset read 26214400
+33.121 Memory usage: total 11051MB resident 10967MB 
+Node + edgeset read 27262976
+37.013 Memory usage: total 11498MB resident 11414MB 
+Node + edgeset read 28311552
+41.080 Memory usage: total 11955MB resident 11871MB 
+Node + edgeset read 29360128
+45.086 Memory usage: total 12420MB resident 12337MB 
+Node + edgeset read 30408704
+48.898 Memory usage: total 12889MB resident 12805MB 
+Node + edgeset read 31457280
+52.719 Memory usage: total 13360MB resident 13276MB 
+Node + edgeset read 32505856
+56.470 Memory usage: total 13823MB resident 13739MB 
+Node + edgeset read 33554432
+60.374 Memory usage: total 14288MB resident 14204MB 
+Node + edgeset read 34603008
+64.551 Memory usage: total 14753MB resident 14670MB 
+Node + edgeset read 35651584
+68.364 Memory usage: total 15215MB resident 15132MB 
+Node + edgeset read 36700160
+72.208 Memory usage: total 15671MB resident 15587MB 
+Node + edgeset read 37748736
+75.845 Memory usage: total 16120MB resident 16036MB 
+Node + edgeset read 38797312
+79.965 Memory usage: total 16570MB resident 16486MB 
+Node + edgeset read 39845888
+83.787 Memory usage: total 17020MB resident 16936MB 
+Node + edgeset read 40894464
+87.748 Memory usage: total 17490MB resident 17406MB 
+Node + edgeset read 41943040
+91.354 Memory usage: total 17950MB resident 17866MB 
+Node + edgeset read 42991616
+95.008 Memory usage: total 18413MB resident 18329MB 
+Node + edgeset read 44040192
+98.826 Memory usage: total 18893MB resident 18809MB 
+Node + edgeset read 45088768
+102.905 Memory usage: total 19381MB resident 19297MB 
+Node + edgeset read 46137344
+106.938 Memory usage: total 19870MB resident 19786MB 
+Node + edgeset read 47185920
+110.898 Memory usage: total 20357MB resident 20272MB 
+Node + edgeset read 48234496
+114.751 Memory usage: total 20831MB resident 20747MB 
+Node + edgeset read 49283072
+118.412 Memory usage: total 21279MB resident 21195MB 
+Node + edgeset read 50331648
+121.323 Memory usage: total 21628MB resident 21543MB 
+Node + edgeset read 51380224
+124.243 Memory usage: total 21967MB resident 21883MB 
+Node + edgeset read 52428800
+126.998 Memory usage: total 22298MB resident 22214MB 
+Node + edgeset read 53477376
+129.730 Memory usage: total 22624MB resident 22540MB 
+Node + edgeset read 54525952
+132.561 Memory usage: total 22957MB resident 22874MB 
+Node + edgeset read 55574528
+135.371 Memory usage: total 23291MB resident 23207MB 
+Node + edgeset read 56623104
+138.213 Memory usage: total 23622MB resident 23538MB 
+Node + edgeset read 57671680
+141.104 Memory usage: total 23955MB resident 23871MB 
+Node + edgeset read 58720256
+143.943 Memory usage: total 24273MB resident 24189MB 
+Node + edgeset read 59768832
+146.896 Memory usage: total 24582MB resident 24498MB 
+Node + edgeset read 60817408
+149.353 Memory usage: total 24866MB resident 24782MB 
+Node + edgeset read 61865984
+151.614 Memory usage: total 25117MB resident 25033MB 
+Node + edgeset read 62914560
+153.924 Memory usage: total 25340MB resident 25256MB 
+Node + edgeset read 63963136
+156.039 Memory usage: total 25554MB resident 25470MB 
+Node + edgeset read 65011712
+157.951 Memory usage: total 25755MB resident 25671MB 
+158.942 Memory usage: total 25869MB resident 25785MB 
+WARNING: Expect held-out size 180606716, get 18060671N 65608366 E 1806067135 link ratio 8.39161e-07 K 12288
+minibatch size 16384 epsilon 1e-07 alpha 8.13802e-05 iterations 1048576 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+Use D-KV store type rdma
+minibatch size param 16384 max 43081 chunk 1261 #neighbors(total) 22242
+perplexity nodes total 36121342 local 555714 mine 42886 chunk 21443
+node001: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store excludes the master node
+MR/value addr=0x7ffdca58e000 size 7da71e18, lkey=0x48010d38, rkey=0x48010d38, flags=0xf, mr=0x50e005790
+MR/cache addr=0x7ffd4cb1b000 size 7da71e18, lkey=0x48010e38, rkey=0x48010e38, flags=0xf, mr=0x50e0057c8
+MR/write addr=0x7ffe53540000 size 1f98a88, lkey=0x48010f38, rkey=0x48010f38, flags=0xf, mr=0x50e005800
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 1: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8032
+  PSN number = 3913040
+  max.atomic = 16
+  LID = 0x18
+Local LID[1] = 0x 12
+My con_data for qp to host 2: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8033
+  PSN number = 10459352
+  max.atomic = 16
+  LID = 0x18
+Local LID[2] = 0x 12
+My con_data for qp to host 3: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8034
+  PSN number = 10080076
+  max.atomic = 16
+  LID = 0x18
+Local LID[3] = 0x 12
+My con_data for qp to host 4: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8035
+  PSN number = 4445990
+  max.atomic = 16
+  LID = 0x18
+Local LID[4] = 0x 12
+My con_data for qp to host 5: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8036
+  PSN number = 11634649
+  max.atomic = 16
+  LID = 0x18
+Local LID[5] = 0x 12
+My con_data for qp to host 6: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8037
+  PSN number = 16761029
+  max.atomic = 16
+  LID = 0x18
+Local LID[6] = 0x 12
+My con_data for qp to host 7: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8038
+  PSN number = 3885906
+  max.atomic = 16
+  LID = 0x18
+Local LID[7] = 0x 12
+My con_data for qp to host 8: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8039
+  PSN number = 2156824
+  max.atomic = 16
+  LID = 0x18
+Local LID[8] = 0x 12
+My con_data for qp to host 9: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8040
+  PSN number = 7731099
+  max.atomic = 16
+  LID = 0x18
+Local LID[9] = 0x 12
+My con_data for qp to host 10: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8041
+  PSN number = 597374
+  max.atomic = 16
+  LID = 0x18
+Local LID[10] = 0x 12
+My con_data for qp to host 11: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8042
+  PSN number = 8324136
+  max.atomic = 16
+  LID = 0x18
+Local LID[11] = 0x 12
+My con_data for qp to host 12: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8043
+  PSN number = 12248145
+  max.atomic = 16
+  LID = 0x18
+Local LID[12] = 0x 12
+My con_data for qp to host 13: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8044
+  PSN number = 15432180
+  max.atomic = 16
+  LID = 0x18
+Local LID[13] = 0x 12
+My con_data for qp to host 14: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8045
+  PSN number = 1026940
+  max.atomic = 16
+  LID = 0x18
+Local LID[14] = 0x 12
+My con_data for qp to host 15: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8046
+  PSN number = 12732600
+  max.atomic = 16
+  LID = 0x18
+Local LID[15] = 0x 12
+My con_data for qp to host 16: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8047
+  PSN number = 6919481
+  max.atomic = 16
+  LID = 0x18
+Local LID[16] = 0x 12
+My con_data for qp to host 17: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8048
+  PSN number = 1707053
+  max.atomic = 16
+  LID = 0x18
+Local LID[17] = 0x 12
+My con_data for qp to host 18: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8049
+  PSN number = 10022788
+  max.atomic = 16
+  LID = 0x18
+Local LID[18] = 0x 12
+My con_data for qp to host 19: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8050
+  PSN number = 16447095
+  max.atomic = 16
+  LID = 0x18
+Local LID[19] = 0x 12
+My con_data for qp to host 20: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8051
+  PSN number = 6456372
+  max.atomic = 16
+  LID = 0x18
+Local LID[20] = 0x 12
+My con_data for qp to host 21: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8052
+  PSN number = 5635645
+  max.atomic = 16
+  LID = 0x18
+Local LID[21] = 0x 12
+My con_data for qp to host 22: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8053
+  PSN number = 7496957
+  max.atomic = 16
+  LID = 0x18
+Local LID[22] = 0x 12
+My con_data for qp to host 23: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8054
+  PSN number = 4520170
+  max.atomic = 16
+  LID = 0x18
+Local LID[23] = 0x 12
+My con_data for qp to host 24: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8055
+  PSN number = 8838266
+  max.atomic = 16
+  LID = 0x18
+Local LID[24] = 0x 12
+My con_data for qp to host 25: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8056
+  PSN number = 2065782
+  max.atomic = 16
+  LID = 0x18
+Local LID[25] = 0x 12
+My con_data for qp to host 26: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8057
+  PSN number = 14564413
+  max.atomic = 16
+  LID = 0x18
+Local LID[26] = 0x 12
+My con_data for qp to host 27: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8058
+  PSN number = 12770882
+  max.atomic = 16
+  LID = 0x18
+Local LID[27] = 0x 12
+My con_data for qp to host 28: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8059
+  PSN number = 15434577
+  max.atomic = 16
+  LID = 0x18
+Local LID[28] = 0x 12
+My con_data for qp to host 29: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8060
+  PSN number = 9579974
+  max.atomic = 16
+  LID = 0x18
+Local LID[29] = 0x 12
+My con_data for qp to host 30: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8061
+  PSN number = 16436814
+  max.atomic = 16
+  LID = 0x18
+Local LID[30] = 0x 12
+My con_data for qp to host 31: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8062
+  PSN number = 8459677
+  max.atomic = 16
+  LID = 0x18
+Local LID[31] = 0x 12
+My con_data for qp to host 32: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8063
+  PSN number = 13493014
+  max.atomic = 16
+  LID = 0x18
+Local LID[32] = 0x 12
+My con_data for qp to host 33: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8064
+  PSN number = 10118950
+  max.atomic = 16
+  LID = 0x18
+Local LID[33] = 0x 12
+My con_data for qp to host 34: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8065
+  PSN number = 1762538
+  max.atomic = 16
+  LID = 0x18
+Local LID[34] = 0x 12
+My con_data for qp to host 35: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8066
+  PSN number = 1161789
+  max.atomic = 16
+  LID = 0x18
+Local LID[35] = 0x 12
+My con_data for qp to host 36: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8067
+  PSN number = 4976383
+  max.atomic = 16
+  LID = 0x18
+Local LID[36] = 0x 12
+My con_data for qp to host 37: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8068
+  PSN number = 1746351
+  max.atomic = 16
+  LID = 0x18
+Local LID[37] = 0x 12
+My con_data for qp to host 38: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8069
+  PSN number = 5047695
+  max.atomic = 16
+  LID = 0x18
+Local LID[38] = 0x 12
+My con_data for qp to host 39: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8070
+  PSN number = 7133207
+  max.atomic = 16
+  LID = 0x18
+Local LID[39] = 0x 12
+My con_data for qp to host 40: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8071
+  PSN number = 9477450
+  max.atomic = 16
+  LID = 0x18
+Local LID[40] = 0x 12
+My con_data for qp to host 41: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8072
+  PSN number = 5645069
+  max.atomic = 16
+  LID = 0x18
+Local LID[41] = 0x 12
+My con_data for qp to host 42: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8073
+  PSN number = 15457343
+  max.atomic = 16
+  LID = 0x18
+Local LID[42] = 0x 12
+My con_data for qp to host 43: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8074
+  PSN number = 4948379
+  max.atomic = 16
+  LID = 0x18
+Local LID[43] = 0x 12
+My con_data for qp to host 44: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8075
+  PSN number = 4300034
+  max.atomic = 16
+  LID = 0x18
+Local LID[44] = 0x 12
+My con_data for qp to host 45: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8076
+  PSN number = 16484284
+  max.atomic = 16
+  LID = 0x18
+Local LID[45] = 0x 12
+My con_data for qp to host 46: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8077
+  PSN number = 903764
+  max.atomic = 16
+  LID = 0x18
+Local LID[46] = 0x 12
+My con_data for qp to host 47: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8078
+  PSN number = 11219515
+  max.atomic = 16
+  LID = 0x18
+Local LID[47] = 0x 12
+My con_data for qp to host 48: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8079
+  PSN number = 1414121
+  max.atomic = 16
+  LID = 0x18
+Local LID[48] = 0x 12
+My con_data for qp to host 49: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8080
+  PSN number = 10926552
+  max.atomic = 16
+  LID = 0x18
+Local LID[49] = 0x 12
+My con_data for qp to host 50: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8081
+  PSN number = 10889394
+  max.atomic = 16
+  LID = 0x18
+Local LID[50] = 0x 12
+My con_data for qp to host 51: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8082
+  PSN number = 7870493
+  max.atomic = 16
+  LID = 0x18
+Local LID[51] = 0x 12
+My con_data for qp to host 52: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8083
+  PSN number = 16562198
+  max.atomic = 16
+  LID = 0x18
+Local LID[52] = 0x 12
+My con_data for qp to host 53: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8084
+  PSN number = 1609136
+  max.atomic = 16
+  LID = 0x18
+Local LID[53] = 0x 12
+My con_data for qp to host 54: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8085
+  PSN number = 12390663
+  max.atomic = 16
+  LID = 0x18
+Local LID[54] = 0x 12
+My con_data for qp to host 55: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8086
+  PSN number = 8623248
+  max.atomic = 16
+  LID = 0x18
+Local LID[55] = 0x 12
+My con_data for qp to host 56: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8087
+  PSN number = 3674918
+  max.atomic = 16
+  LID = 0x18
+Local LID[56] = 0x 12
+My con_data for qp to host 57: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8088
+  PSN number = 10177860
+  max.atomic = 16
+  LID = 0x18
+Local LID[57] = 0x 12
+My con_data for qp to host 58: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8089
+  PSN number = 4616914
+  max.atomic = 16
+  LID = 0x18
+Local LID[58] = 0x 12
+My con_data for qp to host 59: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8090
+  PSN number = 2332279
+  max.atomic = 16
+  LID = 0x18
+Local LID[59] = 0x 12
+My con_data for qp to host 60: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8091
+  PSN number = 2980618
+  max.atomic = 16
+  LID = 0x18
+Local LID[60] = 0x 12
+My con_data for qp to host 61: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8092
+  PSN number = 4276512
+  max.atomic = 16
+  LID = 0x18
+Local LID[61] = 0x 12
+My con_data for qp to host 62: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8093
+  PSN number = 10791956
+  max.atomic = 16
+  LID = 0x18
+Local LID[62] = 0x 12
+My con_data for qp to host 63: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8094
+  PSN number = 16473633
+  max.atomic = 16
+  LID = 0x18
+Local LID[63] = 0x 12
+My con_data for qp to host 64: 
+  value address = 0x7ffdca58e000
+  value rkey = 0x48010d38
+  cache address = 0x7ffd4cb1b000
+  cache rkey = 0x48010e38
+  QP number = 8095
+  PSN number = 14395462
+  max.atomic = 16
+  LID = 0x18
+Local LID[64] = 0x 12
+Peer 1
+  value address = 0x7ff431d66000
+  value rkey = 0x10ee8
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10fe8
+  QP number = 10612
+  PSN number = 12340914
+  max.atomic = 16
+  LID = 0x95
+Peer 2
+  value address = 0x7ff431d66000
+  value rkey = 0x10010e22
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10010f22
+  QP number = 10755
+  PSN number = 13935880
+  max.atomic = 16
+  LID = 0x96
+Peer 3
+  value address = 0x7ff431d66000
+  value rkey = 0xc8010eed
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xc8010fed
+  QP number = 11040
+  PSN number = 11448520
+  max.atomic = 16
+  LID = 0x15
+Peer 4
+  value address = 0x7ff431d66000
+  value rkey = 0xa8010e7c
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xa8010f7c
+  QP number = 10253
+  PSN number = 1294209
+  max.atomic = 16
+  LID = 0x14
+Peer 5
+  value address = 0x7ff431d66000
+  value rkey = 0xa8010ef4
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xa8010ff4
+  QP number = 10278
+  PSN number = 6478403
+  max.atomic = 16
+  LID = 0x13
+Peer 6
+  value address = 0x7ff431d66000
+  value rkey = 0x38010eb2
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x38010fb2
+  QP number = 10376
+  PSN number = 11352328
+  max.atomic = 16
+  LID = 0x97
+Peer 7
+  value address = 0x7ff431d66000
+  value rkey = 0x98010e86
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x98010f86
+  QP number = 10941
+  PSN number = 14275339
+  max.atomic = 16
+  LID = 0x82
+Peer 8
+  value address = 0x7ff431d66000
+  value rkey = 0x60010eee
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x60010fee
+  QP number = 2761
+  PSN number = 2404074
+  max.atomic = 16
+  LID = 0x83
+Peer 9
+  value address = 0x7ff431d66000
+  value rkey = 0xa8010ea7
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xa8010fa7
+  QP number = 3043
+  PSN number = 9167861
+  max.atomic = 16
+  LID = 0x92
+Peer 10
+  value address = 0x7ff431d66000
+  value rkey = 0xa8010e87
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xa8010f87
+  QP number = 2883
+  PSN number = 12752644
+  max.atomic = 16
+  LID = 0x85
+Peer 11
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010eb9
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010fb9
+  QP number = 3094
+  PSN number = 10408791
+  max.atomic = 16
+  LID = 0x86
+Peer 12
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010e7d
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010f7d
+  QP number = 2797
+  PSN number = 4135154
+  max.atomic = 16
+  LID = 0x93
+Peer 13
+  value address = 0x7ff431d66000
+  value rkey = 0x78010e78
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x78010f78
+  QP number = 3153
+  PSN number = 14607697
+  max.atomic = 16
+  LID = 0x87
+Peer 14
+  value address = 0x7ff431d66000
+  value rkey = 0x40010e56
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x40010f56
+  QP number = 2668
+  PSN number = 12723825
+  max.atomic = 16
+  LID = 0x79
+Peer 15
+  value address = 0x7ff431d66000
+  value rkey = 0xd8010ebf
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xd8010fbf
+  QP number = 2746
+  PSN number = 14742821
+  max.atomic = 16
+  LID = 0x88
+Peer 16
+  value address = 0x7ff431d66000
+  value rkey = 0x88010e6b
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x88010f6b
+  QP number = 2484
+  PSN number = 8269814
+  max.atomic = 16
+  LID = 0x91
+Peer 17
+  value address = 0x7ff431d66000
+  value rkey = 0x98010ee6
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x98010fe6
+  QP number = 14778
+  PSN number = 13736810
+  max.atomic = 16
+  LID = 0x12
+Peer 18
+  value address = 0x7ff431d66000
+  value rkey = 0x18010e40
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x18010f40
+  QP number = 2366
+  PSN number = 16277424
+  max.atomic = 16
+  LID = 0x89
+Peer 19
+  value address = 0x7ff431d66000
+  value rkey = 0xf0010ea4
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf0010fa4
+  QP number = 13508
+  PSN number = 715434
+  max.atomic = 16
+  LID = 0x25
+Peer 20
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010ec1
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010fc1
+  QP number = 12935
+  PSN number = 4546588
+  max.atomic = 16
+  LID = 0x90
+Peer 21
+  value address = 0x7ff431d66000
+  value rkey = 0x18010e86
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x18010f86
+  QP number = 10912
+  PSN number = 16580511
+  max.atomic = 16
+  LID = 0x94
+Peer 22
+  value address = 0x7ff431d66000
+  value rkey = 0x80010ebe
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x80010fbe
+  QP number = 7715
+  PSN number = 12952860
+  max.atomic = 16
+  LID = 0x42
+Peer 23
+  value address = 0x7ff431d66000
+  value rkey = 0x20010e3b
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x20010f3b
+  QP number = 12021
+  PSN number = 6298716
+  max.atomic = 16
+  LID = 0x43
+Peer 24
+  value address = 0x7ff431d66000
+  value rkey = 0x38010e4d
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x38010f4d
+  QP number = 11935
+  PSN number = 16158347
+  max.atomic = 16
+  LID = 0x44
+Peer 25
+  value address = 0x7ff431d66000
+  value rkey = 0xe8010e34
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xe8010f34
+  QP number = 12203
+  PSN number = 11549653
+  max.atomic = 16
+  LID = 0x46
+Peer 26
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010e4c
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010f4c
+  QP number = 12933
+  PSN number = 10715015
+  max.atomic = 16
+  LID = 0x98
+Peer 27
+  value address = 0x7ff431d66000
+  value rkey = 0x38010e48
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x38010f48
+  QP number = 13037
+  PSN number = 15055691
+  max.atomic = 16
+  LID = 0x99
+Peer 28
+  value address = 0x7ff431d66000
+  value rkey = 0x38010ede
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x38010fde
+  QP number = 12914
+  PSN number = 3447616
+  max.atomic = 16
+  LID = 0x101
+Peer 29
+  value address = 0x7ff431d66000
+  value rkey = 0x20010e56
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x20010f56
+  QP number = 12795
+  PSN number = 8371705
+  max.atomic = 16
+  LID = 0x106
+Peer 30
+  value address = 0x7ff431d66000
+  value rkey = 0x50010e22
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x50010f22
+  QP number = 12748
+  PSN number = 4396350
+  max.atomic = 16
+  LID = 0x100
+Peer 31
+  value address = 0x7ff431d66000
+  value rkey = 0x28010eeb
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x28010feb
+  QP number = 11743
+  PSN number = 4304808
+  max.atomic = 16
+  LID = 0x37
+Peer 32
+  value address = 0x7ff431d66000
+  value rkey = 0x48010e40
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x48010f40
+  QP number = 11880
+  PSN number = 4246110
+  max.atomic = 16
+  LID = 0x40
+Peer 33
+  value address = 0x7ff431d66000
+  value rkey = 0x40010e8b
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x40010f8b
+  QP number = 11898
+  PSN number = 7026687
+  max.atomic = 16
+  LID = 0x110
+Peer 34
+  value address = 0x7ff431d66000
+  value rkey = 0x48010ef7
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x48010ff7
+  QP number = 11897
+  PSN number = 6079175
+  max.atomic = 16
+  LID = 0x102
+Peer 35
+  value address = 0x7ff431d66000
+  value rkey = 0xd8010e7a
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xd8010f7a
+  QP number = 12053
+  PSN number = 13872544
+  max.atomic = 16
+  LID = 0x103
+Peer 36
+  value address = 0x7ff431d66000
+  value rkey = 0x8010e3c
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x8010f3c
+  QP number = 12149
+  PSN number = 76225
+  max.atomic = 16
+  LID = 0x104
+Peer 37
+  value address = 0x7ff431d66000
+  value rkey = 0xd0010e3a
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xd0010f3a
+  QP number = 12108
+  PSN number = 13622871
+  max.atomic = 16
+  LID = 0x105
+Peer 38
+  value address = 0x7ff431d66000
+  value rkey = 0x30010e51
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x30010f51
+  QP number = 12028
+  PSN number = 3106964
+  max.atomic = 16
+  LID = 0x107
+Peer 39
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010e79
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010f79
+  QP number = 12333
+  PSN number = 11465983
+  max.atomic = 16
+  LID = 0x109
+Peer 40
+  value address = 0x7ff431d66000
+  value rkey = 0xc0010e44
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xc0010f44
+  QP number = 12072
+  PSN number = 14459225
+  max.atomic = 16
+  LID = 0x108
+Peer 41
+  value address = 0x7ff431d66000
+  value rkey = 0x10e7e
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10f7e
+  QP number = 12216
+  PSN number = 8179158
+  max.atomic = 16
+  LID = 0x111
+Peer 42
+  value address = 0x7ff431d66000
+  value rkey = 0xe0010ed2
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xe0010fd2
+  QP number = 10424
+  PSN number = 6669825
+  max.atomic = 16
+  LID = 0x124
+Peer 43
+  value address = 0x7ff431d66000
+  value rkey = 0x68010e71
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x68010f71
+  QP number = 10262
+  PSN number = 2362577
+  max.atomic = 16
+  LID = 0x130
+Peer 44
+  value address = 0x7ff431d66000
+  value rkey = 0xb8010e46
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xb8010f46
+  QP number = 11059
+  PSN number = 14047559
+  max.atomic = 16
+  LID = 0x126
+Peer 45
+  value address = 0x7ff431d66000
+  value rkey = 0xd0010e29
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xd0010f29
+  QP number = 11055
+  PSN number = 321356
+  max.atomic = 16
+  LID = 0x125
+Peer 46
+  value address = 0x7ff431d66000
+  value rkey = 0xa0010e23
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xa0010f23
+  QP number = 11166
+  PSN number = 16369176
+  max.atomic = 16
+  LID = 0x81
+Peer 47
+  value address = 0x7ff431d66000
+  value rkey = 0x38010e87
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x38010f87
+  QP number = 11169
+  PSN number = 6794651
+  max.atomic = 16
+  LID = 0x129
+Peer 48
+  value address = 0x7ff431d66000
+  value rkey = 0x68010e31
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x68010f31
+  QP number = 10519
+  PSN number = 10971989
+  max.atomic = 16
+  LID = 0x74
+Peer 49
+  value address = 0x7ff431d66000
+  value rkey = 0x48010efe
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x48010ffe
+  QP number = 2999
+  PSN number = 4350253
+  max.atomic = 16
+  LID = 0x131
+Peer 50
+  value address = 0x7ff431d66000
+  value rkey = 0xe0010ee3
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xe0010fe3
+  QP number = 12946
+  PSN number = 4469396
+  max.atomic = 16
+  LID = 0x112
+Peer 51
+  value address = 0x7ff431d66000
+  value rkey = 0x10efd
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10ffd
+  QP number = 14046
+  PSN number = 2160735
+  max.atomic = 16
+  LID = 0x113
+Peer 52
+  value address = 0x7ff431d66000
+  value rkey = 0x50010ef5
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x50010ff5
+  QP number = 14875
+  PSN number = 16669608
+  max.atomic = 16
+  LID = 0x114
+Peer 53
+  value address = 0x7ff431d66000
+  value rkey = 0x10e47
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10f47
+  QP number = 14296
+  PSN number = 608874
+  max.atomic = 16
+  LID = 0x70
+Peer 54
+  value address = 0x7ff431d66000
+  value rkey = 0x98010e0e
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x98010f0e
+  QP number = 14180
+  PSN number = 1399390
+  max.atomic = 16
+  LID = 0x119
+Peer 55
+  value address = 0x7ff431d66000
+  value rkey = 0x58010e1a
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x58010f1a
+  QP number = 14320
+  PSN number = 10642444
+  max.atomic = 16
+  LID = 0x122
+Peer 56
+  value address = 0x7ff431d66000
+  value rkey = 0x70010e90
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x70010f90
+  QP number = 14668
+  PSN number = 7198073
+  max.atomic = 16
+  LID = 0x121
+Peer 57
+  value address = 0x7ff431d66000
+  value rkey = 0x48010e4a
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x48010f4a
+  QP number = 14086
+  PSN number = 16709713
+  max.atomic = 16
+  LID = 0x68
+Peer 58
+  value address = 0x7ff431d66000
+  value rkey = 0x10010ec7
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x10010fc7
+  QP number = 2961
+  PSN number = 7020114
+  max.atomic = 16
+  LID = 0x115
+Peer 59
+  value address = 0x7ff431d66000
+  value rkey = 0xc8010eb3
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xc8010fb3
+  QP number = 14135
+  PSN number = 16118288
+  max.atomic = 16
+  LID = 0x120
+Peer 60
+  value address = 0x7ff431d66000
+  value rkey = 0x68010ede
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x68010fde
+  QP number = 13803
+  PSN number = 9183449
+  max.atomic = 16
+  LID = 0x116
+Peer 61
+  value address = 0x7ff431d66000
+  value rkey = 0x98010e00
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x98010f00
+  QP number = 13452
+  PSN number = 1749268
+  max.atomic = 16
+  LID = 0x127
+Peer 62
+  value address = 0x7ff431d66000
+  value rkey = 0xf8010e08
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xf8010f08
+  QP number = 13585
+  PSN number = 8288583
+  max.atomic = 16
+  LID = 0x118
+Peer 63
+  value address = 0x7ff431d66000
+  value rkey = 0xc8010ecd
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0xc8010fcd
+  QP number = 13381
+  PSN number = 7277704
+  max.atomic = 16
+  LID = 0x117
+Peer 64
+  value address = 0x7ff431d66000
+  value rkey = 0x40010e1d
+  cache address = 0x7ff3b42f3000
+  cache rkey = 0x40010f1d
+  QP number = 13089
+  PSN number = 11352328
+  max.atomic = 16
+  LID = 0x123
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 14.7237MB
+Master is not a worker, does not host pi values
+
+run():604 202.412 Memory usage: total 33509MB resident 31568MB 
+average_count is: 2 step count: 1 time: 25.180 perplexity for hold out set: 5.056557655334
+average_count is: 3 step count: 257 time: 140.096 perplexity for hold out set: 4.874991416931
+average_count is: 4 step count: 513 time: 254.023 perplexity for hold out set: 4.819849014282
+average_count is: 5 step count: 769 time: 366.819 perplexity for hold out set: 4.792654991150
+average_count is: 6 step count: 1025 time: 480.349 perplexity for hold out set: 4.776401996613
+average_count is: 7 step count: 1281 time: 592.948 perplexity for hold out set: 4.765601634979
+average_count is: 8 step count: 1537 time: 706.061 perplexity for hold out set: 4.757920742035
+average_count is: 9 step count: 1793 time: 818.952 perplexity for hold out set: 4.752110958099
+average_count is: 10 step count: 2049 time: 932.820 perplexity for hold out set: 4.747589588165
+average_count is: 11 step count: 2305 time: 1046.118 perplexity for hold out set: 4.743974685669
+average_count is: 12 step count: 2561 time: 1159.461 perplexity for hold out set: 4.741001129150
+average_count is: 13 step count: 2817 time: 1271.797 perplexity for hold out set: 4.738533496857
+average_count is: 14 step count: 3073 time: 1385.013 perplexity for hold out set: 4.736445426941
+average_count is: 15 step count: 3329 time: 1497.728 perplexity for hold out set: 4.734647274017
+average_count is: 16 step count: 3585 time: 1611.214 perplexity for hold out set: 4.733089447021
+average_count is: 17 step count: 3841 time: 1723.551 perplexity for hold out set: 4.731728553772
+average_count is: 18 step count: 4097 time: 1836.591 perplexity for hold out set: 4.730518817902
+average_count is: 19 step count: 4353 time: 1949.808 perplexity for hold out set: 4.729440689087
+average_count is: 20 step count: 4609 time: 2063.119 perplexity for hold out set: 4.728475570679
+average_count is: 21 step count: 4865 time: 2176.398 perplexity for hold out set: 4.727604389191
+average_count is: 22 step count: 5121 time: 2288.387 perplexity for hold out set: 4.726810932159
+average_count is: 23 step count: 5377 time: 2400.941 perplexity for hold out set: 4.726090431213
+average_count is: 24 step count: 5633 time: 2514.151 perplexity for hold out set: 4.725428581238
+average_count is: 25 step count: 5889 time: 2625.790 perplexity for hold out set: 4.724822521210
+average_count is: 26 step count: 6145 time: 2738.163 perplexity for hold out set: 4.724262714386
+average_count is: 27 step count: 6401 time: 2850.699 perplexity for hold out set: 4.723746299744
+average_count is: 28 step count: 6657 time: 2964.626 perplexity for hold out set: 4.723266601562
+average_count is: 29 step count: 6913 time: 3077.987 perplexity for hold out set: 4.722821235657
+average_count is: 30 step count: 7169 time: 3191.384 perplexity for hold out set: 4.722403049469
+average_count is: 31 step count: 7425 time: 3304.414 perplexity for hold out set: 4.722011089325
+average_count is: 32 step count: 7681 time: 3417.068 perplexity for hold out set: 4.721642971039
+average_count is: 33 step count: 7937 time: 3529.778 perplexity for hold out set: 4.721300125122
+average_count is: 34 step count: 8193 time: 3643.124 perplexity for hold out set: 4.720976829529
+average_count is: 35 step count: 8449 time: 3755.550 perplexity for hold out set: 4.720673084259
+average_count is: 36 step count: 8705 time: 3868.896 perplexity for hold out set: 4.720384120941
+average_count is: 37 step count: 8961 time: 3982.133 perplexity for hold out set: 4.720110893250
+average_count is: 38 step count: 9217 time: 4095.679 perplexity for hold out set: 4.719851016998
+average_count is: 39 step count: 9473 time: 4207.837 perplexity for hold out set: 4.719604492188
+average_count is: 40 step count: 9729 time: 4320.704 perplexity for hold out set: 4.719370365143
+average_count is: 41 step count: 9985 time: 4434.154 perplexity for hold out set: 4.719146728516
+average_count is: 42 step count: 10241 time: 4547.552 perplexity for hold out set: 4.718932628632
+average_count is: 43 step count: 10497 time: 4660.721 perplexity for hold out set: 4.718729972839
+average_count is: 44 step count: 10753 time: 4773.209 perplexity for hold out set: 4.718534946442
+average_count is: 45 step count: 11009 time: 4886.245 perplexity for hold out set: 4.718348503113
+average_count is: 46 step count: 11265 time: 4999.397 perplexity for hold out set: 4.718172073364
+average_count is: 47 step count: 11521 time: 5112.088 perplexity for hold out set: 4.718001842499
+average_count is: 48 step count: 11777 time: 5223.587 perplexity for hold out set: 4.717837810516
+average_count is: 49 step count: 12033 time: 5336.805 perplexity for hold out set: 4.717679977417
+average_count is: 50 step count: 12289 time: 5448.056 perplexity for hold out set: 4.717529296875
+average_count is: 51 step count: 12545 time: 5560.665 perplexity for hold out set: 4.717384338379
+average_count is: 52 step count: 12801 time: 5674.516 perplexity for hold out set: 4.717244148254
+average_count is: 53 step count: 13057 time: 5786.981 perplexity for hold out set: 4.717108249664
+average_count is: 54 step count: 13313 time: 5899.684 perplexity for hold out set: 4.716979026794
+average_count is: 55 step count: 13569 time: 6011.868 perplexity for hold out set: 4.716852664948
+average_count is: 56 step count: 13825 time: 6124.948 perplexity for hold out set: 4.716730594635
+average_count is: 57 step count: 14081 time: 6238.527 perplexity for hold out set: 4.716613292694
+average_count is: 58 step count: 14337 time: 6350.331 perplexity for hold out set: 4.716500282288
+average_count is: 59 step count: 14593 time: 6462.924 perplexity for hold out set: 4.716390132904
+average_count is: 60 step count: 14849 time: 6575.850 perplexity for hold out set: 4.716283321381
+average_count is: 61 step count: 15105 time: 6688.966 perplexity for hold out set: 4.716180324554
+average_count is: 62 step count: 15361 time: 6802.816 perplexity for hold out set: 4.716081142426
+average_count is: 63 step count: 15617 time: 6915.647 perplexity for hold out set: 4.715983390808
+average_count is: 64 step count: 15873 time: 7027.728 perplexity for hold out set: 4.715889930725
+average_count is: 65 step count: 16129 time: 7140.410 perplexity for hold out set: 4.715798377991
+average_count is: 66 step count: 16385 time: 7252.965 perplexity for hold out set: 4.715709686279
+average_count is: 67 step count: 16641 time: 7365.604 perplexity for hold out set: 4.715623855591
+average_count is: 68 step count: 16897 time: 7477.986 perplexity for hold out set: 4.715539932251
+average_count is: 69 step count: 17153 time: 7590.800 perplexity for hold out set: 4.715458869934
+average_count is: 70 step count: 17409 time: 7703.604 perplexity for hold out set: 4.715378761292
+average_count is: 71 step count: 17665 time: 7817.359 perplexity for hold out set: 4.715301990509
+average_count is: 72 step count: 17921 time: 7929.919 perplexity for hold out set: 4.715227603912
+average_count is: 73 step count: 18177 time: 8041.465 perplexity for hold out set: 4.715153694153
+average_count is: 74 step count: 18433 time: 8154.795 perplexity for hold out set: 4.715082168579
+average_count is: 75 step count: 18689 time: 8267.292 perplexity for hold out set: 4.715013980865
+average_count is: 76 step count: 18945 time: 8380.817 perplexity for hold out set: 4.714945793152
+average_count is: 77 step count: 19201 time: 8493.393 perplexity for hold out set: 4.714879512787
+average_count is: 78 step count: 19457 time: 8605.671 perplexity for hold out set: 4.714815616608
+average_count is: 79 step count: 19713 time: 8717.898 perplexity for hold out set: 4.714751720428
+average_count is: 80 step count: 19969 time: 8829.527 perplexity for hold out set: 4.714690685272
+average_count is: 81 step count: 20225 time: 8941.819 perplexity for hold out set: 4.714631080627
+average_count is: 82 step count: 20481 time: 9054.627 perplexity for hold out set: 4.714571952820
+average_count is: 83 step count: 20737 time: 9166.677 perplexity for hold out set: 4.714515209198
+average_count is: 84 step count: 20993 time: 9280.008 perplexity for hold out set: 4.714458465576
+average_count is: 85 step count: 21249 time: 9393.418 perplexity for hold out set: 4.714404582977
+average_count is: 86 step count: 21505 time: 9506.307 perplexity for hold out set: 4.714350700378
+average_count is: 87 step count: 21761 time: 9619.303 perplexity for hold out set: 4.714298725128
+average_count is: 88 step count: 22017 time: 9732.439 perplexity for hold out set: 4.714246273041
+average_count is: 89 step count: 22273 time: 9845.105 perplexity for hold out set: 4.714195728302
+average_count is: 90 step count: 22529 time: 9958.096 perplexity for hold out set: 4.714146614075
+average_count is: 91 step count: 22785 time: 10071.147 perplexity for hold out set: 4.714098930359
+average_count is: 92 step count: 23041 time: 10183.465 perplexity for hold out set: 4.714051246643
+average_count is: 93 step count: 23297 time: 10296.521 perplexity for hold out set: 4.714005947113
+average_count is: 94 step count: 23553 time: 10408.497 perplexity for hold out set: 4.713959693909
+average_count is: 95 step count: 23809 time: 10521.066 perplexity for hold out set: 4.713915824890
+average_count is: 96 step count: 24065 time: 10634.467 perplexity for hold out set: 4.713872432709
+average_count is: 97 step count: 24321 time: 10747.445 perplexity for hold out set: 4.713829994202
+average_count is: 98 step count: 24577 time: 10860.445 perplexity for hold out set: 4.713788032532
+average_count is: 99 step count: 24833 time: 10972.227 perplexity for hold out set: 4.713746547699
+average_count is: 100 step count: 25089 time: 11084.415 perplexity for hold out set: 4.713706970215
+average_count is: 101 step count: 25345 time: 11196.906 perplexity for hold out set: 4.713666915894
+average_count is: 102 step count: 25601 time: 11310.045 perplexity for hold out set: 4.713627815247
+average_count is: 103 step count: 25857 time: 11422.611 perplexity for hold out set: 4.713589668274
+average_count is: 104 step count: 26113 time: 11534.832 perplexity for hold out set: 4.713552474976
+average_count is: 105 step count: 26369 time: 11647.213 perplexity for hold out set: 4.713515281677
+average_count is: 106 step count: 26625 time: 11759.250 perplexity for hold out set: 4.713479042053
+average_count is: 107 step count: 26881 time: 11872.408 perplexity for hold out set: 4.713443756104
+average_count is: 108 step count: 27137 time: 11985.761 perplexity for hold out set: 4.713408470154
+average_count is: 109 step count: 27393 time: 12098.271 perplexity for hold out set: 4.713373661041
+average_count is: 110 step count: 27649 time: 12210.181 perplexity for hold out set: 4.713339805603
+average_count is: 111 step count: 27905 time: 12321.965 perplexity for hold out set: 4.713306427002
+average_count is: 112 step count: 28161 time: 12434.326 perplexity for hold out set: 4.713273525238
+average_count is: 113 step count: 28417 time: 12547.048 perplexity for hold out set: 4.713241100311
+average_count is: 114 step count: 28673 time: 12660.202 perplexity for hold out set: 4.713209629059
+average_count is: 115 step count: 28929 time: 12773.116 perplexity for hold out set: 4.713178157806
+average_count is: 116 step count: 29185 time: 12885.886 perplexity for hold out set: 4.713147640228
+average_count is: 117 step count: 29441 time: 12999.017 perplexity for hold out set: 4.713117122650
+average_count is: 118 step count: 29697 time: 13110.889 perplexity for hold out set: 4.713087558746
+average_count is: 119 step count: 29953 time: 13223.448 perplexity for hold out set: 4.713057518005
+average_count is: 120 step count: 30209 time: 13335.664 perplexity for hold out set: 4.713028907776
+average_count is: 121 step count: 30465 time: 13448.800 perplexity for hold out set: 4.713000774384
+average_count is: 122 step count: 30721 time: 13559.687 perplexity for hold out set: 4.712972640991
+average_count is: 123 step count: 30977 time: 13673.247 perplexity for hold out set: 4.712944984436
+average_count is: 124 step count: 31233 time: 13785.389 perplexity for hold out set: 4.712917804718
+average_count is: 125 step count: 31489 time: 13898.218 perplexity for hold out set: 4.712891578674
+average_count is: 126 step count: 31745 time: 14012.191 perplexity for hold out set: 4.712865352631
+average_count is: 127 step count: 32001 time: 14125.030 perplexity for hold out set: 4.712839603424
+average_count is: 128 step count: 32257 time: 14237.453 perplexity for hold out set: 4.712812900543
+average_count is: 129 step count: 32513 time: 14351.000 perplexity for hold out set: 4.712788105011
+average_count is: 130 step count: 32769 time: 14464.188 perplexity for hold out set: 4.712763786316
+average_count is: 131 step count: 33025 time: 14577.083 perplexity for hold out set: 4.712739467621
+average_count is: 132 step count: 33281 time: 14689.685 perplexity for hold out set: 4.712714672089
+average_count is: 133 step count: 33537 time: 14802.464 perplexity for hold out set: 4.712690830231
+average_count is: 134 step count: 33793 time: 14914.683 perplexity for hold out set: 4.712667942047
+average_count is: 135 step count: 34049 time: 15026.959 perplexity for hold out set: 4.712644577026
+average_count is: 136 step count: 34305 time: 15140.389 perplexity for hold out set: 4.712621688843
+average_count is: 137 step count: 34561 time: 15252.602 perplexity for hold out set: 4.712598800659
+average_count is: 138 step count: 34817 time: 15364.898 perplexity for hold out set: 4.712576389313
+average_count is: 139 step count: 35073 time: 15477.881 perplexity for hold out set: 4.712554931641
+average_count is: 140 step count: 35329 time: 15590.039 perplexity for hold out set: 4.712532520294
+average_count is: 141 step count: 35585 time: 15702.664 perplexity for hold out set: 4.712511062622
+average_count is: 142 step count: 35841 time: 15815.239 perplexity for hold out set: 4.712489604950
+average_count is: 143 step count: 36097 time: 15928.186 perplexity for hold out set: 4.712468147278
+average_count is: 144 step count: 36353 time: 16041.130 perplexity for hold out set: 4.712448120117
+average_count is: 145 step count: 36609 time: 16154.312 perplexity for hold out set: 4.712427616119
+average_count is: 146 step count: 36865 time: 16266.180 perplexity for hold out set: 4.712407588959
+average_count is: 147 step count: 37121 time: 16379.077 perplexity for hold out set: 4.712387561798
+average_count is: 148 step count: 37377 time: 16491.730 perplexity for hold out set: 4.712368011475
+average_count is: 149 step count: 37633 time: 16604.062 perplexity for hold out set: 4.712348461151
+average_count is: 150 step count: 37889 time: 16717.004 perplexity for hold out set: 4.712328910828
+average_count is: 151 step count: 38145 time: 16829.272 perplexity for hold out set: 4.712310314178
+average_count is: 152 step count: 38401 time: 16941.796 perplexity for hold out set: 4.712291717529
+average_count is: 153 step count: 38657 time: 17054.632 perplexity for hold out set: 4.712274074554
+average_count is: 154 step count: 38913 time: 17168.015 perplexity for hold out set: 4.712255477905
+average_count is: 155 step count: 39169 time: 17280.237 perplexity for hold out set: 4.712237358093
+average_count is: 156 step count: 39425 time: 17392.964 perplexity for hold out set: 4.712219715118
+average_count is: 157 step count: 39681 time: 17505.091 perplexity for hold out set: 4.712202072144
+average_count is: 158 step count: 39937 time: 17617.653 perplexity for hold out set: 4.712185382843
+average_count is: 159 step count: 40193 time: 17729.445 perplexity for hold out set: 4.712167739868
+average_count is: 160 step count: 40449 time: 17842.337 perplexity for hold out set: 4.712150573730
+average_count is: 161 step count: 40705 time: 17954.273 perplexity for hold out set: 4.712133884430
+average_count is: 162 step count: 40961 time: 18066.968 perplexity for hold out set: 4.712117195129
+average_count is: 163 step count: 41217 time: 18179.174 perplexity for hold out set: 4.712100505829
+average_count is: 164 step count: 41473 time: 18292.423 perplexity for hold out set: 4.712083816528
+average_count is: 165 step count: 41729 time: 18404.231 perplexity for hold out set: 4.712068080902
+average_count is: 166 step count: 41985 time: 18516.527 perplexity for hold out set: 4.712051868439
+average_count is: 167 step count: 42241 time: 18629.463 perplexity for hold out set: 4.712036609650
+average_count is: 168 step count: 42497 time: 18741.369 perplexity for hold out set: 4.712020874023
+average_count is: 169 step count: 42753 time: 18853.277 perplexity for hold out set: 4.712006568909
+average_count is: 170 step count: 43009 time: 18966.824 perplexity for hold out set: 4.711990356445
+average_count is: 171 step count: 43265 time: 19078.324 perplexity for hold out set: 4.711975574493
+average_count is: 172 step count: 43521 time: 19189.956 perplexity for hold out set: 4.711960792542
+average_count is: 173 step count: 43777 time: 19302.486 perplexity for hold out set: 4.711945056915
+average_count is: 174 step count: 44033 time: 19415.034 perplexity for hold out set: 4.711931228638
+average_count is: 175 step count: 44289 time: 19529.399 perplexity for hold out set: 4.711916446686
+average_count is: 176 step count: 44545 time: 19642.045 perplexity for hold out set: 4.711902618408
+average_count is: 177 step count: 44801 time: 19753.897 perplexity for hold out set: 4.711888313293
+average_count is: 178 step count: 45057 time: 19866.387 perplexity for hold out set: 4.711874485016
+average_count is: 179 step count: 45313 time: 19980.019 perplexity for hold out set: 4.711860656738
+average_count is: 180 step count: 45569 time: 20092.620 perplexity for hold out set: 4.711846828461
+average_count is: 181 step count: 45825 time: 20206.121 perplexity for hold out set: 4.711832523346
+average_count is: 182 step count: 46081 time: 20319.116 perplexity for hold out set: 4.711819171906
+average_count is: 183 step count: 46337 time: 20431.154 perplexity for hold out set: 4.711805820465
+average_count is: 184 step count: 46593 time: 20542.979 perplexity for hold out set: 4.711792945862
+average_count is: 185 step count: 46849 time: 20654.843 perplexity for hold out set: 4.711780071259
+average_count is: 186 step count: 47105 time: 20766.777 perplexity for hold out set: 4.711767196655
+average_count is: 187 step count: 47361 time: 20879.811 perplexity for hold out set: 4.711754322052
+average_count is: 188 step count: 47617 time: 20992.935 perplexity for hold out set: 4.711740970612
+average_count is: 189 step count: 47873 time: 21104.751 perplexity for hold out set: 4.711728572845
+average_count is: 190 step count: 48129 time: 21216.534 perplexity for hold out set: 4.711716175079
+average_count is: 191 step count: 48385 time: 21329.216 perplexity for hold out set: 4.711703777313
+average_count is: 192 step count: 48641 time: 21440.026 perplexity for hold out set: 4.711691379547
+average_count is: 193 step count: 48897 time: 21552.761 perplexity for hold out set: 4.711679458618
+average_count is: 194 step count: 49153 time: 21665.949 perplexity for hold out set: 4.711667537689
+average_count is: 195 step count: 49409 time: 21778.614 perplexity for hold out set: 4.711655616760
+average_count is: 196 step count: 49665 time: 21892.058 perplexity for hold out set: 4.711643695831
+average_count is: 197 step count: 49921 time: 22005.305 perplexity for hold out set: 4.711632251740
+average_count is: 198 step count: 50177 time: 22117.752 perplexity for hold out set: 4.711620330811
+average_count is: 199 step count: 50433 time: 22230.350 perplexity for hold out set: 4.711608886719
+average_count is: 200 step count: 50689 time: 22342.588 perplexity for hold out set: 4.711597442627
+average_count is: 201 step count: 50945 time: 22454.530 perplexity for hold out set: 4.711585998535
+average_count is: 202 step count: 51201 time: 22567.132 perplexity for hold out set: 4.711575031281
+average_count is: 203 step count: 51457 time: 22680.023 perplexity for hold out set: 4.711564064026
+average_count is: 204 step count: 51713 time: 22793.023 perplexity for hold out set: 4.711553096771
+average_count is: 205 step count: 51969 time: 22904.301 perplexity for hold out set: 4.711542606354
+average_count is: 206 step count: 52225 time: 23017.744 perplexity for hold out set: 4.711531639099
+average_count is: 207 step count: 52481 time: 23129.957 perplexity for hold out set: 4.711520671844
+average_count is: 208 step count: 52737 time: 23243.086 perplexity for hold out set: 4.711510181427
+average_count is: 209 step count: 52993 time: 23356.137 perplexity for hold out set: 4.711499691010
+average_count is: 210 step count: 53249 time: 23468.609 perplexity for hold out set: 4.711489677429
+average_count is: 211 step count: 53505 time: 23580.248 perplexity for hold out set: 4.711479187012
+average_count is: 212 step count: 53761 time: 23691.177 perplexity for hold out set: 4.711469173431
+average_count is: 213 step count: 54017 time: 23803.806 perplexity for hold out set: 4.711458683014
+average_count is: 214 step count: 54273 time: 23917.036 perplexity for hold out set: 4.711449146271
+average_count is: 215 step count: 54529 time: 24029.652 perplexity for hold out set: 4.711439132690
+average_count is: 216 step count: 54785 time: 24142.907 perplexity for hold out set: 4.711429119110
+average_count is: 217 step count: 55041 time: 24255.581 perplexity for hold out set: 4.711419582367
+average_count is: 218 step count: 55297 time: 24368.247 perplexity for hold out set: 4.711409568787
+average_count is: 219 step count: 55553 time: 24480.765 perplexity for hold out set: 4.711400032043
+average_count is: 220 step count: 55809 time: 24594.132 perplexity for hold out set: 4.711390018463
+average_count is: 221 step count: 56065 time: 24706.165 perplexity for hold out set: 4.711380481720
+average_count is: 222 step count: 56321 time: 24819.501 perplexity for hold out set: 4.711370944977
+average_count is: 223 step count: 56577 time: 24932.442 perplexity for hold out set: 4.711361885071

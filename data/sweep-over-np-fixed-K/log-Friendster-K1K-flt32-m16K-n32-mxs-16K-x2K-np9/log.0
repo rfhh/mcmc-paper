@@ -1,0 +1,450 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 1K -m 16K -n 32 -i 256 --mcmc.sampler.max-source 16K -x 2K --mcmc.c 0 --mcmc.a 1e-06 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+Host node056 PID 2867
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 9
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01/graph.gz
+Node + edgeset read 0
+For memory query file /proc/2867/statm
+0.000 Memory usage: total 7604MB resident 7522MB 
+Node + edgeset read 1048576
+0.471 Memory usage: total 7637MB resident 7555MB 
+Node + edgeset read 2097152
+0.966 Memory usage: total 7671MB resident 7589MB 
+Node + edgeset read 3145728
+1.491 Memory usage: total 7708MB resident 7626MB 
+Node + edgeset read 4194304
+2.016 Memory usage: total 7745MB resident 7663MB 
+Node + edgeset read 5242880
+2.665 Memory usage: total 7784MB resident 7702MB 
+Node + edgeset read 6291456
+3.308 Memory usage: total 7824MB resident 7742MB 
+Node + edgeset read 7340032
+3.886 Memory usage: total 7868MB resident 7786MB 
+Node + edgeset read 8388608
+4.473 Memory usage: total 7914MB resident 7832MB 
+Node + edgeset read 9437184
+5.127 Memory usage: total 7964MB resident 7882MB 
+Node + edgeset read 10485760
+5.997 Memory usage: total 8020MB resident 7938MB 
+Node + edgeset read 11534336
+6.810 Memory usage: total 8078MB resident 7996MB 
+Node + edgeset read 12582912
+7.645 Memory usage: total 8144MB resident 8062MB 
+Node + edgeset read 13631488
+8.557 Memory usage: total 8214MB resident 8132MB 
+Node + edgeset read 14680064
+9.322 Memory usage: total 8290MB resident 8208MB 
+Node + edgeset read 15728640
+10.259 Memory usage: total 8374MB resident 8292MB 
+Node + edgeset read 16777216
+11.097 Memory usage: total 8464MB resident 8382MB 
+Node + edgeset read 17825792
+12.104 Memory usage: total 8574MB resident 8493MB 
+Node + edgeset read 18874368
+13.564 Memory usage: total 8697MB resident 8615MB 
+Node + edgeset read 19922944
+14.935 Memory usage: total 8836MB resident 8754MB 
+Node + edgeset read 20971520
+16.249 Memory usage: total 8998MB resident 8916MB 
+Node + edgeset read 22020096
+19.207 Memory usage: total 9380MB resident 9298MB 
+Node + edgeset read 23068672
+22.275 Memory usage: total 9776MB resident 9694MB 
+Node + edgeset read 24117248
+25.466 Memory usage: total 10186MB resident 10104MB 
+Node + edgeset read 25165824
+28.756 Memory usage: total 10609MB resident 10527MB 
+Node + edgeset read 26214400
+32.152 Memory usage: total 11047MB resident 10965MB 
+Node + edgeset read 27262976
+35.613 Memory usage: total 11495MB resident 11413MB 
+Node + edgeset read 28311552
+39.137 Memory usage: total 11952MB resident 11870MB 
+Node + edgeset read 29360128
+42.749 Memory usage: total 12417MB resident 12335MB 
+Node + edgeset read 30408704
+46.379 Memory usage: total 12886MB resident 12804MB 
+Node + edgeset read 31457280
+50.040 Memory usage: total 13357MB resident 13275MB 
+Node + edgeset read 32505856
+53.637 Memory usage: total 13820MB resident 13738MB 
+Node + edgeset read 33554432
+57.230 Memory usage: total 14285MB resident 14203MB 
+Node + edgeset read 34603008
+60.881 Memory usage: total 14750MB resident 14668MB 
+Node + edgeset read 35651584
+64.588 Memory usage: total 15212MB resident 15130MB 
+Node + edgeset read 36700160
+68.219 Memory usage: total 15668MB resident 15586MB 
+Node + edgeset read 37748736
+71.855 Memory usage: total 16117MB resident 16035MB 
+Node + edgeset read 38797312
+75.920 Memory usage: total 16567MB resident 16485MB 
+Node + edgeset read 39845888
+79.609 Memory usage: total 17016MB resident 16935MB 
+Node + edgeset read 40894464
+83.430 Memory usage: total 17487MB resident 17405MB 
+Node + edgeset read 41943040
+87.522 Memory usage: total 17947MB resident 17865MB 
+Node + edgeset read 42991616
+91.317 Memory usage: total 18410MB resident 18328MB 
+Node + edgeset read 44040192
+95.293 Memory usage: total 18890MB resident 18808MB 
+Node + edgeset read 45088768
+99.521 Memory usage: total 19378MB resident 19296MB 
+Node + edgeset read 46137344
+103.504 Memory usage: total 19867MB resident 19785MB 
+Node + edgeset read 47185920
+107.574 Memory usage: total 20353MB resident 20271MB 
+Node + edgeset read 48234496
+111.585 Memory usage: total 20828MB resident 20746MB 
+Node + edgeset read 49283072
+115.351 Memory usage: total 21276MB resident 21194MB 
+Node + edgeset read 50331648
+118.287 Memory usage: total 21624MB resident 21542MB 
+Node + edgeset read 51380224
+121.354 Memory usage: total 21963MB resident 21882MB 
+Node + edgeset read 52428800
+124.283 Memory usage: total 22295MB resident 22213MB 
+Node + edgeset read 53477376
+127.102 Memory usage: total 22621MB resident 22540MB 
+Node + edgeset read 54525952
+130.413 Memory usage: total 22954MB resident 22873MB 
+Node + edgeset read 55574528
+133.399 Memory usage: total 23288MB resident 23206MB 
+Node + edgeset read 56623104
+136.277 Memory usage: total 23619MB resident 23538MB 
+Node + edgeset read 57671680
+139.211 Memory usage: total 23952MB resident 23870MB 
+Node + edgeset read 58720256
+142.148 Memory usage: total 24270MB resident 24188MB 
+Node + edgeset read 59768832
+144.943 Memory usage: total 24579MB resident 24497MB 
+Node + edgeset read 60817408
+147.711 Memory usage: total 24863MB resident 24781MB 
+Node + edgeset read 61865984
+149.943 Memory usage: total 25114MB resident 25032MB 
+Node + edgeset read 62914560
+151.885 Memory usage: total 25337MB resident 25255MB 
+Node + edgeset read 63963136
+153.763 Memory usage: total 25551MB resident 25469MB 
+Node + edgeset read 65011712
+155.489 Memory usage: total 25752MB resident 25670MB 
+156.467 Memory usage: total 25866MB resident 25784MB 
+WARNING: Expect held-out size 180606716, get 18060671N 65608366 E 1806067135 link ratio 8.39161e-07 K 1024
+minibatch size 16384 epsilon 1e-07 alpha 0.000976562 iterations 2048 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+Use D-KV store type rdma
+minibatch size param 16384 max 43081 chunk 7561 #neighbors(total) 177738
+perplexity nodes total 36121342 local 4013484 mine 514180 chunk 257090
+phi pipeline depth 2
+node056: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store excludes the master node
+MR/value addr=0x7ffdc98d2000 size 7da7a210, lkey=0x80010c10, rkey=0x80010c10, flags=0xf, mr=0x50e014258
+MR/cache addr=0x7ffcce3dc000 size fb4f4420, lkey=0x80010d10, rkey=0x80010d10, flags=0xf, mr=0x50e014290
+MR/write addr=0x7ffe53fe5000 size 150f428, lkey=0x80010e10, rkey=0x80010e10, flags=0xf, mr=0x50e0142c8
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 1: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15411
+  PSN number = 9472852
+  max.atomic = 16
+  LID = 0x114
+Local LID[1] = 0x 72
+My con_data for qp to host 2: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15412
+  PSN number = 3882990
+  max.atomic = 16
+  LID = 0x114
+Local LID[2] = 0x 72
+My con_data for qp to host 3: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15413
+  PSN number = 13142028
+  max.atomic = 16
+  LID = 0x114
+Local LID[3] = 0x 72
+My con_data for qp to host 4: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15414
+  PSN number = 13344861
+  max.atomic = 16
+  LID = 0x114
+Local LID[4] = 0x 72
+My con_data for qp to host 5: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15415
+  PSN number = 1684270
+  max.atomic = 16
+  LID = 0x114
+Local LID[5] = 0x 72
+My con_data for qp to host 6: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15416
+  PSN number = 10062231
+  max.atomic = 16
+  LID = 0x114
+Local LID[6] = 0x 72
+My con_data for qp to host 7: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15417
+  PSN number = 6918485
+  max.atomic = 16
+  LID = 0x114
+Local LID[7] = 0x 72
+My con_data for qp to host 8: 
+  value address = 0x7ffdc98d2000
+  value rkey = 0x80010c10
+  cache address = 0x7ffcce3dc000
+  cache rkey = 0x80010d10
+  QP number = 15418
+  PSN number = 6343154
+  max.atomic = 16
+  LID = 0x114
+Local LID[8] = 0x 72
+0: going to send OOB info to master
+0: sent OOB info to master, error system:0
+Got OOB info from 0
+Got OOB info from 1
+Got OOB info from 2
+Got OOB info from 3
+Got OOB info from 4
+Got OOB info from 5
+Got OOB info from 6
+Got OOB info from 7
+Got OOB info from 8
+Wrote OOB info to 0
+Wrote OOB info to 1
+Wrote OOB info to 2
+Wrote OOB info to Peer 13  value address = 0x7ff817fe4000
+  value rkey = 0x60010f64
+  cache address = 0x7ff71caee000
+  cache rkey = 0x60011064
+  QP number = 14739
+  PSN number = 13524189
+  max.atomic = 16
+4  LID = 0x70
+
+eer 2
+  value address = 0x7ff817fe4000
+  value rkey = 0xe001114a
+  cache address = 0xWrote OOB in
+  cache rkey = 0xe001124a
+  QP number = 14609
+  PSN number = 1131477
+  max.atomic = 16
+  LID = 0x119
+Peer 3
+  value address = 0x7ff817fe4000
+  value rkey = 0x30011145
+  cache address = 0x7ff71caee000
+  cache rkey = 0x30011245
+  QP number = 14695
+  PSN number = 12481120
+  max.atomic = 16
+  LID = 0x122
+Peer 4
+  value address = 0x7ff817fe4000
+  value rkey = 0x80113af
+  cache address = 0x7ff71caee000
+  cache rkey = 0x80114af
+  QP number = 15042
+  PSN number = 13178681
+  max.atomic = 16
+  LID = 0x121
+Peer 5
+  value address = 0x7ff817fe4000
+  value rkey = 0x11170
+  cache address = 0x7ff71caee000
+  cache rkey = 0x11270
+  QP number = 14463
+  PSN number = 8753122
+  max.atomic = 16
+  LID = 0x68
+Peer 6
+  value address = 0x7ff817fe4000
+  value rkey = 0x780113fc
+  cache address = 0x7ff71caee000
+  cache rkey = 0x780114fc
+  QP number = 3338
+  PSN number = 5748119
+  max.atomic = 16
+  LID = 0x115
+Peer 7
+5 value address = 0x7ff817fe4000
+  value rkey = 0x980111d4
+  cache address = 0x7ff71caee000
+  cache rkey = 0x980112d4
+  QP number = 14513
+  PSN number = 14916630
+  max.atomic = 16
+  LID = 0x120
+Peer 8
+  value address = 0x7ff817fe4000
+  value rkey = 0x88010ffa
+  cache address = 0x7ff71caee000
+  cache rkey = 0x880110fa
+  QP number = 14177
+  PSN number = 6224286
+  max.atomic = 16
+  LID = 0x116
+
+Wrote OOB info to 6
+Wrote OOB info to 7
+Wrote OOB info to 8
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 39.2288MB
+Master is not a worker, does not host pi values
+
+run():955 DKV Pipeline server runs
+185.401 Memory usage: total 33707MB resident 33613MB 
+average_count is: 2 step count: 1 time: 10.901 perplexity for hold out set: 3.830780029297
+average_count is: 3 step count: 257 time: 96.628 perplexity for hold out set: 3.627337455750
+average_count is: 4 step count: 513 time: 183.296 perplexity for hold out set: 3.572553873062
+average_count is: 5 step count: 769 time: 271.059 perplexity for hold out set: 3.546487569809
+average_count is: 6 step count: 1025 time: 358.171 perplexity for hold out set: 3.531252145767
+average_count is: 7 step count: 1281 time: 444.385 perplexity for hold out set: 3.521157264709
+average_count is: 8 step count: 1537 time: 531.300 perplexity for hold out set: 3.513938188553
+average_count is: 9 step count: 1793 time: 619.286 perplexity for hold out set: 3.508570432663
+average_count is: 10 step count: 2048 time: 704.442 perplexity for hold out set: 3.504366159439
+timer                                    total (s)    ticks  per tick (us)
+  load network graph                      175.419        1  175419352.652
+  initialize DKV store                     15.133        1   15133823.679
+  populate pi                               0.014        1      14760.077
+  iteration                               692.926     2047     338508.511
+    deploy minibatch                      356.028     2048     173841.894
+      scatter subgraph                    190.154     2048      92848.788
+        marshall edge count                 1.367     2048        667.831
+        scatterv edges                      0.034     2048         16.922
+        marshall edges                     41.488     2048      20258.202
+        scatterv edges                    145.368     2048      70980.666
+        unmarshall edges                    0.000     2048          0.147
+      sample_mini_batch                    27.400     2048      13379.142
+      nodes_in_mini_batch                   5.987     2048       2923.458
+    broadcast theta/beta                    0.242     2047        118.229
+    update_phi_pi                         558.914     2047     273040.562
+      create minibatch slice chunks         0.000     2048          0.365
+      reorder minibatch overlap     <unused>
+      sample_neighbor_nodes                 6.697     2048       3270.035
+      resample_neighbor_nodes       <unused>
+      load minibatch pi                     0.009     4095          2.223
+      load neighbor pi                      0.001     4095          0.471
+      update_phi                            7.121     4094       1739.488
+      barrier after update phi            174.919     2047      85451.614
+      update_pi                     <unused>
+      store minibatch pi            <unused>
+      barrier after update pi              14.286     2047       6979.172
+    update_beta_theta                      42.406     2047      20716.306
+      zero beta grads                       2.306     2047       1126.920
+      rank minibatch nodes                  0.736     2047        359.720
+      load pi update_beta                   4.974     2047       2430.146
+      beta calc grads                       8.057     2047       3936.441
+      beta sum grads                        4.021     2047       1964.434
+      beta reduce(+) grads                  5.438     2047       2656.680
+      update theta                          3.918     2047       1914.338
+  perplexity                              100.992        9   11221441.197
+      load perplexity pi                   80.810       72    1122370.292
+      calc edge likelihood                  1.189        9     132113.443
+      purge perplexity pi                   0.000       72          3.643
+      reduce/plus perplexity                8.749        9     972172.775
+Linger a bit to allow gracious shutdown
+timer                                    total (s)    ticks  per tick (us)
+RDMA poll cq                        <unused>
+RDMA read                                  85.788    10309       8321.751
+     local read                     <unused>
+     per-host read                         79.475     4238      18753.176
+     post read                              4.232 39982524          0.106
+     finish read                           51.068 1002572690          0.051
+RDMA write                          <unused>
+     local write                    <unused>
+     per-host write                 <unused>
+     post write                     <unused>
+     finish write                   <unused>
+RDMA barrier                        <unused>
+posts 39982524 messages 0 msgs/post 0.000
+Local read   0B -nanGB/s
+Remote read  163928348400B 1.780GB/s per-host loop 1.921GB/s
+Local write  0B -nanGB/s
+Remote write 0B -nanGB/s per-host loop -nanGB/s
+                                            9.149     1983       4614.029
+                                            2.852    35471         80.411
+                                    <unused>

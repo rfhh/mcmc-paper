@@ -1,0 +1,238 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 1K -m 16K -n 32 -i 256 --mcmc.sampler.max-source 16K -x 2K --mcmc.c 0 --mcmc.a 1e-06 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+Host node026 PID 19884
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 5
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01/graph.gz
+Node + edgeset read 0
+For memory query file /proc/19884/statm
+0.000 Memory usage: total 7604MB resident 7522MB 
+Node + edgeset read 1048576
+0.466 Memory usage: total 7637MB resident 7555MB 
+Node + edgeset read 2097152
+0.951 Memory usage: total 7671MB resident 7589MB 
+Node + edgeset read 3145728
+1.443 Memory usage: total 7707MB resident 7626MB 
+Node + edgeset read 4194304
+1.937 Memory usage: total 7745MB resident 7663MB 
+Node + edgeset read 5242880
+2.441 Memory usage: total 7784MB resident 7702MB 
+Node + edgeset read 6291456
+2.968 Memory usage: total 7824MB resident 7742MB 
+Node + edgeset read 7340032
+3.522 Memory usage: total 7868MB resident 7786MB 
+Node + edgeset read 8388608
+4.090 Memory usage: total 7914MB resident 7832MB 
+Node + edgeset read 9437184
+4.699 Memory usage: total 7964MB resident 7882MB 
+Node + edgeset read 10485760
+5.327 Memory usage: total 8020MB resident 7938MB 
+Node + edgeset read 11534336
+5.975 Memory usage: total 8078MB resident 7996MB 
+Node + edgeset read 12582912
+6.682 Memory usage: total 8144MB resident 8062MB 
+Node + edgeset read 13631488
+7.407 Memory usage: total 8214MB resident 8132MB 
+Node + edgeset read 14680064
+8.243 Memory usage: total 8290MB resident 8208MB 
+Node + edgeset read 15728640
+9.076 Memory usage: total 8374MB resident 8292MB 
+Node + edgeset read 16777216
+9.918 Memory usage: total 8463MB resident 8381MB 
+Node + edgeset read 17825792
+10.892 Memory usage: total 8574MB resident 8492MB 
+Node + edgeset read 18874368
+11.976 Memory usage: total 8697MB resident 8615MB 
+Node + edgeset read 19922944
+13.132 Memory usage: total 8836MB resident 8754MB 
+Node + edgeset read 20971520
+14.458 Memory usage: total 8998MB resident 8916MB 
+Node + edgeset read 22020096
+17.470 Memory usage: total 9380MB resident 9298MB 
+Node + edgeset read 23068672
+20.592 Memory usage: total 9776MB resident 9694MB 
+Node + edgeset read 24117248
+23.827 Memory usage: total 10186MB resident 10103MB 
+Node + edgeset read 25165824
+27.148 Memory usage: total 10609MB resident 10527MB 
+Node + edgeset read 26214400
+30.604 Memory usage: total 11047MB resident 10965MB 
+Node + edgeset read 27262976
+34.203 Memory usage: total 11495MB resident 11413MB 
+Node + edgeset read 28311552
+37.841 Memory usage: total 11952MB resident 11869MB 
+Node + edgeset read 29360128
+41.491 Memory usage: total 12417MB resident 12335MB 
+Node + edgeset read 30408704
+45.189 Memory usage: total 12886MB resident 12804MB 
+Node + edgeset read 31457280
+48.914 Memory usage: total 13357MB resident 13275MB 
+Node + edgeset read 32505856
+52.561 Memory usage: total 13820MB resident 13738MB 
+Node + edgeset read 33554432
+56.185 Memory usage: total 14285MB resident 14203MB 
+Node + edgeset read 34603008
+59.840 Memory usage: total 14750MB resident 14668MB 
+Node + edgeset read 35651584
+63.446 Memory usage: total 15212MB resident 15130MB 
+Node + edgeset read 36700160
+67.009 Memory usage: total 15668MB resident 15586MB 
+Node + edgeset read 37748736
+70.868 Memory usage: total 16117MB resident 16035MB 
+Node + edgeset read 38797312
+74.551 Memory usage: total 16567MB resident 16485MB 
+Node + edgeset read 39845888
+78.267 Memory usage: total 17016MB resident 16934MB 
+Node + edgeset read 40894464
+82.188 Memory usage: total 17486MB resident 17404MB 
+Node + edgeset read 41943040
+85.906 Memory usage: total 17946MB resident 17865MB 
+Node + edgeset read 42991616
+89.579 Memory usage: total 18409MB resident 18328MB 
+Node + edgeset read 44040192
+93.319 Memory usage: total 18890MB resident 18807MB 
+Node + edgeset read 45088768
+97.278 Memory usage: total 19378MB resident 19296MB 
+Node + edgeset read 46137344
+101.135 Memory usage: total 19867MB resident 19785MB 
+Node + edgeset read 47185920
+104.929 Memory usage: total 20353MB resident 20271MB 
+Node + edgeset read 48234496
+108.671 Memory usage: total 20828MB resident 20746MB 
+Node + edgeset read 49283072
+112.279 Memory usage: total 21276MB resident 21194MB 
+Node + edgeset read 50331648
+115.049 Memory usage: total 21624MB resident 21542MB 
+Node + edgeset read 51380224
+117.779 Memory usage: total 21963MB resident 21881MB 
+Node + edgeset read 52428800
+120.431 Memory usage: total 22295MB resident 22213MB 
+Node + edgeset read 53477376
+123.067 Memory usage: total 22621MB resident 22539MB 
+Node + edgeset read 54525952
+125.739 Memory usage: total 22954MB resident 22872MB 
+Node + edgeset read 55574528
+128.406 Memory usage: total 23287MB resident 23205MB 
+Node + edgeset read 56623104
+131.080 Memory usage: total 23619MB resident 23537MB 
+Node + edgeset read 57671680
+133.812 Memory usage: total 23952MB resident 23870MB 
+Node + edgeset read 58720256
+136.362 Memory usage: total 24269MB resident 24188MB 
+Node + edgeset read 59768832
+138.867 Memory usage: total 24579MB resident 24497MB 
+Node + edgeset read 60817408
+141.196 Memory usage: total 24863MB resident 24781MB 
+Node + edgeset read 61865984
+143.239 Memory usage: total 25114MB resident 25032MB 
+Node + edgeset read 62914560
+145.072 Memory usage: total 25337MB resident 25255MB 
+Node + edgeset read 63963136
+146.848 Memory usage: total 25551MB resident 25469MB 
+Node + edgeset read 65011712
+148.536 Memory usage: total 25752MB resident 25670MB 
+149.514 Memory usage: total 25866MB resident 25784MB 
+WARNING: Expect held-out size 180606716, get 18060671N 65608366 E 1806067135 link ratio 8.39161e-07 K 1024
+minibatch size 16384 epsilon 1e-07 alpha 0.000976562 iterations 2048 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+Use D-KV store type rdma
+minibatch size param 16384 max 43081 chunk 7561 #neighbors(total) 249513
+perplexity nodes total 36121342 local 7224270 mine 514182 chunk 257091
+phi pipeline depth 2
+node026: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store excludes the master node
+MR/value addr=0x7ffdc8671000 size 7da7c218, lkey=0x60010c4a, rkey=0x60010c4a, flags=0xf, mr=0x50df67258
+MR/cache addr=0x7ffccd177000 size fb4f8430, lkey=0x60010d4a, rkey=0x60010d4a, flags=0xf, mr=0x50df67290
+MR/write addr=0x7ffe5326f000 size 1d90624, lkey=0x60010e4a, rkey=0x60010e4a, flags=0xf, mr=0x50df672c8
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 1: 
+  value address = 0x7ffdc8671000
+  value rkey = 0x60010c4a
+  cache address = 0x7ffccd177000
+  cache rkey = 0x60010d4a
+  QP number = 12223
+  PSN number = 4294438
+  max.atomic = 16
+  LID = 0x43
+Local LID[1] = 0x 2b
+My con_data for qp to host 2: 
+  value address = 0x7ffdc8671000
+  value rkey = 0x60010c4a
+  cache address = 0x7ffccd177000
+  cache rkey = 0x60010d4a
+  QP number = 12224
+  PSN number = 14915791
+  max.atomic = 16
+  LID = 0x43
+Local LID[2] = 0x 2b
+My con_data for qp to host 3: 
+  value address = 0x7ffdc8671000
+  value rkey = 0x60010c4a
+  cache address = 0x7ffccd177000
+  cache rkey = 0x60010d4a
+  QP number = 12225
+  PSN number = 14101303
+  max.atomic = 16
+  LID = 0x43
+Local LID[3] = 0x 2b
+My con_data for qp to host 4: 
+  value address = 0x7ffdc8671000
+  value rkey = 0x60010c4a
+  cache address = 0x7ffccd177000
+  cache rkey = 0x60010d4a
+  QP number = 12226
+  PSN number = 8749537
+  max.atomic = 16
+  LID = 0x43
+Local LID[4] = 0x 2b
+0: going to send OOB info to master
+0: sent OOB info to master, error system:0
+Got OOB info from 0
