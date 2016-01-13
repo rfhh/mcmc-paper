@@ -1,78 +1,74 @@
 \section{Evaluation}
 
-\subsection{ml-curves}
-Show convergence of different data sets
-\begin{figure}[t] % [htb]
+This section presents an in-depth empirical analysis of the design discussed in
+Section~\ref{design-section}. To this end, we assess the scalability and
+efficiency of the solution using multiple criteria.
+%
+First, an evaluation of the strong scaling behavior of the distributed
+algorithm is presented.
+%
+Second, the weak scaling of the solution is assessed with respect to increasing
+numbers of targeted latent communities.
+%
+Next, the effects of varying the number of latent communities on the system's
+performance is analyzed.
+%
+Further, we evaluate the efficiency and overhead associated with network
+communication between cluster nodes.
+%
+Finally, we contrast the effectiveness of scaling the computation horizontally
+and vertically.
+
+Empirical results were obtained by performing experiments on the VU and TU/D
+DAS5 clusters which consist of 68 and 48 compute nodes respectively. Each
+compute node is equipped with a dual 8-core Intel Xeon E5-2630v3 CPU clocked
+at 2.40GHz, 64GB of memory and 8TB of storage. Moreover, the compute nodes of
+each site are interconnected by an internal 1~Gbit/s Ethernet and FDR~InfiniBand.
+
+\subsection{Strong scaling}
+
+\begin{figure}[ht] % [htb]
   \centering
-  \epsfig{file=plots/ppx-amazon.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
+  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\columnwidth}
+  \caption{Strong scaling: varying the number of compute nodes for a fixed
+  problem size.}
+  \label{fig-strong-scaling}
 \end{figure}
 
-\begin{figure}[t] % [htb]
-  \centering
-  \epsfig{file=plots/ppx-dblp.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
-\end{figure}
-
-  \begin{figure}[t] % [htb]
-  \centering
-  \epsfig{file=plots/ppx-friendster.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
-\end{figure}
-
-\begin{figure}[t] % [htb]
-  \centering
-  \epsfig{file=plots/ppx-lj.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
-\end{figure}
-
-\begin{figure}[t] % [htb]
-  \centering
-  \epsfig{file=plots/ppx-youtube.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
-\end{figure}
-
-\subsection{sweep-over-K-fixed-np}
-\begin{figure}[t] % [htb]
-  \centering
-  \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
-\end{figure}
-
-
-
-\subsection{sweep-over-K-proportional-np}
-Weak scaling
+\subsection{Weak Scaling}
 
 \begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
+  \caption{Weak scaling: varying the number of compute nodes proportionally to
+  the number of latent communities.}
+  \label{fig-weak-scaling}
 \end{figure}
 
-\subsection{sweep-over-np-fixed-K}
-Strong scaling
-
+\subsection{Effects of Number of Communities on Performance}
 \begin{figure}[t] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\columnwidth}
-  %\caption{}
-  \label{fig-ppx-cpu}
+  \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
+  \caption{Effects of varying the number of communities on the algorithm's
+  throughput.}
+  \label{fig-throughput}
 \end{figure}
 
-\subsection{hpc-cloud}
-Scale up vs scale out
+\subsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
-  %\caption{}
+  \caption{FIXME}
   \label{fig-ppx-cpu}
 \end{figure}
+
+\subsection{Cluster Communication Efficiency}
+
+\subsection{Convergence of Large Datasets}
+\begin{figure*}[t] % [htb]
+  \centering
+  \epsfig{file=plots/ppx.eps, width=\textwidth}
+  \caption{FIXME}
+  \label{fig-ppx-cpu}
+\end{figure*}
 
