@@ -32,8 +32,8 @@ and vertically.
     com-Amazon      &    334,863 &       925,872 & Product co-purchasing network \\
     \hline
   \end{tabular}
-  \label{tab-datasets}
   \caption{Summary of SNAP graph data sets used for evaluation.}
+  \label{tab-datasets}
 \end{table*}
 
 Empirical results were obtained by performing experiments on the VU and TU/D
@@ -52,9 +52,10 @@ collection of data sets used.
 \begin{figure*}[t] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\textwidth}
-  \caption{Strong scaling: Execution time of 2048 algorithm iterations for the
+  \caption{(a) Execution time of 2048 algorithm iterations for the
   same problem size (com-Friendster, K=1024, M=16384 n=32) across different
-  cluster sizes.}
+  cluster sizes. (b) Speedup achieved for same experiments in (a) with respect to
+  8-nodes}
   \label{fig-strong-scaling}
 \end{figure*}
 
@@ -64,7 +65,11 @@ sizes while holding the problem size constant. For this study, we used the
 com-Friendster graph as it contains the largest number of vertices and edges.
 %
 Figure~\ref{fig-strong-scaling}-a presents the execution time of 2048 algorithm
-iterations across multiple cluster sizes. As shown in the figure, the execution
+iterations across multiple cluster sizes. The x-axis starts from 8 worker nodes
+as the data set is too large to fit into the collective memory of a smaller
+cluster.
+%
+As shown in the figure, the execution
 time steadily decreases by increasing the cluster size.
 A deeper analysis of the individual execution phases of the algorithm provides
 insights into the scalability if its building blocks.
@@ -73,7 +78,7 @@ In addition to the total execution time, Figure~\ref{fig-strong-scaling}-a
 presents the cumulative time spent in individual computational phases across
 iterations. Moreover, Figure~\ref{fig-strong-scaling}-b presents the speedup
 achieved for the same experiments reported in
-Figure~\ref{fig-string-scaling}-a. As is clearly shown, the dominant phase of
+Figure~\ref{fig-strong-scaling}-a. As is clearly shown, the dominant phase of
 the execution is update\_pi.
 The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
@@ -83,37 +88,57 @@ addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases
 limiting their resource utilization.
 %
-The time spent in update\_beta remains relatively constant across cluster
-sizes as it is an insignificant amount of work compared to the synchronization
-overhead required to perform a collective MPI reduction operation to complete
-it.
+The time spent in update\_beta remains relatively constant across cluster sizes
+as it performs an insignificant amount of work compared to the synchronization
+overhead of a collective MPI reduction operation contained within it.
 
 %################################################
 \subsection{Weak Scaling}
 
-\begin{figure}[t] % [htb]
+\begin{figure*}[t] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\columnwidth}
-  \caption{Weak scaling: varying the number of compute nodes proportionally to
-  the number of latent communities.}
+  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\textwidth}
+  \caption{(a) Average execution time per algorithm iteration varying
+  the number of latent communities proportionally to the number of compute
+  nodes. (b) The exact number of communities used for each data point in (a).}
   \label{fig-weak-scaling}
-\end{figure}
+\end{figure*}
 
+A study of a system's weak scaling aids in the assessment of the communication
+and synchronization overheads associated with the management of large clusters.
+Similarly, it can expose complex issues that hinder performance at scale such
+as load imbalance. To fairly evaluate the algorithm's weak scaling behavior we
+conducted several executions varying the cluster size and the number of latent
+communities proportionally. This methodology ensures that each compute node
+performs a relatively constant amount of computational work across the all
+configurations. However, the number and size of messages exchanged between the
+nodes would vary significantly. Figure~\ref{fig-weak-scaling}-a presents the
+average execution
+time per algorithm iteration across different cluster sizes. On the other hand,
+Figure~\ref{fig-weak-scaling}-b reports the set number of communities for each
+cluster configuration. The relative change in the average execution time per
+iteration is insignificant even though the communication intensity increases
+for larger cluster sizes. This observation verifies that the system's overall
+overhead is minimal and scales well.
+
+%################################################
 \subsection{Effects of Number of Communities on Performance}
+
 \begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
-  \caption{Effects of varying the number of communities on the algorithm's
-  throughput.}
-  \label{fig-throughput}
+  \caption{Performance effect of varying the number of communities on the
+    algorithm's execution time on 64-nodes.}
+  \label{fig-k}
 \end{figure}
+
 
 \subsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
   \caption{FIXME}
-  \label{fig-ppx-cpu}
+  \label{fig-scale-up}
 \end{figure}
 
 \subsection{Cluster Communication Efficiency}
@@ -123,6 +148,6 @@ it.
   \centering
   \epsfig{file=plots/ppx.eps, width=\textwidth}
   \caption{FIXME}
-  \label{fig-ppx-cpu}
+  \label{fig-ppx}
 \end{figure*}
 
