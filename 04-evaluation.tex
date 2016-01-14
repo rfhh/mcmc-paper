@@ -4,19 +4,19 @@ This section presents an in-depth empirical analysis of the design discussed in
 Section~\ref{design-section}. To this end, we assess the scalability and
 efficiency of the solution using multiple criteria.
 %
-First, an evaluation of the strong scaling behavior of the distributed
+First, an evaluation of the \textit{strong scaling} behavior of the distributed
 algorithm is presented.
 %
-Second, the weak scaling of the solution is assessed with respect to increasing
+Second, the \textit{weak scaling} of the solution is assessed with respect to increasing
 numbers of targeted latent communities.
 %
-Next, the effects of varying the number of latent communities on the system's
+Next, the effects of \textit{pipelining the computation} and varying the number of latent communities on the system's
 performance is analyzed.
 %
-Further, we evaluate the efficiency and overhead associated with network
-communication between cluster nodes.
+Further, we evaluate the efficiency and overhead associated with \textit{network
+communication} between cluster nodes.
 %
-Finally, we contrast the effectiveness of scaling the computation horizontally
+Finally, we \textit{contrast} the effectiveness of scaling the computation horizontally
 and vertically.
 
 \begin{table*}
@@ -40,7 +40,7 @@ Empirical results were obtained by performing experiments on the VU and TU/D
 DAS5 clusters which consist of 68 and 48 compute nodes respectively. Each
 compute node is equipped with a dual 8-core Intel Xeon E5-2630v3 CPU clocked
 at 2.40GHz, 64GB of memory and 8TB of storage. Moreover, the compute nodes of
-each site are interconnected by an internal 1~Gbit/s Ethernet and
+each site are interconnected by
 FDR~InfiniBand. All of the experiments reported in this section utilized
 publicly available graphs from the Stanford Large Network Dataset
 Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
@@ -85,7 +85,7 @@ sum of the execution times of the individual phases. This is due to the
 overlapping execution of the two most expensive phases, namely, update\_pi and
 deploy\_minibatch. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
-larger cluster sizes as the work granularity of each worker node decreases
+larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.
 %
 The time spent in update\_beta remains relatively constant across cluster sizes
@@ -110,7 +110,7 @@ Similarly, it can expose complex issues that hinder performance at scale such
 as load imbalance. To fairly evaluate the algorithm's weak scaling behavior we
 conducted several executions varying the cluster size and the number of latent
 communities proportionally. This methodology ensures that each compute node
-performs a relatively constant amount of computational work across the all
+performs a relatively constant amount of computational work across all
 configurations. However, the number and size of messages exchanged between the
 nodes would vary significantly. Figure~\ref{fig-weak-scaling}-a presents the
 average execution
@@ -119,7 +119,9 @@ Figure~\ref{fig-weak-scaling}-b reports the set number of communities for each
 cluster configuration. The relative change in the average execution time per
 iteration is insignificant even though the communication intensity increases
 for larger cluster sizes. This observation verifies that the system's overall
-overhead is minimal and scales well.
+overhead is minimal. Additionally, the experimental results shows that the
+implementation is capable of achieving good speedups provided the input problem
+is large enough for the given cluster size.
 
 %################################################
 \subsection{Pipeline efficiency}
@@ -136,7 +138,7 @@ overhead is minimal and scales well.
 As discussed in Section~\ref{design-section}, the collective memory of all
 worker nodes serves as the storage for the state of the computation. As such,
 the rows of $\pi$ are equally and statically partitioned across all workers.
-Given that most $\pi$ accesses are random, a node in a cluster of size $C$ must
+Given that $\pi$ accesses are random, a node in a cluster of size $C$ must
 fetch $(C-1)/C$ of all read requests over the network. Therefore, large cluster
 configurations exhibit higher bandwidth demands and are more sensitive
 to network latency. To reduce the negative effects of network latency on the
@@ -150,6 +152,7 @@ Moreover, since both computation time and network latency increase with larger
 $K$, the benefit of pipelining increases. This can be observed through the
 widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
 
+%################################################
 \subsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
@@ -166,7 +169,7 @@ running it on a machine with abundant memory and CPU cores. In such a context,
 access to all of the algorithm's state would be an order of magnitude faster
 than RDMA. Additionally, the overhead associated with synchronizing threads is
 negligible compared to using MPI primitives. To evaluate the efficacy of both
-approaches we utilized SurfSara's HPC Cloud system to instantiate a virtual
+approaches we utilized SURFsara's HPC Cloud system to instantiate a virtual
 machine with 40~CPU cores and 1TB of memory. The physical machine underlying
 the HPC Cloud system contains 40-CPU cores and does not oversubscribe
 resources. Therefore, by provisioning all 40~cores we ensured that there is no
@@ -177,10 +180,15 @@ cluster. Clearly, the parallel and distributed implementation vastly
 outperforms the single-node multi-threaded solution. Moreover, the trajectory
 of both curves shows a widening gap between them suggesting that the relative
 performance difference will increase for larger $K$.
+%
+In conclusion, the overhead of network communication in the distributed version
+is more than compensated by the increasing compute power compared to a
+a single-node implementation.
 
-
+%################################################
 \subsection{Cluster Communication Efficiency}
 
+%################################################
 \subsection{Convergence of Large Datasets}
 \begin{figure*}[t] % [htb]
   \centering
