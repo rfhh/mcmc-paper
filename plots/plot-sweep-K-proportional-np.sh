@@ -67,4 +67,4 @@ plot "$$.tmp.2" u 2:xtic(1)
 
 EOF
 
-rm $$.tmp
+rm $$.tmp*
