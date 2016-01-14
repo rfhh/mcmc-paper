@@ -1,2 +1,170 @@
 \section{System Design}
 \label{design-section}
+
+\begin{comment}
+- distributed parallelisation:
+  cut up into stages like the CC-Grid paper:
+  pipeline:
+    1) sample minibatch
+    2) sample neighbors
+    3) update_phi
+  4) update_pi
+  5) update_theta
+  5a) calc_grads
+  5b) sum_grads
+  5c) update_theta
+  6) update_beta
+  7) perplexity
+
+- DKV RDMA store
+
+- data dependencies:
+  mb = nodes in the minibatch
+  nb = nodes in the neighbor sets
+  H  = held-out set
+
+  	pi	phi	beta	theta	grad.th	G	prev.minibatch
+  1) 	-	-	-	-		R	-
+  2) 	-	-	-	-		R	R
+  3) 	R(mb)	R	R	-		R	-
+	R(nb)
+  4)	R/W(mb)	R	-	-		-	-
+  5a)	R(mb)	-	R	R	W	-	-
+  5b)	-	-	-	-	R/W	-	-
+  5c)	-	-	-	R/W	R	-	-
+  6)	-	-	W	R	-	-	-
+  7)	R(H)	-	R(H)	-	-	H	-
+
+- parallelization:
+  1) sequential at master's, multithreaded
+  2) parallel over mb; at workers', multithreaded
+  3) parallel over mb; at workers', multithreaded
+  4) parallel over mb; at workers', multithreaded
+  5a) parallel at workers', multithreaded
+  5b) omp_reduce(+) at workers', MPI reduce global
+  5c) at master's, multithreaded
+  6) broadcast theta by master, parallel update at workers'
+  7) parallel over H; at workers', multithreaded
+     reduce(+) at workers, MPI reduce global
+
+- distributed parallelization:
+  trade memory size for communication costs
+  pity: the algorithm is already memory-dominant
+
+- synchronization:
+  in principle, each step synchronized
+  but: pipelining in sample minibatch / load pi/phi / update_phi
+
+- data sizes:
+  G has N vertices and |E| undirected edges
+  |H| is 1..10% of |E|
+  pi, phi, beta, theta are float32
+  pi[N][K + 1] if phi folded into pi
+  beta[K]
+  theta[K][2]
+  so, pi is the memory eater
+   . beta/theta are replicated
+   . phi is folded into pi
+   . pi is partitioned across the workers
+  G is stored at the master only: save the memory for pi so we can handle
+  larger K. The relevant slices of G (m's adjacency lists) are scattered
+  together with the minibatch.
+  G is stored as a Google SparseHash because c++ std::(unordered_)set has a
+  huge overhead per item. Workers unpack their slice of G into a
+  std::unordered_set because that is somewhat faster.
+
+- pi storage: DKV
+   . pi/phi is read in 3), 4), 5a), 7)
+   . pi is written in 4); read[i], then write[i], so no other data dependencies
+   . so access is very synchronous: either read-only, or write without
+     concurrent readers
+   . DKV store properties:
+      - single-sized keys
+      - contiguous key space (integers 0..N-1)
+      - update-only writes: no new KVs, no deletes
+     so: no load imbalance, no hashing that is worth its name
+      - no read/write or write/write concurrency
+     so:
+      - build RDMA store with remote reads and remote writes only, with exactly
+        one RDMA transaction per read or write
+\end{comment}
+
+% rationale -- here or in the intro?
+
+% http://stanford.edu/~rezab/nips2014workshop/slides/jure.pdf
+
+The SC-MCMC algorithm described in the previous section has an abundance of
+opportunities for parallelism, for the multithreaded, shared-memory type as
+well as for distributed-memory parallelism. The benefit of multithreaded
+parallelism is speed-up of the computation. A distributed implementation
+additionaly allows to store data in the collective memory of the cluster
+machine and increases memory bandwidth; these both scale with the number of
+machines. The downside of a distributed implementation is that it requires
+considerably more programming effort.
+
+% intro parallelisation, distribution
+
+In this section, we describe how we parallelize each of the stages of the
+algorithm's main loop. In most places, the usage of multithreaded parallelism
+is straightforward; we will discuss details only where necessary. The
+distributed design follows a master-worker paradigm, where in essence
+the master controls the parallel operations and the workers perform the
+calculations. For thread parallelism, we annotate the program with
+OpenMP~\cite{OpenMP}. For distributed communication, we use MPI~\cite{MPI}.
+
+% largest data structures
+
+\subsection{Data distribution}
+
+The largest data structures of the algorithm are $G$, $\pi$ and~$\phi$.
+For the largest dataset in this paper, com-Friendster, $G$ has 1.8~billion
+undirected edges. In our representation with directed edges, this takes
+up 13.5GB. Our design lets $G$ reside only at the master. We observe that
+the calculations in the update stages only require the subset of $G$ that
+is accessed by the minibatch nodes, so the master scatters that subset to
+the workers together with the scattering of the minibatch nodes. $\pi$~and
+$\phi$ are float arrays of size $K \times N$. For our largest distributed
+experiment, com-Friendster with $N$=64M and $K$=12K, each takes up~3TB. We
+decided to store only $\pi$ and $\pi^{sum}$, and recalculate $\phi$ from these
+whenever appropriate. $\pi$ is partitioned across the workers, and $\pi$
+values are accessed via a DKV (distributed key-value) store. In both our
+decisions to transport a subset of $G$ in each iteration and to recalculate
+$\phi$, we gain a larger available memory at the cost of communication and
+computation.
+
+% lack of locality
+
+{\Large\bf Discuss the lack of locality}
+
+% each of the stages
+
+\subsection{Implementation of distributed parallelism}
+
+Now, we describe the parallelization of each of the stages of the algorithm.
+
+Exceptionally, the first stage, minibatch selection, is not itself
+parallelized. However, in the distributed version its execution at the
+master's is fully overlapped, using pipeline parallelism, while the workers are
+performing \textit{update\_phi}. The minibatch is partitioned equally over the
+workers; the relevant section of $G$ is distributed together with the
+minibatch subsets.
+
+After a worker has received its subset of the minibatch, it samples a
+neighbor set for each of its minibatch nodes, using thread parallelism.
+
+The next stage, \textit{update\_phi}, is the algorithm's dominant stage, not
+only in calculation but also in memory accesses. It can be fully parallelized
+because it is a data-parallel operation over each of the minibatch nodes.
+\textit{update\_phi} first loads the $\pi$ values for its minibatch nodes and
+their neighbors using the DKV store. The updates to $\phi$ for the minibatch
+nodes are calculated independently using thread parallelism.
+
+\textit{update\_pi} uses the value of $\pi/\phi$ for the minibatch nodes. The
+update to $\pi$ can be done fully in parallel. Because of memory consistency,
+this stage awaits completion of \textit{update\_phi} with an MPI barrier.
+After the calculation, the updated values of $\pi/\pi^{sum}$ are written
+through the DKV store.
+
+\subsection{Pipelining of $\pi$ staging and computation}
+
+\subsection{RDMA Distributed Key-Value Store}
