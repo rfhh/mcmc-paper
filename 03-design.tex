@@ -104,9 +104,9 @@ considerably more programming effort.
 
 % intro parallelisation, distribution
 
-In this section, we describe how we parallelize each of the stages of the
-algorithm's main loop. In most places, the usage of multithreaded parallelism
-is straightforward; we will discuss details only where necessary. The
+This section describes how we parallelize the algorithm.
+In most places, the usage of multithreaded parallelism
+is straightforward; we will discuss details only where appropriate. The
 distributed design follows a master-worker paradigm, where in essence
 the master controls the parallel operations and the workers perform the
 calculations. For thread parallelism, we annotate the program with
@@ -116,55 +116,117 @@ OpenMP~\cite{OpenMP}. For distributed communication, we use MPI~\cite{MPI}.
 
 \subsection{Data distribution}
 
-The largest data structures of the algorithm are $G$, $\pi$ and~$\phi$.
+The largest data structures of the algorithm are $G$, $H$, $\pi$ and~$\phi$.
 For the largest dataset in this paper, com-Friendster, $G$ has 1.8~billion
 undirected edges. In our representation with directed edges, this takes
 up 13.5GB. Our design lets $G$ reside only at the master. We observe that
 the calculations in the update stages only require the subset of $G$ that
-is accessed by the minibatch nodes, so the master scatters that subset to
-the workers together with the scattering of the minibatch nodes. $\pi$~and
-$\phi$ are float arrays of size $K \times N$. For our largest distributed
-experiment, com-Friendster with $N$=64M and $K$=12K, each takes up~3TB. We
-decided to store only $\pi$ and $\pi^{sum}$, and recalculate $\phi$ from these
-whenever appropriate. $\pi$ is partitioned across the workers, and $\pi$
-values are accessed via a DKV (distributed key-value) store. In both our
-decisions to transport a subset of $G$ in each iteration and to recalculate
-$\phi$, we gain a larger available memory at the cost of communication and
-computation.
+is touched by the minibatch nodes, so the master scatters that subset to
+the workers together with the scattering of the minibatch nodes. This way,
+we trade a reduction in memory at the workers against the cost of limited
+communication. In contrast, $H$ can be partitioned statically over all
+machines for the parallel perplexity calculation.
+
+$\pi$~and $\phi$ are 32-bit float arrays of size $K \times N$. For our
+largest distributed experiment, com-Friendster with $N$=64M and $K$=12K, each
+requires~3TB. We decided to store only $\pi$ and $\pi^{sum}$, and recalculate
+$\phi$ from these whenever appropriate. Here, we trade a substantial reduction
+in memory against limited computation. $\pi$ is partitioned across the workers,
+and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 % lack of locality
 
-{\Large\bf Discuss the lack of locality}
+{\Large\bf NOTE: Discuss the lack of locality? Here?}
 
 % each of the stages
 
 \subsection{Implementation of distributed parallelism}
 
-Now, we describe the parallelization of each of the stages of the algorithm.
+This section describes the parallelization of each of the stages of the
+algorithm's main loop. All but the first stage justify parallelisation for
+high values of combinations of the  parameters $M$, $K$, $n$, and $|H|$.
 
-Exceptionally, the first stage, minibatch selection, is not itself
-parallelized. However, in the distributed version its execution at the
-master's is fully overlapped, using pipeline parallelism, while the workers are
-performing \textit{update\_phi}. The minibatch is partitioned equally over the
-workers; the relevant section of $G$ is distributed together with the
+The first stage, minibatch selection, is done at the master's, and it is
+not itself parallelized. However, in the distributed implementation its
+execution is overlapped using pipeline parallelism, while the workers are
+performing \textit{update\_phi}. The minibatch is partitioned equally over
+the workers; the relevant sections of $G$ are distributed together with the
 minibatch subsets.
 
-After a worker has received its subset of the minibatch, it samples a
-neighbor set for each of its minibatch nodes, using thread parallelism.
+After a worker has received its subset of the minibatch, it samples a neighbor
+set of size $n$ for each of its minibatch nodes, using thread parallelism.
 
 The next stage, \textit{update\_phi}, is the algorithm's dominant stage, not
-only in calculation but also in memory accesses. It can be fully parallelized
-because it is a data-parallel operation over each of the minibatch nodes.
-\textit{update\_phi} first loads the $\pi$ values for its minibatch nodes and
-their neighbors using the DKV store. The updates to $\phi$ for the minibatch
-nodes are calculated independently using thread parallelism.
+only in calculation but also in memory accesses. It performs $M\times n\times
+K$ operations. It can be fully parallelized because it is a data-parallel
+operation over each of the minibatch nodes. \textit{update\_phi} loads the
+$\pi$ values for the local minibatch nodes and their neighbors from the
+DKV store. The updates to $\phi$ for the minibatch nodes are calculated
+independently using thread parallelism.
 
-\textit{update\_pi} uses the value of $\pi/\phi$ for the minibatch nodes. The
-update to $\pi$ can be done fully in parallel. Because of memory consistency,
-this stage awaits completion of \textit{update\_phi} with an MPI barrier.
-After the calculation, the updated values of $\pi/\pi^{sum}$ are written
-through the DKV store.
+These updates are used by \textit{update\_pi} locally, besides the value of
+$\pi/\phi$ for the minibatch nodes. The update to $\pi$ requires $M\times
+K$ operations, and it is done in parallel over minibatch nodes. Because of
+memory consistency, this stage awaits completion of \textit{update\_phi} with
+an MPI barrier. After the calculation, the updated values of $\pi+\pi^{sum}$
+are written through the DKV store.
 
-\subsection{Pipelining of $\pi$ staging and computation}
+\textit{update\_beta} requires $M\times K$ operations. It is preceded by an MPI
+barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
+is split into four steps. The first stage partitions the minibatch across
+machines to calculate contributions to $\nabla\theta$. The values of $\pi$ for
+the local minibatch nodes are loaded from the DKV store. These calculations
+are done with thread parallelism per minibatch node. In the second step,
+a multithreaded summation is performed to calculate the contributions per
+machine, followed by a distributed summation using an MPI reduce operation. The
+third step calculates $\beta$ from $\theta$, sequentially at the master's; this
+operation takes only $K$ steps. The resulting $\beta$ is broadcast with MPI
+to the workers.
+
+The calculation of perplexity requires $|H|\times K$ steps. Each of the
+machines owns a subset of $H$. It loads up-to-date values of $\pi$ for each
+node in its part of $H$, then for each of its edges in $H$ calculates the
+contribution to the perplexity using thread parallelism. The resulting
+contributions are summed to the global perplexity value in two stages,
+with a local OpenMP reduction followed by a global MPI reduction.
+
+Note that the calculation requirements per iteration do not depend
+on $N$ or $|E|$, the size of the network graph. However, larger graphs are
+expected to require more iterations to achieve convergence.
+
+\subsection{Pipelining of computation and loading $\pi$}
+
+As will be shown in Section~\ref{eval-pipeline}, loading $\pi$ is the
+dominant contribution within the dominant stage \textit{update\_phi}. This
+is the performance bottleneck of the distributed algorithm. We introduce
+pipeline parallelism in order to shorten the critical path. Loading $\pi$
+and calculating \textit{update\_pi} are partitioned into chunks, so the
+calculation of a chunk is overlapped with loading the next chunk of $\pi$
+values, and also with sampling the minibatch at the master's and deploying
+it to the workers.
 
 \subsection{RDMA Distributed Key-Value Store}
+
+Modern network technology allows access to the memory of remote machines
+through the network cards (NICs) without involvement from the remote host
+altogether~\cite{Infiniband,RDMA,Roce}. This has opened up the development of
+extremely efficient remote memory services, often in the form of DKV stores.
+This project stores $\pi$ in a DKV store in the collective memory of the
+cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
+to use any of the existing implementations of RDMA DKV stores, and in stead
+build our own DKV store on top of the ib-verbs API~\cite{ib-verbs}. The
+main consideration is that our use case is unusually simple in a number
+of important aspects. The KV layout is static in the sense that there are
+no inserts or deletes after the initial population, which allows a static
+partitioning of KV pairs over the machines. The values are all of the same size,
+a vector of $K+1$ floats. The access pattern is very regular, because the
+computation is partitioned into stages that are separated by barriers; a
+stage either reads values or it updates values that it 'owns', so there
+is no read/write or write/write contention. The existing DKV stores incur
+overhead for insert/delete flexibility, concurrency control, or variable-sized
+values. Our use case allows us to do any operation in exactly one RDMA read
+or RDMA write. The Herd paper~\cite{Herd} argues that replacing RDMA reads by
+an RPC to the server, followed by an unreliable write, is faster. However,
+they show this only holds for small payload packets, up to 256B. A $\pi$
+packet in our application is typically thousands to hundreds of thousands
+of 4-byte floats.

@@ -22,7 +22,10 @@ PAPER_PART += 05-conclusion.tex
 
 all: $(TARGETS)
 
-$(TARGETS): $(PLOTS)
+$(TARGETS): plot_dir
+
+plot_dir:
+	make -C plots
 
 paper-ieee.pdf: IEEEtran.cls
 paper-ieee.pdf: IEEEtranBST/IEEEtran.bst
