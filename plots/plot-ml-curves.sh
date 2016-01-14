@@ -54,4 +54,10 @@ set size w,h
 #set output 'ppx-youtube.eps'
 set title "(e) com-Youtube | K8385-m1K-n32-msx1K-np15"
 plot '< grep average_count ../data/ml-curves/log-youtube-K8385-m1K-n32-msx1K-np15/log.0' u 8:(exp(\$14)) w l
+
+set origin col(2),row(1)
+set size w,h
+#set output 'ppx-orkut.eps'
+set title "(f) com-Orkut | K256K-m1K-n32-msx1K-np65"
+plot '< grep average_count ../data/ml-curves/log-orkut-flt32-K256K-m1K-n32-x10M-epst1e-05-np65/log.0' u 8:(exp(\$14)) w l
 EOF
