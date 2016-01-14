@@ -24,7 +24,7 @@ cat <<EOF | gnuplot --persist
 set terminal postscript eps enhanced color font ',8' size 3.3,1.6
 
 set xlabel "Number of Communities (K)"
-set ylabel "Time per iteration (seconds)"
+set ylabel "Time per iteration (milliseconds)"
 #set xrange [256:]
 set grid ytics
 set key below
