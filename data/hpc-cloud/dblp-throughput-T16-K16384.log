@@ -81,3 +81,65 @@ Master is a worker, does host pi values
 run():614 66.790 Memory usage: total 41530MB resident 20491MB 
 average_count is: 2 step count: 1 time: 0.593 perplexity for hold out set: 5.199555873871
 average_count is: 3 step count: 101 time: 766.655 perplexity for hold out set: 5.193809032440
+average_count is: 4 step count: 201 time: 1529.997 perplexity for hold out set: 5.189413547516
+average_count is: 5 step count: 301 time: 2298.803 perplexity for hold out set: 5.185538291931
+average_count is: 6 step count: 400 time: 3060.190 perplexity for hold out set: 5.182195663452
+timer                                    total (s)    ticks  per tick (us)
+  load network graph                        4.121        1    4121026.756
+  initialize DKV store                      0.008        1       8799.482
+  populate pi                              62.185        1   62185240.079
+  iteration                              3059.601      3ff    2990813.072
+    deploy minibatch                        4.886      3ff       4776.711
+      scatter subgraph              <unused>
+        marshall edge count         <unused>
+        scatterv edges              <unused>
+        marshall edges              <unused>
+        scatterv edges              <unused>
+        unmarshall edges            <unused>
+      sample_mini_batch                     3.265      3ff       3192.172
+      nodes_in_mini_batch                   1.151      3ff       1125.959
+    broadcast theta/beta                    3.070      3ff       3001.680
+    update_phi_pi                        2828.519      3ff    2764926.474
+      sample_neighbor_nodes                19.124      3ff      18694.937
+      load minibatch pi                     1.540      3ff       1506.189
+      load neighbor pi                     50.329      3ff      49197.809
+      update_phi                         2559.946      3ff    2502391.204
+      barrier after update phi              0.026      3ff         25.826
+      update_pi                            26.989      3ff      26383.158
+      store minibatch pi                  170.519      3ff     166686.110
+      barrier after update pi               0.019      3ff         19.160
+    update_beta_theta                     220.252      3ff     215300.712
+      zero beta grads                       1.040      3ff       1017.582
+      rank minibatch nodes                  1.257      3ff       1229.208
+      load pi update_beta                   1.441      3ff       1409.064
+      beta calc grads                     209.432      3ff     204724.277
+      beta sum grads                        0.321      3ff        314.749
+      beta reduce(+) grads                  0.019      3ff         19.432
+      update theta                          2.778      3ff       2715.769
+  perplexity                                3.123        5     624655.459
+      load perplexity pi                    0.374        5      74868.863
+      calc edge likelihood                  2.745        5     549135.246
+      purge perplexity pi                   0.000        5          2.506
+      reduce/plus perplexity                0.000        5         29.175
+Linger a bit to allow gracious shutdown
+timer                                    total (s)    ticks  per tick (us)
+RDMA poll cq                        <unused>
+RDMA read                                  53.663      c02      17457.079
+     local read                            27.052  973057e          0.171
+     per-host read                  <unused>
+     post read                      <unused>
+     finish read                    <unused>
+RDMA write                                188.532      424     177860.475
+     local write                          187.467   497ed6         38.921
+     per-host write                 <unused>
+     post write                     <unused>
+     finish write                   <unused>
+RDMA barrier                        <unused>
+posts 0 messages 0 msgs/post -nan
+Local read   9732b4a15f8B 357.698GB/s
+Remote read  0B 0.000GB/s per-host loop -nanGB/s
+Local write  497ffbfb58B 1.568GB/s
+Remote write 0B 0.000GB/s per-host loop -nanGB/s
+                                            0.630      3e7        630.797
+                                            0.480     36e1         34.170
+                                            0.000       e6          0.964
