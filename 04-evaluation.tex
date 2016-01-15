@@ -83,7 +83,7 @@ the execution is update\_pi.
 The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
 overlapping execution of the two most expensive phases, namely, update\_pi and
-deploy\_minibatch. Both of these phases initially gain significant speedup with the
+deploy\_mini-batch. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.
@@ -151,6 +151,38 @@ incurred network latency is hidden by overlapping it with computation.
 Moreover, since both computation time and network latency increase with larger
 $K$, the benefit of pipelining increases. This can be observed through the
 widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{l d{5.1} d{5.1}}
+    \textbf{Iteration stages}  & \multicolumn{1}{c}{non-pipelined}
+                                          & \multicolumn{1}{c}{pipelined} \\
+    \hline
+    total                      & 450    & 365 \\
+    draw/deploy mini-batch      &  45.6  &      \\
+    update\_phi                & 285    & 241 \\
+    update\_pi                 &   3.8  &   4.6 \\
+    update $\beta/\theta$      &  25.9  &   33.6 \\
+    \hline
+    \textbf{Substages within update\_phi} \\
+    draw/deploy mini-batch      &        &  26.2 \\
+    load $\pi$                 & 205    & 209 \\
+    update $\phi$              &  74    &  74 \\
+    \hline
+  \end{tabular}
+  \caption{The most important stages in the execution; com-Friendster on 65
+  compute nodes, with 12K communities. Times in ms per iteration. The lower
+  half of the table shows substages within \textit{update\_phi}. In the
+  pipelining version, these components are done in parallel.}
+  \label{table-pipeline}
+\end{table}
+
+Table~\ref{table-pipeline} shows a breakdown of the most important time
+consumers; the left-hand column is without pipelining, the right-hand
+column has pipelining. \textit{update\_phi} is the dominant contribution,
+and within that, loading $\pi$ from the DKV store takes by far the most time.
+The pipelining optimization overlaps loading $\pi$ with generation and
+deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
