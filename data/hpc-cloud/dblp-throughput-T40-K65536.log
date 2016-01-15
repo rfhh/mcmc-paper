@@ -1,0 +1,107 @@
+Command line: ./apps/main/main -f /mnt/data/datasets/com-dblp.ungraph.txt.gz -K 65536 -m 4K -n 32 --mcmc.sampler.max-source 4K --mcmc.c 0 --mcmc.a 1e-06 -i 256 -x 1K --mcmc.replicated-graph 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+PID 4790
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 1
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed [42,75]
+Random seed [42,76]
+Random seed [42,77]
+Random seed [42,78]
+Random seed [42,79]
+Random seed [42,80]
+Random seed [42,81]
+Random seed [42,82]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /mnt/data/datasets/com-dblp.ungraph.txt.gz
+0ms open file
+For memory query file /proc/4790/statm
+0.000 Memory usage: total 148MB resident 6MB 
+Edges read 1048576
+1.736 Memory usage: total 173MB resident 31MB 
+1748ms read ordered set
+1.748 Memory usage: total 181MB resident 33MB 
+#nodes 317080 min 1 max 425875 #edges 1049866
+1829ms create map
+1.829 Memory usage: total 193MB resident 45MB 
+Edges inserted 1048576
+2.911 Memory usage: total 244MB resident 96MB 
+#edges original 1049866 undirected subsets 2099732 duplicates 0 self-links 0
+2913ms create NetworkGraph
+2.913 Memory usage: total 244MB resident 96MB 
+2.979 Memory usage: total 228MB resident 87MB 
+Found prefix sum for edges in AdjacencyList graph: top bucket edge 2099732 max edge 2099735
+train_link_map is gone; calculate membership for each edge as linked_edges - held_out_map - test_map
+3.053 Memory usage: total 541MB resident 87MB 
+Edges/in in held-out set 0
+3.154 Memory usage: total 3037MB resident 87MB 
+Edges in held-out set 104986
+3.354 Memory usage: total 3037MB resident 87MB 
+Edges/in in test set 0
+3.520 Memory usage: total 3037MB resident 87MB 
+Edges in test set 104987
+3.731 Memory usage: total 3037MB resident 87MB 
+FIXME: can't I parallelize by not doing the order check?
+max_fan_out 310
+N 317080 E 1049866 link ratio 2.08847e-05 K 65536
+minibatch size 4096 epsilon 1e-07 alpha 1.52588e-05 iterations 1024 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 40
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 4096
+Use D-KV store type rdma
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+mem_total 980496880 pi_total 3830007 max pi cache entries 119687
+minibatch size param 4096 max 8811 my max 3520 chunk 3520 #neighbors(total) 116160 cache max entries 119686 computed max pi cache entries 119687
+perplexity nodes total 209972 local 209972 mine 119686 chunk 59843
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+ubuntu: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store includes the master node
+failed to find any InfiniBand devices: Function not implemented
+*** No working Infiniband. Sequential run, continue
+MR/value addr=0x7f07d58ca010 size 135a735a60
+MR/cache addr=0x7f00876d5010 size 74e1f4e18
+MR/write addr=0x7efffdc0c010 size 89ac89ac
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 4.56566MB
+Master is a worker, does host pi values
+....................................
+run():614 205.838 Memory usage: total 118922MB resident 81622MB 
+average_count is: 2 step count: 1 time: 1.878 perplexity for hold out set: 5.890827178955
+average_count is: 3 step count: 101 time: 4469.332 perplexity for hold out set: 5.889023303986
