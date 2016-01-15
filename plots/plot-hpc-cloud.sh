@@ -19,6 +19,16 @@ grep iteration ../data/sweep-over-K-fixed-np/*/* \
   | sort -n \
   | head -n 5 > $$.tmp.2
 
+grep iteration ../data/sweep-over-K-fixed-np-dblp/*/* \
+  | grep -v minibatch \
+  | sed 's/.*-K\([0-9K]\+\).*:/\1/' \
+  | sed 's/\([0-9]\+\)K/$[\1*1024]/' \
+  | sed 's/\(.*\)/echo \1/' \
+  | bash \
+  | awk '{print $1 " " $3/$4}' \
+  | sort -n \
+  | head -n 5 > $$.tmp.3
+
 cat <<EOF | gnuplot --persist
 
 set terminal postscript eps enhanced color font ',8' size 3.3,1.6
@@ -32,7 +42,9 @@ set key below
 
 set output 'hpc-cloud.eps'
 set title "Scale-up vs Scale-out"
-plot "$$.tmp" u 1:(1000*\$2) w lp t 'HPC Cloud', "$$.tmp.2" u 1:(1000*\$2) w lp t '64-nodes on DAS5'
+plot "$$.tmp" u 1:(1000*\$2) w lp t 'HPC Cloud', \
+     "$$.tmp.2" u 1:(1000*\$2) w lp t '64-nodes on DAS5 Frienster', \
+     "$$.tmp.3" u 1:(1000*\$2) w lp t '4-nodes on DAS5 DBLP'
 
 EOF
 
