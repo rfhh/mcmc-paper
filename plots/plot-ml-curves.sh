@@ -2,8 +2,6 @@
 
 cat <<EOF | gnuplot --persist
 
-#set terminal postscript eps enhanced color font ',8' size 3.3,1.6
-
 set xlabel "Time (hours)"
 set ylabel "Perplexity"
 #set xrange [0:]
@@ -18,7 +16,7 @@ nc = 3
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
-set terminal postscript eps enhanced color font ',8'
+set terminal postscript eps enhanced color font ',10'
 set size (nc*w),(nr*h+k)
 set output 'ppx.eps'
 set multiplot layout nr,nc
