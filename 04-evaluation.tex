@@ -21,15 +21,16 @@ and vertically.
 
 \begin{table*}
   \centering
-  \begin{tabular}{l r r l}
-    Name            & \#Vertices &       \#Edges & Description \\
+  \begin{tabular}{l r r r l}
+    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
+                    &            &               & communities    &             \\
     \hline
-    com-LiveJournal &  3,997,962 &    34,681,189 & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & Computer science bibliography collaboration network \\
-    com-Amazon      &    334,863 &       925,872 & Product co-purchasing network \\
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
+    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
     \hline
   \end{tabular}
   \caption{Summary of SNAP graph data sets used for evaluation.}
@@ -86,7 +87,7 @@ The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
 overlapping execution of the two most expensive phases, namely,
 \textit{update\_pi} and
-\textit{deploy\_minibatch}. Both of these phases initially gain significant speedup with the
+minibatch deployment. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.

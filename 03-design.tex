@@ -120,8 +120,8 @@ MPI~\cite{Forum:1994:MMI:898758}.
 {\Large\bf NOTE: introduce perplexity}
 
 As is common in machine learning problems, the edges of the graph are divided
-into two sets a training set $G$ and a held-out set $H$.
-The largest data structures of the algorithm are $G$, $H$, $\pi$ and~$\phi$.
+into two sets, a training set $G$ and a held-out set $\cE_h$.
+The largest data structures of the algorithm are $G$, $\cE_h$, $\pi$ and~$\phi$.
 For the largest dataset in this paper, com-Friendster, $G$ has 1.8~billion
 undirected edges. In our representation with directed edges, this takes
 up 13.5GB. Our design lets $G$ reside only at the master. We observe that
@@ -129,7 +129,7 @@ the calculations in the update stages only require the subset of $G$ that
 is touched by the mini-batch vertices, so the master scatters that subset to
 the workers together with the scattering of the mini-batch vertices. This way,
 we trade a reduction in memory at the workers against the cost of limited
-communication. In contrast, $H$ can be partitioned statically over all
+communication. In contrast, $\cE_h$ can be partitioned statically over all
 machines for the parallel perplexity calculation.
 
 $\pi$~and $\phi$ are 32-bit float arrays of size $K \times N$. For our
@@ -141,7 +141,11 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 % lack of locality
 
-{\Large\bf NOTE: Discuss the lack of locality? Here?}
+The distribution within the graph of the nodes of the mini-batch as well as
+the neighbor sets is completely random. That means that there is no locality
+in $\pi$ access patterns, especially in the accesses to the neighbor sets.
+Hence, there is no opportunity to exploit caching of $\pi$ through data
+locality.
 
 % each of the stages
 
@@ -149,9 +153,9 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 This section describes the parallelization of each of the stages of the
 algorithm's main loop. All but the first stage justify parallelization for
-high values of combinations of the  parameters $M$, $K$, $n$, and $|H|$.
+high values of combinations of the  parameters $|\cV_n|$, $K$, $n$, and $|\cE_h|$.
 
-The first stage, mini-batch selection, is done at the master and it is
+The first stage, mini-batch selection (line 3 in Algorithm~1), is done at the master and it is
 not itself parallelized. However, the distributed implementation overlaps
 its execution using pipeline parallelism while the workers are
 performing \textit{update\_phi}. The mini-batch is partitioned equally over
@@ -159,9 +163,10 @@ the workers and the relevant sections of $G$ are distributed together with the
 mini-batch subsets.
 
 After a worker has received its subset of the mini-batch, it samples a neighbor
-set of size $n$ for each of its mini-batch vertices, using thread parallelism.
+set of size $n$ for each of its mini-batch vertices, using thread parallelism
+(line 5 in Algorithm~1).
 
-The next stage, \textit{update\_phi}, is the algorithm's dominant stage, not
+The next stage, \textit{update\_phi} (line 6 in Algorithm~1), is the algorithm's dominant stage, not
 only in calculation but also in memory accesses. It performs $M\times n\times
 K$ operations. It can be fully parallelized because it is a data-parallel
 operation over each of the mini-batch vertices. \textit{update\_phi} loads the
@@ -169,14 +174,14 @@ $\pi$ values for the local mini-batch vertices and their neighbors from the
 DKV store. The updates to $\phi$ for the mini-batch vertices are calculated
 independently using thread parallelism.
 
-These updates are used by \textit{update\_pi} locally, besides the value of
+These updates are used by \textit{update\_pi} (line 7 in Algorithm~1) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $M\times
 K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
 an MPI barrier. After the calculation, the updated values of $\pi+\pi^{sum}$
 are written through the DKV store.
 
-\textit{update\_beta} requires $M\times K$ operations. It is preceded by an MPI
+\textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $M\times K$ operations. It is preceded by an MPI
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
 is split into four steps. The first stage partitions the mini-batch across
 machines to calculate contributions to $\nabla\theta$. The values of $\pi$ for
@@ -188,9 +193,9 @@ third step calculates $\beta$ from $\theta$ sequentially at the master. This
 operation takes only $K$ steps. The resulting $\beta$ is broadcast with MPI
 to the workers.
 
-The calculation of perplexity requires $|H|\times K$ steps. Each of the
-machines owns a subset of $H$. It loads up-to-date values of $\pi$ for each
-vertex in its part of $H$, then for each of its edges in $H$ it calculates the
+The calculation of perplexity requires $|\cE_h|\times K$ steps. Each of the
+machines owns a subset of $\cE_h$. It loads up-to-date values of $\pi$ for each
+vertex in its part of $\cE_h$, then for each of its edges in $\cE_h$ it calculates the
 contribution to the perplexity using thread parallelism. The resulting
 contributions are summed to the global perplexity value in two stages,
 with a local OpenMP reduction followed by a global MPI reduction.
