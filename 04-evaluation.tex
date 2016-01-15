@@ -217,7 +217,7 @@ test uses the com-DBLP data set to enable the use of a large number of
 communities without running out of memory. It is clear from the results that
 the performance can benefit from the additional cores provided by HPC Cloud system.
 %
-Further, Figure~\ref{fig-scale-up} tests the performance of the HPC Cloud
+Further, Figure~\ref{fig-scale-up}-b tests the performance of the HPC Cloud
 system compared to 64-nodes of the DAS5
 cluster using the com-Friendster data set. Clearly, the parallel and
 distributed implementation vastly
@@ -239,11 +239,12 @@ a single-node implementation.
   \label{fig-qperf}
 \end{figure}
 
-A thorough performance evaluation of our RDMA DKV store is outside the scope of
-this paper. In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
+Since the distributed algorithm is data-intensive, a key aspect in improving
+its performance is to maximize the utility of the network resources.
+In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
 read operations between one server and one client for a range of payload sizes,
 and compare these to the bandwidth achieved by \textit{qperf}, which shows
-the best achievable preformance for Infiniband. We present \textit{qperf}
+the best achievable performance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are nearly
 identical, which corroborates the results from the Herd project for payloads
 upwards from 256B. The bandwidth achieved by our DKV store falls short
@@ -281,7 +282,7 @@ respectively. As the number of vertices in these data sets is an order of
 magnitude smaller than com-Friendster, we used a larger number of
 communities. Naturally, the convergence time was extended as the complexity of
 the algorithm increases dramatically with larger K. However, the system was
-still capable of reporting results after \textbf{XXX time}.
+still capable of reporting results after 25-30 hours.
 %
 Figures~\ref{fig-ppx}-d, \ref{fig-ppx}-e and \ref{fig-ppx}-f were all
 configured to use the total number of ground-truth communities associated with
