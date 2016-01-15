@@ -1,2 +1,31 @@
 \section{Introduction}
-\cite{DBLP:journals/corr/LiAW15}
+The tremendous amount of data that we generate through our daily applications such as social networking services, online shopping, and news recommendations, provides us a big opportunity to take advantages of the big raw data, when we can extract hidden but invaluable and useful information. Realizing this opportunity, however, also requires significant amount of efforts because the efficiency of traditional machine learning algorithms often become extremely inefficient by the large amount of data. 
+
+There have been two main approaches to this end; machine learning researchers have developed new scalable algorithms [] while systems and networking researchers have worked on developing new general infra-systems to operate many machine learning algorithms more efficiently []. However, it is clear that, in most cases we see the best performance by carefully integrating both of these approaches in one system. 
+
+One such big data problem is analyzing graph data such as social networks where it is not unusual to see a network consisting of billions of edges and tens of million of nodes~\cite{}. In particular, we are interested in the overlapping community detection problem~\cite{}, where the goal is to learn the probability distribution of each node to participate in each community, provided a set of nodes, the link information between the nodes (which is usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of nodes that are only sparsely connect to the rest of the network. 
+
+This problem is modeled by the mixed membership stochastic blockmodels (MMSB)~\cite{airoldi2009mixed} and in this paper we are particularly interested in a variant of the MMSB, called assortative-MMSB~\cite{gopalan2012scalable} (a-MMSB\footnote{Although we work on a-MMSB for simplicity, it is also straightforward to apply the proposed method to the general MMSB model.}) \cite{gopalan2012scalable}. 
+
+The MMSB model is a probabilistic graphical model [] that represents a convenient paradigm for modeling complex relationships between a potentially very large number of random variables. Bayesian graphical models [], where we define priors and infer posteriors over parameters also allow us to quantify model uncertainty and facilitate model selection and averaging. But an increasingly urgent question is whether these models and their inference procedures will be up to the challenge of handling very large ``big data'' problems. 
+
+There has been two main recent advances in this direction of scalable Bayesian inference methods based on stochastic variational Bayes (SVB)~\cite{hoffman2013stochastic,gopalan2013efficient,gopalan2012scalable} and stochastic gradient Markov chain Monte Carlo (SG-MCMC)~\cite{welling2011bayesian,patterson2013stochastic,ahn2014distributed}. Both methods have the important property that they only require a small subset of the data-items for every iteration. In other words, they can be applied to (infinite) streaming data. 
+
+In this paper, we are particularly interested in the SG-MCMC method applied to the a-MMSB model introduced in \cite{LiAW15}, which turned out to be faster and more accurate than the SVB method. Although \cite{LiAW15} proposed a scalable algorithm for the problem, there still exist some area to improve the performance further by considering an efficient implementation at system level. ...
+
+[@Ismail Contribution of this paper]
+
+% -------\\
+% Community detection is the central problem in network analysis, with the goal of identifying the groups of related nodes that are densely connected within this group but sparsely connected to the rest of the network. Different from classical community detection problem where we assume each node belongs to one single community, our paper considers overlapping communities where each of the nodes might belong to multiple communities. In particular, we consider the model called a-MMSB(Assortive Mixed Membership Stochastic Blockmodel) in this paper, which was first introduced in~\cite{gopalan2012scalable}.\\
+
+
+% a-MMSB, as a probabilistic graphical model, represents a convenient paradigm for modeling complex relationships between a potentially large number of random variables. It also uses priors and posteriors to quantify model uncertainty and facilitate model selection and averaging. While a-MMSB provides rich representation power, like other Bayesian models, the inference procedures of handling big data which is common in real world is still a very challenging problem. \\
+
+
+
+% Consider the large networks such as a social network, it easily runs into billions of edges and tens of million of nodes. In addition to that, the number of communities might exceed few millions. 
+% There were two types of scalable algorithm for a-MMSB have been introduced recently \cite{gopalan2012scalable}, stochastic variational Bayesian inference (SVB) and stochastic gradient Markov chain Monte Carlo(SG-MCMC), respectively. Both methods have the important property that each iteration only relies on a small subset of the data. Although both methods can work for some large networks with many hundreds of nodes, the performance is far less satisfactory when it applies to the so-called "big data" such as facebook network with millions of nodes and billions of edges. Given the facts that \cite{LiAW15}, SG-MCMC runs faster and converges to the better local minima, in this paper, we mainly consider the problem of scaling up SG-MCMC to the big data set.  \textit{As far as we know, this is the first paper that studies community detection on the frencter dataset with few billion's of edges.}
+
+
+
+
