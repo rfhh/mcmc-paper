@@ -246,8 +246,8 @@ and compare these to the bandwidth achieved by \textit{qperf}, which shows
 the best achievable preformance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are nearly
 identical, which corroborates the results from the Herd project for payloads
-upwards from 256B. The bandwidth achieved by our DKV store mostly falls short
-of the \textit{qperf} performance. For smallish packets, this is attributed
+upwards from 256B. The bandwidth achieved by our DKV store falls short
+of the \textit{qperf} performance for packets less than 4KB; this is attributed
 to additional per-request overhead for the DKV store. For the largest packet
 size, the DKV store performance is hampered by the fact that its values
 are spread over a larger memory area, whereas \textit{qperf} always reads
