@@ -210,7 +210,8 @@ it to the workers.
 
 Modern network technology allows access to the memory of remote machines
 through the network cards (NICs) without involvement from the remote host
-altogether~\cite{Hamada_infinibandtrade,RDMA,Beck:2011:PER:2043535.2043537}. This has opened up the development of
+altogether~\cite{Hamada_infinibandtrade,Beck:2011:PER:2043535.2043537}.
+This has opened up the development of
 extremely efficient remote memory services, often in the form of DKV stores.
 This project stores $\pi$ in a DKV store in the collective memory of the
 cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
@@ -226,7 +227,8 @@ stage either reads values or it updates values that it 'owns', so there
 is no read/write or write/write contention. The existing DKV stores incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
 values. Our use case allows us to do any operation in exactly one RDMA read
-or RDMA write. The Herd paper~\cite{Herd} argues that replacing RDMA reads by
+or RDMA write. The Herd paper~\cite{Kalia:2014:URE:2740070.2626299,} argues
+that replacing RDMA reads by
 an RPC to the server, followed by an unreliable write, is faster. However,
 they show this only holds for small payload packets, up to 256B. A $\pi$
 packet in our application is typically thousands to hundreds of thousands

@@ -187,14 +187,14 @@ deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
-\begin{figure}[t] % [htb]
+\begin{figure*}[t] % [htb]
   \centering
-  \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
+  \epsfig{file=plots/hpc-cloud.eps, width=\textwidth}
   \caption{Performance comparison between the distributed implementation
   running on DAS5 and the multi-threaded solution on machine with 40-cores and
   1TB of RAM.}
   \label{fig-scale-up}
-\end{figure}
+\end{figure*}
 One of the main drawbacks of designing a distributed solution for a given
 algorithm is the inherent complexity of communication and synchronization. A
 slightly simpler approach would be developing a multi-threaded version and
@@ -203,13 +203,24 @@ access to all of the algorithm's state would be an order of magnitude faster
 than RDMA. Additionally, the overhead associated with synchronizing threads is
 negligible compared to using MPI primitives. To evaluate the efficacy of both
 approaches we utilized SURFsara's HPC Cloud system to instantiate a virtual
-machine with 40~CPU cores and 1TB of memory. The physical machine underlying
+machine with 40 Intel Xeon E7-4850 cores clocked at 2.00GHz cores and 1TB of
+memory. The physical machine underlying
 the HPC Cloud system contains 40-CPU cores and does not oversubscribe
 resources. Therefore, by provisioning all 40~cores we ensured that there is no
 resource contention from other users of the system. Figure~\ref{fig-scale-up}
 reports the execution time per algorithm iteration for two experimental setups.
-Namely, using the HPC Cloud system compared to using 64-nodes of the DAS5
-cluster. Clearly, the parallel and distributed implementation vastly
+%
+First, Figure~\ref{fig-scale-up}-a shows the performance of executing the
+algorithm on the HPC Cloud
+system with 40 and 16 cores compared to a single DAS5 node with 16-cores. This
+test uses the com-DBLP data set to enable the use of a large number of
+communities without running out of memory. It is clear from the results that
+the performance can benefit from the additional cores provided by HPC Cloud system.
+%
+Further, Figure~\ref{fig-scale-up} tests the performance of the HPC Cloud
+system compared to 64-nodes of the DAS5
+cluster using the com-Friendster data set. Clearly, the parallel and
+distributed implementation vastly
 outperforms the single-node multi-threaded solution. Moreover, the trajectory
 of both curves shows a widening gap between them suggesting that the relative
 performance difference will increase for larger $K$.

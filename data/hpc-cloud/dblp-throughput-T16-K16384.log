@@ -1,0 +1,83 @@
+Command line: ./apps/main/main -f /mnt/data/datasets/com-dblp.ungraph.txt.gz -K 16384 -m 4K -n 32 --mcmc.sampler.max-source 4K --mcmc.c 0 --mcmc.a 1e-06 -i 256 -x 1K --mcmc.replicated-graph 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+PID 6041
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 1
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /mnt/data/datasets/com-dblp.ungraph.txt.gz
+0ms open file
+For memory query file /proc/6041/statm
+0.000 Memory usage: total 148MB resident 6MB 
+Edges read 1048576
+1.651 Memory usage: total 173MB resident 31MB 
+1661ms read ordered set
+1.660 Memory usage: total 181MB resident 32MB 
+#nodes 317080 min 1 max 425875 #edges 1049866
+1734ms create map
+1.734 Memory usage: total 193MB resident 43MB 
+Edges inserted 1048576
+2.787 Memory usage: total 244MB resident 94MB 
+#edges original 1049866 undirected subsets 2099732 duplicates 0 self-links 0
+2789ms create NetworkGraph
+2.789 Memory usage: total 244MB resident 94MB 
+2.843 Memory usage: total 228MB resident 85MB 
+Found prefix sum for edges in AdjacencyList graph: top bucket edge 2099732 max edge 2099735
+train_link_map is gone; calculate membership for each edge as linked_edges - held_out_map - test_map
+2.890 Memory usage: total 349MB resident 85MB 
+Edges/in in held-out set 0
+2.989 Memory usage: total 1309MB resident 85MB 
+Edges in held-out set 104986
+3.187 Memory usage: total 1309MB resident 85MB 
+Edges/in in test set 0
+3.386 Memory usage: total 1309MB resident 89MB 
+Edges in test set 104987
+3.611 Memory usage: total 1309MB resident 89MB 
+FIXME: can't I parallelize by not doing the order check?
+max_fan_out 300
+N 317080 E 1049866 link ratio 2.08847e-05 K 16384
+minibatch size 4096 epsilon 1e-07 alpha 6.10352e-05 iterations 1024 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 16
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 4096
+Use D-KV store type rdma
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+mem_total 980496880 pi_total 15319328 max pi cache entries 478729
+minibatch size param 4096 max 8791 my max 8791 chunk 14080 #neighbors(total) 290103 cache max entries 298894 computed max pi cache entries 478729
+perplexity nodes total 209972 local 209972 mine 209972 chunk 239364
+Option rdma.oob-server not set, no PRUN/SLURM environment. Assume OOB server is me = ubuntu
+ubuntu: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store includes the master node
+failed to find any InfiniBand devices: Function not implemented
+*** No working Infiniband. Sequential run, continue
+MR/value addr=0x7fa7fd54a010 size 4d6ab5a60
+MR/cache addr=0x7fa36db46010 size 48fa03e38
+MR/write addr=0x7fa34b5cd010 size 2257895c
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 11.4019MB
+Master is a worker, does host pi values
+.....................................
+run():614 66.790 Memory usage: total 41530MB resident 20491MB 
+average_count is: 2 step count: 1 time: 0.593 perplexity for hold out set: 5.199555873871
+average_count is: 3 step count: 101 time: 766.655 perplexity for hold out set: 5.193809032440
