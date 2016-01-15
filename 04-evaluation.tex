@@ -232,6 +232,28 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
+\begin{figure}[b] % [htbp]
+  \centering
+  \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
+  \caption{Performance of DKV store compared to qperf.}
+  \label{fig-qperf}
+\end{figure}
+
+A thorough performance evaluation of our RDMA DKV store is outside the scope of
+this paper. In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
+read operations between one server and one client for a range of payload sizes,
+and compare these to the bandwidth achieved by \textit{qperf}, which shows
+the best achievable preformance for Infiniband. We present \textit{qperf}
+bandwidth for both RDMA read and RDMA write operations; these are nearly
+identical, which corroborates the results from the Herd project for payloads
+upwards from 256B. The bandwidth achieved by our DKV store mostly falls short
+of the \textit{qperf} performance. For smallish packets, this is attributed
+to additional per-request overhead for the DKV store. For the largest packet
+size, the DKV store performance is hampered by the fact that its values
+are spread over a larger memory area, whereas \textit{qperf} always reads
+from the same memory locations. For packets between 8KB and 512KB, our DKV
+achieves performance very close to \textit{qperf}.
+
 %################################################
 \subsection{Convergence of Large Datasets}
 \begin{figure*}[t] % [htb]

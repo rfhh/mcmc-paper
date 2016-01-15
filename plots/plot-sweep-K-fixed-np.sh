@@ -32,6 +32,7 @@ set grid ytics
 
 set output 'sweep-over-K-fixed-np.eps'
 set title "Scaling K (fixed np=65)"
+set key left
 plot "$$.tmp" u 1:2 w lp t "Single buffering", "$$.tmp2" u 1:2 w lp t "Double buffering"
 
 EOF
