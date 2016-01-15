@@ -110,7 +110,8 @@ is straightforward; we will discuss details only where appropriate. The
 distributed design follows a master-worker paradigm, where in essence
 the master controls the parallel operations and the workers perform the
 calculations. For thread parallelism, we annotate the program with
-OpenMP~\cite{OpenMP}. For distributed communication, we use MPI~\cite{MPI}.
+OpenMP~\cite{OpenMPSpec}. For distributed communication, we use
+MPI~\cite{Forum:1994:MMI:898758}.
 
 % largest data structures
 
@@ -209,7 +210,7 @@ it to the workers.
 
 Modern network technology allows access to the memory of remote machines
 through the network cards (NICs) without involvement from the remote host
-altogether~\cite{Infiniband,RDMA,Roce}. This has opened up the development of
+altogether~\cite{Hamada_infinibandtrade,RDMA,Beck:2011:PER:2043535.2043537}. This has opened up the development of
 extremely efficient remote memory services, often in the form of DKV stores.
 This project stores $\pi$ in a DKV store in the collective memory of the
 cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
