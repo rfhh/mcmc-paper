@@ -193,7 +193,17 @@ a single-node implementation.
 \begin{figure*}[t] % [htb]
   \centering
   \epsfig{file=plots/ppx.eps, width=\textwidth}
-  \caption{FIXME}
+  \caption{Convergence time of 6 different data sets.}
   \label{fig-ppx}
 \end{figure*}
+
+The previous sections focused on the computational performance of the
+distributed implementation. However, the algorithm's throughput does not
+necessarily indicate how fast it can converge to a solution. For instance, it
+remains unclear how many iterations are needed for the algorithm to reach a
+stable state and terminate. Therefore, we now shift our focus to the
+convergence time to assess the system's utility. Figure~\ref{fig-ppx} presents
+the convergence time of 6 different data sets with a diverse set of properties.
+
+
 
