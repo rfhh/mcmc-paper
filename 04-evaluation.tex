@@ -215,7 +215,7 @@ of both curves shows a widening gap between them suggesting that the relative
 performance difference will increase for larger $K$.
 %
 In conclusion, the overhead of network communication in the distributed version
-is more than compensated by the increasing compute power compared to a
+is more than compensated by the increasing compute power compared to
 a single-node implementation.
 
 %################################################
@@ -232,11 +232,33 @@ a single-node implementation.
 
 The previous sections focused on the computational performance of the
 distributed implementation. However, the algorithm's throughput does not
-necessarily indicate how fast it can converge to a solution. For instance, it
+necessarily indicate how fast it can converge to a solution. More specifically, it
 remains unclear how many iterations are needed for the algorithm to reach a
 stable state and terminate. Therefore, we now shift our focus to the
 convergence time to assess the system's utility. Figure~\ref{fig-ppx} presents
-the convergence time of 6 different data sets with a diverse set of properties.
+the convergence time of the data sets listed in Table~\ref{tab-datasets}.
+%
+The results in sub-figures a, b and c where obtained by using 64 compute nodes
+of DAS5. In Figure~\ref{fig-ppx}-a, the number of communities was set to 12K
+which fully occupied the aggregate memory resources of all 64 machines since
+com-Friendster has roughly 65 million vertices. In this case, the algorithm
+reached a stable state after 3-4 hours. Next, Figures~\ref{fig-ppx}-b and
+\ref{fig-ppx}-c present the convergence of com-LiveJournal and com-Orkut
+respectively. As the number of vertices in these data sets is an order of
+magnitude smaller than com-Friendster, we used a larger number of
+communities. Naturally, the convergence time was extended as the complexity of
+the algorithm increases dramatically with larger K. However, the system was
+still capable of reporting results after \textbf{XXX time}.
+%
+Figures~\ref{fig-ppx}-d, \ref{fig-ppx}-e and \ref{fig-ppx}-f were all
+configured to use the total number of ground-truth communities associated with
+their respective data sets, com-Youtube, com-DBLP and com-Amazon. However,
+these experiments were conducted on 14, 24 and 24 cluster nodes respectively.
 
-
+The results reported in Figure~\ref{fig-ppx} verify that the distributed
+implementation of the algorithm is capable of detecting overlapping communities
+within real graphs in reasonable time given the available compute resources.
+The time required to reach convergence may vary depending on a graph's properties and
+the targeted number of communities. To the best of our knowledge, the data sets
+used in this study are the largest publicly available organic graphs.
 
