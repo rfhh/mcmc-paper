@@ -227,7 +227,7 @@ stage either reads values or it updates values that it 'owns', so there
 is no read/write or write/write contention. The existing DKV stores incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
 values. Our use case allows us to do any operation in exactly one RDMA read
-or RDMA write. The Herd paper~\cite{Kalia:2014:URE:2740070.2626299,} argues
+or RDMA write. The Herd paper~\cite{Kalia:2014:URE:2740070.2626299} argues
 that replacing RDMA reads by
 an RPC to the server, followed by an unreliable write, is faster. However,
 they show this only holds for small payload packets, up to 256B. A $\pi$
