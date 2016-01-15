@@ -93,12 +93,12 @@
 
 % http://stanford.edu/~rezab/nips2014workshop/slides/jure.pdf
 
-The SC-MCMC algorithm described in the previous section has an abundance of
+The SG-MCMC algorithm described in the previous section has an abundance of
 opportunities for parallelism, for the multithreaded, shared-memory type as
 well as for distributed-memory parallelism. The benefit of multithreaded
 parallelism is speed-up of the computation. A distributed implementation
-additionaly allows to store data in the collective memory of the cluster
-machine and increases memory bandwidth; these both scale with the number of
+additionally allows to store data in the collective memory of the cluster
+machine and increases memory bandwidth which scales with the number of
 machines. The downside of a distributed implementation is that it requires
 considerably more programming effort.
 
@@ -106,7 +106,7 @@ considerably more programming effort.
 
 This section describes how we parallelize the algorithm.
 In most places, the usage of multithreaded parallelism
-is straightforward; we will discuss details only where appropriate. The
+is straightforward, therefore, we will discuss details only where appropriate. The
 distributed design follows a master-worker paradigm, where in essence
 the master controls the parallel operations and the workers perform the
 calculations. For thread parallelism, we annotate the program with
@@ -117,13 +117,17 @@ MPI~\cite{Forum:1994:MMI:898758}.
 
 \subsection{Data distribution}
 
+{\Large\bf NOTE: introduce perplexity}
+
+As is common in machine learning problems, the edges of the graph are divided
+into two sets a training set $G$ and a held-out set $H$.
 The largest data structures of the algorithm are $G$, $H$, $\pi$ and~$\phi$.
 For the largest dataset in this paper, com-Friendster, $G$ has 1.8~billion
 undirected edges. In our representation with directed edges, this takes
 up 13.5GB. Our design lets $G$ reside only at the master. We observe that
 the calculations in the update stages only require the subset of $G$ that
-is touched by the mini-batch nodes, so the master scatters that subset to
-the workers together with the scattering of the mini-batch nodes. This way,
+is touched by the mini-batch vertices, so the master scatters that subset to
+the workers together with the scattering of the mini-batch vertices. This way,
 we trade a reduction in memory at the workers against the cost of limited
 communication. In contrast, $H$ can be partitioned statically over all
 machines for the parallel perplexity calculation.
@@ -144,30 +148,30 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 \subsection{Implementation of distributed parallelism}
 
 This section describes the parallelization of each of the stages of the
-algorithm's main loop. All but the first stage justify parallelisation for
+algorithm's main loop. All but the first stage justify parallelization for
 high values of combinations of the  parameters $M$, $K$, $n$, and $|H|$.
 
-The first stage, mini-batch selection, is done at the master's, and it is
-not itself parallelized. However, in the distributed implementation its
-execution is overlapped using pipeline parallelism, while the workers are
+The first stage, mini-batch selection, is done at the master and it is
+not itself parallelized. However, the distributed implementation overlaps
+its execution using pipeline parallelism while the workers are
 performing \textit{update\_phi}. The mini-batch is partitioned equally over
-the workers; the relevant sections of $G$ are distributed together with the
+the workers and the relevant sections of $G$ are distributed together with the
 mini-batch subsets.
 
 After a worker has received its subset of the mini-batch, it samples a neighbor
-set of size $n$ for each of its mini-batch nodes, using thread parallelism.
+set of size $n$ for each of its mini-batch vertices, using thread parallelism.
 
 The next stage, \textit{update\_phi}, is the algorithm's dominant stage, not
 only in calculation but also in memory accesses. It performs $M\times n\times
 K$ operations. It can be fully parallelized because it is a data-parallel
-operation over each of the mini-batch nodes. \textit{update\_phi} loads the
-$\pi$ values for the local mini-batch nodes and their neighbors from the
-DKV store. The updates to $\phi$ for the mini-batch nodes are calculated
+operation over each of the mini-batch vertices. \textit{update\_phi} loads the
+$\pi$ values for the local mini-batch vertices and their neighbors from the
+DKV store. The updates to $\phi$ for the mini-batch vertices are calculated
 independently using thread parallelism.
 
 These updates are used by \textit{update\_pi} locally, besides the value of
-$\pi/\phi$ for the mini-batch nodes. The update to $\pi$ requires $M\times
-K$ operations, and it is done in parallel over mini-batch nodes. Because of
+$\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $M\times
+K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
 an MPI barrier. After the calculation, the updated values of $\pi+\pi^{sum}$
 are written through the DKV store.
@@ -176,17 +180,17 @@ are written through the DKV store.
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
 is split into four steps. The first stage partitions the mini-batch across
 machines to calculate contributions to $\nabla\theta$. The values of $\pi$ for
-the local mini-batch nodes are loaded from the DKV store. These calculations
-are done with thread parallelism over the mini-batch nodes. In the second step,
-a multithreaded summation is performed to calculate the contributions per
+the local mini-batch vertices are loaded from the DKV store. These calculations
+are done with thread parallelism over the mini-batch vertices. In the second step,
+a multi-threaded summation is performed to calculate the contributions per
 machine, followed by a distributed summation using an MPI reduce operation. The
-third step calculates $\beta$ from $\theta$, sequentially at the master's; this
+third step calculates $\beta$ from $\theta$ sequentially at the master. This
 operation takes only $K$ steps. The resulting $\beta$ is broadcast with MPI
 to the workers.
 
 The calculation of perplexity requires $|H|\times K$ steps. Each of the
 machines owns a subset of $H$. It loads up-to-date values of $\pi$ for each
-node in its part of $H$, then for each of its edges in $H$ it calculates the
+vertex in its part of $H$, then for each of its edges in $H$ it calculates the
 contribution to the perplexity using thread parallelism. The resulting
 contributions are summed to the global perplexity value in two stages,
 with a local OpenMP reduction followed by a global MPI reduction.
@@ -203,7 +207,7 @@ is the performance bottleneck of the distributed algorithm. We introduce
 pipeline parallelism in order to shorten the critical path. Loading $\pi$
 and calculating \textit{update\_pi} are partitioned into chunks, so the
 calculation of a chunk is overlapped with loading the next chunk of $\pi$
-values, and also with sampling the mini-batch at the master's and deploying
+values, and also with sampling the mini-batch at the master and deploying
 it to the workers.
 
 \subsection{RDMA Distributed Key-Value Store}
@@ -215,19 +219,20 @@ This has opened up the development of
 extremely efficient remote memory services, often in the form of DKV stores.
 This project stores $\pi$ in a DKV store in the collective memory of the
 cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
-to use any of the existing implementations of RDMA DKV stores, and in stead
+to use any of the existing implementations of RDMA DKV stores, and instead
 build our own DKV store on top of the ib-verbs API~\cite{ib-verbs}. The
 main consideration is that our use case is unusually simple in a number
 of important aspects. The KV layout is static in the sense that there are
 no inserts or deletes after the initial population, which allows a static
 partitioning of KV pairs over the machines. The values are all of the same size,
-a vector of $K+1$ floats. The access pattern is very regular, because the
-computation is partitioned into stages that are separated by barriers; a
-stage either reads values or it updates values that it 'owns', so there
-is no read/write or write/write contention. The existing DKV stores incur
+a vector of $K+1$ floats. The access pattern is well controlled because the
+computation is partitioned into stages that are separated by barriers. A
+stage either reads values or updates values. The algorithm ensures that updates
+are always targeting unique elements,
+therefore, there are no read/write or write/write hazards. The existing DKV stores incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
 values. Our use case allows us to do any operation in exactly one RDMA read
-or RDMA write. The Herd paper~\cite{Kalia:2014:URE:2740070.2626299,} argues
+or RDMA write. Herd~\cite{Kalia:2014:URE:2740070.2626299} argues
 that replacing RDMA reads by
 an RPC to the server, followed by an unreliable write, is faster. However,
 they show this only holds for small payload packets, up to 256B. A $\pi$
