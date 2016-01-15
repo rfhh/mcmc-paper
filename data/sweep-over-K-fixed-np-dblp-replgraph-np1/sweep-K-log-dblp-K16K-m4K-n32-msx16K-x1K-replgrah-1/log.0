@@ -1,0 +1,165 @@
+Command line: ./apps/main/main -f ../../datasets/com-dblp.ungraph.txt.gz -K 16K -m 4K -n 32 --mcmc.sampler.max-source 4K --mcmc.c 0 --mcmc.a 1e-06 -i 256 -x 1K 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+Host node110 PID 29775
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 1
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file ../../datasets/com-dblp.ungraph.txt.gz
+0ms open file
+For memory query file /proc/29775/statm
+0.000 Memory usage: total 86MB resident 5MB 
+Edges read 1048576
+0.974 Memory usage: total 108MB resident 27MB 
+979ms read ordered set
+0.979 Memory usage: total 116MB resident 28MB 
+#nodes 317080 min 1 max 425875 #edges 1049866
+1030ms create map
+1.030 Memory usage: total 130MB resident 43MB 
+Edges inserted 1048576
+1.645 Memory usage: total 183MB resident 95MB 
+#edges original 1049866 undirected subsets 2099732 duplicates 0 self-links 0
+1646ms create NetworkGraph
+1.645 Memory usage: total 183MB resident 95MB 
+1.669 Memory usage: total 159MB resident 77MB 
+Found prefix sum for edges in AdjacencyList graph: top bucket edge 2099732 max edge 2099735
+train_link_map is gone; calculate membership for each edge as linked_edges - held_out_map - test_map
+1.678 Memory usage: total 283MB resident 78MB 
+Edges/in in held-out set 0
+1.701 Memory usage: total 407MB resident 80MB 
+Edges in held-out set 104986
+1.757 Memory usage: total 407MB resident 81MB 
+Edges/in in test set 0
+1.801 Memory usage: total 407MB resident 86MB 
+Edges in test set 104987
+1.866 Memory usage: total 407MB resident 87MB 
+FIXME: can't I parallelize by not doing the order check?
+max_fan_out 313
+N 317080 E 1049866 link ratio 2.08847e-05 K 16384
+minibatch size 4096 epsilon 1e-07 alpha 6.10352e-05 iterations 1024 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 4096
+Use D-KV store type rdma
+minibatch size param 4096 max 8817 chunk 473 #neighbors(total) 15609
+perplexity nodes total 209972 local 209972 mine 32164 chunk 16082
+phi pipeline depth 2
+node110: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store includes the master node
+MR/value addr=0x7ffb02549000 size 4d6ab5a60, lkey=0xb8010b4b, rkey=0xb8010b4b, flags=0xf, mr=0x7fffe1cdd3a8
+MR/cache addr=0x7ffa07089000 size fb4bed20, lkey=0xb8010c4b, rkey=0xb8010c4b, flags=0xf, mr=0x7fffe1cdd3e0
+MR/write addr=0x7ffa052f7000 size 1d90764, lkey=0xb8010d4b, rkey=0xb8010d4b, flags=0xf, mr=0x7fffe1cdd418
+0: going to send OOB info to master
+0: sent OOB info to master, error system:0
+Got OOB info from 0
+Wrote OOB info to 0
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 1.22696MB
+Master is a worker, does host pi values
+...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+run():957 DKV Pipeline server runs
+27.099 Memory usage: total 24850MB resident 24053MB 
+average_count is: 2 step count: 1 time: 1.100 perplexity for hold out set: 5.200999259949
+average_count is: 3 step count: 257 time: 699.975 perplexity for hold out set: 5.195318222046
+average_count is: 4 step count: 513 time: 1388.606 perplexity for hold out set: 5.191050052643
+average_count is: 5 step count: 769 time: 2074.267 perplexity for hold out set: 5.187470912933
+average_count is: 6 step count: 1024 time: 2763.179 perplexity for hold out set: 5.184174060822
+timer                                    total (s)    ticks  per tick (us)
+  load network graph                        2.030        1    2030188.113
+  initialize DKV store                      7.833        1    7833671.526
+  populate pi                              17.215        1   17215625.049
+  iteration                              2762.008     1023    2699910.769
+    deploy minibatch                       20.769     1024      20282.525
+      scatter subgraph                     15.225     1024      14868.855
+        marshall edge count                 0.224     1024        219.094
+        scatterv edges                      0.003     1024          3.736
+        marshall edges                      2.501     1024       2443.033
+        scatterv edges                      0.177     1024        173.590
+        unmarshall edges                    9.350     1024       9131.294
+      sample_mini_batch                     3.703     1024       3617.116
+      nodes_in_mini_batch                   1.087     1024       1062.433
+    broadcast theta/beta                    2.833     1023       2769.771
+    update_phi_pi                        2655.350     1023    2595650.651
+      create minibatch slice chunks         0.223     1024        217.872
+      reorder minibatch overlap             0.003     9014          0.364
+      sample_neighbor_nodes                21.414     1024      20912.837
+      resample_neighbor_nodes               0.759     3557        213.489
+      load minibatch pi                     0.855     9823         87.128
+      load neighbor pi                     27.245     9823       2773.594
+      update_phi                         2507.240     9822     255267.771
+      barrier after update phi              0.015     1023         15.136
+      update_pi                            31.631     1023      30920.197
+      store minibatch pi                   73.448     1023      71797.250
+      barrier after update pi               0.014     1023         14.389
+    update_beta_theta                      99.117     1023      96888.782
+      zero beta grads                       0.812     1023        794.609
+      rank minibatch nodes                  0.979     1023        957.093
+      load pi update_beta                   0.549     1023        537.239
+      beta calc grads                      89.732     1023      87715.348
+      beta sum grads                        0.672     1023        657.074
+      beta reduce(+) grads                  0.073     1023         71.960
+      update theta                          3.671     1023       3588.946
+  perplexity                                5.569        5    1113956.136
+      load perplexity pi                    0.182       35       5206.811
+      calc edge likelihood                  0.430        5      86062.962
+      purge perplexity pi                   0.000       35          3.794
+      reduce/plus perplexity                0.000        5         43.222
+Linger a bit to allow gracious shutdown
+timer                                    total (s)    ticks  per tick (us)
+RDMA poll cq                        <unused>
+RDMA read                                  28.810    20704       1391.532
+     local read                            14.472 158319874          0.091
+     per-host read                  <unused>
+     post read                      <unused>
+     finish read                    <unused>
+RDMA write                                 77.121     1694      45526.487
+     local write                           76.791  4810066         15.965
+     per-host write                 <unused>
+     post write                     <unused>
+     finish write                   <unused>
+RDMA barrier                        <unused>
+posts 0 messages 0 msgs/post -nan
+Local read   10376284541960B 667.725GB/s
+Remote read  0B 0.000GB/s per-host loop -nanGB/s
+Local write  315251725640B 3.823GB/s
+Remote write 0B 0.000GB/s per-host loop -nanGB/s
+                                            0.779     1020        764.035
+                                            0.473    28702         16.499
+                                            0.000       25          0.425

@@ -1,0 +1,83 @@
+Command line: ./apps/main/main -f ../../datasets/com-dblp.ungraph.txt.gz -K 64K -m 4K -n 32 --mcmc.sampler.max-source 4K --mcmc.c 0 --mcmc.a 1e-06 -i 256 -x 1K 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+Host node104 PID 2490
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 1
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file ../../datasets/com-dblp.ungraph.txt.gz
+0ms open file
+For memory query file /proc/2490/statm
+0.000 Memory usage: total 86MB resident 5MB 
+Edges read 1048576
+0.984 Memory usage: total 108MB resident 27MB 
+989ms read ordered set
+0.989 Memory usage: total 116MB resident 28MB 
+#nodes 317080 min 1 max 425875 #edges 1049866
+1038ms create map
+1.038 Memory usage: total 130MB resident 43MB 
+Edges inserted 1048576
+1.644 Memory usage: total 183MB resident 95MB 
+#edges original 1049866 undirected subsets 2099732 duplicates 0 self-links 0
+1645ms create NetworkGraph
+1.645 Memory usage: total 183MB resident 95MB 
+1.668 Memory usage: total 159MB resident 77MB 
+Found prefix sum for edges in AdjacencyList graph: top bucket edge 2099732 max edge 2099735
+train_link_map is gone; calculate membership for each edge as linked_edges - held_out_map - test_map
+1.690 Memory usage: total 283MB resident 78MB 
+Edges/in in held-out set 0
+1.724 Memory usage: total 407MB resident 80MB 
+Edges in held-out set 104986
+1.780 Memory usage: total 407MB resident 81MB 
+Edges/in in test set 0
+1.824 Memory usage: total 407MB resident 86MB 
+Edges in test set 104987
+1.889 Memory usage: total 407MB resident 87MB 
+FIXME: can't I parallelize by not doing the order check?
+max_fan_out 313
+N 317080 E 1049866 link ratio 2.08847e-05 K 65536
+minibatch size 4096 epsilon 1e-07 alpha 1.52588e-05 iterations 1024 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+num_node_sample 32
+a 1e-06 b 1024 c 0 eta (1,1)
+minibatch size: 4096
+Use D-KV store type rdma
+terminate called after throwing an instance of 'mcmc::MCMCException'
+  what():  pi cache cannot contain pi[minibatch] for beta, refactor so update_beta is chunked
+[node104:mpi_rank_0][error_sighandler] Caught error: Aborted (signal 6)
