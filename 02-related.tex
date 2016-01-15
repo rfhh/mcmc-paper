@@ -3,7 +3,7 @@
 
 % In this section, we briefly review the Bayesian model we are considering in this paper.
 \subsection{Assortative Mixed-membership Stochastic Blockmodels (a-MMSB)}
-The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group-structure in a network of $N$ vertices. Consider a set  $\cV^*$ containing all the vertices in the graph, and a set $\cE^*$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV^*$ has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE^*$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other. The whole generative process of a-MMSB is then described by,
+The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  $\cV^*$ containing all the vertices in the graph $G$, and a set $\cE^*$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV^*$ has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE^*$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
 \benum
 \item For each community $k$, draw community strength $\bt_k \sim \mbox{Beta}(\eta)$
 \item For each vertex $a$, draw community memberships $\pi_a \sim \mbox{Dirichlet}(\al)$
@@ -16,15 +16,15 @@ The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan20
 \eenum
 
 \subsection{Stochastic Gradient Markov Chain Monte Carlo}
-The algorithm we are working on in this paper is based on the stochastic gradient Langevin dynamics (SGLD) ~\cite{welling2011bayesian}. SLGD applies the following update rule to obtain samples from a posterior distribution $p(\ta|\cX) \propto p(\cX|\ta) p(\ta)$ of $N$ i.i.d. data points $\cX=\{x_i\}_{i=1}^{N}$:
+The algorithm we are working on in this paper is based on stochastic gradient Langevin dynamics (SGLD) ~\cite{welling2011bayesian}. SLGD applies the following update rule to obtain samples from a posterior distribution $p(\ta|\cX) \propto p(\cX|\ta) p(\ta)$ of $N$ i.i.d. data points $\cX=\{x_i\}_{i=1}^{N}$:
 \bea
 \ta^* \law \ta + \f{\epsilon_t}{2}\left(\nabla_{\ta}\log p(\ta_t)+N\bar{g}(\ta;\cD_n)\right) + \xi_t, \label{eqn:sgld_update}
 \eea
-where $\xi_t \sim \cN(0,\epsilon_t )$ with $\ep_t$ the step size, $\cD_n$ a minibatch of size $n$ sampled from $\cX$, and $\bar{g}(\ta;\cD_n)$ the mean stochastic gradient, i.e., $\frac{1}{|\cD_n|}\sum_{x\in \cD_n}^{}\grad_{\ta} \log p(x|\ta)$. As the step size goes to zero by a schedule satisfying $\sm{t}{\infty}\ep_t = \infty$ and $\sm{t}{\infty}\ep_t^2 < \infty$, SGLD samples from the true posterior distribution. One benefit of using SGLD is that we do not need the Metropolis-Hastings (MH) accept-reject tests since the rejection probability goes to zero as the step size collapses to zero. Although the finite step size, which we use in practice rather than converging to zero, still results in some bias, we can reduce the overall error by drawing many more samples per unit time. 
+where $\xi_t \sim \cN(0,\epsilon_t )$ with $\ep_t$ the step size, $\cD_n$ a mini-batch of size $n$ sampled from $\cX$, and $\bar{g}(\ta;\cD_n)$ the mean stochastic gradient, i.e., $\frac{1}{|\cD_n|}\sum_{x\in \cD_n}^{}\grad_{\ta} \log p(x|\ta)$. As the step size goes to zero by a schedule satisfying $\sm{t}{\infty}\ep_t = \infty$ and $\sm{t}{\infty}\ep_t^2 < \infty$, SGLD samples from the true posterior distribution. One benefit of using SGLD is that we do not need the Metropolis-Hastings (MH) accept-reject tests since the rejection probability goes to zero as the step size collapses to zero. Although the finite step size, which we use in practice rather than converging to zero, still results in some bias, we can reduce the overall error by drawing many more samples per unit time. 
 
-SGLD originated from the Langevin Monte Carlo (LMC)~\cite{girolami2011riemann}, where unlike SGLD the gradient is computed exactly by using all data points. Then, Metropolis-Hastings accept-reject tests are applied. Comparing to LMC, SGLD only requires to process a minibatch $\cD_n$ at each iteration and ignores the MH test, and thus the computational complexity substantially reduces from $\cO(N)$ to $\cO(n)$.   
+SGLD originated from the Langevin Monte Carlo (LMC)~\cite{girolami2011riemann}, where unlike SGLD the gradient is computed exactly by using all data points. Then, Metropolis-Hastings accept-reject tests are applied. Comparing to LMC, SGLD only requires to process a mini-batch $\cD_n$ at each iteration and ignores the MH test, and thus the computational complexity substantially reduces from $\cO(N)$ to $\cO(n)$.   
 
-The stochastic gradient Riemannian Langevin dynamics (SGRLD)~\cite{patterson2013stochastic} is a subclass of SGLD which is developed to efficiently sample from the probability simplex. By applying Riemannian geometry~\cite{girolami2011riemann} and using the minibatch-based estimator in Eqn. \ref{eqn:sgld_update}, it achieved the state-of-the-art performance for latent Dirichlet allocation (LDA)~\cite{blei2003latent}. In particular, for a $K$-dimensional probability simplex $\pi$, it uses the \textit{expanded-mean} re-parameterization trick, where the probability of a category $k$ is given by $\pi_k = \ta_k / \sum_{j=1}^K \ta_j$ with $\ta_k \sim \text{Gamma}(\al,1)$ and $\al$ a hyperparameter of the Dirichlet distribution $p(\pi | \al )$. Then, the update rule of SGRLD is:
+The stochastic gradient Riemannian Langevin dynamics (SGRLD)~\cite{patterson2013stochastic} is a subclass of SGLD which is developed to efficiently sample from the probability simplex. By applying Riemannian geometry~\cite{girolami2011riemann} and using the mini-batch-based estimator in Eqn. \ref{eqn:sgld_update}, it achieved the state-of-the-art performance for latent Dirichlet allocation (LDA)~\cite{blei2003latent}. In particular, for a $K$-dimensional probability simplex $\pi$, it uses the \textit{expanded-mean} re-parameterization trick, where the probability of a category $k$ is given by $\pi_k = \ta_k / \sum_{j=1}^K \ta_j$ with $\ta_k \sim \text{Gamma}(\al,1)$ and $\al$ a hyperparameter of the Dirichlet distribution $p(\pi | \al )$. Then, the update rule of SGRLD is:
 \bea
 \ta_{k}^* \law \left| \ta_{k} + \f{\ep_t}{2} \left( \al - \ta_{k} + \f{N}{|\cD_n|} \sum_{d \in \cD_n} g_d(\ta_{k}) \right) + (\ta_{k})^\ha \xi_{t} \right|. \label{eqn:sgrld_update}
 \eea
@@ -63,6 +63,17 @@ where \bea
 g_{ab}(\phi_{ak}) = \f{f_{ab}^{(y)}(k)}{Z_{ab}^{(y)}\phi_{ak}} - \f{1}{\phi_a}.
 \eea
 Here, the $\cV_n$ is a random mini-batch of $n$ vertices sampled from $\cV^*$. Note that $|\cV_n| \ll |\cV^*|=N$.
+
+As the performance metric we use perplexity, which is defined as the exponential
+of the negative average log-likelihood of the held-out set $\cE_h$. Given a collection of $T$
+samples of the model parameters $\{\bt_t\}$ and $\{\pi_t\}$, the averaged
+perplexity on the held-out test set $\cE_h$ is 
+\begin{align}
+&\text{perp}_{\text{avg}}(\cE_h|\{\beta_t\},\{\pi_t\})\nonumber \\=&
+\exp\left(-\frac{\sum_{(a,b)\in \cE_h}^{}\log
+\{(1/T)\sm{t}{T}p(y_{ab}|\beta_t,\pi_t)\}}{|\cE_{h}|}\right)
+\end{align}
+The perplexity is not evaluated at every iteration, but at regular intervals.
 
 The overall pseudo-code of the sequential algorithm is described in Algorithm 1. 
 
@@ -125,7 +136,7 @@ $\eE_{\cD_n} \left[N\bar{g}(\ta;\cD_n)\right] = \grad_{\ta} \log p(\cX|\ta)\labe
 %%%%%%%%%%%%%%
 %\subsection{Stochastic Gradient Riemannian Langevin Dynamics (SGRLD)}
 
-The stochastic gradient Riemannian Langevin dynamics (SGRLD) [2] is a subclass of SGLD which is developed to sample from the probability simplex. By applying Riemannian geometry [15] and using the mini-batch estimator in Eqn. \ref{eqn:sgld_update}, it achieved the state-of-the-art performance for latent Dirichlet allocation (LDA). In particular, for a $K$-dimensional probability simplex $\pi$, it uses the \textit{expanded-mean} re-parameterization trick, where the probability of a category $k$ is given by $\pi_k = \ta_k / \sum_{j=1}^K \ta_j$ with $\ta_k \sim \text{Gamma}(\al,1)$ and $\al$ a hyperparameter of the Dirichlet distribution $p(\pi | \al )$.
+The stochastic gradient Riemannian Langevin dynamics (SGRLD) [2] is a subclass of SGLD which is developed to sample from the probability simplex. By applying Riemannian geometry [15] and using the mini-batch estimator in Eqn. \ref{eqn:sgld_update}, it achieved state-of-the-art performance for latent Dirichlet allocation (LDA). In particular, for a $K$-dimensional probability simplex $\pi$, it uses the \textit{expanded-mean} re-parameterization trick, where the probability of a category $k$ is given by $\pi_k = \ta_k / \sum_{j=1}^K \ta_j$ with $\ta_k \sim \text{Gamma}(\al,1)$ and $\al$ a hyperparameter of the Dirichlet distribution $p(\pi | \al )$.
 Then, the update rule becomes
 
 %==============================================================
