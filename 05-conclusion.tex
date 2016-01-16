@@ -1,1 +1,23 @@
 \section{Conclusion}
+
+The recent advancements of machine learning algorithms make them ideal
+candidates to solve complex problems. However, using these solutions in order
+to process problems at scale is still a daunting task. In particular, knowledge
+of parallel and distributed computing techniques is necessary to facilitate the
+development of such systems and streamline their execution time.
+
+In this paper, we shared our experience in developing a highly scalable and
+efficient solution for a stochastic gradient Markov chain Monte Carlo algorithm
+that detects overlapping communities in graphs. The system design had to
+overcome several obstacles in order to achieve high performance. Specifically,
+we discussed how the algorithm was structured to facilitate its
+parallelization. Moreover, we evaluated the efficacy of overlapping computation
+with communication to hide latency.  Further, we demonstrated the use of a
+mixture of MPI and RDMA primitives to speedup the communication between cluster
+nodes.
+
+We conducted a thorough empirical evaluation of the system to study its strong
+and weak scalability on 64 cluster nodes using large data sets.  Additionally,
+we assessed the efficiency of the algorithm's resource utilization. Finally, a
+demonstration of the implementation's utility was provided by processing 6
+different organic data sets.
