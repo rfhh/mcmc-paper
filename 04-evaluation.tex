@@ -21,27 +21,30 @@ and vertically.
 
 \begin{table*}
   \centering
-  \begin{tabular}{l r r l}
-    Name            & \#Vertices &       \#Edges & Description \\
+  \begin{tabular}{l r r r l}
+    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
+                    &            &               & communities    &             \\
     \hline
-    com-LiveJournal &  3,997,962 &    34,681,189 & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & Computer science bibliography collaboration network \\
-    com-Amazon      &    334,863 &       925,872 & Product co-purchasing network \\
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
+    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
     \hline
   \end{tabular}
   \caption{Summary of SNAP graph data sets used for evaluation.}
   \label{tab-datasets}
 \end{table*}
 
-Empirical results were obtained by performing experiments on the VU and TU/D
-DAS5 clusters which consist of 68 and 48 compute nodes respectively. Each
+Empirical results were obtained by performing experiments on the VU and
+Leiden University
+DAS5 clusters which consist of 68 and 24 compute nodes respectively. Each
 compute node is equipped with a dual 8-core Intel Xeon E5-2630v3 CPU clocked
 at 2.40GHz, 64GB of memory and 8TB of storage. Moreover, the compute nodes of
 each site are interconnected by
-FDR~InfiniBand. All of the experiments reported in this section utilized
+FDR~InfiniBand. The MPI implementation used is MVAPICH2, which is optimally
+tuned for Infiniband~\cite{mvapich}. All of the experiments reported in this section utilized
 publicly available graphs from the Stanford Large Network Dataset
 Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
 collection of data sets used.
@@ -72,23 +75,24 @@ cluster.
 As shown in the figure, the execution
 time steadily decreases by increasing the cluster size.
 A deeper analysis of the individual execution phases of the algorithm provides
-insights into the scalability if its building blocks.
+insights into the scalability of its building blocks.
 %
 In addition to the total execution time, Figure~\ref{fig-strong-scaling}-a
 presents the cumulative time spent in individual computational phases across
 iterations. Moreover, Figure~\ref{fig-strong-scaling}-b presents the speedup
 achieved for the same experiments reported in
 Figure~\ref{fig-strong-scaling}-a. As is clearly shown, the dominant phase of
-the execution is update\_pi.
+the execution is \textit{update\_phi\_pi}.
 The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
-overlapping execution of the two most expensive phases, namely, update\_pi and
-deploy\_mini-batch. Both of these phases initially gain significant speedup with the
+overlapping execution of the two most expensive phases, namely,
+\textit{update\_phi\_pi} and
+minibatch deployment. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.
 %
-The time spent in update\_beta remains relatively constant across cluster sizes
+The time spent in \textit{update\_beta\_theta} remains relatively constant across cluster sizes
 as it performs an insignificant amount of work compared to the synchronization
 overhead of a collective MPI reduction operation contained within it.
 
@@ -115,7 +119,7 @@ configurations. However, the number and size of messages exchanged between the
 nodes would vary significantly. Figure~\ref{fig-weak-scaling}-a presents the
 average execution
 time per algorithm iteration across different cluster sizes. On the other hand,
-Figure~\ref{fig-weak-scaling}-b reports the set number of communities for each
+Figure~\ref{fig-weak-scaling}-b reports the number of communities for each
 cluster configuration. The relative change in the average execution time per
 iteration is insignificant even though the communication intensity increases
 for larger cluster sizes. This observation verifies that the system's overall
@@ -145,7 +149,7 @@ configurations exhibit higher bandwidth demands and are more sensitive
 to network latency. To reduce the negative effects of network latency on the
 computation, a pipelining scheme was devised to prefetch data dependencies.
 Figure~\ref{fig-pipeline} presents the execution time of 1024 algorithm
-iterations on a 64-node cluster with double-bufferring enabled and disabled.
+iterations on a 64-node cluster with double-buffering enabled and disabled.
 Naturally, increasing the number of communities causes a proportional increase
 in execution time. However, when double-buffering is enabled, some of the
 incurred network latency is hidden by overlapping it with computation.
@@ -197,7 +201,7 @@ deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 \end{figure*}
 One of the main drawbacks of designing a distributed solution for a given
 algorithm is the inherent complexity of communication and synchronization. A
-slightly simpler approach would be developing a multi-threaded version and
+considerably simpler approach would be developing a multi-threaded version and
 running it on a machine with abundant memory and CPU cores. In such a context,
 access to all of the algorithm's state would be an order of magnitude faster
 than RDMA. Additionally, the overhead associated with synchronizing threads is
@@ -205,19 +209,19 @@ negligible compared to using MPI primitives. To evaluate the efficacy of both
 approaches we utilized SURFsara's HPC Cloud system to instantiate a virtual
 machine with 40 Intel Xeon E7-4850 cores clocked at 2.00GHz cores and 1TB of
 memory. The physical machine underlying
-the HPC Cloud system contains 40-CPU cores and does not oversubscribe
+the HPC Cloud system contains 40~CPU cores and does not oversubscribe
 resources. Therefore, by provisioning all 40~cores we ensured that there is no
 resource contention from other users of the system. Figure~\ref{fig-scale-up}
 reports the execution time per algorithm iteration for two experimental setups.
 %
 First, Figure~\ref{fig-scale-up}-a shows the performance of executing the
 algorithm on the HPC Cloud
-system with 40 and 16 cores compared to a single DAS5 node with 16-cores. This
+system with 40 and 16 cores compared to a single DAS5 node with 16~cores. This
 test uses the com-DBLP data set to enable the use of a large number of
 communities without running out of memory. It is clear from the results that
 the performance can benefit from the additional cores provided by HPC Cloud system.
 %
-Further, Figure~\ref{fig-scale-up} tests the performance of the HPC Cloud
+Further, Figure~\ref{fig-scale-up}-b tests the performance of the HPC Cloud
 system compared to 64-nodes of the DAS5
 cluster using the com-Friendster data set. Clearly, the parallel and
 distributed implementation vastly
@@ -239,11 +243,12 @@ a single-node implementation.
   \label{fig-qperf}
 \end{figure}
 
-A thorough performance evaluation of our RDMA DKV store is outside the scope of
-this paper. In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
+Since the distributed algorithm is data-intensive, a key aspect in improving
+its performance is to maximize the utility of the network resources.
+In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
 read operations between one server and one client for a range of payload sizes,
 and compare these to the bandwidth achieved by \textit{qperf}, which shows
-the best achievable preformance for Infiniband. We present \textit{qperf}
+the best achievable performance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are nearly
 identical, which corroborates the results from the Herd project for payloads
 upwards from 256B. The bandwidth achieved by our DKV store falls short
@@ -271,7 +276,7 @@ stable state and terminate. Therefore, we now shift our focus to the
 convergence time to assess the system's utility. Figure~\ref{fig-ppx} presents
 the convergence time of the data sets listed in Table~\ref{tab-datasets}.
 %
-The results in sub-figures a, b and c where obtained by using 64 compute nodes
+The results in sub-figures a, b and c were obtained by using 64 compute nodes
 of DAS5. In Figure~\ref{fig-ppx}-a, the number of communities was set to 12K
 which fully occupied the aggregate memory resources of all 64 machines since
 com-Friendster has roughly 65 million vertices. In this case, the algorithm
@@ -281,7 +286,7 @@ respectively. As the number of vertices in these data sets is an order of
 magnitude smaller than com-Friendster, we used a larger number of
 communities. Naturally, the convergence time was extended as the complexity of
 the algorithm increases dramatically with larger K. However, the system was
-still capable of reporting results after \textbf{XXX time}.
+capable of reporting results for both after 40 hours.
 %
 Figures~\ref{fig-ppx}-d, \ref{fig-ppx}-e and \ref{fig-ppx}-f were all
 configured to use the total number of ground-truth communities associated with
