@@ -63,8 +63,8 @@ set grid ytics
 w = 0.6
 h = 0.4
 k = 0.0
-nr = 1
-nc = 2
+nr = 2
+nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
@@ -89,7 +89,7 @@ plot \
      "$$.tmp.hpc16" u 1:(1000*\$2) w lp t 'HPC Cloud 16-cores', \
      "$$.tmp.4" u 1:(1000*\$2) w lp t 'Single DAS5 node 16-cores'
 
-set origin col(1),row(0)
+set origin col(0),row(1)
 set size w,h
 set title '(b) Performance of HPC Cloud (40 cores) vs. 64 DAS5 nodes (64*16 cores) using com-Friendster'
 plot \

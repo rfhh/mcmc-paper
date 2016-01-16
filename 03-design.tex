@@ -214,6 +214,25 @@ calculation of a chunk is overlapped with loading the next chunk of $\pi$
 values, and also with sampling the mini-batch at the master and deploying
 it to the workers.
 
+% horrible hack to move the table up
+\begin{table*}
+  \centering
+  \begin{tabular}{l r r r l}
+    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
+                    &            &               & communities    &             \\
+    \hline
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
+    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
+    \hline
+  \end{tabular}
+  \caption{Summary of SNAP graph data sets used for evaluation.}
+  \label{tab-datasets}
+\end{table*}
+
 \subsection{RDMA Distributed Key-Value Store}
 
 Modern network technology allows access to the memory of remote machines

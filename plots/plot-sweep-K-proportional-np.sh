@@ -26,8 +26,8 @@ cat <<EOF | gnuplot --persist
 w = 0.6
 h = 0.4
 k = 0.0
-nr = 1
-nc = 2
+nr = 2
+nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
@@ -49,7 +49,7 @@ set title "(a) Weak Scaling (over K)"
 set ylabel "Time per Iteration (milliseconds)"
 plot "$$.tmp" u (\$2-1):(1000*\$3/\$4) w lp axis x1y1
 
-set origin col(1),row(0)
+set origin col(0),row(1)
 set size w,h
 set style data histogram 
 set style histogram cluster gap 1

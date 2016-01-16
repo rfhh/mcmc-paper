@@ -45,8 +45,8 @@ cat <<EOF | gnuplot --persist
 w = 0.6
 h = 0.4
 k = 0.0
-nr = 1
-nc = 2
+nr = 2
+nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
@@ -72,7 +72,7 @@ plot \
      "$$.tmp.3" u (\$2-1):3 w lp axis x1y1 t 'update\_phi\_pi', \
      "$$.tmp.4" u (\$2-1):3 w lp axis x1y1 t 'update\_beta\_theta'
 
-set origin col(1),row(0)
+set origin col(0),row(1)
 set size w,h
 set ylabel "Speedup"
 set title "(b) Speedup over 8-nodes"

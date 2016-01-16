@@ -19,24 +19,6 @@ communication} between cluster nodes.
 Finally, we \textit{contrast} the effectiveness of scaling the computation horizontally
 and vertically.
 
-\begin{table*}
-  \centering
-  \begin{tabular}{l r r r l}
-    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
-                    &            &               & communities    &             \\
-    \hline
-    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
-    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
-    \hline
-  \end{tabular}
-  \caption{Summary of SNAP graph data sets used for evaluation.}
-  \label{tab-datasets}
-\end{table*}
-
 Empirical results were obtained by performing experiments on the VU and
 Leiden University
 DAS5 clusters which consist of 68 and 24 compute nodes respectively. Each
@@ -52,15 +34,15 @@ collection of data sets used.
 %################################################
 \subsection{Strong scaling}
 
-\begin{figure*}[t] % [htb]
+\begin{figure}[htb] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\textwidth}
+  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=0.48\textwidth}
   \caption{(a) Execution time of 2048 algorithm iterations for the
   same problem size (com-Friendster, K=1024, M=16384 n=32) across different
   cluster sizes. (b) Speedup achieved for same experiments in (a) with respect to
   8 nodes}
   \label{fig-strong-scaling}
-\end{figure*}
+\end{figure}
 
 In order to evaluate the horizontal scalability of the distributed
 implementation we tested the system's performance across different cluster
@@ -99,14 +81,14 @@ overhead of a collective MPI reduction operation contained within it.
 %################################################
 \subsection{Weak Scaling}
 
-\begin{figure*}[t] % [htb]
+\begin{figure}[htb] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\textwidth}
+  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
   \caption{(a) Average execution time per algorithm iteration varying
   the number of latent communities proportionally to the number of compute
   nodes. (b) The exact number of communities used for each data point in (a).}
   \label{fig-weak-scaling}
-\end{figure*}
+\end{figure}
 
 A study of a system's weak scaling aids in the assessment of the communication
 and synchronization overheads associated with the management of large clusters.
@@ -191,14 +173,14 @@ deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
-\begin{figure*}[t] % [htb]
+\begin{figure}[htbp] % [htb]
   \centering
-  \epsfig{file=plots/hpc-cloud.eps, width=\textwidth}
+  \epsfig{file=plots/hpc-cloud.eps, width=0.48\textwidth}
   \caption{Performance comparison between the distributed implementation
   running on DAS5 and the multi-threaded solution on machine with 40 cores and
   1TB of RAM.}
   \label{fig-scale-up}
-\end{figure*}
+\end{figure}
 One of the main drawbacks of designing a distributed solution for a given
 algorithm is the inherent complexity of communication and synchronization. A
 considerably simpler approach would be developing a multi-threaded version and
@@ -236,12 +218,19 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
-\begin{figure}[b] % [htbp]
+\begin{figure}[t] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
   \caption{Performance of DKV store compared to qperf.}
   \label{fig-qperf}
 \end{figure}
+
+\begin{figure*}[htbp] % [htb]
+  \centering
+  \epsfig{file=plots/ppx.eps, width=\textwidth}
+  \caption{Convergence time of 6 different data sets.}
+  \label{fig-ppx}
+\end{figure*}
 
 Since the distributed algorithm is data-intensive, a key aspect in improving
 its performance is to maximize the utility of the network resources.
@@ -261,12 +250,6 @@ achieves performance very close to \textit{qperf}.
 
 %################################################
 \subsection{Convergence of Large Datasets}
-\begin{figure*}[t] % [htb]
-  \centering
-  \epsfig{file=plots/ppx.eps, width=\textwidth}
-  \caption{Convergence time of 6 different data sets.}
-  \label{fig-ppx}
-\end{figure*}
 
 The previous sections focused on the computational performance of the
 distributed implementation. However, the algorithm's throughput does not
