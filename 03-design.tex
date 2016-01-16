@@ -139,7 +139,7 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 % lack of locality
 
-The distribution within the graph of the nodes of the mini-batch as well as
+The distribution within the graph of the vertices of the mini-batch as well as
 the neighbor sets is completely random. That means that there is no locality
 in $\pi$ access patterns, especially in the accesses to the neighbor sets.
 Hence, there is no opportunity to exploit caching of $\pi$ through data
@@ -223,7 +223,7 @@ extremely efficient remote memory services, often in the form of DKV stores.
 This project stores $\pi$ in a DKV store in the collective memory of the
 cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
 to use any of the existing implementations of RDMA DKV stores, and instead
-build our own DKV store on top of the ib-verbs API~\cite{ib-verbs}. The
+build our own DKV store on top of the Infiniband ib-verbs~API. The
 main consideration is that our use case is unusually simple in a number
 of important aspects. The KV layout is static in the sense that there are
 no inserts or deletes after the initial population, which allows a static
@@ -232,10 +232,12 @@ a vector of $K+1$ floats. The access pattern is well controlled because the
 computation is partitioned into stages that are separated by barriers. A
 stage either reads values or updates values. The algorithm ensures that updates
 are always targeting unique elements,
-therefore, there are no read/write or write/write hazards. The existing DKV stores incur
+therefore, there are no read/write or write/write hazards. The existing DKV
+stores (RamCloud~\cite{Ousterhout:2015:RSS:2818727.2806887}, FaRM~\cite{179767},
+and reputedly the fastest, Herd~\cite{Kalia:2014:URE:2740070.2626299}) incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
 values. Our use case allows us to do any operation in exactly one RDMA read
-or RDMA write. Herd~\cite{Kalia:2014:URE:2740070.2626299} argues
+or RDMA write. Herd argues
 that replacing RDMA reads by
 an RPC to the server, followed by an unreliable write, is faster. However,
 they show this only holds for small payload packets, up to 256B. A $\pi$
