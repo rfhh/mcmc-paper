@@ -69,8 +69,8 @@ set title "(a) Execution time"
 plot \
      "$$.tmp"   u (\$2-1):3 w lp axis x1y1 t 'total', \
      "$$.tmp.2" u (\$2-1):3 w lp axis x1y1 t 'deploy minibatch', \
-     "$$.tmp.3" u (\$2-1):3 w lp axis x1y1 t 'update pi', \
-     "$$.tmp.4" u (\$2-1):3 w lp axis x1y1 t 'update beta'
+     "$$.tmp.3" u (\$2-1):3 w lp axis x1y1 t 'update\_phi\_pi', \
+     "$$.tmp.4" u (\$2-1):3 w lp axis x1y1 t 'update\_beta\_theta'
 
 set origin col(1),row(0)
 set size w,h
@@ -78,9 +78,9 @@ set ylabel "Speedup"
 set title "(b) Speedup over 8-nodes"
 plot \
      "$$.tmp" u (\$2-1):(${BASE}/\$3) w lp axis x1y1 t "total", \
-     "$$.tmp.2" u (\$2-1):(${BASE2}/\$3) w lp axis x1y1 t "deploy minibatch", \
-     "$$.tmp.3" u (\$2-1):(${BASE3}/\$3) w lp axis x1y1 t "update pi", \
-     "$$.tmp.4" u (\$2-1):(${BASE4}/\$3) w lp axis x1y1 t "update beta"
+     "$$.tmp.2" u (\$2-1):(${BASE2}/\$3) w lp axis x1y1 t 'deploy minibatch', \
+     "$$.tmp.3" u (\$2-1):(${BASE3}/\$3) w lp axis x1y1 t 'update\_phi\_pi', \
+     "$$.tmp.4" u (\$2-1):(${BASE4}/\$3) w lp axis x1y1 t 'update\_beta\_theta'
 
 EOF
 

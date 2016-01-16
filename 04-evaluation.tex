@@ -82,17 +82,17 @@ presents the cumulative time spent in individual computational phases across
 iterations. Moreover, Figure~\ref{fig-strong-scaling}-b presents the speedup
 achieved for the same experiments reported in
 Figure~\ref{fig-strong-scaling}-a. As is clearly shown, the dominant phase of
-the execution is \textit{update\_pi}.
+the execution is \textit{update\_phi\_pi}.
 The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
 overlapping execution of the two most expensive phases, namely,
-\textit{update\_pi} and
+\textit{update\_phi\_pi} and
 minibatch deployment. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.
 %
-The time spent in \textit{update\_beta} remains relatively constant across cluster sizes
+The time spent in \textit{update\_beta\_theta} remains relatively constant across cluster sizes
 as it performs an insignificant amount of work compared to the synchronization
 overhead of a collective MPI reduction operation contained within it.
 
