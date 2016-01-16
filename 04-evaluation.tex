@@ -259,21 +259,22 @@ stable state and terminate. Therefore, we now shift our focus to the
 convergence time to assess the system's utility. Figure~\ref{fig-ppx} presents
 the convergence time of the data sets listed in Table~\ref{tab-datasets}.
 %
-The results in sub-figures a, b and c were obtained by using 64 compute nodes
+The results in sub-figures a, b and c were obtained by using 65 compute nodes
 of DAS5. In Figure~\ref{fig-ppx}-a, the number of communities was set to 12K
-which fully occupied the aggregate memory resources of all 64 machines since
+which fully occupied the aggregate memory resources of all 64 worker nodes since
 com-Friendster has roughly 65 million vertices. In this case, the algorithm
 reached a stable state after 3-4 hours. Next, Figures~\ref{fig-ppx}-b and
 \ref{fig-ppx}-c present the convergence of com-LiveJournal and com-Orkut
 respectively. As the number of vertices in these data sets is an order of
-magnitude smaller than com-Friendster, we used a larger number of
-communities. Naturally, the convergence time was extended as the complexity of
+magnitude smaller than com-Friendster, we could use a larger number of
+communities to fill up the collective memory. Naturally, the convergence time was extended as the complexity of
 the algorithm increases dramatically with larger K. However, the system was
 capable of reporting results for both in around 40 hours.
 %
 Figures~\ref{fig-ppx}-d, \ref{fig-ppx}-e and \ref{fig-ppx}-f were all
-configured to use the total number of ground-truth communities associated with
-their respective data sets, com-Youtube, com-DBLP and com-Amazon. However,
+configured to use the number of ground-truth communities associated with
+their respective data sets, com-Youtube, com-DBLP and com-Amazon. Since this
+yields a much smaller storage requirement,
 these experiments were conducted on 14, 24 and 24 cluster nodes respectively.
 
 The results reported in Figure~\ref{fig-ppx} verify that the distributed
