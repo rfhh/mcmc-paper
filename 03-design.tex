@@ -94,8 +94,8 @@
 % http://stanford.edu/~rezab/nips2014workshop/slides/jure.pdf
 
 The SG-MCMC algorithm described in the previous section has an abundance of
-opportunities for parallelism, for the multithreaded, shared-memory type as
-well as for distributed-memory parallelism. The benefit of multithreaded
+opportunities for parallelism, for the multi-threaded, shared-memory type as
+well as for distributed-memory parallelism. The benefit of multi-threaded
 parallelism is speed-up of the computation. A distributed implementation
 additionally allows to store data in the collective memory of the cluster
 machine and increases memory bandwidth which scales with the number of
@@ -105,7 +105,7 @@ considerably more programming effort.
 % intro parallelisation, distribution
 
 This section describes how we parallelize the algorithm.
-In most places, the usage of multithreaded parallelism
+In most places, the usage of multi-threaded parallelism
 is straightforward, therefore, we will discuss details only where appropriate. The
 distributed design follows a master-worker paradigm, where in essence
 the master controls the parallel operations and the workers perform the

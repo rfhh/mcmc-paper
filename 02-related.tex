@@ -16,7 +16,7 @@ The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan20
 \eenum
 
 \subsection{Stochastic Gradient Markov Chain Monte Carlo}
-The algorithm we are working on in this paper is based on stochastic gradient Langevin dynamics (SGLD) ~\cite{welling2011bayesian}. SLGD applies the following update rule to obtain samples from a posterior distribution $p(\ta|\cX) \propto p(\cX|\ta) p(\ta)$ of $N$ i.i.d. data points $\cX=\{x_i\}_{i=1}^{N}$:
+The algorithm we are working on in this paper is based on stochastic gradient Langevin dynamics (SGLD) ~\cite{welling2011bayesian}. SGLD applies the following update rule to obtain samples from a posterior distribution $p(\ta|\cX) \propto p(\cX|\ta) p(\ta)$ of $N$ i.i.d. data points $\cX=\{x_i\}_{i=1}^{N}$:
 \bea
 \ta^* \law \ta + \f{\epsilon_t}{2}\left(\nabla_{\ta}\log p(\ta_t)+N\bar{g}(\ta;\cD_n)\right) + \xi_t, \label{eqn:sgld_update}
 \eea
@@ -235,9 +235,9 @@ Here, the $\cV_n$ is a random mini-batch of $n$ nodes sampled from $\cV^*$. Note
 
 \subsection{Related work on distributed MCMC}
 
-Among previous work on parallelising MMSB algorithms, we mention the Online
+Among previous work on parallelizing MMSB algorithms, we mention the Online
 Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13} on GPUs, and our previous
-parallel implementation of SG-MCMC on GPUs and multicore CPUs (submitted for
+parallel implementation of SG-MCMC on GPUs and multi-core CPUs (submitted for
 publication). There are a few projects that did a distributed implementation
 for community detection on very large network graphs. In contrast to our work,
 they all detect non-overlapping communities: \cite{Bu2013246} investigate a

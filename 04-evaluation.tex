@@ -87,7 +87,7 @@ The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
 overlapping execution of the two most expensive phases, namely,
 \textit{update\_phi\_pi} and
-minibatch deployment. Both of these phases initially gain significant speedup with the
+mini-batch deployment. Both of these phases initially gain significant speedup with the
 addition of compute nodes. However, the speedup curve gradually slows down for
 larger cluster sizes as the work granularity of each worker node decreases,
 limiting their resource utilization.
@@ -177,7 +177,7 @@ widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
   \end{tabular}
   \caption{The most important stages in the execution; com-Friendster on 65
   compute nodes, with 12K communities. Times in ms per iteration. The lower
-  half of the table shows substages within \textit{update\_phi}. In the
+  half of the table shows sub-stages within \textit{update\_phi}. In the
   pipelining version, these components are done in parallel.}
   \label{table-pipeline}
 \end{table}
