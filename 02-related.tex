@@ -3,7 +3,7 @@
 
 % In this section, we briefly review the Bayesian model we are considering in this paper.
 \subsection{Assortative Mixed-membership Stochastic Blockmodels (a-MMSB)}
-The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  $\cV^*$ containing all the vertices in the graph, and a set $\cE^*$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV^*$ has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE^*$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
+The assortative mixed membership stochastic blockmodel (a-MMSB) ~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  $\cV^*$ containing all the vertices in the graph, and a set $\cE^*$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV^*$ has a $K$-dimensional probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE^*$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which reflects how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
 \benum
 \item For each community $k$, draw community strength $\bt_k \sim \mbox{Beta}(\eta)$
 \item For each vertex $a$, draw community memberships $\pi_a \sim \mbox{Dirichlet}(\al)$
@@ -233,7 +233,7 @@ Here, the $\cV_n$ is a random mini-batch of $n$ nodes sampled from $\cV^*$. Note
 
 \end{comment}
 
-\subsection{Related work on distributed MCMC}
+\subsection{Related work on parallel community detection}
 
 Among previous work on parallelizing MMSB algorithms, we mention the Online
 Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13} on GPUs, and our previous

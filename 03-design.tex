@@ -141,7 +141,8 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 The distribution within the graph of the vertices of the mini-batch as well as
 the neighbor sets is completely random. That means that there is no locality
-in $\pi$ access patterns, especially in the accesses to the neighbor sets.
+in $\pi$ access patterns, especially in the accesses to the neighbor sets
+$\cV_t$.
 Hence, there is no opportunity to exploit caching of $\pi$ through data
 locality.
 
@@ -151,7 +152,7 @@ locality.
 
 This section describes the parallelization of each of the stages of the
 algorithm's main loop. All but the first stage justify parallelization for
-high values of combinations of the  parameters $|\cV_n|$, $K$, $n$, and $|\cE_h|$.
+high values of combinations of the  parameters $|\cV_n|$, $K$, $\cV_t$, and $|\cE_h|$.
 
 The first stage, mini-batch selection (line 3 in Algorithm~1), is done at the master and it is
 not itself parallelized. However, the distributed implementation overlaps
@@ -161,7 +162,7 @@ the workers and the relevant sections of $G$ are distributed together with the
 mini-batch subsets.
 
 After a worker has received its subset of the mini-batch, it samples a neighbor
-set of size $n$ for each of its mini-batch vertices, using thread parallelism
+set $\cV_t$ for each of its mini-batch vertices, using thread parallelism
 (line 5 in Algorithm~1).
 
 The next stage, \textit{update\_phi} (line 6 in Algorithm~1), is the algorithm's dominant stage, not
