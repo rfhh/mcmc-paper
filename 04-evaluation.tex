@@ -32,9 +32,9 @@ Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
 collection of data sets used.
 
 %################################################
-\subsection{Strong scaling}
+\subsection{Strong Scaling}
 
-\begin{figure}[htb] % [htb]
+\begin{figure}[b] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=0.48\textwidth}
   \caption{(a) Execution time of 2048 algorithm iterations for the
@@ -81,7 +81,7 @@ overhead of a collective MPI reduction operation contained within it.
 %################################################
 \subsection{Weak Scaling}
 
-\begin{figure}[htb] % [htb]
+\begin{figure}[b] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
   \caption{(a) Average execution time per algorithm iteration varying
@@ -173,7 +173,7 @@ deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
-\begin{figure}[htbp] % [htb]
+\begin{figure}[b] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=0.48\textwidth}
   \caption{Performance comparison between the distributed implementation
@@ -218,7 +218,7 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
-\begin{figure}[t] % [htbp]
+\begin{figure}[b] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
   \caption{Performance of DKV store compared to qperf.}
