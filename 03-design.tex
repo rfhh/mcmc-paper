@@ -130,9 +130,10 @@ we trade a reduction in memory at the workers against the cost of limited
 communication. In contrast, $\cE_h$ can be partitioned statically over all
 machines for the parallel perplexity calculation.
 
+%\looseness=-1
 $\pi$~and $\phi$ are 32-bit float arrays of size $K \times N$. For our
 largest distributed experiment, com-Friendster with $N$=64M and $K$=12K, each
-requires~3TB. We decided to store only $\pi$ and $\pi^{sum}$, and recalculate
+requires~3TB. We decided to store only $\pi$ and $\sum\phi$, and recalculate
 $\phi$ from these whenever appropriate. Here, we trade a substantial reduction
 in memory against limited computation. $\pi$ is partitioned across the workers,
 and $\pi$ values are accessed via a DKV (distributed key-value) store.
@@ -173,11 +174,12 @@ $\pi$ values for the local mini-batch vertices and their neighbors from the
 DKV store. The updates to $\phi$ for the mini-batch vertices are calculated
 independently using thread parallelism.
 
+%\looseness=-1
 These updates are used by \textit{update\_pi} (line 7 in Algorithm~1) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $M\times
 K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
-an MPI barrier. After the calculation, the updated values of $\pi+\pi^{sum}$
+an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
 are written through the DKV store.
 
 \textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $M\times K$ operations. It is preceded by an MPI
@@ -235,13 +237,14 @@ it to the workers.
 
 \subsection{RDMA Distributed Key-Value Store}
 
+%\looseness=-1
 Modern network technology allows access to the memory of remote machines
 through the network cards (NICs) without involvement from the remote host
 altogether~\cite{Hamada_infinibandtrade,Beck:2011:PER:2043535.2043537}.
 This has opened up the development of
 extremely efficient remote memory services, often in the form of DKV stores.
 This project stores $\pi$ in a DKV store in the collective memory of the
-cluster, where $\pi[i]+\pi^{sum}[i]$ is the value for key $i$. We decided not
+cluster, where $\pi[i]+\sum\phi[i]$ is the value for key $i$. We decided not
 to use any of the existing implementations of RDMA DKV stores, and instead
 build our own DKV store on top of the Infiniband ib-verbs~API. The
 main consideration is that our use case is unusually simple in a number
