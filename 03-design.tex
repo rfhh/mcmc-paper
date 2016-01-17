@@ -185,7 +185,7 @@ are written through the DKV store.
 \textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $M\times K$ operations. It is preceded by an MPI
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
 is split into four steps. The first stage partitions the mini-batch across
-machines to calculate contributions to $\nabla\theta$. The values of $\pi$ for
+machines to calculate contributions to $g_{ab}(\theta)$. The values of $\pi$ for
 the local mini-batch vertices are loaded from the DKV store. These calculations
 are done with thread parallelism over the mini-batch vertices. In the second step,
 a multi-threaded summation is performed to calculate the contributions per
