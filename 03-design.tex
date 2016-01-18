@@ -153,7 +153,9 @@ locality.
 
 This section describes the parallelization of each of the stages of the
 algorithm's main loop. All but the first stage justify parallelization for
-high values of combinations of the  parameters $|\cV_n|$, $K$, $\cV_t$, and $|\cE_h|$.
+high values of combinations of the parameters mini-batch size $|\cV_n|$,
+number of communities $K$, neighbor sample size $|\cV_t|$, and held-out set
+size $|\cE_h|$.
 
 The first stage, mini-batch selection (line 3 in Algorithm~1), is done at the master and it is
 not itself parallelized. However, the distributed implementation overlaps
