@@ -169,7 +169,7 @@ set $\cV_t$ for each of its mini-batch vertices, using thread parallelism
 (line 5 in Algorithm~1).
 
 The next stage, \textit{update\_phi} (line 6 in Algorithm~1), is the algorithm's dominant stage, not
-only in calculation but also in memory accesses. It performs $M\times n\times
+only in calculation but also in memory accesses. It performs $|\cV_n| \times |\cV_t| \times
 K$ operations. It can be fully parallelized because it is a data-parallel
 operation over each of the mini-batch vertices. \textit{update\_phi} loads the
 $\pi$ values for the local mini-batch vertices and their neighbors from the
@@ -178,13 +178,13 @@ independently using thread parallelism.
 
 %\looseness=-1
 These updates are used by \textit{update\_pi} (line 7 in Algorithm~1) locally, besides the value of
-$\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $M\times
+$\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $|\cV_n| \times
 K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
 an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
 are written through the DKV store.
 
-\textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $M\times K$ operations. It is preceded by an MPI
+\textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $|\cV_n| \times K$ operations. It is preceded by an MPI
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
 is split into four steps. The first stage partitions the mini-batch across
 machines to calculate contributions to $g_{ab}(\theta)$. The values of $\pi$ for
