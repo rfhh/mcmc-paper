@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEabrv.bib
+Database file #2: paper.bib
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing institution in OpenMPSpec
+Warning--missing institution in Forum:1994:MMI:898758
+Warning--empty year in Hamada_infinibandtrade
+Warning--empty booktitle in mvapich
+
+Done.
+You've used 31 entries,
+            4039 wiz_defined-function locations,
+            1402 strings with 21592 characters,
+and the built_in function-call counts, 24858 in all, are:
+= -- 2005
+> -- 620
+< -- 213
++ -- 341
+- -- 112
+* -- 1232
+:= -- 3700
+add.period$ -- 66
+call.type$ -- 31
+change.case$ -- 30
+chr.to.int$ -- 504
+cite$ -- 35
+duplicate$ -- 1756
+empty$ -- 1973
+format.name$ -- 134
+if$ -- 5707
+int.to.chr$ -- 0
+int.to.str$ -- 31
+missing$ -- 310
+newline$ -- 134
+num.names$ -- 31
+pop$ -- 724
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1907
+stack$ -- 0
+substring$ -- 1223
+swap$ -- 1464
+text.length$ -- 45
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 31
+warning$ -- 4
+while$ -- 112
+width$ -- 33
+write$ -- 342
+(There were 4 warnings)

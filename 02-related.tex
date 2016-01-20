@@ -3,7 +3,7 @@
 
 % In this section, we briefly review the Bayesian model we are considering in this paper.
 \subsection{Assortative Mixed-membership Stochastic Blockmodels (a-MMSB)}
-The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  $\cV^*$ containing all the vertices in the graph, and a set $\cE^*$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV^*$ has a $K$-dimensional probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE^*$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which reflects how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
+The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  $\cV$ containing all the vertices in the graph, and a set $\cE$ containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set $\cV$ has a $K$-dimensional probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set $\cE$ are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which reflects how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
 \benum
 \item For each community $k$, draw community strength $\bt_k \sim \mbox{Beta}(\eta)$
 \item For each vertex $a$, draw community memberships $\pi_a \sim \mbox{Dirichlet}(\al)$
@@ -16,12 +16,12 @@ The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan201
 \eenum
 $\eta$ and $\alpha$ are parameters to the Beta and Dirichlet distribution functions. $\dt$ (usually small) is a parameter for the algorithm.
 
-\newcommand{\Vertices}{\ensuremath{\cV^*{}}\xspace}
-\newcommand{\Edges}{\ensuremath{\cE^*{}}\xspace}
+\newcommand{\Vertices}{\ensuremath{\cV{}}\xspace}
+\newcommand{\Edges}{\ensuremath{\cE{}}\xspace}
 \newcommand{\Heldout}{\ensuremath{\cE_h{}}\xspace}
 \newcommand{\SGLDMinibatch}{\ensuremath{\cD_n{}}\xspace}
 \newcommand{\Minibatch}{\ensuremath{\cE_n{}}\xspace}
-\newcommand{\Minibatcht}{\ensuremath{\cE_{n_t}{}}\xspace}
+\newcommand{\Minibatcht}{\ensuremath{\cE_n{}}\xspace}
 \newcommand{\Neighbors}{\ensuremath{\cV_n{}}\xspace}
 
 \subsection{Stochastic Gradient Markov Chain Monte Carlo}
@@ -29,9 +29,9 @@ The algorithm we are working on in this paper is based on stochastic gradient La
 \bea
 \ta^* \law \ta + \f{\epsilon_t}{2}\left(\nabla_{\ta}\log p(\ta_t)+N\bar{g}(\ta;\SGLDMinibatch)\right) + \xi_t, \label{eqn:sgld_update}
 \eea
-where $\xi_t \sim \cN(0,\epsilon_t )$ with $\ep_t$ the step size, $\SGLDMinibatch$ a mini-batch of size $n$ sampled from $\cX$, and $\bar{g}(\ta;\SGLDMinibatch)$ the mean stochastic gradient, i.e., $\frac{1}{|\SGLDMinibatch|}\sum_{x\in \SGLDMinibatch}^{}\grad_{\ta} \log p(x|\ta)$. As the step size goes to zero by a schedule satisfying $\sm{t}{\infty}\ep_t = \infty$ and $\sm{t}{\infty}\ep_t^2 < \infty$, SGLD samples from the true posterior distribution. One benefit of using SGLD is that we do not need the Metropolis-Hastings (MH) accept-reject tests since the rejection probability goes to zero as the step size collapses to zero. Although the finite step size, which we use in practice rather than converging to zero, still results in some bias, we can reduce the overall error by drawing many more samples per unit time. 
+where $\xi_t \sim \cN(0,\epsilon_t )$ with $\ep_t$ the step size, $\SGLDMinibatch$ a mini-batch of size $n$ sampled from $\cX$, and $\bar{g}(\ta;\SGLDMinibatch)$ the mean stochastic gradient, i.e., $\frac{1}{|\SGLDMinibatch|}\sum_{x\in \SGLDMinibatch}^{}\grad_{\ta} \log p(x|\ta)$. As the step size goes to zero by a schedule satisfying $\sm{t}{\infty}\ep_t = \infty$ and $\sm{t}{\infty}\ep_t^2 < \infty$, SGLD samples from the true posterior distribution. One benefit of using SGLD is that we do not need the Metropolis-Hastings (MH) accept-reject tests since the rejection probability goes to zero as the step size tends to zero. Although in practice we often do not reduce the stepsize to zero to obtain better mixing (thus resulting in some bias), we obtain good performance by drawing many more samples per unit time. 
 
-SGLD originated from the Langevin Monte Carlo (LMC)~\cite{girolami2011riemann}, where unlike SGLD the gradient is computed exactly by using all data points. Then, Metropolis-Hastings accept-reject tests are applied. Comparing to LMC, SGLD only requires to process a mini-batch $\SGLDMinibatch$ at each iteration and ignores the MH test, and thus the computational complexity substantially reduces from $\cO(N)$ to $\cO(n)$.   
+SGLD originated from the Langevin Monte Carlo (LMC)~\cite{girolami2011riemann}, where unlike SGLD the gradient is computed exactly by using all data points. Then, Metropolis-Hastings accept-reject tests are applied. Comparing to LMC, SGLD only requires to process a mini-batch $\SGLDMinibatch$ at each iteration and ignores the MH test, and thus the computation complexity substantially reduces from $\cO(N)$ to $\cO(n)$.   
 
 Stochastic gradient Riemannian Langevin dynamics (SGRLD)~\cite{patterson2013stochastic} is a subclass of SGLD which is developed to efficiently sample from the probability simplex. By applying Riemannian geometry~\cite{girolami2011riemann} and using the mini-batch-based estimator in Eqn. \ref{eqn:sgld_update}, it achieved state-of-the-art performance for latent Dirichlet allocation (LDA)~\cite{blei2003latent}. In particular, for a $K$-dimensional probability simplex $\pi$, it uses the \textit{expanded-mean} re-parameterization trick, where the probability of a category $k$ is given by $\pi_k = \ta_k / \sum_{j=1}^K \ta_j$ with $\ta_k \sim \text{Gamma}(\al,1)$ and $\al$ a hyperparameter of the Dirichlet distribution $p(\pi | \al )$. Then, the update rule of SGRLD is:
 \bea
@@ -52,7 +52,7 @@ where the gradient in $\theta$
 g_{ab}(\ta_{ki})
 &=& \f{f_{ab}^{(y)}(k,k)}{Z_{ab}^{(y)}} \left(\f{|1-i-y|}{\ta_{ki}} - \f{1}{\sum_j\ta_{kj}} \right),
 \eea
-here $\Minibatcht$ is a mini-batch of $n_t$ vertex pairs sampled from $\Edges$ or $E$; $h(\Minibatcht)$ is a weight factor to scale the effect of a mini-batch towards the full network; and 
+here $\Minibatcht$ is a mini-batch of $n_t$ vertex pairs sampled from $\Edges$; $h(\Minibatcht)$ is a weight factor to scale the effect of a mini-batch towards the full network; and 
 \bea
 f_{ab}^{(y)}(k,l)=
 \begin{cases}
@@ -73,7 +73,7 @@ where the gradient in $\phi$
 \bea
 g_{ab}(\phi_{ak}) = \f{f_{ab}^{(y)}(k)}{Z_{ab}^{(y)}\phi_{ak}} - \f{1}{\sum_j\phi_{aj}}.
 \eea
-Here, $\Neighbors$ is the neighbor set for a mini-batch node, another random mini-batch of $n$ nodes sampled from $\cV^*$. Note that $|\Neighbors| \ll |\cV^*|=N$.
+Here, $\Neighbors$ is the neighbor set for a mini-batch node, another random mini-batch of $n$ nodes sampled from $\cV$. Note that $|\Neighbors| \ll |\cV|=N$.
 
 As is common in machine learning problems, the edges of the graph are divided
 into two sets, the training set and a held-out set \Heldout.
@@ -95,7 +95,7 @@ The pseudo-code of the sequential algorithm is presented in Algorithm~\ref{algor
 \begin{algorithmic}[1]
 \STATE Initialize $\pi , \bt, \phi, \ta$
 \WHILE {sampling}
-\STATE Sample a mini-batch of vertex pairs, \Minibatch, from $E$
+\STATE Sample a mini-batch of vertex pairs, \Minibatch, from $\cE$
 \FOR {each vertex in \Minibatch}
 	\STATE Sample a mini-batch of vertices, $\Neighbors$, from $\Vertices$
     \STATE Update $\phi_{a}$ using Eqn~\ref{eqn:local_update}
@@ -146,7 +146,7 @@ $\pi$      & float~vector 2-D & $N\times{}K$ &
 \renewcommand{\arraystretch}{1.0}
 
 \begin{comment}
-Assortative mixed-membership stochastic blockmodel (a-MMSB) [1] is a special case of MMSB [8] that models the group-structure in a network of $N$ nodes. In particular, each node $a$ in the node set $\cV^*$ has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$. For every possible peer $b$ in the network, each node $a$ randomly draws a community $z_{ab}$. If a pair of nodes ($a,b$) in the edge set $\cE^*$ are in the same community: $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other.  
+Assortative mixed-membership stochastic blockmodel (a-MMSB) [1] is a special case of MMSB [8] that models the group-structure in a network of $N$ nodes. In particular, each node $a$ in the node set $\cV$ has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$. For every possible peer $b$ in the network, each node $a$ randomly draws a community $z_{ab}$. If a pair of nodes ($a,b$) in the edge set $\cE$ are in the same community: $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other.  
 
 The generative process of a-MMSB is then given by,
 
@@ -242,9 +242,9 @@ Plugging this into Eqn. \ref{eqn:sgrld_update}, we obtain the update rule for th
 \bea
 \ta_{ki}^* \law \left| \ta_{ki} + \f{\ep}{2} \left\{ \eta - \ta_{ki} + h(\Minibatcht)\sum_{(a,b) \in \Minibatcht}g_{ab}(\ta_{ki})\right\} \right.\nn \\ \left.+ (\ta_{ki})^{\ha}\xi_{ki} \right|, \label{eqn:global_update}
 \eea
-here $\Minibatcht$ is a mini-batch of $n_t$ node pairs sampled from $\cE^*$ for which we use the following strategy.
+here $\Minibatcht$ is a mini-batch of $n_t$ node pairs sampled from $\cE$ for which we use the following strategy.
 
-\textbf{Stratified sampling:} considering that the number of links is much smaller than that of non-links, we can reduce the variance of the gradient using stratified sampling, similar to the method used in [1]. For this, at every iteration we first randomly select a node $a$ and then toss a coin with probability 0.5 to decide whether to sample link edges or non-link edges for node $a$. If it is a link, we assign all of the link edges of node $a$ to $\cE_{n_t}$. Otherwise, i.e. if it is non-link, we uniformly sample a mini-batch of $N/m$ non-link edges from the entire set of non-link edges and assign it to $\cE_{n_t}$. Here, the $m$ is a hyper-parameter. Note that the size of $|\cE_{n_t}|$ will thus be much smaller than the total number of $N(N-1)/2$ edges when $m$ is reasonably large. Then, to ensure that the gradient is unbiased, a \textit{scaling parameter} $h(\cE_{n_t})$ is multiplied. Specifically, $h(\cE_{n_t})$ is set to $N$ when $\cE_{n_t}$ is a set of link edges and to $mN$ otherwise. 
+\textbf{Stratified sampling:} considering that the number of links is much smaller than that of non-links, we can reduce the variance of the gradient using stratified sampling, similar to the method used in [1]. For this, at every iteration we first randomly select a node $a$ and then toss a coin with probability 0.5 to decide whether to sample link edges or non-link edges for node $a$. If it is a link, we assign all of the link edges of node $a$ to $\cE_n$. Otherwise, i.e. if it is non-link, we uniformly sample a mini-batch of $N/m$ non-link edges from the entire set of non-link edges and assign it to $\cE_n$. Here, the $m$ is a hyper-parameter. Note that the size of $|\cE_n|$ will thus be much smaller than the total number of $N(N-1)/2$ edges when $m$ is reasonably large. Then, to ensure that the gradient is unbiased, a \textit{scaling parameter} $h(\cE_n)$ is multiplied. Specifically, $h(\cE_n)$ is set to $N$ when $\cE_n$ is a set of link edges and to $mN$ otherwise. 
 
 Because the global parameters $\{\beta_k\}$ does not change very fast compared to the local parameters $\{\pi_{ak}\}$, in practice we update only a random subset of the $\{\beta_k\}$ at each iteration.
 
@@ -276,7 +276,7 @@ Plugging this to Eqn. \ref{eqn:sgrld_update}, we obtain the SGRLD update rule fo
 \bea
 \phi_{ak}^* \law \left| \phi_{ak} + \f{\ep}{2} \left( \al - \phi_{ak} + \f{N}{|\Neighbors|} \sum_{b \in \Neighbors} g_{ab}(\phi_{ak})\right) \right. \nn \\ \left. + (\phi_{ak})^{\ha} \xi_{ak}\right|.\label{eqn:local_update}
 \eea
-Here, the $\Neighbors$ is the neighbor set for a mini-batch node, another random mini-batch of $n$ nodes sampled from $\cV^*$. Note that $|\Neighbors| \ll |\cV^*|=N$.
+Here, the $\Neighbors$ is the neighbor set for a mini-batch node, another random mini-batch of $n$ nodes sampled from $\cV$. Note that $|\Neighbors| \ll |\cV|=N$.
 
 \end{comment}
 

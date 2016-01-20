@@ -1,0 +1,124 @@
+\relax 
+\citation{bottou2010large}
+\citation{boyd2011distributed}
+\citation{dean2008mapreduce}
+\citation{chang2008bigtable}
+\citation{yang2015defining}
+\citation{xie2013overlapping}
+\citation{airoldi2009mixed}
+\citation{gopalan2012scalable}
+\citation{koller2009probabilistic}
+\citation{gopalan2012scalable}
+\citation{hoffman2013stochastic}
+\citation{gopalan2013efficient}
+\citation{welling2011bayesian}
+\citation{patterson2013stochastic}
+\citation{ahn2014distributed}
+\citation{ahn2012bayesian}
+\citation{LiAW15}
+\citation{LiAW15}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\citation{gopalan2012scalable}
+\citation{airoldi2009mixed}
+\citation{welling2011bayesian}
+\citation{girolami2011riemann}
+\citation{patterson2013stochastic}
+\citation{girolami2011riemann}
+\citation{blei2003latent}
+\citation{LiAW15}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Assortative Mixed-membership Stochastic Blockmodels (a-MMSB)}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Stochastic Gradient Markov Chain Monte Carlo}{2}}
+\newlabel{eqn:sgld_update}{{1}{2}}
+\newlabel{eqn:sgrld_update}{{2}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Scalable MCMC for a-MMSB}{2}}
+\citation{LiAW15}
+\citation{DBLP:journals/corr/HuangNHVA13}
+\citation{Bu2013246}
+\citation{2015arXiv150302115L}
+\citation{Prat-Perez:2014:HQS:2566486.2568010}
+\@writefile{toc}{\contentsline {paragraph}{\relax \textbf  {Sampling global parameters}}{3}}
+\newlabel{eqn:global_update}{{3}{3}}
+\newlabel{eqn:case}{{5}{3}}
+\@writefile{toc}{\contentsline {paragraph}{\relax \textbf  {Sampling local parameters}}{3}}
+\newlabel{eqn:local_update}{{5}{3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Sequential version of SG-MCMC for a-MMSB}}{3}}
+\newlabel{alg}{{1}{3}}
+\newlabel{algorithm}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}Related work on parallel community detection}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Definition of most important symbols}}{3}}
+\newlabel{tbl-symbols}{{I}{3}}
+\citation{OpenMPSpec}
+\citation{Forum:1994:MMI:898758}
+\citation{Hamada_infinibandtrade}
+\citation{Beck:2011:PER:2043535.2043537}
+\citation{Ousterhout:2015:RSS:2818727.2806887}
+\citation{179767}
+\citation{Kalia:2014:URE:2740070.2626299}
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Design}{4}}
+\newlabel{design-section}{{III}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Data distribution}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}RDMA Distributed Key-Value Store}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Implementation of distributed parallelism}{4}}
+\citation{mvapich}
+\citation{snapnets}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Pipelining of computation and loading $\pi $}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Evaluation}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Strong Scaling}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Summary of SNAP graph data sets used for evaluation.}}{6}}
+\newlabel{tab-datasets}{{II}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Weak Scaling}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Pipeline efficiency}{6}}
+\newlabel{eval-pipeline}{{\unhbox \voidb@x \hbox {IV-C}}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces The most important stages in the execution; com-Friendster on 65 compute nodes, with 12K communities. Times in ms per iteration. The lower half of the table shows sub-stages within \textit  {update\_phi}. In the pipelining version, these components are done in parallel.}}{6}}
+\newlabel{table-pipeline}{{III}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Horizontal vs. Vertical Scalability}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces (a) Execution time of 2048 algorithm iterations for the same problem size (com-Friendster, K=1024, M=16384 n=32) across different cluster sizes. (b) Speedup achieved for same experiments in (a) with respect to 8 nodes}}{7}}
+\newlabel{fig-strong-scaling}{{1}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Cluster Communication Efficiency}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-F}}Convergence of Large Datasets}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces (a) Average execution time per algorithm iteration varying the number of latent communities proportionally to the number of compute nodes. (b) The exact number of communities used for each data point in (a).}}{7}}
+\newlabel{fig-weak-scaling}{{2}{7}}
+\bibstyle{IEEEtran}
+\bibdata{IEEEabrv,paper}
+\bibcite{bottou2010large}{1}
+\bibcite{boyd2011distributed}{2}
+\bibcite{dean2008mapreduce}{3}
+\bibcite{chang2008bigtable}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance effect of varying the number of communities on the algorithm's execution time on 64 nodes when using single- or double-buffering.}}{8}}
+\newlabel{fig-pipeline}{{3}{8}}
+\@writefile{toc}{\contentsline {section}{References}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance comparison between the distributed implementation running on DAS5 and the multi-threaded solution on machine with 40 cores and 1TB of RAM.}}{8}}
+\newlabel{fig-scale-up}{{4}{8}}
+\bibcite{yang2015defining}{5}
+\bibcite{xie2013overlapping}{6}
+\bibcite{airoldi2009mixed}{7}
+\bibcite{gopalan2012scalable}{8}
+\bibcite{koller2009probabilistic}{9}
+\bibcite{hoffman2013stochastic}{10}
+\bibcite{gopalan2013efficient}{11}
+\bibcite{welling2011bayesian}{12}
+\bibcite{patterson2013stochastic}{13}
+\bibcite{ahn2014distributed}{14}
+\bibcite{ahn2012bayesian}{15}
+\bibcite{LiAW15}{16}
+\bibcite{girolami2011riemann}{17}
+\bibcite{blei2003latent}{18}
+\bibcite{DBLP:journals/corr/HuangNHVA13}{19}
+\bibcite{Bu2013246}{20}
+\bibcite{2015arXiv150302115L}{21}
+\bibcite{Prat-Perez:2014:HQS:2566486.2568010}{22}
+\bibcite{OpenMPSpec}{23}
+\bibcite{Forum:1994:MMI:898758}{24}
+\bibcite{Hamada_infinibandtrade}{25}
+\bibcite{Beck:2011:PER:2043535.2043537}{26}
+\bibcite{Ousterhout:2015:RSS:2818727.2806887}{27}
+\bibcite{179767}{28}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Performance of DKV store compared to qperf.}}{9}}
+\newlabel{fig-qperf}{{5}{9}}
+\bibcite{Kalia:2014:URE:2740070.2626299}{29}
+\bibcite{mvapich}{30}
+\bibcite{snapnets}{31}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Convergence time of 6 different data sets.}}{10}}
+\newlabel{fig-ppx}{{6}{10}}
