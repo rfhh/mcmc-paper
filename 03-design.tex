@@ -104,7 +104,8 @@ considerably more programming effort.
 
 % intro parallelisation, distribution
 
-This section describes how we parallelize the algorithm.
+This section describes how we parallelize the algorithm, which had been
+implemented sequentially in~C++.
 In most places, the usage of multi-threaded parallelism
 is straightforward, therefore, we will discuss details only where appropriate. The
 distributed design follows a master-worker paradigm, where in essence
@@ -117,25 +118,24 @@ MPI~\cite{Forum:1994:MMI:898758}.
 
 \subsection{Data distribution}
 
-As is common in machine learning problems, the edges of the graph are divided
-into two sets, a training set $G$ and a held-out set $\cE_h$.
-The largest data structures of the algorithm are $G$, $\cE_h$, $\pi$ and~$\phi$.
-For the largest dataset in this paper, com-Friendster, $G$ has 1.8~billion
+The largest data structures of the algorithm are \Edges, $\cE_h$, $\pi$
+and~$\phi$, see Table~\ref{tbl-symbols}.
+For the largest dataset in this paper, com-Friendster, \Edges has 1.8~billion
 undirected edges. In our representation with directed edges, this takes
-up 13.5GB. Our design lets $G$ reside only at the master. We observe that
-the calculations in the update stages only require the subset of $G$ that
+up 13.5GB. Our design lets \Edges reside only at the master's. We observe that
+the calculations in the update stages only require the subset of \Edges that
 is touched by the mini-batch vertices, so the master scatters that subset to
 the workers together with the scattering of the mini-batch vertices. This way,
-we trade a reduction in memory at the workers against the cost of limited
-communication. In contrast, $\cE_h$ can be partitioned statically over all
-machines for the parallel perplexity calculation.
+we trade a reduction in memory usage at the workers against limited
+communication costs. In contrast, $\cE_h$ is be partitioned statically over
+all machines for the parallel perplexity calculation.
 
 %\looseness=-1
 $\pi$~and $\phi$ are 32-bit float arrays of size $K \times N$. For our
 largest distributed experiment, com-Friendster with $N$=64M and $K$=12K, each
 requires~3TB. We decided to store only $\pi$ and $\sum\phi$, and recalculate
-$\phi$ from these whenever appropriate. Here, we trade a substantial reduction
-in memory against limited computation. $\pi$ is partitioned across the workers,
+$\phi$ from these whenever appropriate. Here, we trade a substantial gain
+in memory usage against some computation. $\pi$ is partitioned across the workers,
 and $\pi$ values are accessed via a DKV (distributed key-value) store.
 
 % lack of locality
@@ -143,99 +143,9 @@ and $\pi$ values are accessed via a DKV (distributed key-value) store.
 The distribution within the graph of the vertices of the mini-batch as well as
 the neighbor sets is completely random. That means that there is no locality
 in $\pi$ access patterns, especially in the accesses to the neighbor sets
-$\cV_t$.
-Hence, there is no opportunity to exploit caching of $\pi$ through data
-locality.
-
-% each of the stages
-
-\subsection{Implementation of distributed parallelism}
-
-This section describes the parallelization of each of the stages of the
-algorithm's main loop. All but the first stage justify parallelization for
-high values of combinations of the parameters mini-batch size $|\cV_n|$,
-number of communities $K$, neighbor sample size $|\cV_t|$, and held-out set
-size $|\cE_h|$.
-
-The first stage, mini-batch selection (line 3 in Algorithm~1), is done at the master and it is
-not itself parallelized. However, the distributed implementation overlaps
-its execution using pipeline parallelism while the workers are
-performing \textit{update\_phi}. The mini-batch is partitioned equally over
-the workers and the relevant sections of $G$ are distributed together with the
-mini-batch subsets.
-
-After a worker has received its subset of the mini-batch, it samples a neighbor
-set $\cV_t$ for each of its mini-batch vertices, using thread parallelism
-(line 5 in Algorithm~1).
-
-The next stage, \textit{update\_phi} (line 6 in Algorithm~1), is the algorithm's dominant stage, not
-only in calculation but also in memory accesses. It performs $|\cV_n| \times |\cV_t| \times
-K$ operations. It can be fully parallelized because it is a data-parallel
-operation over each of the mini-batch vertices. \textit{update\_phi} loads the
-$\pi$ values for the local mini-batch vertices and their neighbors from the
-DKV store. The updates to $\phi$ for the mini-batch vertices are calculated
-independently using thread parallelism.
-
-%\looseness=-1
-These updates are used by \textit{update\_pi} (line 7 in Algorithm~1) locally, besides the value of
-$\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires $|\cV_n| \times
-K$ operations, and it is done in parallel over mini-batch vertices. Because of
-memory consistency, this stage awaits completion of \textit{update\_phi} with
-an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
-are written through the DKV store.
-
-\textit{update\_beta} (lines 10 and 11 in Algorithm~1) requires $|\cV_n| \times K$ operations. It is preceded by an MPI
-barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
-is split into four steps. The first stage partitions the mini-batch across
-machines to calculate contributions to $g_{ab}(\theta)$. The values of $\pi$ for
-the local mini-batch vertices are loaded from the DKV store. These calculations
-are done with thread parallelism over the mini-batch vertices. In the second step,
-a multi-threaded summation is performed to calculate the contributions per
-machine, followed by a distributed summation using an MPI reduce operation. The
-third step calculates $\beta$ from $\theta$ sequentially at the master. This
-operation takes only $K$ steps. The resulting $\beta$ is broadcast with MPI
-to the workers.
-
-The calculation of perplexity requires $|\cE_h|\times K$ steps. Each of the
-machines owns a subset of $\cE_h$. It loads up-to-date values of $\pi$ for each
-vertex in its part of $\cE_h$, then for each of its edges in $\cE_h$ it calculates the
-contribution to the perplexity using thread parallelism. The resulting
-contributions are summed to the global perplexity value in two stages,
-with a local OpenMP reduction followed by a global MPI reduction.
-
-Note that the calculation requirements per iteration do not depend
-on $N$ or $|E|$, the size of the network graph. However, larger graphs are
-expected to require more iterations to achieve convergence.
-
-\subsection{Pipelining of computation and loading $\pi$}
-
-As will be shown in Section~\ref{eval-pipeline}, loading $\pi$ is the
-dominant contribution within the dominant stage \textit{update\_phi}. This
-is the performance bottleneck of the distributed algorithm. We introduce
-pipeline parallelism in order to shorten the critical path. Loading $\pi$
-and calculating \textit{update\_pi} are partitioned into chunks, so the
-calculation of a chunk is overlapped with loading the next chunk of $\pi$
-values, and also with sampling the mini-batch at the master and deploying
-it to the workers.
-
-% horrible hack to move the table up
-\begin{table*}
-  \centering
-  \begin{tabular}{l r r r l}
-    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
-                    &            &               & communities    &             \\
-    \hline
-    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
-    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
-    \hline
-  \end{tabular}
-  \caption{Summary of SNAP graph data sets used for evaluation.}
-  \label{tab-datasets}
-\end{table*}
+$\Neighbors$.
+Hence, there is no opportunity to exploit data locality through caching of
+$\pi$.
 
 \subsection{RDMA Distributed Key-Value Store}
 
@@ -268,3 +178,102 @@ an RPC to the server, followed by an unreliable write, is faster. However,
 they show this only holds for small payload packets, up to 256B. A $\pi$
 packet in our application is typically thousands to hundreds of thousands
 of 4-byte floats.
+
+% each of the stages
+
+\subsection{Implementation of distributed parallelism}
+
+This section describes the parallelization of each of the stages of the
+algorithm's main loop. All but the first stage justify parallelization for
+high values of combinations of the parameters mini-batch size $|\Minibatch|$,
+number of vertices in the mini-batch $M$,
+number of communities $K$, neighbor sample size $|\Neighbors|$, and held-out set
+size $|\cE_h|$.
+
+The first stage, mini-batch selection (line 3 in Algorithm~\ref{algorithm}),
+is done by the master and it is
+not itself parallelized. However, the distributed implementation overlaps
+its execution using pipeline parallelism while the workers are
+performing \textit{update\_phi}. The mini-batch is partitioned equally over
+the workers and the relevant sections of \Edges are distributed together with the
+mini-batch subsets.
+
+After a worker has received its subset of the mini-batch, it samples a neighbor
+set $\Neighbors$ for each of its mini-batch vertices, using thread parallelism
+(line 5 in Algorithm~\ref{algorithm}).
+
+The next stage, \textit{update\_phi} (line 6 in Algorithm~\ref{algorithm}), is the algorithm's dominant stage, not
+only in calculation but also in memory accesses. It performs $M \times
+|\Neighbors| \times
+K$ operations. It can be fully parallelized because it is a data-parallel
+operation over each of the mini-batch vertices. \textit{update\_phi} loads the
+$\pi$ values for the local mini-batch vertices and their neighbors from the
+DKV store. The updates to $\phi$ for the mini-batch vertices are calculated
+independently using thread parallelism.
+
+%\looseness=-1
+These updates are used by \textit{update\_pi} (line 7 in
+Algorithm~\ref{algorithm}) locally, besides the value of
+$\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires
+$M \times K$ operations, and it is done in parallel over mini-batch vertices. Because of
+memory consistency, this stage awaits completion of \textit{update\_phi} with
+an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
+are written through the DKV store.
+
+\textit{update\_beta} (lines 10 and 11 in Algorithm~\ref{algorithm}) requires $|\Minibatch| \times K$ operations. It is preceded by an MPI
+barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
+is split into four steps. The first stage partitions the mini-batch across
+machines to calculate contributions to $g_{ab}(\theta)$. The values of $\pi$ for
+the local mini-batch vertices are loaded from the DKV store. These calculations
+are done with thread parallelism over the mini-batch vertices. In the second step,
+a multi-threaded summation is performed to calculate the contributions per
+machine, followed by a distributed summation using an MPI reduce operation. The
+third step calculates $\beta$ from $\theta$ sequentially at the master. This
+operation takes only $K$ steps. The resulting $\beta$ is broadcast with MPI
+to the workers.
+
+The calculation of perplexity requires $|\cE_h|\times K$ steps. Each of the
+machines owns a subset of $\cE_h$. It loads up-to-date values of $\pi$ for each
+vertex in its part of $\cE_h$, then for each of its edges in $\cE_h$ it calculates the
+contribution to the perplexity using thread parallelism. The resulting
+contributions are summed to the global perplexity value in two stages,
+with a local OpenMP reduction followed by a global MPI reduction.
+
+Note that the calculation requirements per iteration do not depend
+on $N$ or $|\cE^*|$, the size of the network graph. However, larger graphs are
+expected to require more iterations to achieve convergence.
+
+\subsection{Pipelining of computation and loading $\pi$}
+
+The distributed design features two instances of pipeline parallelism. First,
+at the process level, sampling of the minibatch by the master is decoupled
+from \textit{update\_phi} by the workers, so the master computes the minibatch
+for the next iteration while the workers compute \textit{update\_phi} for the
+current iteration. Second, at the threads level within the workers, loading of
+$\pi$ and \textit{update\_phi} are split up into chunks, and the calculation
+in \textit{update\_pi} for the current chunk is done simultaneously with
+loading $\pi$ for the next chunk. The rationale for implementing pipeline
+parallelism in these places of the program, is that loading $\pi$ is the
+dominant contribution within the dominant stage \textit{update\_phi}, as
+will be shown in Section~\ref{eval-pipeline}.  Since loading $\pi$ is the
+performance bottleneck of the distributed algorithm, performing other work
+in parallel shortens the critical path.
+
+% horrible hack to move the table up
+\begin{table*}
+  \centering
+  \begin{tabular}{l r r r l}
+    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
+                    &            &               & communities    &             \\
+    \hline
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
+    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
+    \hline
+  \end{tabular}
+  \caption{Summary of SNAP graph data sets used for evaluation.}
+  \label{tab-datasets}
+\end{table*}
