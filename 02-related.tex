@@ -41,7 +41,7 @@ here $g_d(\ta_{k})$ is the gradient of the log posterior w.r.t. $\ta_{k}$ on a d
 
 
 \subsection{Scalable MCMC for a-MMSB}
-This section describes the SG-MCMC algorithm for a-MMSB. Please refer \cite{LiAW15} for more details. The algorithm iterates updating local parameter $\pi$ and global parameter $\beta$. Since both parameters lie on the probability simplex, SGRLD is applied to make the sampling process more efficient. Here, the parameters $\phi$ and $\ta$ are used to re-parameterize $\pi$ and $\beta$ respectively. After updating $\phi$ and $\ta$, we can obtain $\pi$ and $\beta$ by normalizing $\phi$ and $\ta$, respectively. In the following, we briefly sketch the iterative update steps.
+This section describes the SG-MCMC algorithm for a-MMSB. Please refer \cite{LiAW15} for more details. The algorithm iterates updating local parameter $\pi$ and global parameter $\beta$. Since both parameters lie on the probability simplex, SGRLD is applied to make the sampling process more efficient. Here, the parameters $\phi$ and $\ta$ are used to re-parameterize $\pi$ and $\beta$ respectively. After updating $\phi$ and $\ta$, we can obtain $\pi$ and $\beta$ by normalizing $\phi$ and $\ta$, respectively. That is, $\bt_k = \ta_{k1}/(\ta_{k0} + \ta_{k1})$ and $\pi_{ak} = \phi_{ak}/\sm{j}{K}\phi_{aj}$. In the following, we briefly sketch the iterative update steps.
 
 \paragraph{\textbf{Sampling global parameters}} The update rule for global parameter $\theta$ is
 \bea
