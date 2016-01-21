@@ -81,12 +81,12 @@ overhead of a collective MPI reduction operation contained within it.
 %################################################
 \subsection{Weak Scaling}
 
-\begin{figure}[b] % [htb]
+\begin{figure}[htbp] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
-  \caption{(a) Average execution time per algorithm iteration varying
+  \caption{Average execution time per algorithm iteration varying
   the number of latent communities proportionally to the number of compute
-  nodes. (b) The exact number of communities used for each data point in (a).}
+  nodes.}
   \label{fig-weak-scaling}
 \end{figure}
 
@@ -95,16 +95,14 @@ and synchronization overheads associated with the management of large clusters.
 Similarly, it can expose complex issues that hinder performance at scale such
 as load imbalance. To fairly evaluate the algorithm's weak scaling behavior we
 conducted several executions varying the cluster size and the number of latent
-communities proportionally. This methodology ensures that each compute node
+communities proportionally. The number of communities at 64 workers was 12K.
+This methodology ensures that each compute node
 performs a relatively constant amount of computational work across all
 configurations. However, the number and size of messages exchanged between the
-nodes would vary significantly. Figure~\ref{fig-weak-scaling}-a presents the
+nodes would vary significantly. Figure~\ref{fig-weak-scaling} presents the
 average execution
-time per algorithm iteration across different cluster sizes. On the other hand,
-Figure~\ref{fig-weak-scaling}-b reports the number of communities for each
-cluster configuration. The relative change in the average execution time per
-iteration is insignificant even though the communication intensity increases
-for larger cluster sizes. This observation verifies that the system's overall
+time per algorithm iteration across different cluster sizes.
+This figure shows that the system's overall
 overhead is minimal. Additionally, the experimental results show that the
 implementation is capable of achieving good speedups provided the input problem
 is large enough for the given cluster size.
@@ -113,63 +111,62 @@ is large enough for the given cluster size.
 \subsection{Pipeline efficiency}
 \label{eval-pipeline}
 
-\begin{figure}[b] % [htb]
-  \centering
-  \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
-  \caption{Performance effect of varying the number of communities on the
-    algorithm's execution time on 64 nodes when using single- or
-    double-buffering.}
-  \label{fig-pipeline}
-\end{figure}
-
-As discussed in Section~\ref{design-section}, the collective memory of all
-worker nodes serves as the storage for the state of the computation. As such,
-the rows of $\pi$ are equally and statically partitioned across all workers.
-Given that $\pi$ accesses are random, a node in a cluster of size $C$ must
-fetch $(C-1)/C$ of all read requests over the network. Therefore, large cluster
-configurations exhibit higher bandwidth demands and are more sensitive
-to network latency. To reduce the negative effects of network latency on the
-computation, a pipelining scheme was devised to prefetch data dependencies.
-Figure~\ref{fig-pipeline} presents the execution time of 1024 algorithm
-iterations on a 64-node cluster with double-buffering enabled and disabled.
-Naturally, increasing the number of communities causes a proportional increase
-in execution time. However, when double-buffering is enabled, some of the
-incurred network latency is hidden by overlapping it with computation.
-Moreover, since both computation time and network latency increase with larger
-$K$, the benefit of pipelining increases. This can be observed through the
-widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
+As discussed in Section~\ref{design-section}, we implemented pipeline
+parallelism at
+two places in the algorithm. The first is an inter-process pipeline that
+overlaps drawing of the mini-batch at the master's with \textit{update\_phi}
+at the workers. The second pipeline overlaps loading of $\pi$ with the
+computation within \textit{update\_pi} within each worker.
 
 \begin{table}[htbp]
   \centering
   \begin{tabular}{l d{5.1} d{5.1}}
-    \textbf{Iteration stages}  & \multicolumn{1}{c}{non-pipelined}
+    \textbf{Iteration (sub)stages}  & \multicolumn{1}{c}{non-pipelined}
                                           & \multicolumn{1}{c}{pipelined} \\
     \hline
-    total                      & 450    & 365 \\
-    draw/deploy mini-batch      &  45.6  &      \\
-    update\_phi                & 285    & 241 \\
-    update\_pi                 &   3.8  &   4.6 \\
-    update $\beta/\theta$      &  25.9  &   33.6 \\
-    \hline
-    \textbf{Substages within update\_phi} \\
-    draw/deploy mini-batch      &        &  26.2 \\
+    draw/deploy mini-batch     &  45.6  &  26.2 \\
     load $\pi$                 & 205    & 209 \\
     update $\phi$              &  74    &  74 \\
     \hline
+    total                      & 331    & 241 \\
+    \hline
   \end{tabular}
-  \caption{The most important stages in the execution; com-Friendster on 65
-  compute nodes, with 12K communities. Times in ms per iteration. The lower
-  half of the table shows sub-stages within \textit{update\_phi}. In the
-  pipelining version, these components are done in parallel.}
+  \caption{Stages that profit from the two pipelining optimizations.
+  com-Friendster on 65
+  compute nodes, with 12K communities. Times in ms per iteration.}
   \label{table-pipeline}
 \end{table}
 
-Table~\ref{table-pipeline} shows a breakdown of the most important time
-consumers; the left-hand column is without pipelining, the right-hand
-column has pipelining. \textit{update\_phi} is the dominant contribution,
-and within that, loading $\pi$ from the DKV store takes by far the most time.
-The pipelining optimization overlaps loading $\pi$ with generation and
+Table~\ref{table-pipeline} shows a breakdown of the (sub)stages that are
+overlapped by both pipelining optimizations. The left-hand column has
+all pipelining disabled, the right-hand
+column has pipelining enabled. Within \textit{update\_phi},
+loading $\pi$ from the DKV store is domininant.
+The pipelining optimization significantly overlaps loading $\pi$ both with generation and
 deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
+
+\begin{figure}[htb]
+  \centering
+  \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
+  \caption{Performance effect of varying the number of communities on the
+    algorithm's execution time on 64 nodes when disabling or enabling both
+    pipelining optimizations.}
+  \label{fig-pipeline}
+\end{figure}
+
+Figure~\ref{fig-pipeline} presents the execution time of 1024 algorithm
+iterations on a 64-node cluster with the pipelines enabled and disabled.
+Naturally, increasing the number of communities causes a proportional increase
+in execution time. However, when pipelining is enabled, some of the
+incurred network latency is hidden by overlapping it with computation.
+Moreover, since both computation time and network latency increase with larger
+$K$, the benefit of pipelining increases. This can be observed through the
+widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
+Large cluster
+configurations exhibit higher bandwidth demands and are more sensitive
+to network latency:
+given that $\pi$ accesses are random, a node in a cluster of size $C$ must
+fetch $(C-1)/C$ of all read requests over the network.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
