@@ -32,9 +32,39 @@ Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
 collection of data sets used.
 
 %################################################
+\subsection{Weak Scaling}
+
+\begin{figure}[t] % [htbp]
+  \centering
+  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
+  \caption{Average execution time per algorithm iteration when varying
+  the number of latent communities proportionally to the number of compute
+  nodes.}
+  \label{fig-weak-scaling}
+\end{figure}
+
+A study of a system's weak scaling aids in the assessment of the communication
+and synchronization overheads associated with the management of large clusters.
+Similarly, it can expose complex issues that hinder performance at scale such
+as load imbalance. To fairly evaluate the algorithm's weak scaling behavior we
+conducted several executions varying the cluster size and the number of latent
+communities proportionally. The number of communities is 192 times the number
+of worker nodes in all runs.
+This methodology ensures that each compute node
+performs an approximately constant amount of computational work across all
+configurations. However, the number and size of messages exchanged between the
+nodes would vary significantly. Figure~\ref{fig-weak-scaling} presents the
+average execution
+time per algorithm iteration across different cluster sizes.
+This figure shows that the system's overall
+overhead is minimal. Additionally, the experimental results show that the
+implementation is capable of achieving good speedups provided the input problem
+is large enough for the given cluster size.
+
+%################################################
 \subsection{Strong Scaling}
 
-\begin{figure}[b] % [htb]
+\begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=0.48\textwidth}
   \caption{(a) Execution time of 2048 algorithm iterations for the
@@ -79,35 +109,6 @@ as it performs an insignificant amount of work compared to the synchronization
 overhead of a collective MPI reduction operation contained within it.
 
 %################################################
-\subsection{Weak Scaling}
-
-\begin{figure}[htbp] % [htb]
-  \centering
-  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
-  \caption{Average execution time per algorithm iteration varying
-  the number of latent communities proportionally to the number of compute
-  nodes.}
-  \label{fig-weak-scaling}
-\end{figure}
-
-A study of a system's weak scaling aids in the assessment of the communication
-and synchronization overheads associated with the management of large clusters.
-Similarly, it can expose complex issues that hinder performance at scale such
-as load imbalance. To fairly evaluate the algorithm's weak scaling behavior we
-conducted several executions varying the cluster size and the number of latent
-communities proportionally. The number of communities at 64 workers was 12K.
-This methodology ensures that each compute node
-performs a relatively constant amount of computational work across all
-configurations. However, the number and size of messages exchanged between the
-nodes would vary significantly. Figure~\ref{fig-weak-scaling} presents the
-average execution
-time per algorithm iteration across different cluster sizes.
-This figure shows that the system's overall
-overhead is minimal. Additionally, the experimental results show that the
-implementation is capable of achieving good speedups provided the input problem
-is large enough for the given cluster size.
-
-%################################################
 \subsection{Pipeline efficiency}
 \label{eval-pipeline}
 
@@ -118,7 +119,7 @@ overlaps drawing of the mini-batch at the master's with \textit{update\_phi}
 at the workers. The second pipeline overlaps loading of $\pi$ with the
 computation within \textit{update\_pi} within each worker.
 
-\begin{table}[htbp]
+\begin{table}[t] % [htbp]
   \centering
   \begin{tabular}{l d{5.1} d{5.1}}
     \textbf{Iteration (sub)stages}  & \multicolumn{1}{c}{non-pipelined}
@@ -141,11 +142,11 @@ Table~\ref{table-pipeline} shows a breakdown of the (sub)stages that are
 overlapped by both pipelining optimizations. The left-hand column has
 all pipelining disabled, the right-hand
 column has pipelining enabled. Within \textit{update\_phi},
-loading $\pi$ from the DKV store is domininant.
+loading $\pi$ from the DKV store is dominant.
 The pipelining optimization significantly overlaps loading $\pi$ both with generation and
 deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
-\begin{figure}[htb]
+\begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
   \caption{Performance effect of varying the number of communities on the
@@ -170,7 +171,7 @@ fetch $(C-1)/C$ of all read requests over the network.
 
 %################################################
 \subsection{Horizontal vs. Vertical Scalability}
-\begin{figure}[b] % [htb]
+\begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=0.48\textwidth}
   \caption{Performance comparison between the distributed implementation
@@ -215,7 +216,7 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
-\begin{figure}[b] % [htbp]
+\begin{figure}[t] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
   \caption{Performance of DKV store compared to qperf.}

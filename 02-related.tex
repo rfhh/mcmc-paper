@@ -12,7 +12,7 @@
 
 % In this section, we briefly review the Bayesian model we are considering in this paper.
 \subsection{Assortative Mixed-membership Stochastic Blockmodels (a-MMSB)}
-The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  \Vertices containing all the vertices in the graph, and a set \Edges containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set \Vertices has a $K$-dimensional probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set \Edges are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which reflects how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
+The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan2012scalable} is a special case of MMSB~\cite{airoldi2009mixed} that models the group structure in a network of $N$ vertices. Consider a set  \Vertices containing all the vertices in the graph, and a set \Edges containing all the linked edges between pairs of vertices. Each vertex $a$ in the vertex set \Vertices has a $K$-dimensional probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$.  For every possible peer $b$ in the network, each vertex $a$ randomly draws a community $z_{ab}$. If a pair of vertices ($a,b$) in the edge set \Edges are in the same community, i.e., $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is a small value $\dt$. Each community has its connection strength $\beta_{k} \in (0,1)$ which reflects how likely its members are linked to each other. The whole generative process of a-MMSB is then described by:
 \benum
 \item For each community $k$, draw community strength $\bt_k \sim \mbox{Beta}(\eta)$
 \item For each vertex $a$, draw community memberships $\pi_a \sim \mbox{Dirichlet}(\al)$
@@ -23,7 +23,7 @@ The assortative mixed membership stochastic blockmodel (a-MMSB)~\cite{gopalan201
     \item Draw link $y_{ab} \sim \mbox{Bernoulli}(r)$, where $r = \bt_k$ if $z_{ab}=z_{ba}=k$, and $r=\dt$ otherwise.
 \eenum
 \eenum
-$\eta$ and $\alpha$ are parameters to the Beta and Dirichlet distribution functions. $\dt$ (usually small) is a parameter for the algorithm.
+$\eta$ and $\alpha$ are parameters to the Beta and Dirichlet distribution functions.
 
 \subsection{Stochastic Gradient Markov Chain Monte Carlo}
 The algorithm we are working on in this paper is based on stochastic gradient Langevin dynamics (SGLD)~\cite{welling2011bayesian}. SGLD applies the following update rule to obtain samples from a posterior distribution $p(\ta|\cX) \propto p(\cX|\ta) p(\ta)$ of $N$ i.i.d. data points $\cX=\{x_i\}_{i=1}^{N}$:
@@ -42,7 +42,7 @@ here $g_d(\ta_{k})$ is the gradient of the log posterior w.r.t. $\ta_{k}$ on a d
 
 
 \subsection{Scalable MCMC for a-MMSB}
-This section describes the SG-MCMC algorithm for a-MMSB. Please refer to~\cite{LiAW15} for more details. The algorithm iterates updating local parameter $\pi$ and global parameter $\beta$. Since both parameters lie on the probability simplex, SGRLD is applied to make the sampling process more efficient. Here, the parameters $\phi$ and $\ta$ are used to re-parameterize $\pi$ and $\beta$ respectively. After updating $\phi$ and $\ta$, we can obtain $\pi$ and $\beta$ by normalizing $\phi$ and $\ta$, respectively. That is, $\bt_k = \ta_{k1}/(\ta_{k0} + \ta_{k1})$ and $\pi_{ak} = \phi_{ak}/\sm{j}{K}\phi_{aj}$. In the following, we briefly sketch the iterative update steps.
+This section describes the SG-MCMC algorithm for a-MMSB. Please refer to~\cite{LiAW15} for more details. The algorithm iterates updating local parameter $\pi$ and global parameter $\beta$. Since both parameters lie on the probability simplex, SGRLD is applied to make the sampling process more efficient. Here, the parameters $\phi$ and $\ta$ are used to re-parameterize $\pi$ and $\beta$ respectively. After updating $\phi$ and $\ta$, we can obtain $\pi$ and $\beta$ by normalizing $\phi$ and $\ta$ respectively, see Table~\ref{tbl-symbols}. In the following, we briefly sketch the iterative update steps.
 
 \paragraph{\textbf{Sampling global parameters}} The update rule for global parameter $\theta$ is
 \bea
@@ -81,13 +81,15 @@ into two sets, the training set and a held-out set \Heldout.
 As the performance metric we use perplexity, which is defined as the exponential
 of the negative average log-likelihood of the held-out set \Heldout. Given a collection of $T$
 samples of the model parameters $\{\bt_t\}$ and $\{\pi_t\}$, the averaged
-perplexity on the held-out test set $\Heldout$ is 
+perplexity on the held-out set $\Heldout$ is 
 \begin{align}
 &\text{perp}_{\text{avg}}(\Heldout|\{\beta_t\},\{\pi_t\})\nonumber \\=&
 \exp\left(-\frac{\sum_{(a,b)\in \Heldout}^{}\log
-\{(1/T)\sm{t}{T}p(y_{ab}|\beta_t,\pi_t)\}}{|\cE_{h}|}\right)
+\{(1/T)\sm{t}{T}p(y_{ab}|\beta_t,\pi_t)\}}{|\cE_{h}|}\right).
 \end{align}
 The perplexity is not evaluated at every iteration, but at regular intervals.
+Convergence is reached when the perplexity changes by less than a small
+threshold.
 
 The pseudo-code of the sequential algorithm is presented in Algorithm~\ref{algorithm}. 
 

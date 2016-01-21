@@ -74,8 +74,8 @@ plot \
 
 set origin col(0),row(1)
 set size w,h
-set ylabel "Speedup"
-set title "(b) Speedup over 8-nodes"
+set ylabel "Speedup w.r.t. 8-node time"
+set title "(b) Speedup w.r.t. 8-node time"
 plot \
      "$$.tmp" u (\$2-1):(${BASE}/\$3) w lp axis x1y1 t "total", \
      "$$.tmp.2" u (\$2-1):(${BASE2}/\$3) w lp axis x1y1 t 'deploy minibatch', \
