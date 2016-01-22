@@ -4,20 +4,22 @@ This section presents an in-depth empirical analysis of the design discussed in
 Section~\ref{design-section}. To this end, we assess the scalability and
 efficiency of the solution using multiple criteria.
 %
-First, an evaluation of the \textit{strong scaling} behavior of the distributed
-algorithm is presented.
-%
-Second, the \textit{weak scaling} of the solution is assessed with respect to increasing
+First, the \textit{weak scaling} of the solution is assessed with respect to increasing
 numbers of targeted latent communities.
 %
-Next, the effects of \textit{pipelining the computation} and varying the number of latent communities on the system's
-performance is analyzed.
+Second, an evaluation of the \textit{strong scaling} behavior of the distributed
+algorithm is presented.
+%
+Third, the effects of \textit{pipelining the computation} and varying the number of latent communities on the system's
+performance are analyzed.
+%
+Next, we \textit{contrast} the effectiveness of scaling the computation horizontally
+and vertically.
 %
 Further, we evaluate the efficiency and overhead associated with \textit{network
 communication} between cluster nodes.
 %
-Finally, we \textit{contrast} the effectiveness of scaling the computation horizontally
-and vertically.
+Finally, we apply the algorithm to large data sets and comment on its execution time.
 
 Empirical results were obtained by performing experiments on the VU and
 Leiden University
@@ -36,7 +38,7 @@ collection of data sets used.
 
 \begin{figure}[t] % [htbp]
   \centering
-  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
+  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\columnwidth}
   \caption{Average execution time per algorithm iteration when varying
   the number of latent communities proportionally to the number of compute
   nodes.}
@@ -66,7 +68,7 @@ is large enough for the given cluster size.
 
 \begin{figure}[t] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=0.48\textwidth}
+  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\columnwidth}
   \caption{(a) Execution time of 2048 algorithm iterations for the
   same problem size (com-Friendster, K=1024, M=16384 n=32) across different
   cluster sizes. (b) Speedup achieved for same experiments in (a) with respect to
@@ -173,7 +175,7 @@ fetch $(C-1)/C$ of all read requests over the network.
 \subsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
-  \epsfig{file=plots/hpc-cloud.eps, width=0.48\textwidth}
+  \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
   \caption{Performance comparison between the distributed implementation
   running on DAS5 and the multi-threaded solution on machine with 40 cores and
   1TB of RAM.}
@@ -216,10 +218,10 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
-\begin{figure}[b] % [htbp]
+\begin{figure}[t] % [htbp]
   \centering
-  \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
-  \caption{Performance of DKV store compared to qperf and MPI roundtrip.}
+  \epsfig{file=plots/qperf.eps, width=\columnwidth}
+  \caption{Performance of DKV store vs.\ \textit{qperf} and MPI roundtrip.}
   \label{fig-qperf}
 \end{figure}
 
@@ -237,10 +239,10 @@ read operations between one server and one client for a range of payload sizes,
 and compare these to the bandwidth achieved by an MPI roundtrip test,
 and by \textit{qperf}~\cite{qperf-mellanox} which reports
 the best achievable performance for Infiniband. We present \textit{qperf}
-bandwidth for both RDMA read and RDMA write operations; these are nearly
-identical, which corroborates the results from the Herd project for payloads
+bandwidth for both RDMA read and RDMA write operations; these are quite
+close, which corroborates the results from the Herd project for payloads
 upwards from 256B.
-The MVAPICH2 implementation
+The MVAPICH2 MPI implementation
 is highly optimized for Infiniband. It requires an interaction between
 the server network card and the server host, which increases the latency and
 thus lowers the bandwidth
@@ -250,7 +252,7 @@ The bandwidth achieved by our DKV store falls short
 of the \textit{qperf} performance for packets less than 4KB; this is attributed
 to additional per-request overhead for the DKV store. For the largest packet
 size, the DKV store performance is hampered by the fact that its values
-are spread over a larger memory area, whereas \textit{qperf} and MPI always reads
+are spread over a larger memory area, whereas \textit{qperf} and MPI always read
 from the same memory locations. For packets between 8KB and 512KB, our DKV
 achieves performance very close to \textit{qperf}.
 

@@ -68,11 +68,16 @@ nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
-set terminal postscript eps enhanced color font ',8'
+set terminal postscript eps enhanced color font ',10'
 set size (nc*w),(nr*h+k)
 set output 'hpc-cloud.eps'
 set multiplot layout nr,nc
 set size w,h
+
+set style line 1 lt 1 lw 2 linecolor rgb "red"
+set style line 2 lt 2 lw 2 linecolor rgb "blue"
+set style line 3 lt 3 lw 2 linecolor rgb "#006400"
+set style line 4 lt 4 lw 2 linecolor rgb "magenta"
 
 set xlabel "Number of Communities (K)"
 set ylabel "Time per iteration (milliseconds)"
@@ -85,16 +90,16 @@ set origin col(0),row(0)
 set size w,h
 set title '(a) Performance of HPC Cloud (16 and 40 cores) vs. 1 DAS5 node (16 cores) using com-DBLP'
 plot \
-     "$$.tmp.hpc40" u 1:(1000*\$2) w lp t 'HPC Cloud 40-cores', \
-     "$$.tmp.hpc16" u 1:(1000*\$2) w lp t 'HPC Cloud 16-cores', \
-     "$$.tmp.4" u 1:(1000*\$2) w lp t 'Single DAS5 node 16-cores'
+     "$$.tmp.hpc40" u 1:(1000*\$2) w lp ls 1 t 'HPC Cloud 40-cores', \
+     "$$.tmp.hpc16" u 1:(1000*\$2) w lp ls 2 t 'HPC Cloud 16-cores', \
+     "$$.tmp.4" u 1:(1000*\$2)     w lp ls 3 t 'Single DAS5 node 16-cores'
 
 set origin col(0),row(1)
 set size w,h
 set title '(b) Performance of HPC Cloud (40 cores) vs. 64 DAS5 nodes (64*16 cores) using com-Friendster'
 plot \
-     "$$.tmp" u 1:(1000*\$2) w lp t 'HPC Cloud', \
-     "$$.tmp.2" u 1:(1000*\$2) w lp t '64 DAS5 nodes'
+     "$$.tmp" u 1:(1000*\$2)   w lp ls 1 t 'HPC Cloud', \
+     "$$.tmp.2" u 1:(1000*\$2) w lp ls 4 t '64 DAS5 nodes'
 
 EOF
 

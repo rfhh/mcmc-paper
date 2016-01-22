@@ -17,7 +17,7 @@ cat <<EOF | gnuplot --persist
 w = 0.6
 h = 0.4
 
-set terminal postscript eps enhanced color font ',8'
+set terminal postscript eps enhanced color font ',10'
 set output 'sweep-over-K-proportional-np.eps'
 set size w,h
 
@@ -29,7 +29,7 @@ set grid ytics
 
 set title "Weak Scaling (over K)"
 set ylabel "Time per Iteration (milliseconds)"
-plot "$$.tmp" u (\$2-1):(1000*\$3/\$4) w lp axis x1y1
+plot "$$.tmp" u (\$2-1):(1000*\$3/\$4) w lp axis x1y1 lw 2
 
 EOF
 
