@@ -9,7 +9,10 @@ problems. However, training models at scale over large data sets remains a
 daunting challenge. One such problem is the detection of overlapping
 communities within graphs. For example, a social network can be modeled as a
 graph where the vertices and edges represent individuals and their
-relationships. In this paper, we present and evaluate an efficient parallel and
+relationships. As opposed to the problem graph partitioning or clustering, an
+individual can be part of multiple communities which significantly increases
+the problem complexity.
+In this paper, we present and evaluate an efficient parallel and
 distributed implementation of a Stochastic Gradient Markov Chain Monte Carlo
 algorithm that solves the overlapping community detection problem. We show that
 the algorithm can scale and process graphs consisting of billions of edges and
