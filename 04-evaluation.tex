@@ -219,7 +219,7 @@ a single-node implementation.
 \begin{figure}[t] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
-  \caption{Performance of DKV store compared to qperf.}
+  \caption{Performance of DKV store compared to qperf and roundtrip MPI.}
   \label{fig-qperf}
 \end{figure}
 
@@ -234,15 +234,23 @@ Since the distributed algorithm is data-intensive, a key aspect in improving
 its performance is to maximize the utility of the network resources.
 In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
 read operations between one server and one client for a range of payload sizes,
-and compare these to the bandwidth achieved by \textit{qperf}, which shows
+and compare these to the bandwidth achieved by an MPI roundtrip test,
+and by \textit{qperf} which reports
 the best achievable performance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are nearly
 identical, which corroborates the results from the Herd project for payloads
-upwards from 256B. The bandwidth achieved by our DKV store falls short
+upwards from 256B.
+The MVAPICH2 implementation
+is highly optimized for Infiniband. It requires an interaction between
+the server network card and the server host, which increases the latency and
+thus lowers the bandwidth
+significantly. This is ample justification for using a low-level RDMA
+implementation for the DKV store.
+The bandwidth achieved by our DKV store falls short
 of the \textit{qperf} performance for packets less than 4KB; this is attributed
 to additional per-request overhead for the DKV store. For the largest packet
 size, the DKV store performance is hampered by the fact that its values
-are spread over a larger memory area, whereas \textit{qperf} always reads
+are spread over a larger memory area, whereas \textit{qperf} and MPI always reads
 from the same memory locations. For packets between 8KB and 512KB, our DKV
 achieves performance very close to \textit{qperf}.
 
