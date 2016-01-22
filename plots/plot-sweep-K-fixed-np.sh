@@ -35,7 +35,6 @@ set style line 3 lt 3 lw 2 linecolor rgb "#006400"
 set style line 4 lt 4 lw 2 linecolor rgb "magenta"
 
 set output 'sweep-over-K-fixed-np.eps'
-set title "Scaling K (fixed np=65)"
 set key left
 plot "$$.tmp" u 1:2 w lp ls 1 t "Pipelining disabled", "$$.tmp2" u 1:2 w lp ls 2 t "Pipelining enabled"
 
