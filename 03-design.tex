@@ -94,22 +94,22 @@
 % http://stanford.edu/~rezab/nips2014workshop/slides/jure.pdf
 
 The SG-MCMC algorithm described in the previous section has an abundance of
-opportunities for parallelism, for the multi-threaded, shared-memory type as
+opportunities for parallelism, for the multi-threaded shared-memory type as
 well as for distributed-memory parallelism. The benefit of multi-threaded
-parallelism is speed-up of the computation. A distributed implementation
-additionally allows to store data in the collective memory of the cluster
-machine and increases memory bandwidth which scales with the number of
+parallelism is the speedup of the computation. Additionally, a distributed implementation
+allows the storage of data in the collective memory of a cluster
+and increases aggregate memory bandwidth. Both of these parameters scale with the number of
 machines. The downside of a distributed implementation is that it requires
 considerably more programming effort.
 
 % intro parallelisation, distribution
 
-This section describes how we parallelize the algorithm, which had been
+This section describes how we parallelized the algorithm, which had been
 implemented sequentially in~C++.
-In most places, the usage of multi-threaded parallelism
-is straightforward, therefore, we will discuss details only where appropriate. The
-distributed design follows a master-worker paradigm, where in essence
-the master controls the parallel operations and the workers perform the
+The usage of multi-threaded parallelism
+is straightforward, therefore, we will discuss its details only where appropriate. The
+distributed design follows a master-worker paradigm, where
+the master controls the sequence of parallel operations and the workers perform the
 calculations. For thread parallelism, we annotate the program with
 OpenMP~\cite{OpenMPSpec}. For distributed communication, we use
 MPI~\cite{Forum:1994:MMI:898758}.
@@ -117,6 +117,7 @@ MPI~\cite{Forum:1994:MMI:898758}.
 % largest data structures
 
 \subsection{Data distribution}
+
 
 The largest data structures of the algorithm are \Edges, $\cE_h$, $\pi$
 and~$\phi$, see Table~\ref{tbl-symbols}.
@@ -151,32 +152,54 @@ $\pi$.
 \subsection{RDMA Distributed Key-Value Store}
 
 %\looseness=-1
-Modern network technology allows access to the memory of remote machines
-through the network cards (NICs) without involvement from the remote host
-altogether~\cite{Hamada_infinibandtrade,Beck:2011:PER:2043535.2043537}.
+Modern network technology allows for Remote Direct Memory Access (RDMA)
+through the network cards (NICs) with negligible
+overhead~\cite{Hamada_infinibandtrade,Beck:2011:PER:2043535.2043537}. The use
+of RDMA enables communicating peers to avoid the high latency associated with
+interrupting a processor and waiting for it to act upon a request. Instead, a
+process would register a region of memory that can be directly accessed by the
+NIC. However, RDMA only provides primitive operations and limited abstractions.
 This has opened up the development of
-extremely efficient remote memory services, often in the form of DKV stores.
-This project stores $\pi$ in a DKV store in the collective memory of the
-cluster, where $\pi[i]+\sum\phi[i]$ is the value for key $i$. We decided not
+efficient remote memory services, often in the form of distributed key-value
+(DKV) stores.
+
+The distributed algorithm implementation stores $\pi$ in a DKV store in the
+collective memory of the
+cluster, where $\pi[i]+\sum\phi[i]$ is the value for key $i$.
+%
+We decided not
 to use any of the existing implementations of RDMA DKV stores, and instead
-build our own DKV store on top of the Infiniband ib-verbs~API. The
-main consideration is that our use case is unusually simple in a number
-of important aspects. The KV layout is static in the sense that there are
-no inserts or deletes after the initial population, which allows a static
-partitioning of KV pairs over the machines. The values are all of the same size,
-a vector of $K+1$ floats. The access pattern is well controlled because the
+build our own DKV store on top of the Infiniband ib-verbs~API.
+%
+This stems from the fact that our use case is unique in a number
+of important aspects. First, the number of keys and values to be stored are
+constant throughout the execution of the algorithm. For instance, no records
+are dynamically inserted or deleted from the DKV after their initial insertion.
+However, the value associated with each key can be updated. Additionally, all
+keys are of the same type and represent a unique vertex in the graph.
+Therefore, keys can be represented as integer identifiers. Moreover, each key
+points to a vector of $K+1$ floats as its value.
+%
+This data representation can be exploited to simplify the management of
+read and write requests. Similarly, the keys can be deterministically
+partitioned across the cluster using a fast hash function.
+
+The algorithm's access pattern is well controlled because the
 computation is partitioned into stages that are separated by barriers. A
-stage either reads values or updates values. The algorithm ensures that updates
+single stage either reads values or updates values. The algorithm ensures that updates
 are always targeting unique elements,
 therefore, there are no read/write or write/write hazards. The existing DKV
 stores (RamCloud~\cite{Ousterhout:2015:RSS:2818727.2806887}, FaRM~\cite{179767},
-and reputedly the fastest, Herd~\cite{Kalia:2014:URE:2740070.2626299}) incur
+and Herd~\cite{Kalia:2014:URE:2740070.2626299}) incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
 values. Our use case allows us to do any operation in exactly one RDMA read
-or RDMA write. Herd argues
-that replacing RDMA reads by
-an RPC to the server, followed by an unreliable write, is faster. However,
-they show this only holds for small payload packets, up to 256B. A $\pi$
+or RDMA write.
+%
+Herd argues that replacing RDMA reads by
+an RPC to the server, followed by an unreliable write, is faster.
+%
+However,
+the paper shows this only holds for small payload packets, up to 256B. A $\pi$
 packet in our application is typically thousands to hundreds of thousands
 of 4-byte floats.
 
