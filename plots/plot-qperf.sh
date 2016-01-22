@@ -13,5 +13,5 @@ plot \
 	"../data/qperf/qperf/qperf-write-bw" with lp title "qperf RDMA write", \
 	"../data/qperf/qperf/qperf-read-bw" with lp title "qperf RDMA read", \
 	"../data/qperf/dkv/thrp" with lp title "DKV store read", \
-	"../data/qperf/mpi/thrp" with lp title "MPI read"
+	"../data/qperf/mpi/thrp" with lp title "MPI roundtrip read"
 EOI

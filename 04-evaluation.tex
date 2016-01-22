@@ -216,10 +216,10 @@ a single-node implementation.
 %################################################
 \subsection{Cluster Communication Efficiency}
 
-\begin{figure}[t] % [htbp]
+\begin{figure}[b] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
-  \caption{Performance of DKV store compared to qperf and roundtrip MPI.}
+  \caption{Performance of DKV store compared to qperf and MPI roundtrip.}
   \label{fig-qperf}
 \end{figure}
 
@@ -235,7 +235,7 @@ its performance is to maximize the utility of the network resources.
 In figure~\ref{fig-qperf}, we provide maximum bandwidth numbers for
 read operations between one server and one client for a range of payload sizes,
 and compare these to the bandwidth achieved by an MPI roundtrip test,
-and by \textit{qperf} which reports
+and by \textit{qperf}~\cite{qperf-mellanox} which reports
 the best achievable performance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are nearly
 identical, which corroborates the results from the Herd project for payloads
