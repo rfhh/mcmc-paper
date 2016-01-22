@@ -4,20 +4,22 @@ This section presents an in-depth empirical analysis of the design discussed in
 Section~\ref{design-section}. To this end, we assess the scalability and
 efficiency of the solution using multiple criteria.
 %
-First, an evaluation of the \textit{strong scaling} behavior of the distributed
-algorithm is presented.
-%
-Second, the \textit{weak scaling} of the solution is assessed with respect to increasing
+First, the \textit{weak scaling} of the solution is assessed with respect to increasing
 numbers of targeted latent communities.
 %
-Next, the effects of \textit{pipelining the computation} and varying the number of latent communities on the system's
-performance is analyzed.
+Second, an evaluation of the \textit{strong scaling} behavior of the distributed
+algorithm is presented.
+%
+Third, the effects of \textit{pipelining the computation} and varying the number of latent communities on the system's
+performance are analyzed.
+%
+Next, we \textit{contrast} the effectiveness of scaling the computation horizontally
+and vertically.
 %
 Further, we evaluate the efficiency and overhead associated with \textit{network
 communication} between cluster nodes.
 %
-Finally, we \textit{contrast} the effectiveness of scaling the computation horizontally
-and vertically.
+Finally, we apply the algorithm to large data sets and comment on its execution time.
 
 Empirical results were obtained by performing experiments on the VU and
 Leiden University
@@ -36,7 +38,7 @@ collection of data sets used.
 
 \begin{figure}[t] % [htbp]
   \centering
-  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=0.48\textwidth}
+  \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\columnwidth}
   \caption{Average execution time per algorithm iteration when varying
   the number of latent communities proportionally to the number of compute
   nodes.}
@@ -66,7 +68,7 @@ is large enough for the given cluster size.
 
 \begin{figure}[t] % [htb]
   \centering
-  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=0.48\textwidth}
+  \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\columnwidth}
   \caption{(a) Execution time of 2048 algorithm iterations for the
   same problem size (com-Friendster, K=1024, M=16384 n=32) across different
   cluster sizes. (b) Speedup achieved for same experiments in (a) with respect to
@@ -173,7 +175,7 @@ fetch $(C-1)/C$ of all read requests over the network.
 \subsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
-  \epsfig{file=plots/hpc-cloud.eps, width=0.48\textwidth}
+  \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
   \caption{Performance comparison between the distributed implementation
   running on DAS5 and the multi-threaded solution on machine with 40 cores and
   1TB of RAM.}
@@ -218,7 +220,7 @@ a single-node implementation.
 
 \begin{figure}[t] % [htbp]
   \centering
-  \epsfig{file=plots/qperf.eps, width=0.5\textwidth}
+  \epsfig{file=plots/qperf.eps, width=\columnwidth}
   \caption{Performance of DKV store compared to qperf and roundtrip MPI.}
   \label{fig-qperf}
 \end{figure}
