@@ -88,7 +88,7 @@ set key below
 
 set origin col(0),row(0)
 set size w,h
-set title '(a) Performance of HPC Cloud (16 and 40 cores) vs. 1 DAS5 node (16 cores) using com-DBLP'
+set title '(a) HPC Cloud (16 and 40 cores) vs. 1 DAS5 node (16 cores) using com-DBLP'
 plot \
      "$$.tmp.hpc40" u 1:(1000*\$2) w lp ls 1 t 'HPC Cloud 40-cores', \
      "$$.tmp.hpc16" u 1:(1000*\$2) w lp ls 2 t 'HPC Cloud 16-cores', \
@@ -96,7 +96,7 @@ plot \
 
 set origin col(0),row(1)
 set size w,h
-set title '(b) Performance of HPC Cloud (40 cores) vs. 64 DAS5 nodes (64*16 cores) using com-Friendster'
+set title '(b) HPC Cloud (40 cores) vs. 64 DAS5 nodes (64*16 cores) using com-Friendster'
 plot \
      "$$.tmp" u 1:(1000*\$2)   w lp ls 1 t 'HPC Cloud', \
      "$$.tmp.2" u 1:(1000*\$2) w lp ls 4 t '64 DAS5 nodes'
