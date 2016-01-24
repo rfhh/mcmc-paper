@@ -294,7 +294,7 @@ from \textit{update\_phi} by the workers, so the master computes the minibatch
 for the next iteration while the workers compute \textit{update\_phi} for the
 current iteration. Second, at the threads level within the workers, loading of
 $\pi$ and \textit{update\_phi} are split up into chunks, and the calculation
-in \textit{update\_pi} for the current chunk is done simultaneously with
+in \textit{update\_phi} for the current chunk is done simultaneously with
 loading $\pi$ for the next chunk. The rationale for implementing pipeline
 parallelism in these places of the program, is that loading $\pi$ is the
 dominant contribution within the dominant stage \textit{update\_phi}, as
