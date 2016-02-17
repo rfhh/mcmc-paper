@@ -128,8 +128,8 @@ the calculations in the update stages only require the subset of \Edges that
 is touched by the mini-batch vertices, so the master scatters that subset to
 the workers together with the scattering of the mini-batch vertices. This way,
 we trade a reduction in memory usage at the workers against limited
-communication costs. In contrast, $\cE_h$ is be partitioned statically over
-all machines for the parallel perplexity calculation.
+communication costs. In contrast, $\cE_h$ is replicated at
+all machines for the neighbor sampling and the parallel perplexity calculation.
 
 %\looseness=-1
 $\pi$~and $\phi$ are 32-bit float arrays of size $K \times N$. For our
@@ -260,8 +260,8 @@ Algorithm~\ref{algorithm}) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires
 $M \times K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
-an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
-are written through the DKV store.
+an MPI barrier. After the calculation, the updated values of $\pi;\sum\phi$
+are written to the DKV store.
 
 \textit{update\_beta} (lines 10 and 11 in Algorithm~\ref{algorithm}) requires $|\Minibatch| \times K$ operations. It is preceded by an MPI
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
