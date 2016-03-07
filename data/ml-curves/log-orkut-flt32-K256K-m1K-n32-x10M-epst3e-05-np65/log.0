@@ -1,0 +1,2360 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-orkut-h0.01/ -c preprocessed -K 256K -m 1K -n 32 --mcmc.sampler.max-source 1K -x 10M --mcmc.c 0 --mcmc.a 3e-05 
+start MCMC stochastical distributed 
+Floating point precision: 32bit
+Host node001 PID 3795
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+MPI_Init() done, rank 0 size 65
+Set held_out_ratio to default 0.1
+Create per-thread randoms
+Random seed [42,43]
+Random seed [42,44]
+Random seed [42,45]
+Random seed [42,46]
+Random seed [42,47]
+Random seed [42,48]
+Random seed [42,49]
+Random seed [42,50]
+Random seed [42,51]
+Random seed [42,52]
+Random seed [42,53]
+Random seed [42,54]
+Random seed [42,55]
+Random seed [42,56]
+Random seed [42,57]
+Random seed [42,58]
+Random seed [42,59]
+Random seed [42,60]
+Random seed [42,61]
+Random seed [42,62]
+Random seed [42,63]
+Random seed [42,64]
+Random seed [42,65]
+Random seed [42,66]
+Random seed [42,67]
+Random seed [42,68]
+Random seed [42,69]
+Random seed [42,70]
+Random seed [42,71]
+Random seed [42,72]
+Random seed [42,73]
+Random seed [42,74]
+Random seed[0] 0x2a,0x2b
+Handle input dataset from file /var/scratch/rutger/mcmc/datasets/sparsehash/com-orkut-h0.01//graph.gz
+Node + edgeset read 0
+For memory query file /proc/3795/statm
+0.000 Memory usage: total 642MB resident 490MB 
+Node + edgeset read 1048576
+2.440 Memory usage: total 979MB resident 828MB 
+Node + edgeset read 2097152
+7.065 Memory usage: total 1704MB resident 1552MB 
+11.781 Memory usage: total 2448MB resident 2297MB 
+WARNING: Expect held-out size 11718508, get 1171850N 3072441 E 117185083 link ratio 2.48276e-05 K 262144
+minibatch size 1024 epsilon 1e-07 alpha 3.8147e-06 iterations 10485760 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 32
+Held-out+test size 2343701
+Test size 1171851
+Held-out size 1171850
+num_node_sample 32
+a 3e-05 b 1024 c 0 eta (1,1)
+minibatch size: 1024
+Use D-KV store type rdma
+mem_total 65879032 pi_total 64334 max pi cache entries 2010
+minibatch size param 1024 max 67945 my max 29 chunk 29 #neighbors(total) 1046 cache max entries 1075 computed max pi cache entries 2010
+perplexity nodes total 2343700 local 36058 mine 1004 chunk 502
+phi pipeline depth 2
+node001: RDMA OOB network: receive message from master, my rank is 0
+RDMA D-KV store excludes the master node
+MR/value addr=0x7fff7b9dd000 size 433010cc, lkey=0xa0016800, rkey=0xa0016800, flags=0xf, mr=0x7fffd5d5d330
+MR/cache addr=0x7ffef53d9000 size 86602198, lkey=0xa0017100, rkey=0xa0017100, flags=0xf, mr=0x7fffd5d5d370
+MR/write addr=0x7ffeb2dd6000 size 42601098, lkey=0xa0017200, rkey=0xa0017200, flags=0xf, mr=0x7fffd5d5d3b0
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 1: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21783
+  PSN number = 8102883
+  max.atomic = 16
+  LID = 0x18
+Local LID[1] = 0x 12
+My con_data for qp to host 2: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21784
+  PSN number = 11962415
+  max.atomic = 16
+  LID = 0x18
+Local LID[2] = 0x 12
+My con_data for qp to host 3: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21785
+  PSN number = 14150511
+  max.atomic = 16
+  LID = 0x18
+Local LID[3] = 0x 12
+My con_data for qp to host 4: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21786
+  PSN number = 16721724
+  max.atomic = 16
+  LID = 0x18
+Local LID[4] = 0x 12
+My con_data for qp to host 5: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21787
+  PSN number = 3182521
+  max.atomic = 16
+  LID = 0x18
+Local LID[5] = 0x 12
+My con_data for qp to host 6: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21788
+  PSN number = 8915451
+  max.atomic = 16
+  LID = 0x18
+Local LID[6] = 0x 12
+My con_data for qp to host 7: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21789
+  PSN number = 4747
+  max.atomic = 16
+  LID = 0x18
+Local LID[7] = 0x 12
+My con_data for qp to host 8: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21790
+  PSN number = 5010641
+  max.atomic = 16
+  LID = 0x18
+Local LID[8] = 0x 12
+My con_data for qp to host 9: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21791
+  PSN number = 2828865
+  max.atomic = 16
+  LID = 0x18
+Local LID[9] = 0x 12
+My con_data for qp to host 10: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21792
+  PSN number = 8660227
+  max.atomic = 16
+  LID = 0x18
+Local LID[10] = 0x 12
+My con_data for qp to host 11: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21793
+  PSN number = 13190128
+  max.atomic = 16
+  LID = 0x18
+Local LID[11] = 0x 12
+My con_data for qp to host 12: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21794
+  PSN number = 5712730
+  max.atomic = 16
+  LID = 0x18
+Local LID[12] = 0x 12
+My con_data for qp to host 13: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21795
+  PSN number = 5726079
+  max.atomic = 16
+  LID = 0x18
+Local LID[13] = 0x 12
+My con_data for qp to host 14: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21796
+  PSN number = 11496734
+  max.atomic = 16
+  LID = 0x18
+Local LID[14] = 0x 12
+My con_data for qp to host 15: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21797
+  PSN number = 15701981
+  max.atomic = 16
+  LID = 0x18
+Local LID[15] = 0x 12
+My con_data for qp to host 16: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21798
+  PSN number = 107763
+  max.atomic = 16
+  LID = 0x18
+Local LID[16] = 0x 12
+My con_data for qp to host 17: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21799
+  PSN number = 2725410
+  max.atomic = 16
+  LID = 0x18
+Local LID[17] = 0x 12
+My con_data for qp to host 18: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21800
+  PSN number = 3313862
+  max.atomic = 16
+  LID = 0x18
+Local LID[18] = 0x 12
+My con_data for qp to host 19: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21801
+  PSN number = 13646971
+  max.atomic = 16
+  LID = 0x18
+Local LID[19] = 0x 12
+My con_data for qp to host 20: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21802
+  PSN number = 3592081
+  max.atomic = 16
+  LID = 0x18
+Local LID[20] = 0x 12
+My con_data for qp to host 21: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21803
+  PSN number = 9344326
+  max.atomic = 16
+  LID = 0x18
+Local LID[21] = 0x 12
+My con_data for qp to host 22: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21804
+  PSN number = 16211310
+  max.atomic = 16
+  LID = 0x18
+Local LID[22] = 0x 12
+My con_data for qp to host 23: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21805
+  PSN number = 8050477
+  max.atomic = 16
+  LID = 0x18
+Local LID[23] = 0x 12
+My con_data for qp to host 24: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21806
+  PSN number = 7948215
+  max.atomic = 16
+  LID = 0x18
+Local LID[24] = 0x 12
+My con_data for qp to host 25: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21807
+  PSN number = 16164018
+  max.atomic = 16
+  LID = 0x18
+Local LID[25] = 0x 12
+My con_data for qp to host 26: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21808
+  PSN number = 5883056
+  max.atomic = 16
+  LID = 0x18
+Local LID[26] = 0x 12
+My con_data for qp to host 27: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21809
+  PSN number = 14695899
+  max.atomic = 16
+  LID = 0x18
+Local LID[27] = 0x 12
+My con_data for qp to host 28: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21810
+  PSN number = 14234522
+  max.atomic = 16
+  LID = 0x18
+Local LID[28] = 0x 12
+My con_data for qp to host 29: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21811
+  PSN number = 1060336
+  max.atomic = 16
+  LID = 0x18
+Local LID[29] = 0x 12
+My con_data for qp to host 30: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21812
+  PSN number = 9274176
+  max.atomic = 16
+  LID = 0x18
+Local LID[30] = 0x 12
+My con_data for qp to host 31: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21813
+  PSN number = 7808589
+  max.atomic = 16
+  LID = 0x18
+Local LID[31] = 0x 12
+My con_data for qp to host 32: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21814
+  PSN number = 9163219
+  max.atomic = 16
+  LID = 0x18
+Local LID[32] = 0x 12
+My con_data for qp to host 33: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21815
+  PSN number = 4459375
+  max.atomic = 16
+  LID = 0x18
+Local LID[33] = 0x 12
+My con_data for qp to host 34: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21816
+  PSN number = 5181885
+  max.atomic = 16
+  LID = 0x18
+Local LID[34] = 0x 12
+My con_data for qp to host 35: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21817
+  PSN number = 9107728
+  max.atomic = 16
+  LID = 0x18
+Local LID[35] = 0x 12
+My con_data for qp to host 36: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21818
+  PSN number = 7641896
+  max.atomic = 16
+  LID = 0x18
+Local LID[36] = 0x 12
+My con_data for qp to host 37: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21819
+  PSN number = 14097336
+  max.atomic = 16
+  LID = 0x18
+Local LID[37] = 0x 12
+My con_data for qp to host 38: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21820
+  PSN number = 9112475
+  max.atomic = 16
+  LID = 0x18
+Local LID[38] = 0x 12
+My con_data for qp to host 39: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21821
+  PSN number = 12652538
+  max.atomic = 16
+  LID = 0x18
+Local LID[39] = 0x 12
+My con_data for qp to host 40: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21822
+  PSN number = 148985
+  max.atomic = 16
+  LID = 0x18
+Local LID[40] = 0x 12
+My con_data for qp to host 41: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21823
+  PSN number = 995486
+  max.atomic = 16
+  LID = 0x18
+Local LID[41] = 0x 12
+My con_data for qp to host 42: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21824
+  PSN number = 9065450
+  max.atomic = 16
+  LID = 0x18
+Local LID[42] = 0x 12
+My con_data for qp to host 43: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21825
+  PSN number = 5861715
+  max.atomic = 16
+  LID = 0x18
+Local LID[43] = 0x 12
+My con_data for qp to host 44: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21826
+  PSN number = 6721565
+  max.atomic = 16
+  LID = 0x18
+Local LID[44] = 0x 12
+My con_data for qp to host 45: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21827
+  PSN number = 3784968
+  max.atomic = 16
+  LID = 0x18
+Local LID[45] = 0x 12
+My con_data for qp to host 46: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21828
+  PSN number = 4786481
+  max.atomic = 16
+  LID = 0x18
+Local LID[46] = 0x 12
+My con_data for qp to host 47: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21829
+  PSN number = 6829328
+  max.atomic = 16
+  LID = 0x18
+Local LID[47] = 0x 12
+My con_data for qp to host 48: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21830
+  PSN number = 6510378
+  max.atomic = 16
+  LID = 0x18
+Local LID[48] = 0x 12
+My con_data for qp to host 49: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21831
+  PSN number = 8100343
+  max.atomic = 16
+  LID = 0x18
+Local LID[49] = 0x 12
+My con_data for qp to host 50: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21832
+  PSN number = 3699083
+  max.atomic = 16
+  LID = 0x18
+Local LID[50] = 0x 12
+My con_data for qp to host 51: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21833
+  PSN number = 10102460
+  max.atomic = 16
+  LID = 0x18
+Local LID[51] = 0x 12
+My con_data for qp to host 52: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21834
+  PSN number = 667453
+  max.atomic = 16
+  LID = 0x18
+Local LID[52] = 0x 12
+My con_data for qp to host 53: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21835
+  PSN number = 3133178
+  max.atomic = 16
+  LID = 0x18
+Local LID[53] = 0x 12
+My con_data for qp to host 54: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21836
+  PSN number = 1375721
+  max.atomic = 16
+  LID = 0x18
+Local LID[54] = 0x 12
+My con_data for qp to host 55: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21837
+  PSN number = 8615668
+  max.atomic = 16
+  LID = 0x18
+Local LID[55] = 0x 12
+My con_data for qp to host 56: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21838
+  PSN number = 2519980
+  max.atomic = 16
+  LID = 0x18
+Local LID[56] = 0x 12
+My con_data for qp to host 57: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21839
+  PSN number = 7258777
+  max.atomic = 16
+  LID = 0x18
+Local LID[57] = 0x 12
+My con_data for qp to host 58: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21840
+  PSN number = 6534351
+  max.atomic = 16
+  LID = 0x18
+Local LID[58] = 0x 12
+My con_data for qp to host 59: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21841
+  PSN number = 16754503
+  max.atomic = 16
+  LID = 0x18
+Local LID[59] = 0x 12
+My con_data for qp to host 60: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21842
+  PSN number = 8319114
+  max.atomic = 16
+  LID = 0x18
+Local LID[60] = 0x 12
+My con_data for qp to host 61: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21843
+  PSN number = 15808527
+  max.atomic = 16
+  LID = 0x18
+Local LID[61] = 0x 12
+My con_data for qp to host 62: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21844
+  PSN number = 7785876
+  max.atomic = 16
+  LID = 0x18
+Local LID[62] = 0x 12
+My con_data for qp to host 63: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21845
+  PSN number = 705117
+  max.atomic = 16
+  LID = 0x18
+Local LID[63] = 0x 12
+My con_data for qp to host 64: 
+  value address = 0x7fff7b9dd000
+  value rkey = 0xa0016800
+  cache address = 0x7ffef53d9000
+  cache rkey = 0xa0017100
+  QP number = 21846
+  PSN number = 3490686
+  max.atomic = 16
+  LID = 0x18
+Local LID[64] = 0x 12
+0: going to send OOB info to master
+0: sent OOB info to master, error system:0
+Got OOB info from 0
+Got OOB info from 1
+Got OOB info from 2
+Got OOB info from 3
+Got OOB info from 4
+Got OOB info from 5
+Got OOB info from 6
+Got OOB info from 7
+Got OOB info from 8
+Got OOB info from 9
+Got OOB info from 10
+Got OOB info from 11
+Got OOB info from 12
+Got OOB info from 13
+Got OOB info from 14
+Got OOB info from 15
+Got OOB info from 16
+Got OOB info from 17
+Got OOB info from 18
+Got OOB info from 19
+Got OOB info from 20
+Got OOB info from 21
+Got OOB info from 22
+Got OOB info from 23
+Got OOB info from 24
+Got OOB info from 25
+Got OOB info from 26
+Got OOB info from 27
+Got OOB info from 28
+Got OOB info from 29
+Got OOB info from 30
+Got OOB info from 31
+Got OOB info from 32
+Got OOB info from 33
+Got OOB info from 34
+Got OOB info from 35
+Got OOB info from 36
+Got OOB info from 37
+Got OOB info from 38
+Got OOB info from 39
+Got OOB info from 40
+Got OOB info from 41
+Got OOB info from 42
+Got OOB info from 43
+Got OOB info from 44
+Got OOB info from 45
+Got OOB info from 46
+Got OOB info from 47
+Got OOB info from 48
+Got OOB info from 49
+Got OOB info from 50
+Got OOB info from 51
+Got OOB info from 52
+Got OOB info from 53
+Got OOB info from 54
+Got OOB info from 55
+Got OOB info from 56
+Got OOB info from 57
+Got OOB info from 58
+Got OOB info from 59
+Got OOB info from 60
+Got OOB info from 61
+Got OOB info from 62
+Got OOB info from 63
+Got OOB info from 64
+Wrote OOB info to 0
+Wrote OOB info to 1
+Wrote OOB info to 2
+Wrote OOB info to 3
+Wrote OOB info to 4
+Wrote OOB info to 5
+Wrote OOB info to 6
+Wrote OOB info to 7
+Wrote OOB info to 8
+Peer 1
+  value address = 0x7ff430999000
+  value rkey = 0x38018242
+Wrote OOB info to   cache address = 0x7ff3aa395000
+  cache rkey = 0x38018342
+  QP number = 18585
+  PSN number = 7982065
+  max.atomic = 16
+  LID = 0x95
+Peer 2
+  value address = 0x7ff430fc7000
+  value rkey = 0x50017205
+  cache address = 0x7ff3aa9c3000
+  cache rkey = 0x50017305
+  QP number = 18156
+  PSN number = 13175817
+  max.atomic = 16
+  LID = 0x96
+Peer 3
+  value address = 0x7ff430fa7000
+  value rkey = 0xf0017aa0
+  cache address = 0x7ff3aa9a3000
+  cache rkey = 0xf0017ba0
+  QP number = 18266
+  PSN number = 15974816
+  max.atomic = 16
+  LID = 0x15
+Peer 4
+  value address = 0x7ff430fc7000
+  value rkey = 0x60017234
+  cache address = 0x7ff3aa9c3000
+  cache rkey = 0x60017334
+  QP number = 18352
+  PSN number = 1217417
+  max.atomic = 16
+  LID = 0x14
+Peer 5
+  value address = 0x9
+7ff4310db000
+  value rkey = 0xd00172ce
+  cache address = 0x7ff3aaad7000
+  cache rkey = 0xd00173ce
+  QP number = 18933
+  PSN number = 486836
+Wrote OOB info to   max.atomic = 16
+  LID = 0x13
+Peer 10
+6
+  value address = 0x7ff431091000
+  value rkey = 0xb8017a8e
+  cache address = 0x7ff3aaa8d000
+  cache rkey = 0xb8017b8e
+  QP number = 16897
+  PSN number = 16071998
+  max.atomic = 16
+  LID = 0x97
+Peer 7
+  value address = 0x7ff431186000
+  value rkey = 0xc8018228
+  cache address = 0x7ff3aab82000
+  cache rkey = 0xc8018328
+  QP number = 20206
+  PSN number = 1724305
+  max.atomic = 16
+  LID = 0x82
+Peer 8
+  value address = 0x7ff430fc7000
+  value rkey = 0x280172f3
+  cache address = 0x7ff3aa9c3000
+  cache rkey = 0x280173f3
+  QP number = 19166
+  PSN number = 2656098
+  max.atomic = 16
+  LID = 0x83
+Peer Wrote OOB info to 911
+
+  value address = 0x7ff430fda000
+  value rkey = 0xc8016aea
+  cache address = 0x7ff3aa9d6000
+  cache rkey = 0xc8016bea
+  QP number = 368437
+  PSN number = 1138438
+  max.atomic = 16
+  LID = 0x92
+Peer 10
+  value address = 0x7ff430fa7000
+  value rkey = 0x280172db
+  cache address = 0x7ff3aa9a3000
+Wrote OOB info to 12
+  cache rkey = 0x280173db
+  QP number = 20145
+  PSN number = 941734
+  max.atomic = 16
+  LID = 0x84
+Peer 11
+  value address = 0x7ff430ffc000
+  value rkey = 0xe8016afe
+  cache address = 0xWrote OOB info to 137ff3aa9f8000
+
+  cache rkey = 0xe8016bfe
+  QP number = 20840
+  PSN number = 9866811
+  max.atomic = Wrote OOB info to 1416
+
+  LID = 0x85
+Peer 12
+  value address = 0x7ff4312ad000
+  value rkey = 0xf801728e
+  cache address = 0x7ff3aaca9000
+  cache rkey = 0xf801738e
+  QP number = 476319
+  PSN number = 16413875
+  max.atomic = 16
+Wrote OOB info to   LID = 0x86
+Peer 13
+  value address = 0x7ff41afb1000
+  value rkey = 0x162de
+  cache address = 0x7ff3949ad000
+  cache rkey = 0x163de
+  QP number = 475935
+  PSN number = 2084747
+  max.atomic = 16
+  LID = 0x93
+Peer 14
+  value address = 0x7ff4313e3000
+  value rkey = 0x58016a31
+  cache address = 0x7ff3aaddf000
+  cache rkey = 0x58016b31
+  QP number = 475648
+  PSN number = 4893626
+  max.atomic = 16
+  LID = 0x8715
+
+Peer 15
+  value address = 0x7ff430c3a000
+  value rkey = 0xe80162c5
+  cache address = 0x7ff3aa636000
+  cache rkey = 0xe80163c5
+  QP number = 475223
+  PSN number = 42229
+Wrote OOB info to   max.atomic = 16
+  LID = 0x79
+Peer 16
+  value address = 0x7ff430fc7000
+  value rkey = 0x16
+a0017248
+  cache address = 0x7ff3aa9c3000
+  cache rkey = 0xa0017348
+  QP number = 476445
+Wrote OOB info to   PSN number = 16520506
+  max.atomic = 16
+  LID = 0x88
+Peer 17
+  value address = 0x7ff431326000
+  value rkey = 0x10015a5f
+  cache address = 0x7ff3aad22000
+  cache rkey = 0x10015b5f
+  QP number = 475746
+  PSN number = 1382413
+  max.atomic = 16
+  LID = 0x91
+Peer 18
+  value address = 0x7ff430ffc000
+  value rkey = 0x40016a72
+  cache address = 0x7ff3aa9f8000
+17  cache rkey = 0x40016b72
+  QP number = 472046
+  PSN number = 1192688
+  max.atomic = 16
+
+  LID = 0x12
+Peer 19
+  value address = 0x7ff43142f000
+  value rkey = 0xb8015a22
+  cache address = 0x7ff3aae2b000
+  cache rkey = 0xb8015b22
+  QP number = 21139
+  PSN number = 3077722
+  max.atomic = 16
+  LID = 0x25
+Peer 20
+  value address = 0x7ff4313e3000
+  value rkey = 0x80016aae
+  cache address = 0x7ff3aaddf000
+  cache rkey = 0x80016bae
+  QP number = 55240
+  PSN number = 6282986
+  max.atomic = 16
+  LID = 0x90
+Peer Wrote OOB info to 1821
+  value address = 0x7ff41acb1000
+  value rkey = 0xb00162da
+  cache address = 0x7ff3946ad000
+  cache rkey = 0x
+b00163da
+  QP number = 508608
+  PSN number = 5214806
+  max.atomic = 16
+  LID = 0x94
+Peer 22
+  value address = 0x7ff41a6b1000
+  value rkey = 0xe001628f
+  cache address = 0x7ff3940ad000
+  cache rkey = 0xe001638f
+  QP number = 14374
+  PSN number = 1711861
+  max.atomic = 16
+  LID = 0x47
+Peer 23
+  value address = 0x7ff43142f000
+  value rkey = 0xf8015a56
+  cache address = 0x7ff3aae2b000
+  cache rkey = 0xf8015b56
+  QP number = 12689
+  PSN number = 11027679
+  max.atomic = 16
+  LID = 0x42
+Peer 24
+  value address = 0x7ff4312ad000
+  value rkey = 0xb80172d4
+  cache address = 0x7ff3aaca9000
+  cache rkey = 0xb80173d4
+  QP number = 8363
+  PSN number = 14016489
+  max.atomic = 16
+  LID = 0x43
+Peer Wrote OOB info to 1925
+  value address = 0x7ff431326000
+  value rkey = 0x60015a92
+  cache address = 0x7ff3aad22000
+  cache rkey = 0x60015b92
+  QP number = 17613
+  PSN number = 9833916
+  max.atomic = 16
+  LID = 0x46
+Peer 26
+  value address = 0x7ff431304000
+  value rkey = 0x60016210
+  cache address = 0x7ff3aad00000
+  cache rkey = 0x60016310
+  QP number = 102344
+  PSN number = 6283576
+  max.atomic = 16
+  LID = 0x98
+Peer 27
+  value address = 0x7ff43100d000
+  value rkey = 0x90016289
+
+  cache address = 0x7ff3aaa09000
+  cache rkey = 0x90016389
+  QP number = 227682
+  PSN number = 13994779Wrote OOB info to 20
+  max.atomic = 16
+  LID = 0x99
+Peer 28
+  value address = 0x7ff430fa7000
+  value rkey = 0xf8017283
+  cache address = 0x7ff3aa9a3000
+
+  cache rkey = 0xf8017383
+  QP number = 150574
+  PSN number = 4329058
+  max.atomic = 16
+  LID = 0x101
+Peer 29
+  value address = 0x7ff43101e000
+  value rkey = 0xc80162b5
+  cache address = 0x7ff3aaa1a000
+  cache rkey = 0xc80163b5
+  QP number = Wrote OOB info to 21157052
+  PSN number = 9204682
+  max.atomic = 16
+  LID = 0x106
+Peer 30
+  value address = 0x7ff430fdc000
+  value rkey = 0x48016a18
+  cache address = 0x7ff3aa9d8000
+  cache rkey = 0x48016b18
+
+  QP number = 159863
+  PSN number = 15390030
+  max.atomic = 16
+  LID = 0x100
+Wrote OOB info to Peer 31
+  value address = 0x7ff4313d1000
+  value rkey = 0x400162dc
+  cache address = 0x7ff3aadcd000
+  cache rkey = 0x400163dc
+  QP number = 156290
+  PSN number = 3651074
+  max.atomic = 16
+  LID = 0x37
+Peer 32
+  value address = 0x7ff430aab000
+  value rkey = 0x980182b3
+  cache address = 0x7ff3aa4a7000
+  cache rkey = 0x980183b3
+  QP number = 150197
+  PSN number = 4346877
+  max.atomic = 16
+  LID = 0x40
+Peer 33
+  value address = 0x7ff41a6b1000
+  value rkey = 0x90015284
+  cache address = 0x7ff3940ad000
+  cache rkey = 0x90015384
+  QP number = 142804
+  PSN number = 12953821
+  max.atomic = 16
+  LID = 0x110
+Peer 22
+34
+  value address = 0x7ff43142f000
+  value rkey = 0xd0015a23
+  cache address = 0x7ff3aae2b000
+Wrote OOB info to   cache rkey = 0xd0015b23
+  QP number = 143450
+  PSN number = 13174623
+  max.atomic = 16
+  LID = 0x102
+Peer 35
+  value address = 0x7ff431040000
+  value rkey = 0x10015a3b
+  cache address = 0x7ff3aaa3c000
+23
+  cache rkey = 0x10015b3b
+  QP number = 151752
+  PSN number = 15328291
+  max.atomic = 16Wrote OOB info to 24
+  LID = 0x103
+Peer 36
+  value address = 0x7ff41a5b1000
+  value rkey = 0xb801623e
+  cache address = 0x7ff393fad000
+  cache rkey = 0xb801633e
+  QP number = 159518
+  PSN number = 7371104
+  max.atomic = 16
+  LID = 0x104
+Peer 37
+  value address = 0x7ff41aab1000
+  value rkey = 0xb8015a33
+  cache address = 0x7ff3944ad000
+  cache rkey = 0xb8015b33
+  QP number = 166677
+  PSN number = 12929761
+  max.atomic = 16
+  LID = 0x105
+Peer 38
+  value address = 0x7ff41a6b1000
+  value rkey = 0x15a97
+  cache address = 0x7ff3940ad000
+  cache rkey = 0x15b97
+  QP number = 173805
+  PSN number = 4756553
+  max.atomic = 16
+  LID = 0x107
+Peer 39
+  value address = 0x7ff431040000
+  value rkey = 0x48015af4
+
+  cache address = 0x7ff3aaa3c000
+  cache rkey = 0x48015bf4
+  QP number = 182113
+  PSN number = 12566083
+  max.atomic = 16
+  LID = 0x109
+Peer 40
+  value address = 0x7ff430fc7000
+  value rkey = 0xb0017252
+  cache address = 0x7ff3aa9c3000
+Wrote OOB info to 25  cache rkey = 0xb0017352
+  QP number = 191553
+  PSN number = 8208397
+  max.atomic = 16
+  LID = 0x108
+Peer 41
+  value address = 0x7ff41afb1000
+  value rkey = 0xf801525f
+  cache address = 0x7ff3949ad000
+  cache rkey = 0xf801535f
+
+  QP number = 199714
+  PSN number = 14675704
+  max.atomic = 16
+  LID = 0x111
+Peer 42
+  value address = 0x7ff431127000
+  value rkey = 0x801629a
+  cache address = 0x7ff3aab23000
+Wrote OOB info to   cache rkey = 0x801639a
+  QP number = 17775
+  PSN number = 12718039
+  max.atomic = 16
+  LID = 0x124
+Peer 43
+  value address = 0x7ff431149000
+  value rkey = 0x80015a89
+  cache address = 0x7ff3aab45000
+  cache rkey = 0x80015b89
+  QP number = 17694
+  PSN number = 11612074
+  max.atomic = 16
+  LID = 0x130
+Peer 4426
+
+  value address = 0x7ff431105000
+  value rkey = 0xc8016a41
+  cache address = 0x7ff3aab01000
+  cache rkey = 0xc8016b41
+  QP number = 17749
+  PSN number = 2491217
+  max.atomic = 16
+  LID = 0xWrote OOB info to 27126
+Peer 45
+  value address = 0x7ff431451000
+  value rkey = 0x7001528b
+  cache address = 0x7ff3aae4d000
+  cache rkey = 0x7001538b
+  QP number = 17711
+  PSN number = 12492657
+  max.atomic = 16
+  LID = 0x125
+Peer 46
+  value address = 0x7ff43101e000
+  value rkey = 0xa8016234
+
+  cache address = 0x7ff3aaa1a000
+  cache rkey = 0xa8016334
+  QP number = 17609
+  PSN number = 11136147
+  max.atomic = 16Wrote OOB info to 28
+  LID = 0x81
+Peer 47
+  value address = 0x7ff41afb1000
+  value rkey = 0x98015232
+  cache address = 0x7ff3949ad000
+  cache rkey = 0x98015332
+  QP number = 17677
+  PSN number = 10945015
+  max.atomic = 16
+  LID = 0x129
+Peer 48
+  value address = 0x7ff4313b9000
+  value rkey = 0x600172b5
+  cache address = 0x7ff3aadb5000
+  cache rkey = 0x600173b5
+  QP number = 17614
+  PSN number = 2131836
+  max.atomic = 16
+  LID = 0x74
+Peer 49
+  value address = 0x7ff431040000
+  value rkey = 0x
+a8015a35
+  cache address = 0x7ff3aaa3c000
+  cache rkey = 0xa8015b35
+Wrote OOB info to   QP number = 188808
+  PSN number = 8238299
+  max.atomic = 16
+  LID = 0x131
+Peer 50
+  value address = 0x7ff43101e000
+  value rkey = 0xc80162c4
+  cache address = 0x7ff3aaa1a000
+  cache rkey = 0xc80163c4
+  QP number = 162528
+  PSN number = 8898087
+  max.atomic = 16
+  LID = 0x112
+Peer 51
+  value address = 0x7ff431335000
+  value rkey = 0x980152d5
+  cache address = 0x7ff3aad3100029
+
+  cache rkey = 0x980153d5
+  QP number = 172137
+  PSN number = Wrote OOB info to 3015795438
+  max.atomic = 16
+  LID = 0x113
+Peer 52
+  value address = 0x
+7ff430ffc000
+  value rkey = 0x70016a36
+  cache address = 0x7ff3aa9f8000
+  cache rkey = 0x70016b36Wrote OOB info to 31
+  QP number = 180619
+  PSN number = 11158224
+  max.atomic = 16
+  LID = 0x114
+Peer 53
+  value address = 0x7ff431149000
+  value rkey = 0x70015a3f
+  cache address = 0x7ff3aab45000
+
+  cache rkey = 0x70015b3f
+  QP number = 186461
+  PSN number = 1491931
+  max.atomic = 16
+  LID = 0x70
+Peer 54
+  value address = 0x7ff431127000
+  value rkey = 0xe0016270
+  cache address = 0x7ff3aab23000
+  cache rkey = 0xe0016370
+  QP number = 192987
+  PSN number = 15001373
+  max.atomic = 16
+  LID = 0x119
+Peer 55
+  value address = 0x7ff4313f3000
+  value rkey = 0x8015af7
+  cache address = 0x7ff3aadef000
+  cache rkey = 0x8015bf7
+  QP number = 202413
+  PSN number = Wrote OOB info to 328639908
+  max.atomic = 16
+  LID = 0x122
+Peer 56
+  value address = 0x7ff4313e3000
+  value rkey = 0xf0016af7
+  cache address = 0x7ff3aaddf000
+
+  cache rkey = 0xf0016bf7
+  QP number = 204507
+  PSN number = 11003933
+  max.atomic = 16
+  LID = 0x121
+Peer 57
+  value address = 0x7ff43133c000
+  value rkey = 0x90015282
+  cache address = 0x7ff3aad38000
+  cache rkey = 0x90015382
+  QP number = 172899
+  PSN number = 14655011
+Wrote OOB info to   max.atomic = 16
+  LID = 0x68
+Peer 58
+  value address = 0x7ff431127000
+  value rkey = 0x33
+880162c9
+  cache address = 0x7ff3aab23000
+  cache rkey = 0x880163c9
+  QP number = 184684
+Wrote OOB info to   PSN number = 13340215
+  max.atomic = 16
+  LID = 0x115
+Peer 59
+34  value address = 0x7ff431040000
+  value rkey = 0x18015a5e
+  cache address = 0x7ff3aaa3c000
+  cache rkey = 0x18015b5e
+  QP number = 
+230131
+  PSN number = 5165121
+  max.atomic = 16
+  LID = 0xWrote OOB info to 35120
+
+Peer 60
+  value address = 0x7ff41a2b1000
+  value rkey = 0x80016a9c
+  cache address = 0x7ff393cad000
+  cache rkey = 0x80016b9c
+  QP number = 200043
+  PSN number = 13494505
+  max.atomic = 16
+  LID = 0x116
+Peer 61
+  value address = 0x7ff41a3b1000
+  value rkey = 0x8015a1e
+  cache address = 0x7ff393dad000
+  cache rkey = 0x8015b1e
+  QP number = 211308
+  PSN number = 7282068
+  max.atomic = 16
+  LID = 0x127
+Peer 62
+  value address = 0x7ff431326000
+  value rkey = 0x15a0f
+  cache address = 0x7ff3aad22000
+  cache rkey = 0x15b0f
+  QP number = 172480
+  PSN number = 8208640
+  max.atomic = 16
+  LID = 0x118
+Wrote OOB info to 36Peer 63
+  value address = 0x7ff431149000
+  value rkey = 0xb8015a25
+  cache address = 0x7ff3aab45000
+  cache rkey = 0xb8015b25
+  QP number = 184511
+  PSN number = 8608041
+  max.atomic = 16
+  LID = 0x117
+Peer 64
+  value address = 0x7ff431435000
+  value rkey = 0x10013f84
+  cache address = 0x7ff3aae31000
+
+  cache rkey = 0x10014084
+  QP number = 250264
+  PSN number = 8800079
+  max.atomic = 16
+  LID = 0x123
+Wrote OOB info to 37
+Wrote OOB info to 38
+Wrote OOB info to 39
+Wrote OOB info to 40
+Wrote OOB info to 41
+Wrote OOB info to 42
+Wrote OOB info to 43
+Wrote OOB info to 44
+Wrote OOB info to 45
+Wrote OOB info to 46
+Wrote OOB info to 47
+Wrote OOB info to 48
+Wrote OOB info to 49
+Wrote OOB info to 50
+Wrote OOB info to 51
+Wrote OOB info to 52
+Wrote OOB info to 53
+Wrote OOB info to 54
+Wrote OOB info to 55
+Wrote OOB info to 56
+Wrote OOB info to 57
+Wrote OOB info to 58
+Wrote OOB info to 59
+Wrote OOB info to 60
+Wrote OOB info to 61
+Wrote OOB info to 62
+Wrote OOB info to 63
+Wrote OOB info to 64
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 0.369072MB
+Master is not a worker, does not host pi values
+
+run():DKV Pipeline server runs
+1018 63.747 Memory usage: total 9294MB resident 8069MB 
+average_count is: 2 step count: 1 time: 112.708 perplexity for hold out set: 6.584305286407
+average_count is: 3 step count: 51 time: 363.557 perplexity for hold out set: 6.531523227692
+average_count is: 4 step count: 101 time: 586.613 perplexity for hold out set: 6.501593589783
+average_count is: 5 step count: 151 time: 830.434 perplexity for hold out set: 6.478916168213
+average_count is: 6 step count: 201 time: 1075.234 perplexity for hold out set: 6.461033344269
+average_count is: 7 step count: 251 time: 1299.173 perplexity for hold out set: 6.446728229523
+average_count is: 8 step count: 301 time: 1514.504 perplexity for hold out set: 6.435103893280
+average_count is: 9 step count: 351 time: 1732.775 perplexity for hold out set: 6.425185680389
+average_count is: 10 step count: 401 time: 1949.966 perplexity for hold out set: 6.416562080383
+average_count is: 11 step count: 451 time: 2227.219 perplexity for hold out set: 6.409092426300
+average_count is: 12 step count: 501 time: 2459.640 perplexity for hold out set: 6.402535915375
+average_count is: 13 step count: 551 time: 2719.480 perplexity for hold out set: 6.396591186523
+average_count is: 14 step count: 601 time: 2938.136 perplexity for hold out set: 6.391166687012
+average_count is: 15 step count: 651 time: 3197.236 perplexity for hold out set: 6.386144161224
+average_count is: 16 step count: 701 time: 3448.595 perplexity for hold out set: 6.381468296051
+average_count is: 17 step count: 751 time: 3697.678 perplexity for hold out set: 6.377206325531
+average_count is: 18 step count: 801 time: 3995.606 perplexity for hold out set: 6.373299598694
+average_count is: 19 step count: 851 time: 4287.411 perplexity for hold out set: 6.369670391083
+average_count is: 20 step count: 901 time: 4516.349 perplexity for hold out set: 6.366288185120
+average_count is: 21 step count: 951 time: 4737.738 perplexity for hold out set: 6.363087654114
+average_count is: 22 step count: 1001 time: 5029.411 perplexity for hold out set: 6.360078811646
+average_count is: 23 step count: 1051 time: 5255.585 perplexity for hold out set: 6.357193946838
+average_count is: 24 step count: 1101 time: 5551.519 perplexity for hold out set: 6.354483127594
+average_count is: 25 step count: 1151 time: 5878.879 perplexity for hold out set: 6.351928234100
+average_count is: 26 step count: 1201 time: 6153.127 perplexity for hold out set: 6.349524021149
+average_count is: 27 step count: 1251 time: 6392.950 perplexity for hold out set: 6.347225666046
+average_count is: 28 step count: 1301 time: 6679.161 perplexity for hold out set: 6.345061302185
+average_count is: 29 step count: 1351 time: 6935.918 perplexity for hold out set: 6.342980861664
+average_count is: 30 step count: 1401 time: 7240.085 perplexity for hold out set: 6.341006755829
+average_count is: 31 step count: 1451 time: 7490.880 perplexity for hold out set: 6.339121818542
+average_count is: 32 step count: 1501 time: 7796.576 perplexity for hold out set: 6.337326526642
+average_count is: 33 step count: 1551 time: 8083.769 perplexity for hold out set: 6.335591316223
+average_count is: 34 step count: 1601 time: 8337.643 perplexity for hold out set: 6.333937168121
+average_count is: 35 step count: 1651 time: 8606.736 perplexity for hold out set: 6.332353115082
+average_count is: 36 step count: 1701 time: 8908.505 perplexity for hold out set: 6.330830097198
+average_count is: 37 step count: 1751 time: 9194.599 perplexity for hold out set: 6.329371452332
+average_count is: 38 step count: 1801 time: 9466.785 perplexity for hold out set: 6.327967643738
+average_count is: 39 step count: 1851 time: 9756.900 perplexity for hold out set: 6.326601982117
+average_count is: 40 step count: 1901 time: 10078.026 perplexity for hold out set: 6.325282096863
+average_count is: 41 step count: 1951 time: 10354.407 perplexity for hold out set: 6.324010848999
+average_count is: 42 step count: 2001 time: 10621.001 perplexity for hold out set: 6.322788715363
+average_count is: 43 step count: 2051 time: 10932.786 perplexity for hold out set: 6.321594715118
+average_count is: 44 step count: 2101 time: 11173.374 perplexity for hold out set: 6.320436954498
+average_count is: 45 step count: 2151 time: 11447.045 perplexity for hold out set: 6.319310665131
+average_count is: 46 step count: 2201 time: 11669.962 perplexity for hold out set: 6.318218231201
+average_count is: 47 step count: 2251 time: 11924.539 perplexity for hold out set: 6.317154884338
+average_count is: 48 step count: 2301 time: 12208.473 perplexity for hold out set: 6.316120624542
+average_count is: 49 step count: 2351 time: 12480.194 perplexity for hold out set: 6.315119266510
+average_count is: 50 step count: 2401 time: 12726.105 perplexity for hold out set: 6.314155101776
+average_count is: 51 step count: 2451 time: 13034.309 perplexity for hold out set: 6.313210010529
+average_count is: 52 step count: 2501 time: 13288.523 perplexity for hold out set: 6.312299251556
+average_count is: 53 step count: 2551 time: 13552.222 perplexity for hold out set: 6.311399936676
+average_count is: 54 step count: 2601 time: 13814.880 perplexity for hold out set: 6.310534000397
+average_count is: 55 step count: 2651 time: 14116.581 perplexity for hold out set: 6.309683799744
+average_count is: 56 step count: 2701 time: 14389.608 perplexity for hold out set: 6.308854579926
+average_count is: 57 step count: 2751 time: 14634.671 perplexity for hold out set: 6.308051109314
+average_count is: 58 step count: 2801 time: 14869.753 perplexity for hold out set: 6.307264328003
+average_count is: 59 step count: 2851 time: 15097.496 perplexity for hold out set: 6.306496143341
+average_count is: 60 step count: 2901 time: 15333.831 perplexity for hold out set: 6.305748462677
+average_count is: 61 step count: 2951 time: 15610.314 perplexity for hold out set: 6.305016994476
+average_count is: 62 step count: 3001 time: 15860.100 perplexity for hold out set: 6.304302692413
+average_count is: 63 step count: 3051 time: 16160.221 perplexity for hold out set: 6.303606033325
+average_count is: 64 step count: 3101 time: 16467.508 perplexity for hold out set: 6.302925109863
+average_count is: 65 step count: 3151 time: 16755.783 perplexity for hold out set: 6.302259445190
+average_count is: 66 step count: 3201 time: 17052.741 perplexity for hold out set: 6.301605224609
+average_count is: 67 step count: 3251 time: 17324.556 perplexity for hold out set: 6.300966262817
+average_count is: 68 step count: 3301 time: 17633.009 perplexity for hold out set: 6.300341606140
+average_count is: 69 step count: 3351 time: 17895.947 perplexity for hold out set: 6.299742221832
+average_count is: 70 step count: 3401 time: 18178.232 perplexity for hold out set: 6.299143791199
+average_count is: 71 step count: 3451 time: 18435.209 perplexity for hold out set: 6.298554897308
+average_count is: 72 step count: 3501 time: 18670.924 perplexity for hold out set: 6.297980308533
+average_count is: 73 step count: 3551 time: 18972.734 perplexity for hold out set: 6.297418594360
+average_count is: 74 step count: 3601 time: 19213.172 perplexity for hold out set: 6.296865463257
+average_count is: 75 step count: 3651 time: 19461.914 perplexity for hold out set: 6.296321868896
+average_count is: 76 step count: 3701 time: 19713.284 perplexity for hold out set: 6.295798301697
+average_count is: 77 step count: 3751 time: 19950.377 perplexity for hold out set: 6.295276165009
+average_count is: 78 step count: 3801 time: 20281.270 perplexity for hold out set: 6.294767379761
+average_count is: 79 step count: 3851 time: 20532.765 perplexity for hold out set: 6.294266700745
+average_count is: 80 step count: 3901 time: 20810.613 perplexity for hold out set: 6.293775081635
+average_count is: 81 step count: 3951 time: 21082.178 perplexity for hold out set: 6.293292999268
+average_count is: 82 step count: 4001 time: 21351.185 perplexity for hold out set: 6.292817592621
+average_count is: 83 step count: 4051 time: 21580.584 perplexity for hold out set: 6.292351245880
+average_count is: 84 step count: 4101 time: 21836.432 perplexity for hold out set: 6.291892528534
+average_count is: 85 step count: 4151 time: 22118.268 perplexity for hold out set: 6.291444778442
+average_count is: 86 step count: 4201 time: 22368.786 perplexity for hold out set: 6.291005134583
+average_count is: 87 step count: 4251 time: 22638.883 perplexity for hold out set: 6.290571212769
+average_count is: 88 step count: 4301 time: 22943.961 perplexity for hold out set: 6.290152549744
+average_count is: 89 step count: 4351 time: 23241.034 perplexity for hold out set: 6.289733886719
+average_count is: 90 step count: 4401 time: 23496.811 perplexity for hold out set: 6.289321422577
+average_count is: 91 step count: 4451 time: 23814.253 perplexity for hold out set: 6.288918972015
+average_count is: 92 step count: 4501 time: 24058.242 perplexity for hold out set: 6.288520812988
+average_count is: 93 step count: 4551 time: 24296.391 perplexity for hold out set: 6.288128852844
+average_count is: 94 step count: 4601 time: 24584.505 perplexity for hold out set: 6.287747859955
+average_count is: 95 step count: 4651 time: 24872.841 perplexity for hold out set: 6.287370204926
+average_count is: 96 step count: 4701 time: 25187.439 perplexity for hold out set: 6.286997318268
+average_count is: 97 step count: 4751 time: 25441.507 perplexity for hold out set: 6.286631107330
+average_count is: 98 step count: 4801 time: 25709.689 perplexity for hold out set: 6.286267757416
+average_count is: 99 step count: 4851 time: 25969.657 perplexity for hold out set: 6.285912990570
+average_count is: 100 step count: 4901 time: 26200.585 perplexity for hold out set: 6.285563468933
+average_count is: 101 step count: 4951 time: 26458.930 perplexity for hold out set: 6.285218715668
+average_count is: 102 step count: 5001 time: 26776.410 perplexity for hold out set: 6.284879207611
+average_count is: 103 step count: 5051 time: 27018.905 perplexity for hold out set: 6.284546852112
+average_count is: 104 step count: 5101 time: 27343.547 perplexity for hold out set: 6.284217834473
+average_count is: 105 step count: 5151 time: 27616.025 perplexity for hold out set: 6.283894062042
+average_count is: 106 step count: 5201 time: 27860.594 perplexity for hold out set: 6.283574104309
+average_count is: 107 step count: 5251 time: 28155.711 perplexity for hold out set: 6.283259391785
+average_count is: 108 step count: 5301 time: 28432.244 perplexity for hold out set: 6.282951831818
+average_count is: 109 step count: 5351 time: 28677.709 perplexity for hold out set: 6.282645702362
+average_count is: 110 step count: 5401 time: 28935.519 perplexity for hold out set: 6.282343864441
+average_count is: 111 step count: 5451 time: 29180.961 perplexity for hold out set: 6.282045841217
+average_count is: 112 step count: 5501 time: 29460.175 perplexity for hold out set: 6.281753063202
+average_count is: 113 step count: 5551 time: 29761.258 perplexity for hold out set: 6.281462669373
+average_count is: 114 step count: 5601 time: 30002.631 perplexity for hold out set: 6.281177043915
+average_count is: 115 step count: 5651 time: 30256.070 perplexity for hold out set: 6.280896186829
+average_count is: 116 step count: 5701 time: 30530.790 perplexity for hold out set: 6.280617237091
+average_count is: 117 step count: 5751 time: 30803.259 perplexity for hold out set: 6.280342578888
+average_count is: 118 step count: 5801 time: 31095.801 perplexity for hold out set: 6.280075550079
+average_count is: 119 step count: 5851 time: 31371.834 perplexity for hold out set: 6.279809474945
+average_count is: 120 step count: 5901 time: 31644.255 perplexity for hold out set: 6.279546260834
+average_count is: 121 step count: 5951 time: 31866.549 perplexity for hold out set: 6.279285430908
+average_count is: 122 step count: 6001 time: 32098.682 perplexity for hold out set: 6.279031276703
+average_count is: 123 step count: 6051 time: 32339.130 perplexity for hold out set: 6.278776168823
+average_count is: 124 step count: 6101 time: 32615.546 perplexity for hold out set: 6.278524875641
+average_count is: 125 step count: 6151 time: 32857.482 perplexity for hold out set: 6.278279304504
+average_count is: 126 step count: 6201 time: 33117.515 perplexity for hold out set: 6.278034210205
+average_count is: 127 step count: 6251 time: 33423.771 perplexity for hold out set: 6.277793407440
+average_count is: 128 step count: 6301 time: 33685.174 perplexity for hold out set: 6.277554512024
+average_count is: 129 step count: 6351 time: 33910.293 perplexity for hold out set: 6.277319431305
+average_count is: 130 step count: 6401 time: 34138.183 perplexity for hold out set: 6.277087211609
+average_count is: 131 step count: 6451 time: 34414.219 perplexity for hold out set: 6.276856899261
+average_count is: 132 step count: 6501 time: 34690.804 perplexity for hold out set: 6.276630878448
+average_count is: 133 step count: 6551 time: 34955.442 perplexity for hold out set: 6.276406764984
+average_count is: 134 step count: 6601 time: 35238.521 perplexity for hold out set: 6.276184558868
+average_count is: 135 step count: 6651 time: 35558.742 perplexity for hold out set: 6.275964736938
+average_count is: 136 step count: 6701 time: 35865.661 perplexity for hold out set: 6.275748252869
+average_count is: 137 step count: 6751 time: 36098.634 perplexity for hold out set: 6.275534152985
+average_count is: 138 step count: 6801 time: 36367.398 perplexity for hold out set: 6.275323390961
+average_count is: 139 step count: 6851 time: 36629.060 perplexity for hold out set: 6.275113582611
+average_count is: 140 step count: 6901 time: 36874.944 perplexity for hold out set: 6.274905681610
+average_count is: 141 step count: 6951 time: 37105.624 perplexity for hold out set: 6.274702072144
+average_count is: 142 step count: 7001 time: 37332.699 perplexity for hold out set: 6.274500846863
+average_count is: 143 step count: 7051 time: 37614.290 perplexity for hold out set: 6.274301528931
+average_count is: 144 step count: 7101 time: 37871.484 perplexity for hold out set: 6.274105072021
+average_count is: 145 step count: 7151 time: 38164.663 perplexity for hold out set: 6.273910999298
+average_count is: 146 step count: 7201 time: 38459.372 perplexity for hold out set: 6.273717403412
+average_count is: 147 step count: 7251 time: 38721.572 perplexity for hold out set: 6.273526668549
+average_count is: 148 step count: 7301 time: 38970.204 perplexity for hold out set: 6.273336410522
+average_count is: 149 step count: 7351 time: 39262.661 perplexity for hold out set: 6.273150444031
+average_count is: 150 step count: 7401 time: 39558.036 perplexity for hold out set: 6.272965431213
+average_count is: 151 step count: 7451 time: 39784.039 perplexity for hold out set: 6.272781848907
+average_count is: 152 step count: 7501 time: 40047.943 perplexity for hold out set: 6.272602081299
+average_count is: 153 step count: 7551 time: 40283.110 perplexity for hold out set: 6.272422313690
+average_count is: 154 step count: 7601 time: 40584.110 perplexity for hold out set: 6.272245883942
+average_count is: 155 step count: 7651 time: 40904.929 perplexity for hold out set: 6.272070884705
+average_count is: 156 step count: 7701 time: 41192.910 perplexity for hold out set: 6.271897315979
+average_count is: 157 step count: 7751 time: 41518.255 perplexity for hold out set: 6.271728515625
+average_count is: 158 step count: 7801 time: 41811.963 perplexity for hold out set: 6.271557807922
+average_count is: 159 step count: 7851 time: 42088.005 perplexity for hold out set: 6.271389484406
+average_count is: 160 step count: 7901 time: 42357.222 perplexity for hold out set: 6.271224498749
+average_count is: 161 step count: 7951 time: 42641.264 perplexity for hold out set: 6.271058559418
+average_count is: 162 step count: 8001 time: 42956.423 perplexity for hold out set: 6.270896434784
+average_count is: 163 step count: 8051 time: 43228.893 perplexity for hold out set: 6.270736694336
+average_count is: 164 step count: 8101 time: 43504.277 perplexity for hold out set: 6.270576953888
+average_count is: 165 step count: 8151 time: 43748.529 perplexity for hold out set: 6.270420074463
+average_count is: 166 step count: 8201 time: 43982.282 perplexity for hold out set: 6.270264148712
+average_count is: 167 step count: 8251 time: 44218.767 perplexity for hold out set: 6.270108699799
+average_count is: 168 step count: 8301 time: 44506.396 perplexity for hold out set: 6.269954204559
+average_count is: 169 step count: 8351 time: 44797.111 perplexity for hold out set: 6.269802570343
+average_count is: 170 step count: 8401 time: 45058.352 perplexity for hold out set: 6.269652366638
+average_count is: 171 step count: 8451 time: 45362.093 perplexity for hold out set: 6.269503593445
+average_count is: 172 step count: 8501 time: 45649.147 perplexity for hold out set: 6.269355297089
+average_count is: 173 step count: 8551 time: 45908.607 perplexity for hold out set: 6.269208431244
+average_count is: 174 step count: 8601 time: 46231.418 perplexity for hold out set: 6.269065380096
+average_count is: 175 step count: 8651 time: 46513.466 perplexity for hold out set: 6.268921852112
+average_count is: 176 step count: 8701 time: 46761.940 perplexity for hold out set: 6.268780231476
+average_count is: 177 step count: 8751 time: 47054.423 perplexity for hold out set: 6.268640041351
+average_count is: 178 step count: 8801 time: 47343.593 perplexity for hold out set: 6.268500328064
+average_count is: 179 step count: 8851 time: 47613.605 perplexity for hold out set: 6.268362998962
+average_count is: 180 step count: 8901 time: 47893.456 perplexity for hold out set: 6.268225669861
+average_count is: 181 step count: 8951 time: 48121.389 perplexity for hold out set: 6.268091678619
+average_count is: 182 step count: 9001 time: 48390.446 perplexity for hold out set: 6.267956733704
+average_count is: 183 step count: 9051 time: 48718.825 perplexity for hold out set: 6.267824172974
+average_count is: 184 step count: 9101 time: 48996.310 perplexity for hold out set: 6.267693042755
+average_count is: 185 step count: 9151 time: 49257.081 perplexity for hold out set: 6.267564296722
+average_count is: 186 step count: 9201 time: 49543.603 perplexity for hold out set: 6.267435073853
+average_count is: 187 step count: 9251 time: 49783.721 perplexity for hold out set: 6.267306327820
+average_count is: 188 step count: 9301 time: 50059.863 perplexity for hold out set: 6.267179012299
+average_count is: 189 step count: 9351 time: 50281.104 perplexity for hold out set: 6.267053604126
+average_count is: 190 step count: 9401 time: 50534.026 perplexity for hold out set: 6.266928195953
+average_count is: 191 step count: 9451 time: 50830.529 perplexity for hold out set: 6.266804218292
+average_count is: 192 step count: 9501 time: 51111.820 perplexity for hold out set: 6.266680717468
+average_count is: 193 step count: 9551 time: 51393.787 perplexity for hold out set: 6.266562461853
+average_count is: 194 step count: 9601 time: 51669.660 perplexity for hold out set: 6.266441345215
+average_count is: 195 step count: 9651 time: 51957.709 perplexity for hold out set: 6.266322135925
+average_count is: 196 step count: 9701 time: 52223.019 perplexity for hold out set: 6.266204833984
+average_count is: 197 step count: 9751 time: 52530.870 perplexity for hold out set: 6.266087532043
+average_count is: 198 step count: 9801 time: 52845.792 perplexity for hold out set: 6.265970706940
+average_count is: 199 step count: 9851 time: 53121.407 perplexity for hold out set: 6.265855789185
+average_count is: 200 step count: 9901 time: 53426.300 perplexity for hold out set: 6.265741825104
+average_count is: 201 step count: 9951 time: 53714.372 perplexity for hold out set: 6.265627861023
+average_count is: 202 step count: 10001 time: 53957.502 perplexity for hold out set: 6.265514850616
+average_count is: 203 step count: 10051 time: 54248.370 perplexity for hold out set: 6.265406131744
+average_count is: 204 step count: 10101 time: 54503.511 perplexity for hold out set: 6.265295028687
+average_count is: 205 step count: 10151 time: 54799.860 perplexity for hold out set: 6.265185356140
+average_count is: 206 step count: 10201 time: 55067.822 perplexity for hold out set: 6.265076637268
+average_count is: 207 step count: 10251 time: 55310.644 perplexity for hold out set: 6.264968395233
+average_count is: 208 step count: 10301 time: 55659.972 perplexity for hold out set: 6.264861106873
+average_count is: 209 step count: 10351 time: 55984.737 perplexity for hold out set: 6.264755249023
+average_count is: 210 step count: 10401 time: 56256.493 perplexity for hold out set: 6.264648914337
+average_count is: 211 step count: 10451 time: 56575.562 perplexity for hold out set: 6.264544010162
+average_count is: 212 step count: 10501 time: 56843.305 perplexity for hold out set: 6.264440536499
+average_count is: 213 step count: 10551 time: 57106.548 perplexity for hold out set: 6.264337539673
+average_count is: 214 step count: 10601 time: 57363.290 perplexity for hold out set: 6.264234542847
+average_count is: 215 step count: 10651 time: 57627.840 perplexity for hold out set: 6.264133930206
+average_count is: 216 step count: 10701 time: 57932.210 perplexity for hold out set: 6.264032840729
+average_count is: 217 step count: 10751 time: 58165.145 perplexity for hold out set: 6.263934135437
+average_count is: 218 step count: 10801 time: 58509.117 perplexity for hold out set: 6.263834953308
+average_count is: 219 step count: 10851 time: 58758.098 perplexity for hold out set: 6.263736724854
+average_count is: 220 step count: 10901 time: 59026.766 perplexity for hold out set: 6.263639450073
+average_count is: 221 step count: 10951 time: 59300.388 perplexity for hold out set: 6.263543128967
+average_count is: 222 step count: 11001 time: 59552.251 perplexity for hold out set: 6.263447761536
+average_count is: 223 step count: 11051 time: 59880.807 perplexity for hold out set: 6.263353824615
+average_count is: 224 step count: 11101 time: 60150.764 perplexity for hold out set: 6.263258934021
+average_count is: 225 step count: 11151 time: 60455.036 perplexity for hold out set: 6.263165473938
+average_count is: 226 step count: 11201 time: 60691.431 perplexity for hold out set: 6.263072967529
+average_count is: 227 step count: 11251 time: 60920.085 perplexity for hold out set: 6.262981891632
+average_count is: 228 step count: 11301 time: 61164.966 perplexity for hold out set: 6.262891292572
+average_count is: 229 step count: 11351 time: 61473.516 perplexity for hold out set: 6.262800693512
+average_count is: 230 step count: 11401 time: 61783.041 perplexity for hold out set: 6.262711524963
+average_count is: 231 step count: 11451 time: 62017.391 perplexity for hold out set: 6.262621402740
+average_count is: 232 step count: 11501 time: 62304.420 perplexity for hold out set: 6.262532711029
+average_count is: 233 step count: 11551 time: 62576.365 perplexity for hold out set: 6.262444019318
+average_count is: 234 step count: 11601 time: 62804.289 perplexity for hold out set: 6.262356758118
+average_count is: 235 step count: 11651 time: 63031.579 perplexity for hold out set: 6.262269496918
+average_count is: 236 step count: 11701 time: 63276.793 perplexity for hold out set: 6.262184619904
+average_count is: 237 step count: 11751 time: 63516.016 perplexity for hold out set: 6.262098789215
+average_count is: 238 step count: 11801 time: 63762.771 perplexity for hold out set: 6.262013912201
+average_count is: 239 step count: 11851 time: 64024.130 perplexity for hold out set: 6.261929512024
+average_count is: 240 step count: 11901 time: 64290.522 perplexity for hold out set: 6.261847496033
+average_count is: 241 step count: 11951 time: 64507.630 perplexity for hold out set: 6.261763572693
+average_count is: 242 step count: 12001 time: 64774.103 perplexity for hold out set: 6.261681079865
+average_count is: 243 step count: 12051 time: 65024.605 perplexity for hold out set: 6.261598110199
+average_count is: 244 step count: 12101 time: 65299.119 perplexity for hold out set: 6.261517047882
+average_count is: 245 step count: 12151 time: 65570.121 perplexity for hold out set: 6.261435985565
+average_count is: 246 step count: 12201 time: 65835.774 perplexity for hold out set: 6.261355876923
+average_count is: 247 step count: 12251 time: 66100.891 perplexity for hold out set: 6.261276245117
+average_count is: 248 step count: 12301 time: 66445.567 perplexity for hold out set: 6.261196613312
+average_count is: 249 step count: 12351 time: 66677.021 perplexity for hold out set: 6.261117935181
+average_count is: 250 step count: 12401 time: 67007.645 perplexity for hold out set: 6.261039257050
+average_count is: 251 step count: 12451 time: 67250.801 perplexity for hold out set: 6.260962009430
+average_count is: 252 step count: 12501 time: 67537.766 perplexity for hold out set: 6.260885715485
+average_count is: 253 step count: 12551 time: 67845.156 perplexity for hold out set: 6.260808944702
+average_count is: 254 step count: 12601 time: 68118.816 perplexity for hold out set: 6.260733127594
+average_count is: 255 step count: 12651 time: 68360.901 perplexity for hold out set: 6.260657787323
+average_count is: 256 step count: 12701 time: 68593.825 perplexity for hold out set: 6.260582447052
+average_count is: 257 step count: 12751 time: 68860.379 perplexity for hold out set: 6.260507583618
+average_count is: 258 step count: 12801 time: 69135.828 perplexity for hold out set: 6.260434150696
+average_count is: 259 step count: 12851 time: 69394.498 perplexity for hold out set: 6.260361194611
+average_count is: 260 step count: 12901 time: 69661.650 perplexity for hold out set: 6.260288238525
+average_count is: 261 step count: 12951 time: 69912.765 perplexity for hold out set: 6.260216712952
+average_count is: 262 step count: 13001 time: 70181.427 perplexity for hold out set: 6.260145187378
+average_count is: 263 step count: 13051 time: 70403.731 perplexity for hold out set: 6.260075092316
+average_count is: 264 step count: 13101 time: 70726.306 perplexity for hold out set: 6.260004043579
+average_count is: 265 step count: 13151 time: 71002.890 perplexity for hold out set: 6.259933471680
+average_count is: 266 step count: 13201 time: 71336.638 perplexity for hold out set: 6.259864330292
+average_count is: 267 step count: 13251 time: 71635.614 perplexity for hold out set: 6.259794235229
+average_count is: 268 step count: 13301 time: 71914.458 perplexity for hold out set: 6.259726524353
+average_count is: 269 step count: 13351 time: 72191.471 perplexity for hold out set: 6.259657859802
+average_count is: 270 step count: 13401 time: 72444.331 perplexity for hold out set: 6.259589672089
+average_count is: 271 step count: 13451 time: 72680.287 perplexity for hold out set: 6.259521961212
+average_count is: 272 step count: 13501 time: 72980.407 perplexity for hold out set: 6.259455204010
+average_count is: 273 step count: 13551 time: 73293.732 perplexity for hold out set: 6.259387969971
+average_count is: 274 step count: 13601 time: 73587.158 perplexity for hold out set: 6.259322643280
+average_count is: 275 step count: 13651 time: 73863.882 perplexity for hold out set: 6.259256839752
+average_count is: 276 step count: 13701 time: 74147.421 perplexity for hold out set: 6.259191036224
+average_count is: 277 step count: 13751 time: 74402.965 perplexity for hold out set: 6.259125232697
+average_count is: 278 step count: 13801 time: 74623.500 perplexity for hold out set: 6.259062290192
+average_count is: 279 step count: 13851 time: 74853.942 perplexity for hold out set: 6.258998870850
+average_count is: 280 step count: 13901 time: 75134.197 perplexity for hold out set: 6.258934020996
+average_count is: 281 step count: 13951 time: 75387.241 perplexity for hold out set: 6.258871078491
+average_count is: 282 step count: 14001 time: 75642.016 perplexity for hold out set: 6.258807659149
+average_count is: 283 step count: 14051 time: 75920.790 perplexity for hold out set: 6.258744716644
+average_count is: 284 step count: 14101 time: 76182.777 perplexity for hold out set: 6.258683204651
+average_count is: 285 step count: 14151 time: 76418.170 perplexity for hold out set: 6.258621215820
+average_count is: 286 step count: 14201 time: 76667.499 perplexity for hold out set: 6.258560180664
+average_count is: 287 step count: 14251 time: 76906.283 perplexity for hold out set: 6.258498191833
+average_count is: 288 step count: 14301 time: 77175.031 perplexity for hold out set: 6.258437633514
+average_count is: 289 step count: 14351 time: 77459.419 perplexity for hold out set: 6.258377552032
+average_count is: 290 step count: 14401 time: 77695.553 perplexity for hold out set: 6.258316993713
+average_count is: 291 step count: 14451 time: 77922.585 perplexity for hold out set: 6.258257389069
+average_count is: 292 step count: 14501 time: 78196.499 perplexity for hold out set: 6.258198261261
+average_count is: 293 step count: 14551 time: 78460.693 perplexity for hold out set: 6.258139610291
+average_count is: 294 step count: 14601 time: 78723.405 perplexity for hold out set: 6.258080959320
+average_count is: 295 step count: 14651 time: 78986.511 perplexity for hold out set: 6.258022308350
+average_count is: 296 step count: 14701 time: 79210.505 perplexity for hold out set: 6.257965087891
+average_count is: 297 step count: 14751 time: 79520.116 perplexity for hold out set: 6.257908344269
+average_count is: 298 step count: 14801 time: 79772.593 perplexity for hold out set: 6.257851600647
+average_count is: 299 step count: 14851 time: 80017.809 perplexity for hold out set: 6.257794380188
+average_count is: 300 step count: 14901 time: 80258.313 perplexity for hold out set: 6.257738113403
+average_count is: 301 step count: 14951 time: 80521.435 perplexity for hold out set: 6.257682800293
+average_count is: 302 step count: 15001 time: 80750.443 perplexity for hold out set: 6.257627487183
+average_count is: 303 step count: 15051 time: 80982.068 perplexity for hold out set: 6.257571220398
+average_count is: 304 step count: 15101 time: 81212.458 perplexity for hold out set: 6.257517814636
+average_count is: 305 step count: 15151 time: 81523.563 perplexity for hold out set: 6.257462501526
+average_count is: 306 step count: 15201 time: 81762.019 perplexity for hold out set: 6.257408142090
+average_count is: 307 step count: 15251 time: 82011.004 perplexity for hold out set: 6.257354259491
+average_count is: 308 step count: 15301 time: 82251.765 perplexity for hold out set: 6.257300376892
+average_count is: 309 step count: 15351 time: 82487.236 perplexity for hold out set: 6.257246494293
+average_count is: 310 step count: 15401 time: 82699.858 perplexity for hold out set: 6.257194042206
+average_count is: 311 step count: 15451 time: 82950.390 perplexity for hold out set: 6.257141590118
+average_count is: 312 step count: 15501 time: 83200.563 perplexity for hold out set: 6.257089138031
+average_count is: 313 step count: 15551 time: 83465.540 perplexity for hold out set: 6.257037162781
+average_count is: 314 step count: 15601 time: 83728.024 perplexity for hold out set: 6.256985664368
+average_count is: 315 step count: 15651 time: 83965.299 perplexity for hold out set: 6.256933689117
+average_count is: 316 step count: 15701 time: 84231.435 perplexity for hold out set: 6.256883621216
+average_count is: 317 step count: 15751 time: 84485.224 perplexity for hold out set: 6.256832122803
+average_count is: 318 step count: 15801 time: 84721.656 perplexity for hold out set: 6.256781578064
+average_count is: 319 step count: 15851 time: 84961.812 perplexity for hold out set: 6.256731033325
+average_count is: 320 step count: 15901 time: 85176.091 perplexity for hold out set: 6.256680965424
+average_count is: 321 step count: 15951 time: 85412.327 perplexity for hold out set: 6.256631851196
+average_count is: 322 step count: 16001 time: 85652.146 perplexity for hold out set: 6.256582736969
+average_count is: 323 step count: 16051 time: 85911.698 perplexity for hold out set: 6.256533622742
+average_count is: 324 step count: 16101 time: 86166.813 perplexity for hold out set: 6.256484031677
+average_count is: 325 step count: 16151 time: 86480.246 perplexity for hold out set: 6.256435871124
+average_count is: 326 step count: 16201 time: 86756.670 perplexity for hold out set: 6.256386280060
+average_count is: 327 step count: 16251 time: 87020.508 perplexity for hold out set: 6.256338596344
+average_count is: 328 step count: 16301 time: 87259.941 perplexity for hold out set: 6.256290435791
+average_count is: 329 step count: 16351 time: 87508.329 perplexity for hold out set: 6.256243705750
+average_count is: 330 step count: 16401 time: 87816.460 perplexity for hold out set: 6.256196498871
+average_count is: 331 step count: 16451 time: 88133.750 perplexity for hold out set: 6.256149291992
+average_count is: 332 step count: 16501 time: 88391.513 perplexity for hold out set: 6.256102085114
+average_count is: 333 step count: 16551 time: 88633.417 perplexity for hold out set: 6.256055355072
+average_count is: 334 step count: 16601 time: 88887.845 perplexity for hold out set: 6.256009101868
+average_count is: 335 step count: 16651 time: 89134.164 perplexity for hold out set: 6.255963325500
+average_count is: 336 step count: 16701 time: 89416.375 perplexity for hold out set: 6.255917549133
+average_count is: 337 step count: 16751 time: 89762.942 perplexity for hold out set: 6.255871772766
+average_count is: 338 step count: 16801 time: 89985.914 perplexity for hold out set: 6.255826473236
+average_count is: 339 step count: 16851 time: 90248.597 perplexity for hold out set: 6.255781650543
+average_count is: 340 step count: 16901 time: 90502.453 perplexity for hold out set: 6.255737304688
+average_count is: 341 step count: 16951 time: 90840.320 perplexity for hold out set: 6.255692481995
+average_count is: 342 step count: 17001 time: 91124.432 perplexity for hold out set: 6.255648612976
+average_count is: 343 step count: 17051 time: 91410.190 perplexity for hold out set: 6.255604743958
+average_count is: 344 step count: 17101 time: 91709.530 perplexity for hold out set: 6.255560874939
+average_count is: 345 step count: 17151 time: 91958.989 perplexity for hold out set: 6.255517959595
+average_count is: 346 step count: 17201 time: 92266.447 perplexity for hold out set: 6.255473613739
+average_count is: 347 step count: 17251 time: 92492.070 perplexity for hold out set: 6.255431652069
+average_count is: 348 step count: 17301 time: 92705.032 perplexity for hold out set: 6.255388259888
+average_count is: 349 step count: 17351 time: 92977.912 perplexity for hold out set: 6.255345344543
+average_count is: 350 step count: 17401 time: 93289.584 perplexity for hold out set: 6.255302906036
+average_count is: 351 step count: 17451 time: 93552.281 perplexity for hold out set: 6.255260467529
+average_count is: 352 step count: 17501 time: 93870.302 perplexity for hold out set: 6.255218982697
+average_count is: 353 step count: 17551 time: 94146.599 perplexity for hold out set: 6.255177497864
+average_count is: 354 step count: 17601 time: 94380.370 perplexity for hold out set: 6.255136489868
+average_count is: 355 step count: 17651 time: 94667.426 perplexity for hold out set: 6.255094528198
+average_count is: 356 step count: 17701 time: 94977.621 perplexity for hold out set: 6.255053520203
+average_count is: 357 step count: 17751 time: 95256.963 perplexity for hold out set: 6.255011558533
+average_count is: 358 step count: 17801 time: 95522.371 perplexity for hold out set: 6.254970550537
+average_count is: 359 step count: 17851 time: 95840.694 perplexity for hold out set: 6.254930019379
+average_count is: 360 step count: 17901 time: 96161.101 perplexity for hold out set: 6.254889488220
+average_count is: 361 step count: 17951 time: 96397.913 perplexity for hold out set: 6.254849433899
+average_count is: 362 step count: 18001 time: 96705.630 perplexity for hold out set: 6.254809379578
+average_count is: 363 step count: 18051 time: 96956.411 perplexity for hold out set: 6.254769325256
+average_count is: 364 step count: 18101 time: 97221.317 perplexity for hold out set: 6.254729270935
+average_count is: 365 step count: 18151 time: 97530.501 perplexity for hold out set: 6.254690170288
+average_count is: 366 step count: 18201 time: 97778.405 perplexity for hold out set: 6.254651069641
+average_count is: 367 step count: 18251 time: 98012.674 perplexity for hold out set: 6.254612445831
+average_count is: 368 step count: 18301 time: 98314.645 perplexity for hold out set: 6.254573345184
+average_count is: 369 step count: 18351 time: 98595.998 perplexity for hold out set: 6.254534244537
+average_count is: 370 step count: 18401 time: 98864.386 perplexity for hold out set: 6.254497051239
+average_count is: 371 step count: 18451 time: 99139.540 perplexity for hold out set: 6.254458904266
+average_count is: 372 step count: 18501 time: 99410.571 perplexity for hold out set: 6.254420280457
+average_count is: 373 step count: 18551 time: 99676.058 perplexity for hold out set: 6.254382610321
+average_count is: 374 step count: 18601 time: 99941.152 perplexity for hold out set: 6.254345417023
+average_count is: 375 step count: 18651 time: 100235.271 perplexity for hold out set: 6.254307746887
+average_count is: 376 step count: 18701 time: 100483.594 perplexity for hold out set: 6.254270076752
+average_count is: 377 step count: 18751 time: 100738.180 perplexity for hold out set: 6.254233837128
+average_count is: 378 step count: 18801 time: 101086.089 perplexity for hold out set: 6.254197120667
+average_count is: 379 step count: 18851 time: 101372.365 perplexity for hold out set: 6.254160881042
+average_count is: 380 step count: 18901 time: 101648.494 perplexity for hold out set: 6.254124164581
+average_count is: 381 step count: 18951 time: 101901.280 perplexity for hold out set: 6.254087448120
+average_count is: 382 step count: 19001 time: 102180.491 perplexity for hold out set: 6.254052639008
+average_count is: 383 step count: 19051 time: 102428.999 perplexity for hold out set: 6.254016876221
+average_count is: 384 step count: 19101 time: 102729.878 perplexity for hold out set: 6.253980636597
+average_count is: 385 step count: 19151 time: 102940.081 perplexity for hold out set: 6.253944873810
+average_count is: 386 step count: 19201 time: 103158.324 perplexity for hold out set: 6.253909587860
+average_count is: 387 step count: 19251 time: 103478.384 perplexity for hold out set: 6.253874301910
+average_count is: 388 step count: 19301 time: 103760.414 perplexity for hold out set: 6.253839015961
+average_count is: 389 step count: 19351 time: 103983.410 perplexity for hold out set: 6.253803730011
+average_count is: 390 step count: 19401 time: 104209.136 perplexity for hold out set: 6.253769397736
+average_count is: 391 step count: 19451 time: 104532.797 perplexity for hold out set: 6.253734111786
+average_count is: 392 step count: 19501 time: 104814.597 perplexity for hold out set: 6.253699779510
+average_count is: 393 step count: 19551 time: 105104.248 perplexity for hold out set: 6.253664970398
+average_count is: 394 step count: 19601 time: 105388.590 perplexity for hold out set: 6.253632068634
+average_count is: 395 step count: 19651 time: 105674.985 perplexity for hold out set: 6.253597736359
+average_count is: 396 step count: 19701 time: 105961.905 perplexity for hold out set: 6.253563880920
+average_count is: 397 step count: 19751 time: 106216.146 perplexity for hold out set: 6.253530502319
+average_count is: 398 step count: 19801 time: 106496.710 perplexity for hold out set: 6.253497123718
+average_count is: 399 step count: 19851 time: 106776.426 perplexity for hold out set: 6.253464221954
+average_count is: 400 step count: 19901 time: 107047.448 perplexity for hold out set: 6.253430843353
+average_count is: 401 step count: 19951 time: 107325.846 perplexity for hold out set: 6.253397941589
+average_count is: 402 step count: 20001 time: 107590.865 perplexity for hold out set: 6.253365516663
+average_count is: 403 step count: 20051 time: 107848.108 perplexity for hold out set: 6.253333091736
+average_count is: 404 step count: 20101 time: 108118.792 perplexity for hold out set: 6.253300189972
+average_count is: 405 step count: 20151 time: 108415.853 perplexity for hold out set: 6.253269195557
+average_count is: 406 step count: 20201 time: 108721.184 perplexity for hold out set: 6.253236770630
+average_count is: 407 step count: 20251 time: 109023.894 perplexity for hold out set: 6.253205299377
+average_count is: 408 step count: 20301 time: 109276.137 perplexity for hold out set: 6.253172874451
+average_count is: 409 step count: 20351 time: 109547.446 perplexity for hold out set: 6.253141403198
+average_count is: 410 step count: 20401 time: 109826.723 perplexity for hold out set: 6.253109931946
+average_count is: 411 step count: 20451 time: 110136.482 perplexity for hold out set: 6.253078460693
+average_count is: 412 step count: 20501 time: 110432.189 perplexity for hold out set: 6.253047466278
+average_count is: 413 step count: 20551 time: 110760.937 perplexity for hold out set: 6.253015995026
+average_count is: 414 step count: 20601 time: 111008.644 perplexity for hold out set: 6.252985477448
+average_count is: 415 step count: 20651 time: 111285.494 perplexity for hold out set: 6.252954483032
+average_count is: 416 step count: 20701 time: 111532.863 perplexity for hold out set: 6.252923488617
+average_count is: 417 step count: 20751 time: 111760.510 perplexity for hold out set: 6.252893924713
+average_count is: 418 step count: 20801 time: 112038.611 perplexity for hold out set: 6.252862930298
+average_count is: 419 step count: 20851 time: 112302.766 perplexity for hold out set: 6.252832412720
+average_count is: 420 step count: 20901 time: 112582.157 perplexity for hold out set: 6.252802371979
+average_count is: 421 step count: 20951 time: 112846.174 perplexity for hold out set: 6.252772331238
+average_count is: 422 step count: 21001 time: 113178.397 perplexity for hold out set: 6.252743244171
+average_count is: 423 step count: 21051 time: 113434.530 perplexity for hold out set: 6.252713680267
+average_count is: 424 step count: 21101 time: 113675.956 perplexity for hold out set: 6.252684116364
+average_count is: 425 step count: 21151 time: 113950.568 perplexity for hold out set: 6.252654552460
+average_count is: 426 step count: 21201 time: 114236.946 perplexity for hold out set: 6.252625465393
+average_count is: 427 step count: 21251 time: 114551.170 perplexity for hold out set: 6.252596378326
+average_count is: 428 step count: 21301 time: 114895.332 perplexity for hold out set: 6.252566814423
+average_count is: 429 step count: 21351 time: 115168.521 perplexity for hold out set: 6.252538204193
+average_count is: 430 step count: 21401 time: 115462.567 perplexity for hold out set: 6.252509593964
+average_count is: 431 step count: 21451 time: 115707.175 perplexity for hold out set: 6.252480506897
+average_count is: 432 step count: 21501 time: 116035.718 perplexity for hold out set: 6.252451896667
+average_count is: 433 step count: 21551 time: 116298.938 perplexity for hold out set: 6.252423286438
+average_count is: 434 step count: 21601 time: 116589.021 perplexity for hold out set: 6.252395153046
+average_count is: 435 step count: 21651 time: 116824.784 perplexity for hold out set: 6.252367019653
+average_count is: 436 step count: 21701 time: 117095.473 perplexity for hold out set: 6.252338409424
+average_count is: 437 step count: 21751 time: 117376.750 perplexity for hold out set: 6.252310752869
+average_count is: 438 step count: 21801 time: 117627.684 perplexity for hold out set: 6.252282142639
+average_count is: 439 step count: 21851 time: 117852.848 perplexity for hold out set: 6.252254486084
+average_count is: 440 step count: 21901 time: 118106.486 perplexity for hold out set: 6.252226829529
+average_count is: 441 step count: 21951 time: 118380.524 perplexity for hold out set: 6.252200126648
+average_count is: 442 step count: 22001 time: 118649.438 perplexity for hold out set: 6.252173423767
+average_count is: 443 step count: 22051 time: 118925.576 perplexity for hold out set: 6.252146244049
+average_count is: 444 step count: 22101 time: 119175.911 perplexity for hold out set: 6.252119064331
+average_count is: 445 step count: 22151 time: 119469.000 perplexity for hold out set: 6.252091407776
+average_count is: 446 step count: 22201 time: 119733.707 perplexity for hold out set: 6.252064228058
+average_count is: 447 step count: 22251 time: 119990.320 perplexity for hold out set: 6.252037048340
+average_count is: 448 step count: 22301 time: 120325.684 perplexity for hold out set: 6.252010345459
+average_count is: 449 step count: 22351 time: 120564.652 perplexity for hold out set: 6.251985073090
+average_count is: 450 step count: 22401 time: 120839.617 perplexity for hold out set: 6.251958370209
+average_count is: 451 step count: 22451 time: 121131.997 perplexity for hold out set: 6.251932144165
+average_count is: 452 step count: 22501 time: 121408.790 perplexity for hold out set: 6.251906394958
+average_count is: 453 step count: 22551 time: 121657.694 perplexity for hold out set: 6.251879692078
+average_count is: 454 step count: 22601 time: 121990.705 perplexity for hold out set: 6.251853466034
+average_count is: 455 step count: 22651 time: 122288.734 perplexity for hold out set: 6.251827716827
+average_count is: 456 step count: 22701 time: 122545.839 perplexity for hold out set: 6.251802444458
+average_count is: 457 step count: 22751 time: 122804.641 perplexity for hold out set: 6.251776218414
+average_count is: 458 step count: 22801 time: 123054.437 perplexity for hold out set: 6.251749992371
+average_count is: 459 step count: 22851 time: 123324.443 perplexity for hold out set: 6.251725196838
+average_count is: 460 step count: 22901 time: 123612.655 perplexity for hold out set: 6.251699924469
+average_count is: 461 step count: 22951 time: 123906.338 perplexity for hold out set: 6.251674175262
+average_count is: 462 step count: 23001 time: 124189.332 perplexity for hold out set: 6.251648902893
+average_count is: 463 step count: 23051 time: 124423.545 perplexity for hold out set: 6.251624107361
+average_count is: 464 step count: 23101 time: 124683.677 perplexity for hold out set: 6.251599311829
+average_count is: 465 step count: 23151 time: 124974.217 perplexity for hold out set: 6.251574516296
+average_count is: 466 step count: 23201 time: 125246.480 perplexity for hold out set: 6.251549720764
+average_count is: 467 step count: 23251 time: 125567.343 perplexity for hold out set: 6.251524925232
+average_count is: 468 step count: 23301 time: 125790.519 perplexity for hold out set: 6.251500129700
+average_count is: 469 step count: 23351 time: 126053.342 perplexity for hold out set: 6.251476287842
+average_count is: 470 step count: 23401 time: 126298.511 perplexity for hold out set: 6.251452445984
+average_count is: 471 step count: 23451 time: 126549.418 perplexity for hold out set: 6.251427650452
+average_count is: 472 step count: 23501 time: 126792.706 perplexity for hold out set: 6.251403808594
+average_count is: 473 step count: 23551 time: 127017.729 perplexity for hold out set: 6.251379966736
+average_count is: 474 step count: 23601 time: 127329.260 perplexity for hold out set: 6.251356124878
+average_count is: 475 step count: 23651 time: 127636.989 perplexity for hold out set: 6.251331806183
+average_count is: 476 step count: 23701 time: 127880.312 perplexity for hold out set: 6.251307964325
+average_count is: 477 step count: 23751 time: 128108.626 perplexity for hold out set: 6.251284122467
+average_count is: 478 step count: 23801 time: 128392.867 perplexity for hold out set: 6.251260280609
+average_count is: 479 step count: 23851 time: 128637.842 perplexity for hold out set: 6.251237392426
+average_count is: 480 step count: 23901 time: 128879.304 perplexity for hold out set: 6.251214027405
+average_count is: 481 step count: 23951 time: 129173.522 perplexity for hold out set: 6.251190662384
+average_count is: 482 step count: 24001 time: 129454.864 perplexity for hold out set: 6.251167297363
+average_count is: 483 step count: 24051 time: 129719.000 perplexity for hold out set: 6.251143932343
+average_count is: 484 step count: 24101 time: 129985.075 perplexity for hold out set: 6.251120567322
+average_count is: 485 step count: 24151 time: 130222.889 perplexity for hold out set: 6.251098155975
+average_count is: 486 step count: 24201 time: 130476.299 perplexity for hold out set: 6.251075267792
+average_count is: 487 step count: 24251 time: 130773.072 perplexity for hold out set: 6.251052379608
+average_count is: 488 step count: 24301 time: 131017.484 perplexity for hold out set: 6.251029968262
+average_count is: 489 step count: 24351 time: 131251.835 perplexity for hold out set: 6.251007080078
+average_count is: 490 step count: 24401 time: 131482.039 perplexity for hold out set: 6.250984191895
+average_count is: 491 step count: 24451 time: 131713.146 perplexity for hold out set: 6.250961780548
+average_count is: 492 step count: 24501 time: 131948.453 perplexity for hold out set: 6.250939369202
+average_count is: 493 step count: 24551 time: 132235.737 perplexity for hold out set: 6.250917434692
+average_count is: 494 step count: 24601 time: 132481.279 perplexity for hold out set: 6.250895023346
+average_count is: 495 step count: 24651 time: 132827.523 perplexity for hold out set: 6.250873565674
+average_count is: 496 step count: 24701 time: 133102.279 perplexity for hold out set: 6.250851631165
+average_count is: 497 step count: 24751 time: 133388.599 perplexity for hold out set: 6.250829219818
+average_count is: 498 step count: 24801 time: 133648.678 perplexity for hold out set: 6.250807285309
+average_count is: 499 step count: 24851 time: 133949.456 perplexity for hold out set: 6.250784873962
+average_count is: 500 step count: 24901 time: 134260.731 perplexity for hold out set: 6.250763893127
+average_count is: 501 step count: 24951 time: 134501.760 perplexity for hold out set: 6.250742435455
+average_count is: 502 step count: 25001 time: 134755.961 perplexity for hold out set: 6.250720977783
+average_count is: 503 step count: 25051 time: 135067.464 perplexity for hold out set: 6.250699520111
+average_count is: 504 step count: 25101 time: 135298.233 perplexity for hold out set: 6.250678539276
+average_count is: 505 step count: 25151 time: 135560.105 perplexity for hold out set: 6.250657081604
+average_count is: 506 step count: 25201 time: 135790.005 perplexity for hold out set: 6.250635623932
+average_count is: 507 step count: 25251 time: 136026.864 perplexity for hold out set: 6.250614643097
+average_count is: 508 step count: 25301 time: 136240.957 perplexity for hold out set: 6.250593662262
+average_count is: 509 step count: 25351 time: 136484.768 perplexity for hold out set: 6.250572681427
+average_count is: 510 step count: 25401 time: 136720.187 perplexity for hold out set: 6.250552177429
+average_count is: 511 step count: 25451 time: 136978.093 perplexity for hold out set: 6.250531196594
+average_count is: 512 step count: 25501 time: 137246.190 perplexity for hold out set: 6.250510692596
+average_count is: 513 step count: 25551 time: 137514.932 perplexity for hold out set: 6.250489711761
+average_count is: 514 step count: 25601 time: 137760.611 perplexity for hold out set: 6.250469207764
+average_count is: 515 step count: 25651 time: 137983.738 perplexity for hold out set: 6.250448703766
+average_count is: 516 step count: 25701 time: 138214.420 perplexity for hold out set: 6.250428676605
+average_count is: 517 step count: 25751 time: 138461.045 perplexity for hold out set: 6.250408172607
+average_count is: 518 step count: 25801 time: 138728.532 perplexity for hold out set: 6.250388145447
+average_count is: 519 step count: 25851 time: 138951.031 perplexity for hold out set: 6.250368118286
+average_count is: 520 step count: 25901 time: 139249.719 perplexity for hold out set: 6.250348091125
+average_count is: 521 step count: 25951 time: 139522.025 perplexity for hold out set: 6.250329494476
+average_count is: 522 step count: 26001 time: 139789.920 perplexity for hold out set: 6.250308513641
+average_count is: 523 step count: 26051 time: 140033.531 perplexity for hold out set: 6.250288486481
+average_count is: 524 step count: 26101 time: 140285.196 perplexity for hold out set: 6.250268936157
+average_count is: 525 step count: 26151 time: 140559.737 perplexity for hold out set: 6.250249385834
+average_count is: 526 step count: 26201 time: 140838.971 perplexity for hold out set: 6.250229358673
+average_count is: 527 step count: 26251 time: 141074.943 perplexity for hold out set: 6.250210762024
+average_count is: 528 step count: 26301 time: 141304.204 perplexity for hold out set: 6.250191211700
+average_count is: 529 step count: 26351 time: 141582.406 perplexity for hold out set: 6.250171661377
+average_count is: 530 step count: 26401 time: 141877.582 perplexity for hold out set: 6.250152111053
+average_count is: 531 step count: 26451 time: 142186.896 perplexity for hold out set: 6.250132560730
+average_count is: 532 step count: 26501 time: 142468.790 perplexity for hold out set: 6.250113487244
+average_count is: 533 step count: 26551 time: 142746.529 perplexity for hold out set: 6.250094413757
+average_count is: 534 step count: 26601 time: 143039.389 perplexity for hold out set: 6.250074863434
+average_count is: 535 step count: 26651 time: 143297.394 perplexity for hold out set: 6.250056266785
+average_count is: 536 step count: 26701 time: 143526.860 perplexity for hold out set: 6.250037670135
+average_count is: 537 step count: 26751 time: 143808.711 perplexity for hold out set: 6.250018119812
+average_count is: 538 step count: 26801 time: 144044.588 perplexity for hold out set: 6.250000000000
+average_count is: 539 step count: 26851 time: 144282.827 perplexity for hold out set: 6.249981403351
+average_count is: 540 step count: 26901 time: 144514.744 perplexity for hold out set: 6.249962329865
+average_count is: 541 step count: 26951 time: 144796.820 perplexity for hold out set: 6.249943733215
+average_count is: 542 step count: 27001 time: 145115.988 perplexity for hold out set: 6.249925136566
+average_count is: 543 step count: 27051 time: 145353.842 perplexity for hold out set: 6.249907016754
+average_count is: 544 step count: 27101 time: 145606.949 perplexity for hold out set: 6.249888896942
+average_count is: 545 step count: 27151 time: 145843.439 perplexity for hold out set: 6.249870300293
+average_count is: 546 step count: 27201 time: 146079.476 perplexity for hold out set: 6.249852180481
+average_count is: 547 step count: 27251 time: 146389.593 perplexity for hold out set: 6.249833583832
+average_count is: 548 step count: 27301 time: 146631.257 perplexity for hold out set: 6.249815464020
+average_count is: 549 step count: 27351 time: 146938.172 perplexity for hold out set: 6.249796867371
+average_count is: 550 step count: 27401 time: 147176.713 perplexity for hold out set: 6.249778747559
+average_count is: 551 step count: 27451 time: 147416.633 perplexity for hold out set: 6.249761104584
+average_count is: 552 step count: 27501 time: 147642.936 perplexity for hold out set: 6.249743938446
+average_count is: 553 step count: 27551 time: 147899.868 perplexity for hold out set: 6.249726295471
+average_count is: 554 step count: 27601 time: 148180.306 perplexity for hold out set: 6.249708175659
+average_count is: 555 step count: 27651 time: 148447.584 perplexity for hold out set: 6.249691009521
+average_count is: 556 step count: 27701 time: 148716.620 perplexity for hold out set: 6.249673366547
+average_count is: 557 step count: 27751 time: 148956.089 perplexity for hold out set: 6.249655723572
+average_count is: 558 step count: 27801 time: 149189.983 perplexity for hold out set: 6.249638080597
+average_count is: 559 step count: 27851 time: 149460.539 perplexity for hold out set: 6.249620914459
+average_count is: 560 step count: 27901 time: 149760.188 perplexity for hold out set: 6.249603271484
+average_count is: 561 step count: 27951 time: 150016.294 perplexity for hold out set: 6.249586105347
+average_count is: 562 step count: 28001 time: 150307.605 perplexity for hold out set: 6.249568462372
+average_count is: 563 step count: 28051 time: 150597.081 perplexity for hold out set: 6.249551296234
+average_count is: 564 step count: 28101 time: 150871.459 perplexity for hold out set: 6.249534130096
+average_count is: 565 step count: 28151 time: 151125.323 perplexity for hold out set: 6.249517440796
+average_count is: 566 step count: 28201 time: 151411.461 perplexity for hold out set: 6.249499797821
+average_count is: 567 step count: 28251 time: 151671.719 perplexity for hold out set: 6.249482631683
+average_count is: 568 step count: 28301 time: 151975.532 perplexity for hold out set: 6.249466419220
+average_count is: 569 step count: 28351 time: 152284.566 perplexity for hold out set: 6.249449729919
+average_count is: 570 step count: 28401 time: 152548.137 perplexity for hold out set: 6.249432563782
+average_count is: 571 step count: 28451 time: 152814.445 perplexity for hold out set: 6.249416351318
+average_count is: 572 step count: 28501 time: 153057.887 perplexity for hold out set: 6.249400138855
+average_count is: 573 step count: 28551 time: 153328.991 perplexity for hold out set: 6.249382972717
+average_count is: 574 step count: 28601 time: 153606.735 perplexity for hold out set: 6.249366760254
+average_count is: 575 step count: 28651 time: 153836.578 perplexity for hold out set: 6.249350547791
+average_count is: 576 step count: 28701 time: 154065.051 perplexity for hold out set: 6.249334335327
+average_count is: 577 step count: 28751 time: 154283.147 perplexity for hold out set: 6.249317169189
+average_count is: 578 step count: 28801 time: 154523.468 perplexity for hold out set: 6.249300956726
+average_count is: 579 step count: 28851 time: 154793.151 perplexity for hold out set: 6.249284744263
+average_count is: 580 step count: 28901 time: 155053.733 perplexity for hold out set: 6.249268531799
+average_count is: 581 step count: 28951 time: 155306.078 perplexity for hold out set: 6.249251842499
+average_count is: 582 step count: 29001 time: 155611.079 perplexity for hold out set: 6.249236106873
+average_count is: 583 step count: 29051 time: 155846.260 perplexity for hold out set: 6.249219894409
+average_count is: 584 step count: 29101 time: 156120.449 perplexity for hold out set: 6.249204635620
+average_count is: 585 step count: 29151 time: 156385.491 perplexity for hold out set: 6.249188899994
+average_count is: 586 step count: 29201 time: 156692.905 perplexity for hold out set: 6.249172687531
+average_count is: 587 step count: 29251 time: 156943.047 perplexity for hold out set: 6.249156475067
+average_count is: 588 step count: 29301 time: 157214.089 perplexity for hold out set: 6.249140739441
+average_count is: 589 step count: 29351 time: 157481.996 perplexity for hold out set: 6.249125480652
+average_count is: 590 step count: 29401 time: 157707.227 perplexity for hold out set: 6.249109268188
+average_count is: 591 step count: 29451 time: 157974.873 perplexity for hold out set: 6.249093532562
+average_count is: 592 step count: 29501 time: 158286.170 perplexity for hold out set: 6.249077796936
+average_count is: 593 step count: 29551 time: 158606.019 perplexity for hold out set: 6.249062538147
+average_count is: 594 step count: 29601 time: 158860.796 perplexity for hold out set: 6.249046802521
+average_count is: 595 step count: 29651 time: 159116.108 perplexity for hold out set: 6.249032497406
+average_count is: 596 step count: 29701 time: 159377.118 perplexity for hold out set: 6.249016284943
+average_count is: 597 step count: 29751 time: 159646.153 perplexity for hold out set: 6.249001502991
+average_count is: 598 step count: 29801 time: 159907.704 perplexity for hold out set: 6.248986244202
+average_count is: 599 step count: 29851 time: 160192.119 perplexity for hold out set: 6.248970985413
+average_count is: 600 step count: 29901 time: 160483.418 perplexity for hold out set: 6.248955726624
+average_count is: 601 step count: 29951 time: 160756.110 perplexity for hold out set: 6.248939990997
+average_count is: 602 step count: 30001 time: 161056.387 perplexity for hold out set: 6.248924732208
+average_count is: 603 step count: 30051 time: 161297.770 perplexity for hold out set: 6.248909950256
+average_count is: 604 step count: 30101 time: 161537.059 perplexity for hold out set: 6.248894691467
+average_count is: 605 step count: 30151 time: 161779.508 perplexity for hold out set: 6.248879909515
+average_count is: 606 step count: 30201 time: 161994.721 perplexity for hold out set: 6.248865127563
+average_count is: 607 step count: 30251 time: 162222.235 perplexity for hold out set: 6.248850345612
+average_count is: 608 step count: 30301 time: 162512.629 perplexity for hold out set: 6.248835563660
+average_count is: 609 step count: 30351 time: 162736.269 perplexity for hold out set: 6.248820781708
+average_count is: 610 step count: 30401 time: 162990.286 perplexity for hold out set: 6.248805999756
+average_count is: 611 step count: 30451 time: 163210.722 perplexity for hold out set: 6.248791217804
+average_count is: 612 step count: 30501 time: 163440.647 perplexity for hold out set: 6.248776435852
+average_count is: 613 step count: 30551 time: 163703.713 perplexity for hold out set: 6.248761653900
+average_count is: 614 step count: 30601 time: 163963.413 perplexity for hold out set: 6.248747348785
+average_count is: 615 step count: 30651 time: 164299.032 perplexity for hold out set: 6.248733043671
+average_count is: 616 step count: 30701 time: 164542.222 perplexity for hold out set: 6.248719215393
+average_count is: 617 step count: 30751 time: 164860.300 perplexity for hold out set: 6.248704433441
+average_count is: 618 step count: 30801 time: 165112.698 perplexity for hold out set: 6.248690128326
+average_count is: 619 step count: 30851 time: 165408.773 perplexity for hold out set: 6.248675823212
+average_count is: 620 step count: 30901 time: 165727.109 perplexity for hold out set: 6.248661041260
+average_count is: 621 step count: 30951 time: 166012.746 perplexity for hold out set: 6.248647212982
+average_count is: 622 step count: 31001 time: 166257.731 perplexity for hold out set: 6.248632907867
+average_count is: 623 step count: 31051 time: 166487.508 perplexity for hold out set: 6.248619079590
+average_count is: 624 step count: 31101 time: 166767.023 perplexity for hold out set: 6.248604297638
+average_count is: 625 step count: 31151 time: 166996.593 perplexity for hold out set: 6.248590946198
+average_count is: 626 step count: 31201 time: 167245.222 perplexity for hold out set: 6.248577594757
+average_count is: 627 step count: 31251 time: 167488.963 perplexity for hold out set: 6.248563289642
+average_count is: 628 step count: 31301 time: 167724.573 perplexity for hold out set: 6.248549461365
+average_count is: 629 step count: 31351 time: 167975.122 perplexity for hold out set: 6.248535633087
+average_count is: 630 step count: 31401 time: 168293.817 perplexity for hold out set: 6.248521804810
+average_count is: 631 step count: 31451 time: 168573.275 perplexity for hold out set: 6.248507976532
+average_count is: 632 step count: 31501 time: 168854.296 perplexity for hold out set: 6.248493671417
+average_count is: 633 step count: 31551 time: 169100.126 perplexity for hold out set: 6.248480319977
+average_count is: 634 step count: 31601 time: 169364.743 perplexity for hold out set: 6.248466491699
+average_count is: 635 step count: 31651 time: 169671.925 perplexity for hold out set: 6.248452663422
+average_count is: 636 step count: 31701 time: 169937.068 perplexity for hold out set: 6.248439311981
+average_count is: 637 step count: 31751 time: 170189.758 perplexity for hold out set: 6.248425483704
+average_count is: 638 step count: 31801 time: 170421.140 perplexity for hold out set: 6.248412132263
+average_count is: 639 step count: 31851 time: 170718.077 perplexity for hold out set: 6.248398780823
+average_count is: 640 step count: 31901 time: 171010.430 perplexity for hold out set: 6.248385429382
+average_count is: 641 step count: 31951 time: 171284.052 perplexity for hold out set: 6.248371601105
+average_count is: 642 step count: 32001 time: 171545.433 perplexity for hold out set: 6.248359203339
+average_count is: 643 step count: 32051 time: 171818.735 perplexity for hold out set: 6.248345375061
+average_count is: 644 step count: 32101 time: 172105.400 perplexity for hold out set: 6.248332023621
+average_count is: 645 step count: 32151 time: 172410.843 perplexity for hold out set: 6.248318672180
+average_count is: 646 step count: 32201 time: 172688.923 perplexity for hold out set: 6.248306274414
+average_count is: 647 step count: 32251 time: 172926.014 perplexity for hold out set: 6.248292446136
+average_count is: 648 step count: 32301 time: 173195.089 perplexity for hold out set: 6.248279571533
+average_count is: 649 step count: 32351 time: 173435.386 perplexity for hold out set: 6.248266696930
+average_count is: 650 step count: 32401 time: 173704.183 perplexity for hold out set: 6.248253345490
+average_count is: 651 step count: 32451 time: 173990.356 perplexity for hold out set: 6.248240470886
+average_count is: 652 step count: 32501 time: 174264.011 perplexity for hold out set: 6.248227119446
+average_count is: 653 step count: 32551 time: 174524.945 perplexity for hold out set: 6.248214721680
+average_count is: 654 step count: 32601 time: 174797.410 perplexity for hold out set: 6.248201847076
+average_count is: 655 step count: 32651 time: 175017.811 perplexity for hold out set: 6.248188972473
+average_count is: 656 step count: 32701 time: 175250.791 perplexity for hold out set: 6.248176574707
+average_count is: 657 step count: 32751 time: 175501.350 perplexity for hold out set: 6.248163700104
+average_count is: 658 step count: 32801 time: 175733.582 perplexity for hold out set: 6.248150825500
+average_count is: 659 step count: 32851 time: 176010.186 perplexity for hold out set: 6.248137950897
+average_count is: 660 step count: 32901 time: 176308.301 perplexity for hold out set: 6.248125076294
+average_count is: 661 step count: 32951 time: 176549.957 perplexity for hold out set: 6.248112201691
+average_count is: 662 step count: 33001 time: 176790.455 perplexity for hold out set: 6.248099803925
+average_count is: 663 step count: 33051 time: 177062.509 perplexity for hold out set: 6.248087406158
+average_count is: 664 step count: 33101 time: 177328.357 perplexity for hold out set: 6.248075008392
+average_count is: 665 step count: 33151 time: 177603.052 perplexity for hold out set: 6.248063087463
+average_count is: 666 step count: 33201 time: 177914.893 perplexity for hold out set: 6.248050689697
+average_count is: 667 step count: 33251 time: 178155.278 perplexity for hold out set: 6.248038291931
+average_count is: 668 step count: 33301 time: 178384.911 perplexity for hold out set: 6.248026371002
+average_count is: 669 step count: 33351 time: 178663.487 perplexity for hold out set: 6.248013496399
+average_count is: 670 step count: 33401 time: 178899.827 perplexity for hold out set: 6.248002052307
+average_count is: 671 step count: 33451 time: 179167.400 perplexity for hold out set: 6.247989654541
+average_count is: 672 step count: 33501 time: 179413.548 perplexity for hold out set: 6.247977733612
+average_count is: 673 step count: 33551 time: 179661.914 perplexity for hold out set: 6.247964859009
+average_count is: 674 step count: 33601 time: 179917.242 perplexity for hold out set: 6.247952938080
+average_count is: 675 step count: 33651 time: 180153.292 perplexity for hold out set: 6.247941017151
+average_count is: 676 step count: 33701 time: 180423.229 perplexity for hold out set: 6.247929096222
+average_count is: 677 step count: 33751 time: 180717.893 perplexity for hold out set: 6.247917175293
+average_count is: 678 step count: 33801 time: 180975.759 perplexity for hold out set: 6.247905254364
+average_count is: 679 step count: 33851 time: 181227.679 perplexity for hold out set: 6.247892856598
+average_count is: 680 step count: 33901 time: 181563.213 perplexity for hold out set: 6.247880935669
+average_count is: 681 step count: 33951 time: 181815.245 perplexity for hold out set: 6.247869014740
+average_count is: 682 step count: 34001 time: 182050.324 perplexity for hold out set: 6.247857093811
+average_count is: 683 step count: 34051 time: 182292.215 perplexity for hold out set: 6.247845649719
+average_count is: 684 step count: 34101 time: 182586.800 perplexity for hold out set: 6.247833728790
+average_count is: 685 step count: 34151 time: 182832.406 perplexity for hold out set: 6.247822284698
+average_count is: 686 step count: 34201 time: 183070.160 perplexity for hold out set: 6.247811317444
+average_count is: 687 step count: 34251 time: 183412.043 perplexity for hold out set: 6.247799396515
+average_count is: 688 step count: 34301 time: 183652.568 perplexity for hold out set: 6.247787475586
+average_count is: 689 step count: 34351 time: 183911.369 perplexity for hold out set: 6.247775554657
+average_count is: 690 step count: 34401 time: 184135.705 perplexity for hold out set: 6.247764110565
+average_count is: 691 step count: 34451 time: 184372.619 perplexity for hold out set: 6.247752189636
+average_count is: 692 step count: 34501 time: 184626.121 perplexity for hold out set: 6.247741222382
+average_count is: 693 step count: 34551 time: 184863.837 perplexity for hold out set: 6.247729778290
+average_count is: 694 step count: 34601 time: 185110.336 perplexity for hold out set: 6.247717857361
+average_count is: 695 step count: 34651 time: 185368.200 perplexity for hold out set: 6.247706413269
+average_count is: 696 step count: 34701 time: 185657.938 perplexity for hold out set: 6.247695922852
+average_count is: 697 step count: 34751 time: 185913.513 perplexity for hold out set: 6.247684478760
+average_count is: 698 step count: 34801 time: 186142.512 perplexity for hold out set: 6.247673511505
+average_count is: 699 step count: 34851 time: 186382.708 perplexity for hold out set: 6.247662067413
+average_count is: 700 step count: 34901 time: 186638.031 perplexity for hold out set: 6.247650623322
+average_count is: 701 step count: 34951 time: 186890.500 perplexity for hold out set: 6.247639656067
+average_count is: 702 step count: 35001 time: 187195.133 perplexity for hold out set: 6.247628688812
+average_count is: 703 step count: 35051 time: 187476.466 perplexity for hold out set: 6.247617244720
+average_count is: 704 step count: 35101 time: 187759.109 perplexity for hold out set: 6.247605800629
+average_count is: 705 step count: 35151 time: 188025.144 perplexity for hold out set: 6.247594833374
+average_count is: 706 step count: 35201 time: 188248.931 perplexity for hold out set: 6.247583866119
+average_count is: 707 step count: 35251 time: 188567.283 perplexity for hold out set: 6.247572898865
+average_count is: 708 step count: 35301 time: 188841.693 perplexity for hold out set: 6.247561931610
+average_count is: 709 step count: 35351 time: 189113.327 perplexity for hold out set: 6.247550964355
+average_count is: 710 step count: 35401 time: 189391.782 perplexity for hold out set: 6.247539997101
+average_count is: 711 step count: 35451 time: 189680.918 perplexity for hold out set: 6.247529029846
+average_count is: 712 step count: 35501 time: 189948.554 perplexity for hold out set: 6.247518539429
+average_count is: 713 step count: 35551 time: 190227.136 perplexity for hold out set: 6.247507572174
+average_count is: 714 step count: 35601 time: 190519.030 perplexity for hold out set: 6.247497081757
+average_count is: 715 step count: 35651 time: 190774.877 perplexity for hold out set: 6.247485637665
+average_count is: 716 step count: 35701 time: 191037.407 perplexity for hold out set: 6.247475147247
+average_count is: 717 step count: 35751 time: 191267.700 perplexity for hold out set: 6.247463703156
+average_count is: 718 step count: 35801 time: 191541.439 perplexity for hold out set: 6.247453689575
+average_count is: 719 step count: 35851 time: 191822.777 perplexity for hold out set: 6.247443199158
+average_count is: 720 step count: 35901 time: 192173.483 perplexity for hold out set: 6.247432708740
+average_count is: 721 step count: 35951 time: 192422.151 perplexity for hold out set: 6.247422218323
+average_count is: 722 step count: 36001 time: 192714.562 perplexity for hold out set: 6.247410774231
+average_count is: 723 step count: 36051 time: 192965.538 perplexity for hold out set: 6.247400760651
+average_count is: 724 step count: 36101 time: 193249.246 perplexity for hold out set: 6.247390270233
+average_count is: 725 step count: 36151 time: 193496.419 perplexity for hold out set: 6.247379779816
+average_count is: 726 step count: 36201 time: 193820.008 perplexity for hold out set: 6.247369766235
+average_count is: 727 step count: 36251 time: 194109.473 perplexity for hold out set: 6.247359275818
+average_count is: 728 step count: 36301 time: 194394.679 perplexity for hold out set: 6.247348785400
+average_count is: 729 step count: 36351 time: 194632.273 perplexity for hold out set: 6.247338294983
+average_count is: 730 step count: 36401 time: 194926.040 perplexity for hold out set: 6.247328281403
+average_count is: 731 step count: 36451 time: 195218.674 perplexity for hold out set: 6.247317314148
+average_count is: 732 step count: 36501 time: 195443.860 perplexity for hold out set: 6.247307777405
+average_count is: 733 step count: 36551 time: 195695.366 perplexity for hold out set: 6.247297286987
+average_count is: 734 step count: 36601 time: 195937.561 perplexity for hold out set: 6.247287273407
+average_count is: 735 step count: 36651 time: 196168.110 perplexity for hold out set: 6.247276782990
+average_count is: 736 step count: 36701 time: 196426.432 perplexity for hold out set: 6.247266292572
+average_count is: 737 step count: 36751 time: 196669.278 perplexity for hold out set: 6.247256278992
+average_count is: 738 step count: 36801 time: 196898.052 perplexity for hold out set: 6.247246265411
+average_count is: 739 step count: 36851 time: 197181.865 perplexity for hold out set: 6.247235774994
+average_count is: 740 step count: 36901 time: 197423.513 perplexity for hold out set: 6.247225761414
+average_count is: 741 step count: 36951 time: 197645.577 perplexity for hold out set: 6.247215747833
+average_count is: 742 step count: 37001 time: 197889.781 perplexity for hold out set: 6.247205734253
+average_count is: 743 step count: 37051 time: 198121.098 perplexity for hold out set: 6.247195720673
+average_count is: 744 step count: 37101 time: 198387.223 perplexity for hold out set: 6.247185707092
+average_count is: 745 step count: 37151 time: 198675.220 perplexity for hold out set: 6.247175693512
+average_count is: 746 step count: 37201 time: 198969.512 perplexity for hold out set: 6.247166156769
+average_count is: 747 step count: 37251 time: 199228.760 perplexity for hold out set: 6.247156143188
+average_count is: 748 step count: 37301 time: 199512.283 perplexity for hold out set: 6.247146606445
+average_count is: 749 step count: 37351 time: 199783.625 perplexity for hold out set: 6.247136116028
+average_count is: 750 step count: 37401 time: 200025.051 perplexity for hold out set: 6.247126579285
+average_count is: 751 step count: 37451 time: 200275.592 perplexity for hold out set: 6.247116565704
+average_count is: 752 step count: 37501 time: 200563.533 perplexity for hold out set: 6.247107505798
+average_count is: 753 step count: 37551 time: 200876.280 perplexity for hold out set: 6.247097969055
+average_count is: 754 step count: 37601 time: 201124.242 perplexity for hold out set: 6.247088432312
+average_count is: 755 step count: 37651 time: 201416.299 perplexity for hold out set: 6.247078418732
+average_count is: 756 step count: 37701 time: 201717.115 perplexity for hold out set: 6.247068881989
+average_count is: 757 step count: 37751 time: 202006.438 perplexity for hold out set: 6.247059345245
+average_count is: 758 step count: 37801 time: 202272.840 perplexity for hold out set: 6.247049331665
+average_count is: 759 step count: 37851 time: 202530.012 perplexity for hold out set: 6.247040271759
+average_count is: 760 step count: 37901 time: 202850.591 perplexity for hold out set: 6.247029781342
+average_count is: 761 step count: 37951 time: 203098.912 perplexity for hold out set: 6.247020721436
+average_count is: 762 step count: 38001 time: 203365.972 perplexity for hold out set: 6.247011184692
+average_count is: 763 step count: 38051 time: 203605.024 perplexity for hold out set: 6.247002124786
+average_count is: 764 step count: 38101 time: 203868.508 perplexity for hold out set: 6.246992588043
+average_count is: 765 step count: 38151 time: 204104.023 perplexity for hold out set: 6.246983051300
+average_count is: 766 step count: 38201 time: 204337.746 perplexity for hold out set: 6.246973037720
+average_count is: 767 step count: 38251 time: 204615.955 perplexity for hold out set: 6.246963977814
+average_count is: 768 step count: 38301 time: 204932.788 perplexity for hold out set: 6.246954441071
+average_count is: 769 step count: 38351 time: 205215.554 perplexity for hold out set: 6.246944904327
+average_count is: 770 step count: 38401 time: 205509.029 perplexity for hold out set: 6.246935844421
+average_count is: 771 step count: 38451 time: 205754.170 perplexity for hold out set: 6.246926784515
+average_count is: 772 step count: 38501 time: 206021.125 perplexity for hold out set: 6.246917724609
+average_count is: 773 step count: 38551 time: 206297.565 perplexity for hold out set: 6.246908664703
+average_count is: 774 step count: 38601 time: 206537.810 perplexity for hold out set: 6.246899604797
+average_count is: 775 step count: 38651 time: 206798.644 perplexity for hold out set: 6.246890544891
+average_count is: 776 step count: 38701 time: 207058.657 perplexity for hold out set: 6.246881008148
+average_count is: 777 step count: 38751 time: 207333.794 perplexity for hold out set: 6.246871948242
+average_count is: 778 step count: 38801 time: 207583.757 perplexity for hold out set: 6.246862888336
+average_count is: 779 step count: 38851 time: 207830.732 perplexity for hold out set: 6.246853828430
+average_count is: 780 step count: 38901 time: 208101.165 perplexity for hold out set: 6.246844291687
+average_count is: 781 step count: 38951 time: 208401.437 perplexity for hold out set: 6.246835231781
+average_count is: 782 step count: 39001 time: 208670.528 perplexity for hold out set: 6.246826171875
+average_count is: 783 step count: 39051 time: 208976.004 perplexity for hold out set: 6.246817111969
+average_count is: 784 step count: 39101 time: 209245.392 perplexity for hold out set: 6.246808528900
+average_count is: 785 step count: 39151 time: 209523.297 perplexity for hold out set: 6.246798992157
+average_count is: 786 step count: 39201 time: 209786.949 perplexity for hold out set: 6.246790409088
+average_count is: 787 step count: 39251 time: 210050.076 perplexity for hold out set: 6.246781826019
+average_count is: 788 step count: 39301 time: 210390.342 perplexity for hold out set: 6.246773242950
+average_count is: 789 step count: 39351 time: 210620.649 perplexity for hold out set: 6.246764659882
+average_count is: 790 step count: 39401 time: 210884.381 perplexity for hold out set: 6.246755599976
+average_count is: 791 step count: 39451 time: 211161.780 perplexity for hold out set: 6.246747016907
+average_count is: 792 step count: 39501 time: 211395.685 perplexity for hold out set: 6.246737480164
+average_count is: 793 step count: 39551 time: 211670.942 perplexity for hold out set: 6.246728897095
+average_count is: 794 step count: 39601 time: 211909.741 perplexity for hold out set: 6.246720790863
+average_count is: 795 step count: 39651 time: 212203.199 perplexity for hold out set: 6.246711730957
+average_count is: 796 step count: 39701 time: 212508.883 perplexity for hold out set: 6.246703147888
+average_count is: 797 step count: 39751 time: 212792.188 perplexity for hold out set: 6.246694087982
+average_count is: 798 step count: 39801 time: 213013.816 perplexity for hold out set: 6.246685504913
+average_count is: 799 step count: 39851 time: 213297.732 perplexity for hold out set: 6.246676921844
+average_count is: 800 step count: 39901 time: 213542.384 perplexity for hold out set: 6.246668338776
+average_count is: 801 step count: 39951 time: 213818.476 perplexity for hold out set: 6.246659755707
+average_count is: 802 step count: 40001 time: 214094.904 perplexity for hold out set: 6.246651172638
+average_count is: 803 step count: 40051 time: 214362.598 perplexity for hold out set: 6.246642589569
+average_count is: 804 step count: 40101 time: 214745.671 perplexity for hold out set: 6.246633529663
+average_count is: 805 step count: 40151 time: 214997.576 perplexity for hold out set: 6.246624946594
+average_count is: 806 step count: 40201 time: 215273.572 perplexity for hold out set: 6.246616840363
+average_count is: 807 step count: 40251 time: 215536.273 perplexity for hold out set: 6.246608257294
+average_count is: 808 step count: 40301 time: 215833.651 perplexity for hold out set: 6.246599674225
