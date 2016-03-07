@@ -27,7 +27,9 @@ set size w,h
 
 set title "(a) com-Friendster | 12K communities on 64+1 nodes"
 set yrange [105:]
+set xrange [:20]
 plot '< grep average_count ../data/ml-curves/log-Friendster-K12K-flt32-m16K-n32-mxs-16K-np65/log.0' u (\$8 / 3600):(exp(\$14)) w l lw 5
+set xrange [:*]
 
 set origin col(1),row(0)
 set size w,h
@@ -35,13 +37,15 @@ set size w,h
 set yrange [420:]
 set title "(b) com-LiveJournal | 192K communities on 64+1 nodes"
 plot '< grep average_count ../data/ml-curves/log-com-LJ-K192K-flt32-m1K-n32-mxs1K-x1M-epst5e-05-np65/log.0' u (\$8 / 3600):(exp(\$14)) w l lw 5
+set yrange [*:]
 
 set origin col(0),row(1)
 set size w,h
 
-set yrange [*:]
+set xrange [:64]
 set title "(c) com-Orkut | 256K communities on 64+1 nodes"
 plot '< grep average_count ../data/ml-curves/log-orkut-flt32-K256K-m1K-n32-x10M-epst3e-05-np65/log.0' u (\$8 / 3600):(exp(\$14)) w l lw 5
+set xrange [:*]
 
 set origin col(1),row(1)
 set size w,h
