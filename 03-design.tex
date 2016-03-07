@@ -155,10 +155,10 @@ $\pi$.
 Modern network technology allows for Remote Direct Memory Access (RDMA)
 through the network cards (NICs) with negligible
 overhead~\cite{Hamada_infinibandtrade,Beck:2011:PER:2043535.2043537}. The use
-of RDMA enables communicating peers to avoid the high latency associated with
+of RDMA enables communicating peers to avoid the high latency for
 interrupting a processor and waiting for it to act upon a request. Instead, a
-process would register a region of memory that can be directly accessed by the
-NIC. However, RDMA only provides primitive operations and limited abstractions.
+process registers a region of memory that can be directly accessed by the
+NIC. % RDMA only provides primitive operations and limited abstractions.
 This has opened up the development of
 efficient remote memory services, often in the form of distributed key-value
 (DKV) stores.
@@ -171,11 +171,11 @@ We decided not
 to use any of the existing implementations of RDMA DKV stores, and instead
 build our own DKV store on top of the Infiniband ib-verbs~API.
 %
-This stems from the fact that our use case is unique in a number
+This is motivated by the fact that our use case is unique in a number
 of important aspects. First, the number of keys and values to be stored are
 constant throughout the execution of the algorithm. For instance, no records
-are dynamically inserted or deleted from the DKV after their initial insertion.
-However, the value associated with each key can be updated. Additionally, all
+are dynamically inserted or deleted from the DKV after their initial insertion,
+although the value associated with each key can be updated. Additionally, all
 keys are of the same type and represent a unique vertex in the graph.
 Therefore, keys can be represented as integer identifiers. Moreover, each key
 points to a vector of $K+1$ floats as its value.
@@ -260,7 +260,7 @@ Algorithm~\ref{algorithm}) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires
 $M \times K$ operations, and it is done in parallel over mini-batch vertices. Because of
 memory consistency, this stage awaits completion of \textit{update\_phi} with
-an MPI barrier. After the calculation, the updated values of $\pi;\sum\phi$
+an MPI barrier. After the calculation, the updated values of $\pi+\sum\phi$
 are written to the DKV store.
 
 \textit{update\_beta} (lines 10 and 11 in Algorithm~\ref{algorithm}) requires $|\Minibatch| \times K$ operations. It is preceded by an MPI

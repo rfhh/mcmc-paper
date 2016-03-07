@@ -21,14 +21,21 @@ communication} between cluster nodes.
 %
 Finally, we apply the algorithm to large data sets and comment on its execution time.
 
-Empirical results were obtained by performing experiments on the VU and
+Empirical results for the distributed implementation were obtained from experiments on the VU and
 Leiden University
 DAS5 clusters which consist of 68 and 24 compute nodes respectively. Each
 compute node is equipped with a dual 8-core Intel Xeon E5-2630v3 CPU clocked
 at 2.40GHz, 64GB of memory and 8TB of storage. Moreover, the compute nodes of
 each site are interconnected by
-FDR~InfiniBand. The MPI implementation used is MVAPICH2, which is optimally
-tuned for Infiniband~\cite{mvapich}. All of the experiments reported in this section utilized
+FDR~InfiniBand. The MPI implementation used is OpenMPI, which supports
+user-space Infiniband~\cite{gabriel04:_open_mpi}.
+
+We compared the distributed performance against a shared-memory virtual machine
+at SURFsara's HPC Cloud system with 40~cores and 1TB of memory; its underlying
+physical system contains 40 Intel Xeon E7-4850 cores clocked at 2.00GHz, and
+it does not oversubscribe resources.
+
+All of the experiments reported in this section utilized
 publicly available graphs from the Stanford Large Network Dataset
 Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
 collection of data sets used.
@@ -55,9 +62,9 @@ of worker nodes in all runs.
 This methodology ensures that each compute node
 performs an approximately constant amount of computational work across all
 configurations. However, the number and size of messages exchanged between the
-nodes would vary significantly. Figure~\ref{fig-weak-scaling} presents the
+nodes varies significantly. Figure~\ref{fig-weak-scaling} presents the
 average execution
-time per algorithm iteration across different cluster sizes.
+time per algorithm iteration for different cluster sizes.
 This figure shows that the system's overall
 overhead is minimal. Additionally, the experimental results show that the
 implementation is capable of achieving good speedups provided the input problem
@@ -183,17 +190,16 @@ fetch $(C-1)/C$ of all read requests over the network.
 \end{figure}
 One of the main drawbacks of designing a distributed solution for a given
 algorithm is the inherent complexity of communication and synchronization. A
-considerably simpler approach would be developing a multi-threaded version and
+considerably simpler approach is developing a multi-threaded version and
 running it on a machine with abundant memory and CPU cores. In such a context,
 access to all of the algorithm's state would be an order of magnitude faster
 than RDMA. Additionally, the overhead associated with synchronizing threads is
 negligible compared to using MPI primitives. To evaluate the efficacy of both
-approaches we utilized SURFsara's HPC Cloud system to instantiate a virtual
-machine with 40 Intel Xeon E7-4850 cores clocked at 2.00GHz cores and 1TB of
-memory. The physical machine underlying
-the HPC Cloud system contains 40~CPU cores and does not oversubscribe
-resources. Therefore, by provisioning all 40~cores we ensured that there is no
-resource contention from other users of the system. Figure~\ref{fig-scale-up}
+approaches we used the virtual
+machine with 40~cores and 1TB of
+memory at SURFSara's HPC Cloud system. By provisioning all 40~cores
+we ensured that there is no
+resource contention from other users. Figure~\ref{fig-scale-up}
 reports the execution time per algorithm iteration for two experimental setups.
 %
 First, Figure~\ref{fig-scale-up}-a shows the performance of executing the
@@ -271,19 +277,19 @@ The results in sub-figures a, b and c were obtained by using 65 compute nodes
 of DAS5. In Figure~\ref{fig-ppx}-a, the number of communities was set to 12K
 which fully occupied the aggregate memory resources of all 64 worker nodes since
 com-Friendster has roughly 65 million vertices. In this case, the algorithm
-reached a stable state after 3-4 hours. Next, Figures~\ref{fig-ppx}-b and
+reached a stable state after 8-10 hours. Next, Figures~\ref{fig-ppx}-b and
 \ref{fig-ppx}-c present the convergence of com-LiveJournal and com-Orkut
 respectively. As the number of vertices in these data sets is an order of
 magnitude smaller than com-Friendster, we could use a larger number of
 communities to fill up the collective memory. Naturally, the convergence time was extended as the complexity of
 the algorithm increases dramatically with larger K. However, the system was
-capable of reporting results for both in around 40 hours.
+capable of reporting results for both in around 60 hours.
 %
 Figures~\ref{fig-ppx}-d, \ref{fig-ppx}-e and \ref{fig-ppx}-f were all
 configured to use the number of ground-truth communities associated with
 their respective data sets, com-Youtube, com-DBLP and com-Amazon. Since this
 yields a much smaller storage requirement,
-these experiments were conducted on 14, 24 and 24 cluster nodes respectively.
+these experiments were conducted on 13, 21 and 21 cluster nodes respectively.
 
 The results reported in Figure~\ref{fig-ppx} verify that the distributed
 implementation of the algorithm is capable of detecting overlapping communities
