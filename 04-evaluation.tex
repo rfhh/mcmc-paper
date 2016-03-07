@@ -248,11 +248,15 @@ the best achievable performance for Infiniband. We present \textit{qperf}
 bandwidth for both RDMA read and RDMA write operations; these are quite
 close, which corroborates the results from the Herd project for payloads
 upwards from 256B.
-The MVAPICH2 MPI implementation
-is highly optimized for Infiniband. It requires an interaction between
+The OpenMPI implementation is highly optimized for Infiband because it has an
+ib-verbs implmentation. It requires an interaction between
 the server network card and the server host, which increases the latency and
 thus lowers the bandwidth
-significantly. This is ample justification for using a low-level RDMA
+significantly.
+Note that the comparison is
+lopsided: \textit{qperf} and MPI are low-level point-to-point benchmarks without
+any DKV implementation on top.
+This is ample justification for using a low-level RDMA
 implementation for the DKV store.
 The bandwidth achieved by our DKV store falls short
 of the \textit{qperf} performance for packets less than 4KB; this is attributed
