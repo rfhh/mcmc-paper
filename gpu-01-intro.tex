@@ -1,0 +1,81 @@
+\section{Introduction}
+
+The past decade has witnessed a tremendous increase in the applicability and
+usefulness of artificial intelligence in our daily lives. Much of this activity
+was fueled by the mainstream adoption of machine learning approaches as they
+provide tools to solve inherently difficult problems.
+%
+However, many of these techniques require a huge amount of computation
+which severely limits the
+scale of problems that can be tackled.
+
+In this paper, we present the methodology followed in designing and
+implementing a high-performance version of an existing Stochastic Gradient Markov Chain
+Monte Carlo (SG-MCMC) machine learning algorithm that detects overlapping
+communities in graphs. The algorithm analyzes pair-wise interactions between
+entities in order to discover hidden attributes.
+%
+For instance, consider a social network represented as an undirected graph
+where the vertices represent individuals and edges represent relations between
+them. Given the relation information, the algorithm can identify latent groups
+of individuals that represent shared interests.
+%
+This problem structure differs from graph partitioning or clustering as there
+is a many-to-many relationship between individuals and interests. For example,
+each individual can have multiple interests. Simultaneously, each interest group can
+span multiple individuals.
+%
+Formally, this problem domain is known as Mixed-Membership Stochastic
+Blockmodels (MMSB). The theory behind the algorithm is discussed in more detail
+in~\cite{DBLP:journals/corr/LiAW15}.
+
+The focus of this work is on the computational efficiency and parallel
+performance of the SG-MCMC algorithm. More specifically, we discuss the process
+of accelerating the algorithm by developing aggressive optimizations targeting
+multi-core CPUs and GPUs. The parallel algorithm achieves speedup factors up to 86, compared to a
+well-tuned sequential C++ program which itself is a factor~1000-1500 faster than
+the original Python/Numpy program developed by the algorithm's authors. From a
+computational point of view, this algorithm differs from widespread machine
+learning algorithms in several ways. First, it is highly data-intensive which
+makes GPU acceleration particularly challenging. Second, owing
+to the algorithm's stochastic nature, the majority of its memory access
+patterns and data dependencies are non-deterministic. As a result,
+straightforward
+optimization attempts of the memory access patterns either fail or lead
+to non-intuitive results.
+
+Through careful analysis of the computation and data structures we show that
+the algorithm's full state can be reduced by roughly 75\%. Compressing the
+state significantly reduces the data intensity and allows for tackling larger
+problems while maintaining all state in memory.
+%
+Further, by cataloguing and accounting for the various load and store
+operations, we identified the highest priority locations of data reuse. In
+order to circumvent the unclear optimization landscape, we developed an
+effective kernel code generation mechanism that explores the benefits of
+exploiting all permutations of the available optimization opportunities. These
+optimizations include caching in shared memory, caching in the register file,
+loop unrolling and explicit vectorization.
+
+In summary, the contributions of this
+work are:
+\begin{itemize}
+  \item Decreasing the algorithm's data intensity by eliminating 75\% of its
+    memory footprint
+  \item Tuning the algorithm's performance by maximizing data reuse and
+    identifying the highest performing combination of optimizations through
+    dynamic kernel code generation
+  \item Achieving speedup factors of 21 and 86 over an optimized sequential
+    program using a multi-core CPU and a GPU respectively
+  \item A comparative performance analysis of the accelerated algorithm
+    versions on a multi-core CPU and four GPUs, highlighting the particular
+    optimization combinations that were successful per device.
+\end{itemize}
+
+The remainder of this paper is organized as follows. A description of the
+sequential version of the algorithm and its data structures is provided in
+Section~2. Section~3 delves into the design of the parallel algorithm and
+discusses its contributions.  Section~4 provides an empirical evaluation of the
+contributions of this work.  Section~5 presents an overview of related works.
+Finally, Section~6 concludes.
+

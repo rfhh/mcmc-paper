@@ -1,0 +1,86 @@
+\section{Related Work}
+
+In this section, we discuss related machine learning projects that use
+accelerators.
+Immediately when GPUs evolved into generally programmable accelerators, machine
+learners recognized the potential of GPUs for their science.
+Much research
+has been devoted to deep-learning implementations on GPUs. However, Mixed
+Membership deduction (MMSB) is usually considered untractable for deep-learning
+algorithms. In contrast, our algorithm belongs to the family of Bayesian
+(approximative, stochastic) methods, where efficient algorithms for large-scale
+data have recently been developed. A broad survey of Bayesian methods is given
+in~\cite{DBLP:journals/corr/Zhu0H14}. Broadly speaking, Bayesian approximative
+algorithms are subdivided into variational and Monte Carlo methods; Markov
+Chain Monte Carlo (MCMC) is a subgroup of the latter. GPUs have been put to
+use in MCMC algorithms, e.g.\ \cite{journals/bioinformatics/MedlarGSBK13}
+uses GPUs to analyse parental linkage patterns in a biology context and
+\cite{DBLP:journals/csda/WhiteP14} does the same to model terrorist activity.
+Variational inference on MMSB is described
+in~\cite{DBLP:conf/nips/GopalanMGFB12}, but they don't use GPUs. Latent
+Dirichlet Allocation, another variety of Bayesian Approximation, is used on
+GPUs by~\cite{DBLP:conf/nips/YanXQ09}.
+
+Still, for high-dimension problems, the standard MCMC algorithms fall short in
+performance. Recently, varieties of MCMC algorithms have been developed where
+gradient information is used to speed up convergence. Langevin and Hamiltonian
+dynamics are representatives of these
+varieties~\cite{Girolami_riemannmanifold}.  Our algorithm uses Riemann Manifold
+Langevin dynamics. In \cite{beam2014fast}, GPUs are used to perform Hamiltonian
+descent, using Python interfaces to access the standard cuBLAS
+library~\cite{cuBLAS}. They limit their optimizations for the GPU to
+saving on data transfers between host and device memory. They do not apply
+their framework to MMSB.
+
+A different MMSB algorithm with stochastic gradient descent on the GPU is
+the Online Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13}. They deduce
+overlapping communities for many of the same datasets as this paper, and they
+report fast convergence. Their implementation uses the cuBLAS
+library, and, unlike our work, there is no attempt to hand-optimize the GPU
+kernels. Additionally, the algorithmic approach to solve the problem is
+fundamentally different.
+Since they target GPUs only, the datasets they
+can handle are limited by the device memory of the GPU. Our implementation converges
+quickly on the GPU but can also function with reduced speedup on a multicore
+CPU. In the latter case, the dataset
+size is only limited by the memory of the host machine.
+
+\begin{comment}
+Since our SG-MCMC algorithm is completely different from deep-learning
+algorithms, it makes no real sense to compare to the learning frameworks
+Theano, Caffe, cuDNN, or NVidia Digits, even though they target GPUs.
+
+SG-MCMC work NOT on GPUs:
+
+GPU work:
+MCMC Hamiltonian:
+	1. Andrew L. Beam, Sujit K. Ghosh, Jon Doyle
+		Fast Hamiltonian Monte Carlo Using GPU Computing
+		http://arxiv.org/pdf/1402.4089.pdf
+MMSB tensor:
+
+MCMC (not SG):
+    1. Alan Medlar, Dorota Głowacka, Horia Stanescu, Kevin Bryson, Robert Kleta
+       SwiftLink: Parallel MCMC linkage analysis utilising multicore CPU and GPU
+       http://bioinformatics.oxfordjournals.org/content/early/2012/12/13/bioinformatics.bts704.full.pdf
+    2. Marc Suchard, Chris Holmes, Mike West
+       Some of the What?, Why?, How?, Who?  and Where?  of Graphics Processing Unit Computing for Bayesian Analysis
+       https://stat.duke.edu/gpustatsci/GPU-ISBABull2010.pdf
+\end{comment}
+
+\begin{comment}
+In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
+store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
+Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
+use RDMA to implement a D-KV store. However, all of them are far more powerful
+than our custom implementation -- and this power comes at a cost that we
+can avoid. They implement a generic D-KV store that controls concurrency,
+supports dynamic inserts and deletes, supports variable-sized values
+(whose size may change at an update), and keys of arbitrary type. Because
+of the nature of our distributed algorithm, we have to deal with none of
+these issues. For us, values are fixed-size, allocated only at the initial
+population, and remain alive forever. We have no concurrency between writes
+and reads or other writes. Our keys are a contiguous range of integers. All
+these properties together allow an extremely low-overhead implementation
+that does not involve the remote host in any transaction.
+\end{comment}

@@ -1,0 +1,52 @@
+\section{Evaluation}
+\label{sec-evaluation}
+
+The following subsections discuss the performance evaluation of the algorithm
+across its different stages. As the system underwent multiple design mutations,
+a careful analysis is needed to identify the contributions of each change
+independently.
+%
+First, an examination is provided detailing the construction of an efficient
+sequential baseline version.
+This spans
+the code conversion from Python to C++ as well as the effects of applying
+the localized optimizations discussed in
+Section~\ref{sec-design-sequential}.
+%
+Second, we explore the performance benefits of parallelizing the computations
+on a multi-core CPU using OpenCL.
+%
+Next, we assess the trade-offs associated with each of the GPU optimization
+strategies and their performance effects on four GPUs spanning two chip
+architecture generations.
+%
+Finally, we present the overall outcome of accelerating the algorithm by
+displaying its fast convergence over large networks.
+
+All experiments were conducted on the VU Amsterdam DAS5 cluster. The cluster
+consists of 68 compute nodes each equipped with a dual 8-core Intel Xeon
+E5-2630v3 CPU clocked at 2.40GHz, 64GB of memory and 8TB of storage.
+Additionally, the cluster is fitted with a number of Nvidia GPUs including GTX
+TitanX, GTX980, K40c and K20m; see Table~\ref{table-gpus} for an overview of
+their properties. Table~\ref{table-snap} outlines the graph
+properties of the networks used to evaluate the algorithm's performance. These
+networks were obtained from the SNAP collection~\cite{snapnets}.
+
+\begin{table}[tb]
+\center\begin{tabular}{l r r c}
+Network & \#Vertices & \#Edges \\
+\hline
+CA-HepPh        &    12,008 &    118,521 \\
+com-DBLP        &   317,080 &  1,049,866 \\
+% com-Youtube     & 1,134,890 &  2,987,624 \\
+com-LiveJournal & 3,997,962 & 34,681,189 \\
+\hline
+\end{tabular}
+\caption{Network graphs from the Stanford Snap collection}
+\label{table-snap}
+\end{table}
+
+
+\input{05-02-sequential}
+\input{05-03-accelerator}
+\input{05-05-perplexity}

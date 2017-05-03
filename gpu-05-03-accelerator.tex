@@ -1,0 +1,250 @@
+\subsection{Analysis of CPU Parallelism}
+
+\begin{comment}
+  \begin{table}[t]
+    \centering
+    \begin{tabular}{l l c c c c}
+      Comparison & Data Set        & K    & M    & n  & Iterations \\
+      \hline
+      Python/Baseline    & CA-HepPh        & 1024 & 32   & 32 & 1000 \\
+      Parallel CPU/GPU   & com-DBLP        & 1024 & 4096 & 32 & 1000 \\
+      Parallel CPU       & com-LiveJournal & 1024 & 4096 & 32 & 1000 \\
+    \end{tabular}
+    \caption{Experiment parameter reference.}
+    \label{exp-params}
+  \end{table}
+\end{comment}
+
+\begin{table}[b]	% [htb]
+  \centering
+  \begin{tabular}{l d{2.8} d{2.8}}
+    Kernel & Time (seconds) \\
+    \hline
+    PPX CALC    &  0.0364737 \\
+    PPX ACCUM   &  0.083 \\
+    SAMPLING    &  0.535599 \\
+    UPDATE\_PHI & 25.6598 \\
+    UPDATE\_PI  &  0.645875 \\
+    THETA SUM   &  0.0483902 \\
+    GRADS PAR   &  1.92919 \\
+    GRADS SUM   &  9.31122 \\
+    UPDATE THETA&  0.0548013 \\
+    NORM THETA  &  0.001 \\
+    \hline
+    TOTAL    & 38.5858 \\
+  \end{tabular}
+  \caption{Performance break-down of multi-core CPU version without
+  vectorization. Model parameters: dataset com-DBLP; K=1024, m=4096, n=32.}
+  \label{TABLE-CPU}
+\end{table}
+
+This section discusses the use of the multi-core CPU available on the DAS5
+cluster. The parallel OpenCL version divides the work across the CPU cores and
+performs independent calculations concurrently. As shown in
+Table~\ref{TABLE-CPU}, the dominant kernel in the computation is
+\textit{update\_phi},
+which accounts for 66.5\% of the computation time. Without exploiting
+the dual 8-core processor's vectorization capabilities, the speedup relative to
+the baseline sequential C++ version is~9.8.
+
+% CPU
+\begin{figure}[htb]
+\centering
+\epsfig{file=plots/cpu-vector.eps, width=\columnwidth}
+\caption{Performance of CPU for varying vector width.}
+\label{FIG-CPU-VECTOR}
+\end{figure}
+
+In addition to applying computations in parallel, we investigated the use of
+the CPU's SIMD instructions to maximize its resource utilization.
+Figure~\ref{FIG-CPU-VECTOR} presents the performance obtained by vectorizing
+the kernels with varying vector widths. A key aspect in this figure is the
+diminishing performance benefit for higher vector widths. As the computational
+performance increases, the memory throughput becomes the leading performance
+bottleneck. Moreover, using 16-wide SIMD instructions gave a slight performance
+penalty compared to 8-wide SIMD. The 8-wide vector version improves the speedup
+relative to the baseline version from 9.8 to~20.9.
+
+\begin{table}[b]	% [htb]
+% \center\begin{tabular}{l c c c c c c c c d{3.1}}
+% Device & Architecture & cores & Clock & \multicolumn{2}{c}{GFlops} & L2 Cache & Memory & Bandwidth \\ 
+%        &              &       & MHz   & single & double            & KB       & GB     & (GB/s) \\ 
+% \hline
+% K20m        & Tesla   &  2496 &  706        & 3520 & 1170 &      &  5 & 208 \\
+% K40c        & Tesla   &  2880 &  745        & 4290 & 1430 &      & 12 & 208 \\
+% GTX 980     & Maxwell &  2816 & 1126 (1216) & 4612 &  144 &      &  4 & 336.5 \\
+% GTX Titan-X & Maxwell &  3072 & 1000 (1075) & 6144 &  192 & 2048 & 12 & 336.5 \\
+%
+%
+%###########################################################################################
+% SPECS FROM:
+% http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-titan-x/specifications
+% http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980/specifications
+% http://www.nvidia.com/content/PDF/kepler/Tesla-K40-Active-Board-Spec-BD-06949-001_v03.pdf
+% http://www.nvidia.com/content/PDF/kepler/Tesla-K20-Active-BD-06499-001-v04.pdf
+%
+% FLOPS DATA:
+% K40: http://international.download.nvidia.com/pdf/kepler/TeslaK80-datasheet.pdf
+% K20 & K40: http://www.nvidia.com/content/tesla/pdf/nvidia-tesla-kepler-family-datasheet.pdf
+% GTX980 & TITANX: https://en.wikipedia.org/wiki/List_of_Nvidia_graphics_processing_units
+\center\begin{tabular}{lc c c c c}
+                         && \multicolumn{4} {c}{Device} \\
+\cline{3-6}
+Specification            && K20m  & K40c  & GTX 980 & GTX Titan-X \\
+\cline{1-1}\cline{3-6}
+Number of Cores          && 2496  & 2880  & 2048    & 3072  \\
+Clock (MHz)              && 706   & 745   & 1126    & 1000  \\
+GFlops (single)          && 3520  & 4290  & 4612    & 6144  \\
+GFlops (double)          && 1170  & 1430  & 144     & 192   \\
+Memory (GB)              && 5     & 12    & 4       & 12    \\
+Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5 \\
+\cline{1-1}\cline{3-6}
+\end{tabular}
+\caption{Properties of the GPUs used in the evaluation}
+\label{table-gpus}
+\end{table}
+
+\subsection{Analysis of GPU Parallelism}
+As discussed in Section~\ref{gpu-design}, there are 10 distinct flavors of the
+GPU version of the algorithm. Specifically, there is the naive strategy, the
+shared strategy and 8 variations of the code generation strategy. This
+section investigates the effectiveness of each flavor on Nvidia's GTX TitanX,
+GTX980, K40c and K20m.
+
+% TITANX
+\begin{figure*}[t]	% [htb]
+  \centering
+  \epsfig{file=plots/titanx-1024-strategies-w1.eps, width=\textwidth}
+  \caption{Execution time of 1000 \textit{update\_phi} invocations using the TitanX GPU,
+  without explicit kernel vectorization, across a sweep of
+  \textit{update\_phi} thread block
+  sizes. Relevant model parameters: K=1024, M=4096, n=32.}
+  \label{titanx-w1-sweep}
+\end{figure*}
+
+% TITANX K=2K
+\begin{figure*}[t]	% [htb]
+  \centering
+  \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=\textwidth}
+  \caption{Execution time of 1000 \textit{update\_phi} invocations using the TitanX GPU,
+  without explicit kernel vectorization, across a sweep of
+  \textit{update\_phi} thread block
+  sizes. Relevant model parameters: K=2048, M=4096, n=32.}
+  \label{titanx-w1-sweep-2k}
+\end{figure*}
+
+Figure \ref{titanx-w1-sweep}(a) presents the performance of the GTX TitanX GPU
+for all 10 strategy flavors, without explicitly vectorizing the kernels. The
+x-axis represents different \textit{update\_phi} thread block sizes while the y-axis presents
+the total execution time of 1000 invocations of the \textit{update\_phi} kernel. The
+naive and shared strategies are labeled NAIVE and SHARED respectively. Further,
+each flavor of the code generation strategy is labeled by GEN followed by the 3
+choices that identify it.
+%
+The wide performance range inhibits the readability of the figure,
+therefore, a more focused Figure~\ref{titanx-w1-sweep}(b) is provided. As would
+be expected, the naive strategy exhibits the worst performance over all
+thread block
+sizes, as it does not explicitly cache repeated device memory read operations.
+The SHARED and \textit{GEN-SSS} strategies come next in terms of performance.
+Both strategies cache $Grads_i$, $Probs_i$ and $\pi_i$ in shared memory but
+differ in one aspect. Namely, \textit{GEN-SSS} explicitly unrolls the internal
+loops of the kernel. However, there is no significant performance difference
+between them. The other flavors of the code generation strategy attain higher
+performance as they unroll internal loops as well as cache data in
+registers. The TitanX obtains the best performance with the \textit{GEN-RSS}
+strategy and a thread block size of 64. The results of explicitly vectorized kernels
+are omitted as they obtain worse performance on the TitanX.
+
+A key model parameter that affects the behavior of the optimization strategies
+is the number of communities $K$. Figure~\ref{titanx-w1-sweep-2k} presents the
+same model configuration as in Figure~\ref{titanx-w1-sweep} but $K=2048$
+instead of $K=1024$. One key difference between the two figures is the optimal
+thread block size. An increase in $K$ comes with a proportional increase in
+the size of shared memory space that is used by each thread block for the
+strategies that employ shared memory. Similarly, GEN strategies that use the
+register file will require additional space. Therefore, the number of
+concurrent thread blocks that can execute on a single streaming multiprocessor
+will decrease, minimizing the GPU's occupancy and utilization. This effect is
+most clear when comparing the NAIVE with the SHARED and GEN-SSS strategies. In
+this case, the NAIVE strategy outperforms both SHARED and GEN-SSS for a
+thread block
+size of 32 due to their low occupancy. This limitation can be counteracted by
+selecting a larger thread block size which in turn increases the computation
+concurrency and occupancy.
+
+% K40
+\begin{figure*}[t]	% [hbt]
+  \centering
+  \epsfig{file=plots/k40-1024-strategies-w2.eps, width=\textwidth}
+  \caption{Execution time of 1000 \textit{update\_phi} invocations using the K40c GPU, with
+  explicit kernel vectorization of width 2, across a sweep of
+  \textit{update\_phi} thread block
+  sizes. Relevant model parameters: K=1024, M=4096, n=32.}
+  \label{k40-w2-sweep}
+\end{figure*}
+
+% \looseness=-1
+Figures~\ref{k40-w2-sweep} (a) and (b) present the performance of the K40c GPU
+for the same experimental configuration as shown for the TitanX in
+Figure~\ref{titanx-w1-sweep} with one exception. Namely, the code version used
+for this plot is explicitly vectorized with a vector width of~2. The results
+for the other code versions with vector width 4 and no vectorization are
+omitted as they exhibit lower performance.
+%
+Surprisingly, Figure~\ref{k40-w2-sweep} shows that the NAIVE strategy
+outperforms SHARED and some of the GEN strategies. This can be explained by the
+unique properties of the Tesla Super Computing line of products to which the
+K40c belongs. These GPUs include enhanced L2 caching mechanisms that
+accelerate repeated and sparse memory accesses. This is especially advantageous
+as it caches repeated reads across streaming multiprocessors. However, the
+highest performance is attained by \textit{GEN-RRS} which explicitly employs
+registers for both $Probs_i$ and $Grads_i$.
+
+The performance results obtained from the GTX TitanX and Tesla K40c GPUs
+reinforce the importance of customizing compute kernels to each GPU's specific
+architecture and capabilities. For instance, each GPU achieved its highest
+performance by employing a different strategy. Moreover, each GPU displayed
+different strategy-performance orderings.
+
+\begin{figure}[b]	% [htb]
+  \centering
+  \epsfig{file=plots/gpus.eps, width=0.9\columnwidth}
+  \caption{Speedup comparison of best performing parallel configurations of
+  each compute device normalized over baseline C++ version. Relevant model
+  parameters: K=1024, M=4096, n=32.}
+  \label{gpus-fig}
+\end{figure}
+
+\begin{figure}[b]	% [htb]
+  \centering
+  \epsfig{file=plots/gpu-vector-sweep.eps, width=0.9\columnwidth}
+  \caption{Performance of the best performing strategy per GPU, varying the
+  vector width, normalized over the non-vectorized kernel. Relevant model
+  parameters: K=1024, M=4096, n=32.}
+  \label{gpus-v-sweep}
+\end{figure}
+
+\subsection{Comparison of Compute Devices}
+Figure~\ref{gpus-fig} compares the highest speedup achieved by each of the
+GTX TitanX, GTX980, K40c, K20m and the Intel Xeon CPU relative to the baseline
+sequential C++ version. These results are consistent with the relative
+capabilities of each device as listed in Table~\ref{table-gpus}. For instance,
+the TitanX achieves the highest speedup of 86 relative to the baseline. At the
+other end, the parallel CPU version attains a speedup factor of~20.9.
+
+As vectorization is a popular GPU optimization, it is important to note that
+both GTX GPUs achieved their highest performance with non-vectorized kernels.
+On the other hand, the Tesla GPUs obtained the best performance with a vector
+width of~2. Figure~\ref{gpus-v-sweep} presents the execution time of the best
+performing strategy for each of the 4 GPUs. In this figure, the performance is
+normalized over the non-vectorized kernel version for each GPU. For instance,
+the TitanX exhibits an overhead factor of approximately 1.8 when using a vector
+width of~4. On the other hand, the K40c improves its performance by roughly
+20\% when it uses a vector width of~2 compared to the non-vectorized kernel.
+Therefore, explicit vectorization of the kernels can be either useful or
+harmful depending on the GPU architecture and the specific problem it is
+applied to.
+
+
+

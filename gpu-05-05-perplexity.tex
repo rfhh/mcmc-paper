@@ -1,0 +1,53 @@
+
+\begin{comment}
+\begin{figure}[t]	% [htb]
+  \centering
+  \epsfig{file=plots/ppx-gpu.eps, width=\columnwidth}
+  \caption{Perplexity convergence of com-DBLP on the GTX~Titan-X~GPU. Number
+  of communities chosen to maximally fill the GPU memory.}
+  \label{fig-ppx-gpu}
+\end{figure}
+
+\begin{figure}[t]	% [htb]
+  \centering
+  \epsfig{file=plots/ppx-cpu.eps, width=\columnwidth}
+  \caption{Perplexity convergence of com-LiveJournal on the multi-core~CPU.
+  Number of communities chosen to maximally fill the CPU memory.}
+  \label{fig-ppx-cpu}
+\end{figure}
+\end{comment}
+
+\begin{figure*}[t]	% [htb]
+  \centering
+  \epsfig{file=plots/ppx-gpu-cpu.eps, width=\textwidth}
+  \caption{Perplexity convergence. (a)~com-DBLP on the GTX~Titan-X~CPU.
+  (b)~com-LiveJournal on the multi-core~CPU. Number of communities chosen to
+  maximally fill the memory of GPU and CPU respectively.}
+  \label{fig-ppx-gpu-cpu}
+\end{figure*}
+
+\subsection{Algorithm Convergence}
+
+This section presents the evolution of the perplexity, i.e.\ the metric for
+the solution quality, as a function of time for
+two datasets, whose properties are given in Table~\ref{table-snap}. This
+analysis shows that our implementations of the algorithm indeed achieve
+convergence, and it gives an impression of the time required to achieve
+convergence for the largest datasets and community sizes that fit into the memory
+of a GPU and a CPU respectively. The dominant customer of memory is the
+$\pi$ matrix, sized $N{\times}K$ for $K$ communities and $N$ vertices in the
+graph. The runtime per iteration is independent of~$N$, but it depends on the
+product of~$K$, the mini-batch size~$m$, and the neighbor sample size~$n$. On
+the other hand, the number of iterations required to achieve sufficient
+convergence does grow with the size of the graph.
+
+Figure~\ref{fig-ppx-gpu-cpu}(a) shows the perplexity development for the dataset
+com-DBLP, with $N=317,080$. It is computed on the GTX Titan-X GPU with input
+parameter set $K=4096$, $m=4096$, $n=32$. Convergence is reached after 6~hours.
+
+Figure~\ref{fig-ppx-gpu-cpu}(b) shows the perplexity development convergence for
+com-LiveJournal, with $N=3,997,962$, computed on a multi-core DAS5 node.
+To fill the CPU core memory~(64GB), the input parameter set is $K$=3072,
+$m$=4096, $n$=32. Sufficient convergence is reached after 18~hours. Note
+that this network graph is so large that the GTX Titan-X would be unable to
+process more than $K$=256 communities.

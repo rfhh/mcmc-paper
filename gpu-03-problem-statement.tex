@@ -1,0 +1,101 @@
+\section{SG-MCMC Algorithm Overview} 
+\label{sec-algorithm}
+
+In this section we describe the computational aspects of the SG-MCMC MMSB
+algorithm. Moreover, we will introduce the data structures and notation that
+will be used throughout this paper.
+%
+Kindly refer to~\cite{DBLP:journals/corr/LiAW15} for a detailed explanation of
+the statistical concepts of the algorithm.
+
+The network graph $G$ consists of the undirected edges~$E$ and has $N$ vertices.
+The algorithm starts by partitioning $G$ into the \textit{training
+set}, the \textit{validation set} $H$ and the test set (the latter is not used
+in our implementations). $H$ and the test set
+are much smaller than $G$, typically between 1\% and 10\% of the edges
+in~$G$.
+The number of communities $K$
+is specified as a model parameter to the algorithm.
+
+The algorithm progresses by iteratively improving the global state of the learning
+problem, using the training set. There are two pairs of data structures that
+hold the global state. $\theta$, a $K{\times}2$ matrix, is used to
+calculate
+the community strength. The community strenghth represents the probability that two members in a community share
+an edge. The actual community strength
+is the vector $\beta$ of length $K$. As is shown in Equation~\ref{eqn-beta}, it is the
+normalized version of~$\theta_{k,2}$.
+The $\pi$ matrix of dimensions $N{\times}K$ represents the probability for
+each vertex in $G$ to be a member of each community. It is the normalized
+equivalent of the $\phi$ matrix of dimensions $N{\times}K$, on which the
+calculations occur. The
+definitions of $\beta$ and $\pi$ are:
+%
+\begin{eqnarray}
+    \label{eqn-beta}
+    \beta_{k} = \frac {\theta_{k,2}} {\theta^{sum}_k} &
+    	\textrm{where} & \theta^{sum}_k = \sum_{j=1}^{2} \theta_{kj} \\
+    \label{eqn-pi}
+    \pi_{ik} = \frac {\phi_{ik}} {\phi^{sum}_i} &
+    	\textrm{where} & \phi^{sum}_i = \sum_{k=1}^{K} \phi_{ik}
+\end{eqnarray}
+
+Pseudo-code for the algorithm is presented in
+Listing~\ref{algorithm-pseudo-code}.
+
+An iteration in the algorithm consists of 6 compute stages.
+We will highlight the data accessed in the stages as this
+determines the opportunities for parallelism.
+
+\begin{figure}[tb]
+\input{03-02-algorithm}
+\end{figure}
+
+The first stage (line~2 in the listing) randomly draws a mini-batch $M$,
+using the "stratified random node" strategy~\cite{DBLP:journals/corr/LiAW15}.
+In this strategy, a coin toss is used to decide between two sample types.
+%
+The first sample type
+chooses one random vertex $i$ and selects all of its edges to constitute the
+mini-batch $M$. This sample type is referred to as \textit{link edges}. On the other
+hand, the second sample type randomly draws a vertex $i$ and generates
+random edges of the form ($i$, $j$) such that the edges are not in $G$. This
+sample type is referred to as \textit{nonlink edges}. The set of vertices that
+constitute the edges of the mini-batch $M$ are represented by $m$.
+
+In the second stage (line~4), for each vertex $i$ in~$m$, a neighbor set of
+size $n$ is randomly sampled with edges of the form $(i,j)$.
+
+Stage~3, \textit{update\_phi} (line~6-10), calculates a gradient vector
+$\nabla\phi_i$ for each vertex $i$ in the mini-batch, by iterating over
+the edges~${(i,j)}$ in $i$'s neighbor set; the data that is used is
+$\pi_i$, $\pi_j$,
+and~$\beta$. The gradient $\nabla\phi_i$ is used to update~$\phi_i$. Random
+noise is added to the update to prevent the algorithm from getting confined
+to a local minimum.
+Stage 4 (line~11-13), \textit{update\_pi}, updates $\pi_i$ so it remains
+the normalized version of~$\phi_i$.
+
+Stage~5, \textit{update\_theta} (line~14),
+uses $\beta$ and $\pi_a$, $\pi_b$ for the edges $(a,b)$ in the mini-batch~$M$ to
+calculate a
+gradient vector~$\nabla\theta$. $\theta$ is updated using $\nabla\theta$, again
+with the addition of noise. Stage~6, \textit{update\_beta} (line~16),
+recalculates $\beta$ as the normalized
+version of~$\theta_{k,2}$.
+
+At regular intervals, the algorithm's global state is assessed by
+evaluating the perplexity over the edges in the validation set $H$. The
+\textit{perplexity} is a metric that represents the quality of the algorithm solution at
+a given point in time. It is used to detect the algorithm's
+convergence.
+The
+perplexity, as defined in~\cite{DBLP:journals/corr/LiAW15}, is the exponential
+of the average over time of the negative
+log-likelihood of meeting a link edge. In this 7th stage, $\beta$ is used,
+as are $\pi_a$ and $\pi_b$ for each edge $(a,b)$ in~$H$.
+
+The graph $G$ is queried for membership in the stages \textit{update\_phi},
+\textit{update\_beta}, and \textit{perplexity}. The validation set~$H$ is
+traversed in \textit{perplexity}.
+

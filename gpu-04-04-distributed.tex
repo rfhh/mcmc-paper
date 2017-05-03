@@ -1,0 +1,142 @@
+\begin{comment}
+3 subsections:
+   1. intro and motivation
+   2. design
+   3. evaluation
+
+1. intro and motivation
+     if K * N exceeds single-host memory need solution: use distributed memory, by
+     partitioning pi/phi
+     expect things to be memory-access dominated, so:
+      - because of speed, cannot use disk or even SSD; fully random accesses, no data
+        reuse or locality
+      - need fastest remote memory available; introduce RDMA
+     trade speed for memory in many places...
+
+2. design
+   - use master/worker paradigm
+
+   - memory allocations:
+     + distributed key-value store for pi/phi
+       choose RDMA read/write; no synch, no concurrency, fixed size for reads
+       as well as writes
+     + distribute pi/phi over the workers
+     + keep the graph at the master
+     + distribute the held-out set over the master + workers
+
+   - implementation:
+     iterate:
+     + master draws mini-batches
+     + master scatters mini-batch and graph slice over the W workers
+     + workers load pi
+     + workers draw neighbors (OpenMP)
+     + workers calculate updated phi (m/W * n) (OpenMP)
+     + barrier
+     + workers calculate and store updated pi (OpenMP)
+     + barrier
+     + master calculates beta (m) (OpenMP)
+     + if perplexity iteration:
+       barrier
+       master and workers calculate perplexity, summed w/ reduce (OpenMP/MPI)
+
+   - details
+     + use google sparseset because std::unordered_set uses 32 bytes of overhead
+       per item
+     + have a look at RDMA bandwidth as a function of N and W
+
+\end{comment}
+
+\subsection{Distributed-memory solution}
+
+The previous subsection described how an optimized MCMC a-MMSB solver
+is implemented, but that implementation is limited to the memory of one
+GPU or CPU. This means that the largest problems in the SNAP network
+overview cannot be tackled in this way. The network graph requires to
+store at least $N$ nodes and $E$ edges, and this requires at least $N +
+2E$ 4-byte integers. The storage required for the~$\pi$ field can easily
+exceed this: $N \cdot K$ 8-byte doubles. For example, to process the
+Friendster graph for $K=4096$ communities, the memory for~$\pi$ alone
+requires $N \cdot K$ doubles, i.e.\ 2TB of storage, which far exceeds
+the memory of most current servers. Note that computing time can be
+traded for memory because only one of the~$\pi$ and~$\phi$ fields needs
+to be stored in full; the stored one can be used to recompute the other,
+which is a fast, trivially parallel operation.
+
+There are two important observations for a solution to this problem. First,
+this type of solver performs a limited amount of computation per data item
+that is loaded; therefore it is imperative to provide the fastest possible
+access to~$\phi/\pi$ rows that are stored outside main memory. Second,
+there is little or no locality in the rows of~$\phi/\pi$ that are accessed,
+so opportunities for caching data accesses are very small. Consider the
+dominant \texttt{update\_phi} calculation, which requires a row of~$\phi$
+for each of the mini-batch members and $n$ rows of neighbor~$\phi$ per
+mini-batch node. Only the mini-batch node~$\phi$ accesses can be cached, $1/n$
+of all accesses.
+
+In any case, fulfilling the memory requirements will be time-costly. Out
+of hand, we discarded the option to use disks; disks, even SSDs, are
+orders of magnitude slower than local memory access, and because of the
+nature of the algorithm, execution speed will suffer proportionally.
+
+The solution we investigate in this paper is to use the aggregate
+memory of a cluster of machines by partitioning~$\pi$ over the memory of
+the cluster machines. Our implementation uses Infiniband RDMA (Remote
+Direct Memory Access)~\cite{RDMA}, a technology that allows a machine to
+read or write the memory of another machine through their NICs (network
+interface cards). The fastest RDMA primitives do not even involve the
+remote machine host {\em at all}; all memory transfers are performed by
+the remote NIC through DMA operations.
+
+\subsection{The RDMA distributed key-value store}
+
+The distributed storage of~$\pi$ is implemented as a D-KV (distributed
+key-value) store: the key is the index, the value is a row of~$\pi$. The
+key-value store is narrowly tailored to the distributed solver, because
+that allows a very fast implementation:
+\begin{itemize}
+\item the values are fixed-size: an array of $K$ doubles
+\item the layout of the data is static: at startup, the key-value store is
+filled with~$\pi[node]$ values; during the algorithm's lifetime, there are
+only reads and overwrites, no deletes or new inserts
+\item the keys are contiguous in the range $0..N-1$, so the value address
+can be calculated trivially from the key
+\item the computation is separated into phases of reading~$\pi$ and phases
+of writing~$\pi$: there are no concurrent write or read/write accesses, so
+there is no need for concurrency control at all
+\end{itemize}
+These properties allow our D-KV store to use only RDMA reads and RDMA writes,
+which means that there is never any involvement from the remote host.
+
+\subsection{Design of the distributed algorithm}
+
+The distributed algorithm uses MVAPICH2\cite{mvapich2} for all communication
+except the RDMA D-KV store, and OpenMP\cite{openmp} for thread parallelism. The
+implementation follows a master/slave paradigm. The master stores the full
+network graph~$G$, the workers each store a partition of~$\pi$. \textit{ASIDE:
+We decided not to scatter the graph over the workers, so all their memory can
+be used to store~$\pi$.} In each iteration, the master draws the mini-batch
+and partitions it evenly over the workers. The master also sends the slices
+of $G$ accessed by each part of the mini-batch to its owner worker. The
+workers independently draw a neighbor set for each mini-batch node that they
+own. Then each worker loads~$\pi$ from the RDMA key-value store for its
+mini-batch and neighbors nodes. Each worker then independently calculates,
+with threads in parallel, an updated value for~$\phi$ for its mini-batch
+nodes.  A barrier before the update to~$\pi$ through the D-KV store ensures
+consistency. The master then calculates the update to $\beta/\theta$,
+using thread parallelism; the amount of work in \texttt{update\_beta} is
+too little to warrant a distributed implementation. Then, if applicable,
+a perplexity calculation is performed in parallel by all machines in the
+cluster. Each machine has its partition of the held-out set. It calculates
+its contribution, with thread parallelism, to the perplexity value, and those
+contributions are summed through an MPI reduce operation.
+
+As we pointed out in Section~\ref{sec-algorithm}, the computational complexity for
+\textbf{update\_phi} is $m \cdot n \cdot K$, with $m$ the number of nodes in the
+mini-batch and $n$ the size of the neighbor sampler, which is independent of the size
+of $G$. The perplexity calculation has complexity $h \cdot K$, with $h$ the size of
+the held-out set. This is a fraction of the edges of $G$: 1\%~for huge network graphs,
+otherwise~10\%.
+The computation in our algorithm lends itself well for a distributed
+implementation, but the remote $\pi$ accesses will shift the balance between
+memory accesses and computation significantly. We will report quantitatively
+in our evaluation Section~\ref{section-evaluation-distributed}.

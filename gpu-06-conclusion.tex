@@ -1,0 +1,37 @@
+\section{Conclusion and Future Work}
+Modern machine learning algorithms are empowering their
+users to solve or approximate solutions to previously intractable problems.
+However, these advancements come at the cost of significant computational
+complexity and long running learning processes which hinder our ability to reap
+such algorithms' benefits when applied to large problems. There is a clear need
+to assess such algorithms and identify optimization opportunities in order to
+scale their performance.
+
+The SG-MCMC algorithm discussed in this paper posed additional computational
+challenges due to its unique stochastic nature and high data intensity. Unlike
+common machine learning algorithms, its data dependencies and memory access
+patterns are nondeterministic. In this paper, we presented our methodology of
+improving the algorithm's performance by fundamentally restructuring it to
+cater for concurrency.
+
+We showed that the algorithm's state can be reduced by 75\% after a thorough
+analysis of the computational patterns and data structures which significantly
+reduces its data intensity. Further, we navigated the complex optimization
+landscape by dynamically generating kernel code and testing different
+combinations of optimizations. The outcome of these efforts culminated in
+significant speedup factors of 21 and 86 using a multi-core CPU and a GPU
+respectively. These speedup numbers where achieved in comparison to an already
+optimized sequential implementation. Finally, we evaluated the performance of
+the parallel algorithm across several GPUs, highlighting the difference between
+their optimal configurations.
+
+The outcome of this study reinforces the significance of avoiding premature
+optimization as it can lead to unexpected results. In particular, the success
+of common GPU optimizations depends on the particular device in use and the
+problem it is applied to.
+
+This paper focused on the acceleration of the SG-MCMC algorithm on a
+single node. For future work, we are designing and implementing a distributed
+version of the algorithm that uses the collective memory of a cluster, which will enable
+processing of much larger datasets. These changes in context fundamentally
+change the optimization landscape's boundaries and priorities.
