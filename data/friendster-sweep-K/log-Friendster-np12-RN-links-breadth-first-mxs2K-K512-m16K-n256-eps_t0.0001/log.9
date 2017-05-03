@@ -1,0 +1,329 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 256 -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.0001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first 
+start MCMC stochastical distributed 
+PID 26351
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+Random seed [42,43]
+MPI_Init() done, rank 9 size 12
+Use D-KV store type rdma
+For memory query file /proc/26351/statm
+0.000 Memory usage: total 96MB resident 14MB 
+N 65608366 E 1806067135 link ratio 8.39161e-07 K 256
+minibatch size 16384 epsilon 1e-07 alpha 0.00390625 iterations 16777216 convergence 1e-12
+omp max threads 32
+sampling strategy random-node-links mxs 2048 /nonlinks 1 breadth-first 1 nonlink ratio 0.5
+num_node_sample 256
+a 0.0001 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+minibatch size param 16384 max 21541 chunk 3974 #neighbors(total) 503463
+perplexity nodes total 36121342 local 3010112 mine 1025366 chunk 512683
+connect request to node122:16090 timed out
+node122: RDMA OOB network: receive message from master, my rank is 9
+RDMA D-KV store excludes the master node
+MR/value addr=0x7ffd0dae0000 size 2daeb7b68, lkey=0x60011255, rkey=0x60011255, flags=0xf, mr=0x6abc80
+MR/cache addr=0x7ffc90061000 size 7da7dab0, lkey=0x60011355, rkey=0x60011355, flags=0xf, mr=0x6abcb8
+MR/write addr=0x7ffc8fc88000 size 3d7538, lkey=0x60011455, rkey=0x60011455, flags=0xf, mr=0x6abcf0
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 0: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 841
+  PSN number = 11711771
+  max.atomic = 16
+  LID = 0x47
+Local LID[0] = 0x 2f
+My con_data for qp to host 1: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 842
+  PSN number = 2630593
+  max.atomic = 16
+  LID = 0x47
+Local LID[1] = 0x 2f
+My con_data for qp to host 2: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 843
+  PSN number = 13172547
+  max.atomic = 16
+  LID = 0x47
+Local LID[2] = 0x 2f
+My con_data for qp to host 3: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 844
+  PSN number = 263474
+  max.atomic = 16
+  LID = 0x47
+Local LID[3] = 0x 2f
+My con_data for qp to host 4: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 845
+  PSN number = 3085707
+  max.atomic = 16
+  LID = 0x47
+Local LID[4] = 0x 2f
+My con_data for qp to host 5: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 846
+  PSN number = 5982101
+  max.atomic = 16
+  LID = 0x47
+Local LID[5] = 0x 2f
+My con_data for qp to host 6: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 847
+  PSN number = 3094825
+  max.atomic = 16
+  LID = 0x47
+Local LID[6] = 0x 2f
+My con_data for qp to host 7: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 848
+  PSN number = 15108427
+  max.atomic = 16
+  LID = 0x47
+Local LID[7] = 0x 2f
+My con_data for qp to host 8: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 849
+  PSN number = 12716150
+  max.atomic = 16
+  LID = 0x47
+Local LID[8] = 0x 2f
+My con_data for qp to host 10: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 850
+  PSN number = 7755129
+  max.atomic = 16
+  LID = 0x47
+Local LID[10] = 0x 2f
+My con_data for qp to host 11: 
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011255
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011355
+  QP number = 851
+  PSN number = 9167757
+  max.atomic = 16
+  LID = 0x47
+Local LID[11] = 0x 2f
+Peer 0
+  value address = 0x7ffdc5fe4000
+  value rkey = 0x8010d6d
+  cache address = 0x7ffd48565000
+  cache rkey = 0x8010e6d
+  QP number = 908
+  PSN number = 6858234
+  max.atomic = 16
+  LID = 0x38
+Peer 1
+  value address = 0x7ffd0dae0000
+  value rkey = 0x3801100e
+  cache address = 0x7ffc90061000
+  cache rkey = 0x3801110e
+  QP number = 908
+  PSN number = 13503505
+  max.atomic = 16
+  LID = 0x31
+Peer 2
+  value address = 0x7ffd0dae0000
+  value rkey = 0xe80112ec
+  cache address = 0x7ffc90063000
+  cache rkey = 0xe80113ec
+  QP number = 902
+  PSN number = 2714301
+  max.atomic = 16
+  LID = 0x41
+Peer 3
+  value address = 0x7ffd0dae0000
+  value rkey = 0x680112ae
+  cache address = 0x7ffc90061000
+  cache rkey = 0x680113ae
+  QP number = 908
+  PSN number = 15491310
+  max.atomic = 16
+  LID = 0x39
+Peer 4
+  value address = 0x7ffd0dae0000
+  value rkey = 0xe0011426
+  cache address = 0x7ffc90061000
+  cache rkey = 0xe0011526
+  QP number = 891
+  PSN number = 5189672
+  max.atomic = 16
+  LID = 0x43
+Peer 5
+  value address = 0x7ffd0dae0000
+  value rkey = 0x4801127f
+  cache address = 0x7ffc90061000
+  cache rkey = 0x4801137f
+  QP number = 891
+  PSN number = 4696620
+  max.atomic = 16
+  LID = 0x40
+Peer 6
+  value address = 0x7ffd0dae0000
+  value rkey = 0x60011435
+  cache address = 0x7ffc90061000
+  cache rkey = 0x60011535
+  QP number = 891
+  PSN number = 7485639
+  max.atomic = 16
+  LID = 0x45
+Peer 7
+  value address = 0x7ffd0dae0000
+  value rkey = 0xd00112e6
+  cache address = 0x7ffc90061000
+  cache rkey = 0xd00113e6
+  QP number = 891
+  PSN number = 3254016
+  max.atomic = 16
+  LID = 0x44
+Peer 8
+  value address = 0x7ffd0dae0000
+  value rkey = 0x500114c6
+  cache address = 0x7ffc90061000
+  cache rkey = 0x500115c6
+  QP number = 849
+  PSN number = 1194861
+  max.atomic = 16
+  LID = 0x46
+Peer 10
+  value address = 0x7ffd0dae0000
+  value rkey = 0x28011406
+  cache address = 0x7ffc90061000
+  cache rkey = 0x28011506
+  QP number = 850
+  PSN number = 6186459
+  max.atomic = 16
+  LID = 0x42
+Peer 11
+  value address = 0x7ffd0dae0000
+  value rkey = 0x1124f
+  cache address = 0x7ffc90061000
+  cache rkey = 0x1134f
+  QP number = 998
+  PSN number = 2966813
+  max.atomic = 16
+  LID = 0x6
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 117.344MB
+Master is not a worker, does not host pi values
+Create per-thread PHI_UPDATE randoms
+Random seed [47,336]
+Random seed [47,337]
+Random seed [47,338]
+Random seed [47,339]
+Random seed [47,340]
+Random seed [47,341]
+Random seed [47,342]
+Random seed [47,343]
+Random seed [47,344]
+Random seed [47,345]
+Random seed [47,346]
+Random seed [47,347]
+Random seed [47,348]
+Random seed [47,349]
+Random seed [47,350]
+Random seed [47,351]
+Random seed [47,352]
+Random seed [47,353]
+Random seed [47,354]
+Random seed [47,355]
+Random seed [47,356]
+Random seed [47,357]
+Random seed [47,358]
+Random seed [47,359]
+Random seed [47,360]
+Random seed [47,361]
+Random seed [47,362]
+Random seed [47,363]
+Random seed [47,364]
+Random seed [47,365]
+Random seed [47,366]
+Random seed [47,367]
+Create per-thread NEIGHBOR_SAMPLER randoms
+Random seed [46,335]
+Random seed [46,336]
+Random seed [46,337]
+Random seed [46,338]
+Random seed [46,339]
+Random seed [46,340]
+Random seed [46,341]
+Random seed [46,342]
+Random seed [46,343]
+Random seed [46,344]
+Random seed [46,345]
+Random seed [46,346]
+Random seed [46,347]
+Random seed [46,348]
+Random seed [46,349]
+Random seed [46,350]
+Random seed [46,351]
+Random seed [46,352]
+Random seed [46,353]
+Random seed [46,354]
+Random seed [46,355]
+Random seed [46,356]
+Random seed [46,357]
+Random seed [46,358]
+Random seed [46,359]
+Random seed [46,360]
+Random seed [46,361]
+Random seed [46,362]
+Random seed [46,363]
+Random seed [46,364]
+Random seed [46,365]
+Random seed [46,366]
+Random seed [44,54]
+*************** FIXME: load pi only on pi-hoster nodes
+Random seed 0x2a,0x2b
+run():586 71.619 Memory usage: total 14141MB resident 14060MB 

@@ -1,0 +1,114 @@
+Command line: ./main.0.3465.fs0 -f ../../datasets/CA-HepPh.txt -K 1K -m 32 -n 32 -x 1001 -i 32 
+start MCMC stochastical
+Floating point precision: 32
+PID 21563
+Build type Release
+Graph implementation: default sequential
+Random seed [42,43]
+Set held_out_ratio to default 0.1
+Handle input dataset from file ../../datasets/CA-HepPh.txt
+0ms open file
+For memory query file /proc/21563/statm
+0.000 Memory usage: total 39MB resident 2MB 
+204ms read ordered set
+0.204 Memory usage: total 42MB resident 4MB 
+#nodes 12008 min 1 max 89208 #edges 237010
+206ms create map
+0.206 Memory usage: total 42MB resident 5MB 
+Self-link (37867, 37867): ignore
+Self-link (38059, 38059): ignore
+Self-link (45155, 45155): ignore
+Self-link (50151, 50151): ignore
+Self-link (23799, 23799): ignore
+Self-link (61330, 61330): ignore
+Self-link (37970, 37970): ignore
+Self-link (14053, 14053): ignore
+Self-link (43739, 43739): ignore
+Self-link (15644, 15644): ignore
+Self-link (9574, 9574): ignore
+Self-link (51649, 51649): ignore
+Self-link (12252, 12252): ignore
+Self-link (60930, 60930): ignore
+Self-link (22764, 22764): ignore
+Self-link (85587, 85587): ignore
+Self-link (62805, 62805): ignore
+Self-link (63249, 63249): ignore
+Self-link (18657, 18657): ignore
+Self-link (17149, 17149): ignore
+Self-link (59858, 59858): ignore
+Self-link (61293, 61293): ignore
+Self-link (33561, 33561): ignore
+Self-link (2978, 2978): ignore
+Self-link (35064, 35064): ignore
+Self-link (35081, 35081): ignore
+Self-link (10687, 10687): ignore
+Self-link (65659, 65659): ignore
+Self-link (13117, 13117): ignore
+Self-link (40263, 40263): ignore
+Self-link (17138, 17138): ignore
+Self-link (426, 426): ignore
+#edges original 237010 undirected subsets 118489 duplicates 118489 self-links 32
+255ms create NetworkGraph
+0.254 Memory usage: total 47MB resident 9MB 
+0.255 Memory usage: total 45MB resident 8MB 
+0.302 Memory usage: total 55MB resident 17MB 
+Edges/in in held-out set 0
+0.308 Memory usage: total 56MB resident 18MB 
+Edges in held-out set 11848
+0.314 Memory usage: total 56MB resident 18MB 
+Edges/in in test set 0
+0.323 Memory usage: total 56MB resident 19MB 
+Edges in test set 11849
+0.330 Memory usage: total 56MB resident 19MB 
+max_fan_out 447
+N 12008 E 118489 link ratio 0.00164363 K 1024
+minibatch size 32 epsilon 1e-07 alpha 0.000976562 iterations 1001 convergence 1e-12
+sampling strategy stratified-random-node
+omp max threads 1
+num_node_sample 32
+a 0.03125 b 1024 c 0.5 eta (1,1)
+minibatch size: specified 32 from num_pieces (376) is 31
+Done host random for phi
+Random seed 0xe3e103118f3d7f8a,0x4adf8d8b753ac90d
+Done init()
+average_count is: 2 step count: 1 time: 0.026 perplexity for hold out set: 3.820487260818
+average_count is: 3 step count: 33 time: 0.239 perplexity for hold out set: 4.039018154144
+average_count is: 4 step count: 65 time: 0.451 perplexity for hold out set: 4.151865482330
+average_count is: 5 step count: 97 time: 0.664 perplexity for hold out set: 4.222064018250
+average_count is: 6 step count: 129 time: 0.877 perplexity for hold out set: 4.269046306610
+average_count is: 7 step count: 161 time: 1.090 perplexity for hold out set: 4.307304382324
+average_count is: 8 step count: 193 time: 1.302 perplexity for hold out set: 4.336596488953
+average_count is: 9 step count: 225 time: 1.515 perplexity for hold out set: 4.359041213989
+average_count is: 10 step count: 257 time: 1.728 perplexity for hold out set: 4.377651214600
+average_count is: 11 step count: 289 time: 1.940 perplexity for hold out set: 4.393661022186
+average_count is: 12 step count: 321 time: 2.164 perplexity for hold out set: 4.408150196075
+average_count is: 13 step count: 353 time: 2.378 perplexity for hold out set: 4.419596672058
+average_count is: 14 step count: 385 time: 2.592 perplexity for hold out set: 4.429141998291
+average_count is: 15 step count: 417 time: 2.806 perplexity for hold out set: 4.437088012695
+average_count is: 16 step count: 449 time: 3.020 perplexity for hold out set: 4.446086406708
+average_count is: 17 step count: 481 time: 3.234 perplexity for hold out set: 4.453999042511
+average_count is: 18 step count: 513 time: 3.447 perplexity for hold out set: 4.460503101349
+average_count is: 19 step count: 545 time: 3.661 perplexity for hold out set: 4.466128349304
+average_count is: 20 step count: 577 time: 3.874 perplexity for hold out set: 4.472062587738
+average_count is: 21 step count: 609 time: 4.092 perplexity for hold out set: 4.476808547974
+average_count is: 22 step count: 641 time: 4.313 perplexity for hold out set: 4.481002330780
+average_count is: 23 step count: 673 time: 4.527 perplexity for hold out set: 4.486300468445
+average_count is: 24 step count: 705 time: 4.740 perplexity for hold out set: 4.488442897797
+average_count is: 25 step count: 737 time: 4.954 perplexity for hold out set: 4.492497444153
+average_count is: 26 step count: 769 time: 5.167 perplexity for hold out set: 4.495697021484
+average_count is: 27 step count: 801 time: 5.381 perplexity for hold out set: 4.498992919922
+average_count is: 28 step count: 833 time: 5.594 perplexity for hold out set: 4.501991748810
+average_count is: 29 step count: 865 time: 5.807 perplexity for hold out set: 4.505129337311
+average_count is: 30 step count: 897 time: 6.021 perplexity for hold out set: 4.507874965668
+average_count is: 31 step count: 929 time: 6.245 perplexity for hold out set: 4.510735034943
+average_count is: 32 step count: 961 time: 6.459 perplexity for hold out set: 4.513349533081
+average_count is: 33 step count: 993 time: 6.673 perplexity for hold out set: 4.516181945801
+timer                                    total (s)    ticks  per tick (us)
+  outer                                     6.720     1000       6720.394
+  perplexity                                0.837       32      26179.194
+  sample_mini_batch                         0.023     1000         23.769
+  nodes_in_mini_batch                       0.003     1000          3.203
+  sample_neighbor_nodes                     0.361    33000         10.945
+  update_phi                                4.870    33000        147.593
+  update_pi                                 0.052     1000         52.014
+  update_beta                               0.553     1000        553.067

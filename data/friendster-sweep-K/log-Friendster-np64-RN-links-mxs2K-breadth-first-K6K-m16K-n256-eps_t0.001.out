@@ -1,0 +1,224 @@
+ENVIRONMENT=
+Now run: /cm/shared/apps/mvapich2/gcc/64/2.0b/bin/mpirun_rsh -ssh -export -hostfile /tmp/hosts-8937 -np 64   MV2_ENABLE_AFFINITY=0 /home/rutger/projects/etc/prun-logger ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.0 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.51 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.19 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.4 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.9 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.47 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.23 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.41 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.27 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.34 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.63 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.3 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.33 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.13 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.36 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.60 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.52 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.10 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.55 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.5 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.61 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.44 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.2 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.46 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.54 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.20 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.30 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.16 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.17 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.1 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.50 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.25 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.24 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.31 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.6 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.58 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.11 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.48 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.22 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.53 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.39 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.45 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.26 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.15 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.49 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.18 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.28 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.14 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.62 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.35 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.32 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.21 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.38 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.59 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.37 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.57 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.29 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.42 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.56 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.43 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.40 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.8 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.12 2>&1
+Will invoke: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 6K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.sampler.max-source 2K --mcmc.sampler.breadth-first > ../../results/log-Friendster-np64-RN-links-mxs2K-breadth-first-K6K-m16K-n256-eps_t0.001/log.7 2>&1
+node001: time left is 0.000 s: timeout expired; kill -SIGINT 0
+[node001:mpirun_rsh][signal_processor] Caught signal 2, killing job
+[node012:mpispawn_11][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node012:mpispawn_11][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node012:mpispawn_11][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node008:mpispawn_7][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node008:mpispawn_7][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node008:mpispawn_7][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node006:mpispawn_5][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node006:mpispawn_5][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node006:mpispawn_5][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node014:mpispawn_13][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node014:mpispawn_13][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node014:mpispawn_13][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node011:mpispawn_10][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node011:mpispawn_10][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node011:mpispawn_10][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node010:mpispawn_9][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node010:mpispawn_9][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node010:mpispawn_9][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node016:mpispawn_15][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node016:mpispawn_15][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node016:mpispawn_15][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node019:mpispawn_18][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node019:mpispawn_18][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node019:mpispawn_18][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node018:mpispawn_17][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node018:mpispawn_17][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node018:mpispawn_17][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node037:mpispawn_32][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node037:mpispawn_32][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node037:mpispawn_32][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node017:mpispawn_16][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node017:mpispawn_16][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node017:mpispawn_16][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node029:mpispawn_24][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node029:mpispawn_24][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node029:mpispawn_24][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node032:mpispawn_27][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node032:mpispawn_27][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node032:mpispawn_27][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node013:mpispawn_12][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node013:mpispawn_12][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node013:mpispawn_12][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node035:mpispawn_30][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node035:mpispawn_30][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node035:mpispawn_30][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node036:mpispawn_31][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node036:mpispawn_31][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node036:mpispawn_31][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node027:mpispawn_22][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node027:mpispawn_22][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node027:mpispawn_22][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node003:mpispawn_2][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node003:mpispawn_2][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node003:mpispawn_2][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node009:mpispawn_8][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node009:mpispawn_8][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node009:mpispawn_8][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node026:mpispawn_21][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node026:mpispawn_21][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node026:mpispawn_21][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node004:mpispawn_3][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node004:mpispawn_3][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node004:mpispawn_3][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node025:mpispawn_20][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node025:mpispawn_20][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node025:mpispawn_20][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node028:mpispawn_23][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node028:mpispawn_23][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node028:mpispawn_23][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node002:mpispawn_1][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node002:mpispawn_1][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node002:mpispawn_1][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node031:mpispawn_26][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node031:mpispawn_26][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node031:mpispawn_26][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node030:mpispawn_25][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node030:mpispawn_25][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node030:mpispawn_25][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node007:mpispawn_6][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node007:mpispawn_6][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node007:mpispawn_6][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node033:mpispawn_28][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node033:mpispawn_28][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node033:mpispawn_28][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node015:mpispawn_14][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node015:mpispawn_14][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node015:mpispawn_14][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node005:mpispawn_4][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node005:mpispawn_4][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node005:mpispawn_4][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node034:mpispawn_29][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node034:mpispawn_29][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node034:mpispawn_29][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node020:mpispawn_19][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node020:mpispawn_19][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node020:mpispawn_19][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node046:mpispawn_41][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node046:mpispawn_41][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node046:mpispawn_41][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node049:mpispawn_44][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node049:mpispawn_44][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node049:mpispawn_44][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node058:mpispawn_53][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node058:mpispawn_53][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node058:mpispawn_53][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node052:mpispawn_47][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node052:mpispawn_47][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node052:mpispawn_47][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node050:mpispawn_45][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node050:mpispawn_45][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node050:mpispawn_45][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node056:mpispawn_51][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node056:mpispawn_51][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node056:mpispawn_51][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node062:mpispawn_57][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node062:mpispawn_57][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node062:mpispawn_57][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node061:mpispawn_56][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node061:mpispawn_56][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node061:mpispawn_56][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node064:mpispawn_59][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node064:mpispawn_59][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node064:mpispawn_59][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node048:mpispawn_43][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node048:mpispawn_43][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node048:mpispawn_43][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node053:mpispawn_48][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node053:mpispawn_48][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node053:mpispawn_48][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node051:mpispawn_46][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node051:mpispawn_46][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node051:mpispawn_46][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node065:mpispawn_60][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node065:mpispawn_60][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node065:mpispawn_60][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node066:mpispawn_61][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node066:mpispawn_61][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node066:mpispawn_61][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node047:mpispawn_42][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node047:mpispawn_42][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node047:mpispawn_42][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node063:mpispawn_58][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node063:mpispawn_58][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node063:mpispawn_58][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node068:mpispawn_63][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node068:mpispawn_63][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node068:mpispawn_63][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node067:mpispawn_62][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node067:mpispawn_62][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node067:mpispawn_62][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node041:mpispawn_36][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node041:mpispawn_36][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node041:mpispawn_36][handle_mt_peer] Error while reading PMI socket. MPI process died?
+[node039:mpispawn_34][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node039:mpispawn_34][read_size] Unexpected End-Of-File on file descriptor 6. MPI process died?
+[node039:mpispawn_34][handle_mt_peer] Error while reading PMI socket. MPI process died?

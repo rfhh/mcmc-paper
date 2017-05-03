@@ -1,0 +1,1043 @@
+Command line: ./apps/main/main -f /var/scratch/rutger/mcmc/datasets/sparsehash/com-friendster-H0.01 -c preprocessed -K 2K -m 16K -n 256 -x 16M -i 256 --mcmc.c 0 --mcmc.a 0.001 --mcmc.strategy random-node-links --mcmc.max-sampler-source 2K 
+start MCMC stochastical distributed 
+PID 7255
+Build type Release
+Graph implementation: adjacency list (google sparseset)
+Random seed [42,43]
+MPI_Init() done, rank 23 size 46
+Use D-KV store type 1
+For memory query file /proc/7255/statm
+0.000 Memory usage: total 96MB resident 14MB 
+N 65608366 E 1806067135 link ratio 8.39161e-07 K 2048
+minibatch size 16384 epsilon 1e-07 alpha 0.000488281 iterations 16777216 convergence 1e-12
+sampling strategy random-node-links mxs 2048
+omp max threads 32
+num_node_sample 256
+a 0.001 b 1024 c 0 eta (1,1)
+minibatch size: 16384
+minibatch size param 16384 max 21541 chunk 498 #neighbors(total) 123103
+perplexity nodes total 36121342 local 785247 mine 128608 chunk 64304
+connect request to node324:16090 timed out
+node324: RDMA OOB network: receive message from master, my rank is 23
+RDMA D-KV store excludes the master node
+MR/value addr=0x7ffa58e82000 size 5907cf960, lkey=0xb8010ee4, rkey=0xb8010ee4, flags=0xf, mr=0x6c7450
+MR/cache addr=0x7ff9db405000 size 7da7b300, lkey=0xb8010fe4, rkey=0xb8010fe4, flags=0xf, mr=0x6c7488
+MR/write addr=0x7ff9dac87000 size 77cef8, lkey=0xb80110e4, rkey=0xb80110e4, flags=0xf, mr=0x6c74c0
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+Create QP
+Migrate this QP to INIT
+My con_data for qp to host 0: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268655
+  PSN number = 4495123
+  max.atomic = 16
+  LID = 0x96
+Local LID[0] = 0x 60
+My con_data for qp to host 1: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268656
+  PSN number = 4544531
+  max.atomic = 16
+  LID = 0x96
+Local LID[1] = 0x 60
+My con_data for qp to host 2: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268657
+  PSN number = 13279875
+  max.atomic = 16
+  LID = 0x96
+Local LID[2] = 0x 60
+My con_data for qp to host 3: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268658
+  PSN number = 6836493
+  max.atomic = 16
+  LID = 0x96
+Local LID[3] = 0x 60
+My con_data for qp to host 4: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268659
+  PSN number = 10489372
+  max.atomic = 16
+  LID = 0x96
+Local LID[4] = 0x 60
+My con_data for qp to host 5: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268660
+  PSN number = 12827768
+  max.atomic = 16
+  LID = 0x96
+Local LID[5] = 0x 60
+My con_data for qp to host 6: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268661
+  PSN number = 2907655
+  max.atomic = 16
+  LID = 0x96
+Local LID[6] = 0x 60
+My con_data for qp to host 7: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268662
+  PSN number = 9225513
+  max.atomic = 16
+  LID = 0x96
+Local LID[7] = 0x 60
+My con_data for qp to host 8: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268663
+  PSN number = 4615769
+  max.atomic = 16
+  LID = 0x96
+Local LID[8] = 0x 60
+My con_data for qp to host 9: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268664
+  PSN number = 3698623
+  max.atomic = 16
+  LID = 0x96
+Local LID[9] = 0x 60
+My con_data for qp to host 10: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268665
+  PSN number = 2004664
+  max.atomic = 16
+  LID = 0x96
+Local LID[10] = 0x 60
+My con_data for qp to host 11: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268666
+  PSN number = 11129429
+  max.atomic = 16
+  LID = 0x96
+Local LID[11] = 0x 60
+My con_data for qp to host 12: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268667
+  PSN number = 7290753
+  max.atomic = 16
+  LID = 0x96
+Local LID[12] = 0x 60
+My con_data for qp to host 13: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268668
+  PSN number = 5611198
+  max.atomic = 16
+  LID = 0x96
+Local LID[13] = 0x 60
+My con_data for qp to host 14: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268669
+  PSN number = 8265619
+  max.atomic = 16
+  LID = 0x96
+Local LID[14] = 0x 60
+My con_data for qp to host 15: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268670
+  PSN number = 15598575
+  max.atomic = 16
+  LID = 0x96
+Local LID[15] = 0x 60
+My con_data for qp to host 16: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268671
+  PSN number = 3523091
+  max.atomic = 16
+  LID = 0x96
+Local LID[16] = 0x 60
+My con_data for qp to host 17: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268672
+  PSN number = 15659018
+  max.atomic = 16
+  LID = 0x96
+Local LID[17] = 0x 60
+My con_data for qp to host 18: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268673
+  PSN number = 16366343
+  max.atomic = 16
+  LID = 0x96
+Local LID[18] = 0x 60
+My con_data for qp to host 19: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268674
+  PSN number = 925938
+  max.atomic = 16
+  LID = 0x96
+Local LID[19] = 0x 60
+My con_data for qp to host 20: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268675
+  PSN number = 4071685
+  max.atomic = 16
+  LID = 0x96
+Local LID[20] = 0x 60
+My con_data for qp to host 21: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268676
+  PSN number = 10725847
+  max.atomic = 16
+  LID = 0x96
+Local LID[21] = 0x 60
+My con_data for qp to host 22: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268677
+  PSN number = 1989906
+  max.atomic = 16
+  LID = 0x96
+Local LID[22] = 0x 60
+My con_data for qp to host 24: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268678
+  PSN number = 4486819
+  max.atomic = 16
+  LID = 0x96
+Local LID[24] = 0x 60
+My con_data for qp to host 25: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268679
+  PSN number = 3897448
+  max.atomic = 16
+  LID = 0x96
+Local LID[25] = 0x 60
+My con_data for qp to host 26: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268680
+  PSN number = 8187662
+  max.atomic = 16
+  LID = 0x96
+Local LID[26] = 0x 60
+My con_data for qp to host 27: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268681
+  PSN number = 16199557
+  max.atomic = 16
+  LID = 0x96
+Local LID[27] = 0x 60
+My con_data for qp to host 28: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268682
+  PSN number = 1338011
+  max.atomic = 16
+  LID = 0x96
+Local LID[28] = 0x 60
+My con_data for qp to host 29: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268683
+  PSN number = 3230388
+  max.atomic = 16
+  LID = 0x96
+Local LID[29] = 0x 60
+My con_data for qp to host 30: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268684
+  PSN number = 12744743
+  max.atomic = 16
+  LID = 0x96
+Local LID[30] = 0x 60
+My con_data for qp to host 31: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268685
+  PSN number = 8736661
+  max.atomic = 16
+  LID = 0x96
+Local LID[31] = 0x 60
+My con_data for qp to host 32: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268686
+  PSN number = 7725511
+  max.atomic = 16
+  LID = 0x96
+Local LID[32] = 0x 60
+My con_data for qp to host 33: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268687
+  PSN number = 512058
+  max.atomic = 16
+  LID = 0x96
+Local LID[33] = 0x 60
+My con_data for qp to host 34: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268688
+  PSN number = 5239320
+  max.atomic = 16
+  LID = 0x96
+Local LID[34] = 0x 60
+My con_data for qp to host 35: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268689
+  PSN number = 14562005
+  max.atomic = 16
+  LID = 0x96
+Local LID[35] = 0x 60
+My con_data for qp to host 36: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268690
+  PSN number = 11001431
+  max.atomic = 16
+  LID = 0x96
+Local LID[36] = 0x 60
+My con_data for qp to host 37: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268691
+  PSN number = 1289872
+  max.atomic = 16
+  LID = 0x96
+Local LID[37] = 0x 60
+My con_data for qp to host 38: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268692
+  PSN number = 692444
+  max.atomic = 16
+  LID = 0x96
+Local LID[38] = 0x 60
+My con_data for qp to host 39: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268693
+  PSN number = 3449728
+  max.atomic = 16
+  LID = 0x96
+Local LID[39] = 0x 60
+My con_data for qp to host 40: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268694
+  PSN number = 5905641
+  max.atomic = 16
+  LID = 0x96
+Local LID[40] = 0x 60
+My con_data for qp to host 41: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268695
+  PSN number = 4391068
+  max.atomic = 16
+  LID = 0x96
+Local LID[41] = 0x 60
+My con_data for qp to host 42: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268696
+  PSN number = 5454392
+  max.atomic = 16
+  LID = 0x96
+Local LID[42] = 0x 60
+My con_data for qp to host 43: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268697
+  PSN number = 257854
+  max.atomic = 16
+  LID = 0x96
+Local LID[43] = 0x 60
+My con_data for qp to host 44: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268698
+  PSN number = 11681821
+  max.atomic = 16
+  LID = 0x96
+Local LID[44] = 0x 60
+My con_data for qp to host 45: 
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010ee4
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010fe4
+  QP number = 268699
+  PSN number = 11065591
+  max.atomic = 16
+  LID = 0x96
+Local LID[45] = 0x 60
+Peer 0
+  value address = 0x7ffdc6ca0000
+  value rkey = 0xe8010d3c
+  cache address = 0x7ffd49223000
+  cache rkey = 0xe8010e3c
+  QP number = 265375
+  PSN number = 69854
+  max.atomic = 16
+  LID = 0x84
+Peer 1
+  value address = 0x7ffa58e82000
+  value rkey = 0x10e5a
+  cache address = 0x7ff9db405000
+  cache rkey = 0x10f5a
+  QP number = 269157
+  PSN number = 12258335
+  max.atomic = 16
+  LID = 0x89
+Peer 2
+  value address = 0x7ffa58e82000
+  value rkey = 0x60010e20
+  cache address = 0x7ff9db405000
+  cache rkey = 0x60010f20
+  QP number = 3237
+  PSN number = 3059337
+  max.atomic = 16
+  LID = 0x7
+Peer 3
+  value address = 0x7ffa58e82000
+  value rkey = 0xb8010eaa
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb8010faa
+  QP number = 265383
+  PSN number = 649353
+  max.atomic = 16
+  LID = 0x122
+Peer 4
+  value address = 0x7ffa58e82000
+  value rkey = 0xd8010e30
+  cache address = 0x7ff9db405000
+  cache rkey = 0xd8010f30
+  QP number = 269187
+  PSN number = 14893269
+  max.atomic = 16
+  LID = 0x81
+Peer 5
+  value address = 0x7ffa58e82000
+  value rkey = 0xd8010e64
+  cache address = 0x7ff9db405000
+  cache rkey = 0xd8010f64
+  QP number = 269190
+  PSN number = 15048672
+  max.atomic = 16
+  LID = 0x88
+Peer 6
+  value address = 0x7ffa58e82000
+  value rkey = 0x60010e35
+  cache address = 0x7ff9db405000
+  cache rkey = 0x60010f35
+  QP number = 269241
+  PSN number = 2097047
+  max.atomic = 16
+  LID = 0x76
+Peer 7
+  value address = 0x7ffa58e82000
+  value rkey = 0x58010e1c
+  cache address = 0x7ff9db405000
+  cache rkey = 0x58010f1c
+  QP number = 269170
+  PSN number = 15075608
+  max.atomic = 16
+  LID = 0x93
+Peer 8
+  value address = 0x7ffa58e82000
+  value rkey = 0x20010e83
+  cache address = 0x7ff9db405000
+  cache rkey = 0x20010f83
+  QP number = 269080
+  PSN number = 8202553
+  max.atomic = 16
+  LID = 0x77
+Peer 9
+  value address = 0x7ffa58e82000
+  value rkey = 0x30010e28
+  cache address = 0x7ff9db405000
+  cache rkey = 0x30010f28
+  QP number = 269082
+  PSN number = 1204946
+  max.atomic = 16
+  LID = 0x94
+Peer 10
+  value address = 0x7ffa58e82000
+  value rkey = 0x80010e06
+  cache address = 0x7ff9db405000
+  cache rkey = 0x80010f06
+  QP number = 269094
+  PSN number = 3152458
+  max.atomic = 16
+  LID = 0x87
+Peer 11
+  value address = 0x7ffa58e82000
+  value rkey = 0xa0010e86
+  cache address = 0x7ff9db405000
+  cache rkey = 0xa0010f86
+  QP number = 268960
+  PSN number = 34951
+  max.atomic = 16
+  LID = 0x121
+Peer 12
+  value address = 0x7ffa58e82000
+  value rkey = 0x8010e89
+  cache address = 0x7ff9db405000
+  cache rkey = 0x8010f89
+  QP number = 268933
+  PSN number = 12180527
+  max.atomic = 16
+  LID = 0x83
+Peer 13
+  value address = 0x7ffa58e82000
+  value rkey = 0xd8010e52
+  cache address = 0x7ff9db405000
+  cache rkey = 0xd8010f52
+  QP number = 268930
+  PSN number = 6986242
+  max.atomic = 16
+  LID = 0x91
+Peer 14
+  value address = 0x7ffa58e82000
+  value rkey = 0x20010e40
+  cache address = 0x7ff9db405000
+  cache rkey = 0x20010f40
+  QP number = 268939
+  PSN number = 16164771
+  max.atomic = 16
+  LID = 0x82
+Peer 15
+  value address = 0x7ffa58e82000
+  value rkey = 0x50010e5a
+  cache address = 0x7ff9db405000
+  cache rkey = 0x50010f5a
+  QP number = 268951
+  PSN number = 15012042
+  max.atomic = 16
+  LID = 0x80
+Peer 16
+  value address = 0x7ffa58e82000
+  value rkey = 0x20010ef9
+  cache address = 0x7ff9db405000
+  cache rkey = 0x20010ff9
+  QP number = 268767
+  PSN number = 4602054
+  max.atomic = 16
+  LID = 0x78
+Peer 17
+  value address = 0x7ffa58e82000
+  value rkey = 0xf8010e19
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf8010f19
+  QP number = 268729
+  PSN number = 2664568
+  max.atomic = 16
+  LID = 0x90
+Peer 18
+  value address = 0x7ffa58e82000
+  value rkey = 0x90010e22
+  cache address = 0x7ff9db405000
+  cache rkey = 0x90010f22
+  QP number = 268693
+  PSN number = 5399128
+  max.atomic = 16
+  LID = 0x85
+Peer 19
+  value address = 0x7ffa58e82000
+  value rkey = 0x8010eea
+  cache address = 0x7ff9db405000
+  cache rkey = 0x8010fea
+  QP number = 268688
+  PSN number = 1303109
+  max.atomic = 16
+  LID = 0x95
+Peer 20
+  value address = 0x7ffa58e82000
+  value rkey = 0xc0010ef7
+  cache address = 0x7ff9db405000
+  cache rkey = 0xc0010ff7
+  QP number = 268693
+  PSN number = 8181110
+  max.atomic = 16
+  LID = 0x86
+Peer 21
+  value address = 0x7ffa58e82000
+  value rkey = 0xc8010ee1
+  cache address = 0x7ff9db405000
+  cache rkey = 0xc8010fe1
+  QP number = 268695
+  PSN number = 4402624
+  max.atomic = 16
+  LID = 0x92
+Peer 22
+  value address = 0x7ffa58e82000
+  value rkey = 0xf8010ed0
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf8010fd0
+  QP number = 268689
+  PSN number = 16017211
+  max.atomic = 16
+  LID = 0x79
+Peer 24
+  value address = 0x7ffa58e82000
+  value rkey = 0x90010ecf
+  cache address = 0x7ff9db405000
+  cache rkey = 0x90010fcf
+  QP number = 268506
+  PSN number = 16572574
+  max.atomic = 16
+  LID = 0x97
+Peer 25
+  value address = 0x7ffa58e82000
+  value rkey = 0xb0010e96
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb0010f96
+  QP number = 268680
+  PSN number = 212397
+  max.atomic = 16
+  LID = 0x112
+Peer 26
+  value address = 0x7ffa58e82000
+  value rkey = 0xe8010e6a
+  cache address = 0x7ff9db405000
+  cache rkey = 0xe8010f6a
+  QP number = 268650
+  PSN number = 11328267
+  max.atomic = 16
+  LID = 0x115
+Peer 27
+  value address = 0x7ffa58e82000
+  value rkey = 0x78010ec3
+  cache address = 0x7ff9db405000
+  cache rkey = 0x78010fc3
+  QP number = 268652
+  PSN number = 14301545
+  max.atomic = 16
+  LID = 0x110
+Peer 28
+  value address = 0x7ffa58e82000
+  value rkey = 0x88010e6f
+  cache address = 0x7ff9db405000
+  cache rkey = 0x88010f6f
+  QP number = 268626
+  PSN number = 2346353
+  max.atomic = 16
+  LID = 0x114
+Peer 29
+  value address = 0x7ffa58e82000
+  value rkey = 0x28010eca
+  cache address = 0x7ff9db405000
+  cache rkey = 0x28010fca
+  QP number = 268622
+  PSN number = 352804
+  max.atomic = 16
+  LID = 0x109
+Peer 30
+  value address = 0x7ffa58e82000
+  value rkey = 0xf0010e92
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf0010f92
+  QP number = 268620
+  PSN number = 1938093
+  max.atomic = 16
+  LID = 0x98
+Peer 31
+  value address = 0x7ffa58e82000
+  value rkey = 0xc0010e05
+  cache address = 0x7ff9db405000
+  cache rkey = 0xc0010f05
+  QP number = 268624
+  PSN number = 10350642
+  max.atomic = 16
+  LID = 0x106
+Peer 32
+  value address = 0x7ffa58e82000
+  value rkey = 0x10010e40
+  cache address = 0x7ff9db405000
+  cache rkey = 0x10010f40
+  QP number = 265550
+  PSN number = 8585234
+  max.atomic = 16
+  LID = 0x100
+Peer 33
+  value address = 0x7ffa58e82000
+  value rkey = 0xf8010e50
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf8010f50
+  QP number = 265569
+  PSN number = 9077711
+  max.atomic = 16
+  LID = 0x107
+Peer 34
+  value address = 0x7ffa58e82000
+  value rkey = 0xf0010e5c
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf0010f5c
+  QP number = 265615
+  PSN number = 12617765
+  max.atomic = 16
+  LID = 0x99
+Peer 35
+  value address = 0x7ffa58e82000
+  value rkey = 0xe8010e63
+  cache address = 0x7ff9db405000
+  cache rkey = 0xe8010f63
+  QP number = 265567
+  PSN number = 9853415
+  max.atomic = 16
+  LID = 0x120
+Peer 36
+  value address = 0x7ffa58e82000
+  value rkey = 0xe0010e79
+  cache address = 0x7ff9db405000
+  cache rkey = 0xe0010f79
+  QP number = 265568
+  PSN number = 15854690
+  max.atomic = 16
+  LID = 0x101
+Peer 37
+  value address = 0x7ffa58e82000
+  value rkey = 0x10e68
+  cache address = 0x7ff9db405000
+  cache rkey = 0x10f68
+  QP number = 265698
+  PSN number = 16280597
+  max.atomic = 16
+  LID = 0x119
+Peer 38
+  value address = 0x7ffa58e82000
+  value rkey = 0x60010e52
+  cache address = 0x7ff9db405000
+  cache rkey = 0x60010f52
+  QP number = 265704
+  PSN number = 12724491
+  max.atomic = 16
+  LID = 0x103
+Peer 39
+  value address = 0x7ffa58e82000
+  value rkey = 0x38010e5e
+  cache address = 0x7ff9db405000
+  cache rkey = 0x38010f5e
+  QP number = 265598
+  PSN number = 5067187
+  max.atomic = 16
+  LID = 0x105
+Peer 40
+  value address = 0x7ffa58e82000
+  value rkey = 0x70010e67
+  cache address = 0x7ff9db405000
+  cache rkey = 0x70010f67
+  QP number = 265557
+  PSN number = 10168279
+  max.atomic = 16
+  LID = 0x102
+Peer 41
+  value address = 0x7ffa58e82000
+  value rkey = 0xd0010e54
+  cache address = 0x7ff9db405000
+  cache rkey = 0xd0010f54
+  QP number = 265537
+  PSN number = 6950731
+  max.atomic = 16
+  LID = 0x104
+Peer 42
+  value address = 0x7ffa58e82000
+  value rkey = 0xb0010e6a
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb0010f6a
+  QP number = 265590
+  PSN number = 14922232
+  max.atomic = 16
+  LID = 0x118
+Peer 43
+  value address = 0x7ffa58e82000
+  value rkey = 0xf8010e3d
+  cache address = 0x7ff9db405000
+  cache rkey = 0xf8010f3d
+  QP number = 264741
+  PSN number = 1175107
+  max.atomic = 16
+  LID = 0x111
+Peer 44
+  value address = 0x7ffa58e82000
+  value rkey = 0xe0010e3a
+  cache address = 0x7ff9db405000
+  cache rkey = 0xe0010f3a
+  QP number = 264710
+  PSN number = 6696149
+  max.atomic = 16
+  LID = 0x116
+Peer 45
+  value address = 0x7ffa58e82000
+  value rkey = 0xb0010e3d
+  cache address = 0x7ff9db405000
+  cache rkey = 0xb0010f3d
+  QP number = 2620
+  PSN number = 15579845
+  max.atomic = 16
+  LID = 0x117
+Migrate QPs to RTR, RTS
+Resize my queue pointers, use >= 34.342MB
+Master is not a worker, does not host pi values
+Create per-thread PHI_UPDATE randoms
+Random seed [47,784]
+Random seed [47,785]
+Random seed [47,786]
+Random seed [47,787]
+Random seed [47,788]
+Random seed [47,789]
+Random seed [47,790]
+Random seed [47,791]
+Random seed [47,792]
+Random seed [47,793]
+Random seed [47,794]
+Random seed [47,795]
+Random seed [47,796]
+Random seed [47,797]
+Random seed [47,798]
+Random seed [47,799]
+Random seed [47,800]
+Random seed [47,801]
+Random seed [47,802]
+Random seed [47,803]
+Random seed [47,804]
+Random seed [47,805]
+Random seed [47,806]
+Random seed [47,807]
+Random seed [47,808]
+Random seed [47,809]
+Random seed [47,810]
+Random seed [47,811]
+Random seed [47,812]
+Random seed [47,813]
+Random seed [47,814]
+Random seed [47,815]
+Create per-thread NEIGHBOR_SAMPLER randoms
+Random seed [46,783]
+Random seed [46,784]
+Random seed [46,785]
+Random seed [46,786]
+Random seed [46,787]
+Random seed [46,788]
+Random seed [46,789]
+Random seed [46,790]
+Random seed [46,791]
+Random seed [46,792]
+Random seed [46,793]
+Random seed [46,794]
+Random seed [46,795]
+Random seed [46,796]
+Random seed [46,797]
+Random seed [46,798]
+Random seed [46,799]
+Random seed [46,800]
+Random seed [46,801]
+Random seed [46,802]
+Random seed [46,803]
+Random seed [46,804]
+Random seed [46,805]
+Random seed [46,806]
+Random seed [46,807]
+Random seed [46,808]
+Random seed [46,809]
+Random seed [46,810]
+Random seed [46,811]
+Random seed [46,812]
+Random seed [46,813]
+Random seed [46,814]
+Random seed [44,68]
+*************** FIXME: load pi only on pi-hoster nodes
+Random seed 0x2a,0x2b
+run():586 124.372 Memory usage: total 25433MB resident 25099MB 
