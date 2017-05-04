@@ -340,7 +340,7 @@
 
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+\hyphenation{CLCuda-API op-tical net-works semi-conduc-tor}
 
 % from SuperComputing Glasswing paper
 \usepackage{epsfig}
@@ -394,7 +394,7 @@ Communities}
 \title{Accelerating Overlapping Community Detection: Performance Tuning
  a Stochastic Gradient Markov Chain Monte Carlo Algorithm}
 
-\title{Accelerating and Scaling Overlapping Community Detection}
+\title{Accelerating and Scaling \\ Overlapping Community Detection}
 
 % author names and affiliations
 % use a multiple column layout for up to two different
@@ -405,7 +405,7 @@ Rutger Hofman\IEEEauthorrefmark{1},
 Wenzhe Li\IEEEauthorrefmark{2},
 Sungjin Ahn\IEEEauthorrefmark{3},
 Max Welling\IEEEauthorrefmark{4} and
-Henri Bal\IEEEauthorrefmark{1}}
+Henri Bal\IEEEauthorrefmark{1}\\}
 \IEEEauthorblockA{\IEEEauthorrefmark{1}Vrije Universiteit Amsterdam, The Netherlands\\ Email: \{ielhelw,rutger,bal\}@cs.vu.nl}
 \IEEEauthorblockA{\IEEEauthorrefmark{2}University of Southern California, USA\\ Email: wenzheli@usc.edu}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}University of Montreal, Canada \\ Email: sungjia@ics.uci.edu}
@@ -451,27 +451,44 @@ Henri Bal\IEEEauthorrefmark{1}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Accelerating sequential algorithms in order to achieve high performance is
-often a nontrivial task. However, there are certain properties that can
-exacerbate this process and make it particularly daunting. For example,
-building an efficient parallel solution for a data-intensive algorithm requires
-a deep analysis of the memory access patterns and data reuse potential. In this
-context, the optimization landscape can be extremely complex owing to the large
-number of trade-off decisions.
+Recent advancements in machine learning algorithms have transformed the data
+analytics domain and provided innovative solutions to inherently difficult
+problems. However, training models at speed as well as at scale over large
+data sets remains a
+daunting challenge. One such problem is the detection of overlapping
+communities within graphs. For example, a social network can be modeled as a
+graph where the vertices and edges represent individuals and their
+relationships. As opposed to the problem of graph partitioning or clustering, an
+individual can be part of multiple communities which significantly increases
+the problem complexity.
+% same as above:
+% Accelerating sequential algorithms in order to achieve high performance is
+% often a nontrivial task. However, there are certain properties that can
+% exacerbate this process and make it particularly daunting. For example,
+% building an efficient parallel solution for a data-intensive algorithm requires
+% a deep analysis of the memory access patterns and data reuse potential. In this
+% context, the optimization landscape can be extremely complex owing to the large
+% number of trade-off decisions.
 
-In this paper, we discuss our experience accelerating an existing
-data-intensive machine learning algorithm that detects overlapping communities
-in graphs. We present our methodology and findings in parallelizing the
+In this paper, we discuss our experience in accelerating and scaling an existing
+data-intensive algorithm that detects overlapping communities
+in graphs. First, we present our methodology and findings in parallelizing the
 computation using either a multi-core CPU or one of several GPUs. A thorough
 analysis of the algorithm's computation and data dependencies resulted in a
-75\% reduction in its memory footprint and data intensity. Additionally, we
+75\% reduction in its memory footprint and data intensity. We
 employed a customizable code generation strategy to test and identify the
 optimal combination of optimizations for each compute device. We present an
 empirical evaluation of these contributions and show that the parallelization
 achieves speedups up to 86x compared to an already optimized sequential
 version.
 
-\input{distr-00-abstract}
+Next, we present our solution to scaling this algorithm by an efficient
+parallel and distributed implementation, where the memory requirements are
+the foremost bottleneck. We show that the algorithm can scale and process
+graphs consisting of billions of edges and tens of millions of vertices on
+a compute cluster of 65 nodes. To the best of our knowledge, this is the first
+time that the problem of deducing overlapping
+communities has been learned for problems of such a large scale.
 \end{abstract}
 
 % no keywords
@@ -498,23 +515,22 @@ version.
 
 
 \input{gpu-01-intro}
-
 \input{distr-01-intro}
 
-\input{gpu-02-related}
-\input{distr-02-related}
+\input{02-background}
+\input{02-related}
 
-\section{Accelerating MCMC-AMMSB on one many-core machine}
+\section{Accelerating MCMC-AMMSB on one Many-core Machine}
 
-\input{gpu-03-problem-statement}
+% \input{gpu-03-problem-statement}
 \input{gpu-04-design}
 \input{gpu-05-evaluation}
+\input{gpu-06-conclusion}
 
-\section{Accelerating MCMC-AMMSB on a distributed cluster}
+\section{Scaling MCMC-AMMSB on a Distributed Cluster}
 
 \input{distr-03-design}
 \input{distr-04-evaluation}
-\input{gpu-06-conclusion}
 \input{distr-05-conclusion}
 
 

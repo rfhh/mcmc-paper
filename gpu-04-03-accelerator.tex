@@ -63,8 +63,8 @@ kernel which generates uniformly random neighbors for each vertex in the
 mini-batch. 
 %
 Second, the predominant kernel, \textit{update\_phi} is invoked to calculate the
-gradients for each vertex $i$ in the mini-batch $m$ and updates the value of $ \phi_i
-\mid i \in m$. Next, the \textit{update\_pi} kernel is invoked to normalize the
+gradients for each vertex $i$ in the mini-batch \Minibatch and updates the value of $ \phi_i
+\mid i \in \Minibatch$. Next, the \textit{update\_pi} kernel is invoked to normalize the
 individual $\phi_i$ and store the result in the corresponding~$\pi_i$.
 %
 Third, the kernels \textit{update\_theta} and \textit{update\_beta} are invoked to modify the
@@ -85,7 +85,7 @@ data-intensity.
 The data structures that occupy most memory are $\pi$ and~$\phi$, both of
 which are matrices of dimensions ${N}\times{K}$. However, the storage of both
 matrices is redundant as $\pi$ is a row-normalized copy of~$\phi$, see
-Equation~\ref{eqn-pi} in Section~\ref{sec-algorithm}. The full storage for
+Table~\ref{tbl-symbols} in Section~\ref{sec-background}. The full storage for
 $\phi$ is discarded; $\phi_{ik}$ values are calculated as
 $\pi_{ik}/\phi^{sum}_i$, which requires maintenance of a vector
 $\phi^{sum}$ of size $N$.
@@ -93,9 +93,9 @@ Moreover, the calculation for $\phi_{ik}$ can be cached usefully.
 %
 The $\phi$ matrix is required in two kernels only, namely, \textit{update\_phi} and
 \textit{update\_pi}. Both kernels access $\phi_i$ only for vertices~$i$ in the
-mini-batch~$m$, so for each iteration, the calculated values for $\phi$ are cached
+mini-batch~\Minibatch, so for each iteration, the calculated values for $\phi$ are cached
 in a smaller temporary matrix of size
-${|m|}\times{K}$.
+$M\times{K}$.
 %
 % In this context, the initialization of the algorithm's state is performed by
 % normalizing the full $\pi$ matrix in-place without the need for an additional
@@ -115,7 +115,7 @@ bandwidth for a minimal computation overhead.
 
 Thus, the original memory requirement for $\phi$, ${N}\times{K}$, is
 reduced to a vector $\phi_{sum}$ of length~$N$ and a comparatively small
-${|m|}\times{K}$ matrix. For sufficiently large~$K$, this transformation roughly
+$M\times{K}$ matrix. For sufficiently large~$K$, this transformation roughly
 halves the memory footprint of the algorithm.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,12 +169,12 @@ vector of probabilities $Probs_i$ of length~$K$. The individual $Probs_i$ vector
 of each ($i$, neighbor) tuple are then used to update the gradients vector
 $Grads_i$ for each vertex~$i$. Finally, the $\phi_i$ row is updated to
 reflect the changes that were accumulated in $Grads_i$ for each vertex $i$ in the
-mini-batch~$m$.
+mini-batch~\Minibatch.
 
 A deeper analysis of the memory access patterns of the \textit{update\_phi} kernel
 revealed the frequency and modality of access to the data structures.
 %
-The read-only access of $\pi_j$ of the randomly generated neighbors are unique
+The read-only accesses of $\pi_j$ of the randomly generated neighbors are unique
 with a high probability. More precisely, each $vertex_i$ in the mini-batch
 randomly samples a set of neighbor identifiers from the uniform distribution.
 Given that the total number of sampled neighbors is much smaller than $N$,
@@ -193,20 +193,20 @@ deterministic memory usage patterns of $Probs_i$, $Grads_i$ and $\pi_i$ for each
 vertex in the mini-batch.
 
 % Naive strategy
-\subsubsection*{The naive strategy} simply allocates temporary vectors in thread
+\paragraph*{\textbf{The naive strategy}} simply allocate temporary vectors in thread
 local memory to store $Probs$ and $Grads$ which physically resides in
 device memory. All memory accesses are coalesced to achieve the highest
 possible bandwidth to and from device memory.
 
 % Shared memory caching strategy
-\subsubsection*{The shared memory strategy} allocates the temporary vectors
+\paragraph*{\textbf{The shared memory strategy}} allocate the temporary vectors
 $Probs_i$ and $Grads_i$
 in shared memory. Furthermore, this strategy copies the $\pi_i$ of the selected
 mini-batch vertex to shared memory in order to avoid repeated reads of the same
 memory locations in device memory
 
 % Register and shared memory using code generation and loop unrolling 
-\subsubsection*{The code generation strategy} dynamically generates the code of the kernel to
+\paragraph*{\textbf{The code generation strategy}} dynamically generate the code of the kernel to
 custom tailor its properties. For example, this strategy can control whether a
 vector should be placed or cached in shared memory. Additionally, it can
 control which vectors explicitly reside in registers by allocating space on the

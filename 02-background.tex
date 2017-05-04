@@ -8,6 +8,7 @@
 \newcommand{\Neighbors}{\ensuremath{\cV_n{}}\xspace}
 
 \section{Background}
+\label{sec-background}
 % In this section, we briefly review the Bayesian model we are considering in this paper.
 
 % In this section, we briefly review the Bayesian model we are considering in this paper.
@@ -101,14 +102,15 @@ The pseudo-code of the sequential algorithm is presented in Algorithm~\ref{algor
 \STATE Sample mini-batch of vertex pairs \Minibatch from \Edges or $E$
 \FOR {each vertex in \Minibatch}
     \STATE Sample mini-batch of vertices $\Neighbors$ from $\Vertices$
-    \STATE Update $\phi_{a}$ using Eq.~\ref{eqn:local_update}
+    \STATE \texttt{update\_phi:} Update $\phi_{a}$ using Eq.~\ref{eqn:local_update} \ENDFOR
   %  $\phi_{a}^* \law \left| \phi_{a} + \f{\ep_{\phi}}{2} \left( \al - \phi_{a} + \f{N}{|\Neighbors|} \sum_{b \in \Neighbors} G_{\phi_{a}}\right) + (\phi_{a})^{\ha} \xi_{a}\right|$
-    \STATE Obtain $\pi_a$ from $\phi_a^*$ \ENDFOR
+\FOR {each vertex in \Minibatch}
+    \STATE \texttt{update\_pi:} Obtain $\pi_a$ from $\phi_a^*$ \ENDFOR
 \FOR {$k = 1,\dots,K$}
-    \STATE Update $\ta_{k}$ using Eq.~\ref{eqn:global_update}
+    \STATE \texttt{update\_theta:} Update $\ta_{k}$ using Eq.~\ref{eqn:global_update} \ENDFOR
+\FOR {$k = 1,\dots,K$}
    % $\ta_{k}^* \law \left| \ta_{k} + \f{\ep_\ta}{2} \left( \eta - \ta_{k} + h(\cE_t) \sum_{(a,b) \in \cE_t} G_{\ta_{k}}(a,b) \right) + (\ta_{k})^{\ha}\xi_{k} \right|$
-    \STATE Obtain $\bt_k$ from $\ta_k^*$
-\ENDFOR
+    \STATE \texttt{update\_beta:} Obtain $\bt_k$ from $\ta_k^*$ \ENDFOR
 \ENDWHILE
 \end{algorithmic}
 \label{algorithm}
@@ -141,6 +143,7 @@ $\phi$     & float~vector 2-D & $N\times{}K$ & reparameterization of $\pi$.
 $\pi$      & float~vector 2-D & $N\times{}K$ &
 					$\pi[i][k]$~is~probability that vertex $i$ is in community $k$ \\
 \hline
+\\[-3ex]
 \end{tabular}
 \caption{Definition of most important symbols}
 \label{tbl-symbols}
@@ -281,33 +284,4 @@ Plugging this to Eq.~\ref{eqn:sgrld_update}, we obtain the SGRLD update rule for
 \eea
 Here, the $\Neighbors$ is the neighbor set for a mini-batch node, another random mini-batch of $n$ nodes sampled from \Vertices or $E$. Note that $|\Neighbors| \ll |\Vertices|=N$.
 
-\end{comment}
-
-\subsection{Related work on parallel community detection}
-
-Among previous work on parallelizing MMSB algorithms, we mention the Online
-Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13} on GPUs, and our previous
-parallel implementation of SG-MCMC on GPUs and multi-core CPUs (submitted for
-publication). There are a few projects that did a distributed implementation
-for community detection on very large network graphs. In contrast to our work,
-they all detect non-overlapping communities: \cite{Bu2013246} investigate a
-large number of networks; \cite{2015arXiv150302115L} investigate hierarchical
-stochastic blockmodels; \cite{Prat-Perez:2014:HQS:2566486.2568010} use
-multi-core machines.
-
-\begin{comment}
-In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
-store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
-Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
-use RDMA to implement a D-KV store. However, all of them are far more powerful
-than our custom implementation -- and this power comes at a cost that we
-can avoid. They implement a generic D-KV store that controls concurrency,
-supports dynamic inserts and deletes, supports variable-sized values
-(whose size may change at an update), and keys of arbitrary type. Because
-of the nature of our distributed algorithm, we have to deal with none of
-these issues. For us, values are fixed-size, allocated only at the initial
-population, and remain alive forever. We have no concurrency between writes
-and reads or other writes. Our keys are a contiguous range of integers. All
-these properties together allow an extremely low-overhead implementation
-that does not involve the remote host in any transaction.
 \end{comment}

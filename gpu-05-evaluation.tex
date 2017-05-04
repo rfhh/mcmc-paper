@@ -1,4 +1,4 @@
-\section{Evaluation}
+\subsection{Evaluation}
 \label{sec-evaluation}
 
 The following subsections discuss the performance evaluation of the algorithm
@@ -32,6 +32,7 @@ their properties. Table~\ref{table-snap} outlines the graph
 properties of the networks used to evaluate the algorithm's performance. These
 networks were obtained from the SNAP collection~\cite{snapnets}.
 
+\begin{comment}
 \begin{table}[tb]
 \center\begin{tabular}{l r r c}
 Network & \#Vertices & \#Edges \\
@@ -41,10 +42,32 @@ com-DBLP        &   317,080 &  1,049,866 \\
 % com-Youtube     & 1,134,890 &  2,987,624 \\
 com-LiveJournal & 3,997,962 & 34,681,189 \\
 \hline
+\\[-1ex]
 \end{tabular}
 \caption{Network graphs from the Stanford Snap collection}
 \label{table-snap}
 \end{table}
+\end{comment}
+
+\begin{table*}
+  \centering
+  \begin{tabular}{l r r r l}
+    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
+                    &            &               & communities    &             \\
+    \hline
+    CA-HepPh        &    12,008  &    118,521    & n/a            & Paper citation network \\
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
+    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
+    \hline
+    \\[-1ex]
+  \end{tabular}
+  \caption{Summary of SNAP graph data sets used for evaluation.}
+  \label{table-snap}
+\end{table*}
 
 
 \input{gpu-05-02-sequential}

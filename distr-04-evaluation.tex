@@ -1,4 +1,4 @@
-\section{Evaluation}
+\subsection{Evaluation}
 
 This section presents an in-depth empirical analysis of the design discussed in
 Section~\ref{design-section}. To this end, we assess the scalability and
@@ -37,11 +37,11 @@ it does not oversubscribe resources.
 
 All of the experiments reported in this section utilized
 publicly available graphs from the Stanford Large Network Dataset
-Collection~(SNAP) \cite{snapnets}. Table~\ref{tab-datasets} lists the
+Collection~(SNAP) \cite{snapnets}. Table~\ref{table-snap} lists the
 collection of data sets used.
 
 %################################################
-\subsection{Weak Scaling}
+\subsubsection{Weak Scaling}
 
 \begin{figure}[t] % [htbp]
   \centering
@@ -71,7 +71,7 @@ implementation is capable of achieving good speedups provided the input problem
 is large enough for the given cluster size.
 
 %################################################
-\subsection{Strong Scaling}
+\subsubsection{Strong Scaling}
 
 \begin{figure}[t] % [htb]
   \centering
@@ -118,7 +118,7 @@ as it performs an insignificant amount of work compared to the synchronization
 overhead of a collective MPI reduction operation contained within it.
 
 %################################################
-\subsection{Pipeline efficiency}
+\subsubsection{Pipeline efficiency}
 \label{eval-pipeline}
 
 As discussed in Section~\ref{design-section}, we implemented pipeline
@@ -140,6 +140,7 @@ computation within \textit{update\_pi} within each worker.
     \hline
     total                      & 331    & 241 \\
     \hline
+    \\[0.2ex]
   \end{tabular}
   \caption{Stages that profit from the two pipelining optimizations.
   com-Friendster on 65
@@ -179,7 +180,7 @@ given that $\pi$ accesses are random, a node in a cluster of size $C$ must
 fetch $(C-1)/C$ of all read requests over the network.
 
 %################################################
-\subsection{Horizontal vs. Vertical Scalability}
+\subsubsection{Horizontal vs. Vertical Scalability}
 \begin{figure}[t] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
@@ -222,7 +223,7 @@ is more than compensated by the increasing compute power compared to
 a single-node implementation.
 
 %################################################
-\subsection{Cluster Communication Efficiency}
+\subsubsection{Cluster Communication Efficiency}
 
 \begin{figure}[t] % [htbp]
   \centering
@@ -269,7 +270,7 @@ from the same memory locations. For packets between 8KB and 512KB, our DKV
 store achieves performance very close to \textit{qperf}.
 
 %################################################
-\subsection{Convergence of Large Datasets}
+\subsubsection{Convergence of Large Datasets}
 
 The previous sections focused on the computational performance of the
 distributed implementation. However, the algorithm's throughput does not
@@ -277,7 +278,7 @@ necessarily indicate how fast it can converge to a solution. More specifically, 
 remains unclear how many iterations are needed for the algorithm to reach a
 stable state and terminate. Therefore, we now shift our focus to the
 convergence time to assess the system's utility. Figure~\ref{fig-ppx} presents
-the convergence time of the data sets listed in Table~\ref{tab-datasets}.
+the convergence time of the data sets listed in Table~\ref{table-snap}.
 %
 The results in sub-figures a, b and c were obtained by using 65 compute nodes
 of DAS5. In Figure~\ref{fig-ppx}-a, the number of communities was set to 12K

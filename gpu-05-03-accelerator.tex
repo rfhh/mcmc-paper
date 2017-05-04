@@ -1,4 +1,4 @@
-\subsection{Analysis of CPU Parallelism}
+\subsubsection{Analysis of CPU Parallelism}
 
 \begin{comment}
   \begin{table}[t]
@@ -99,12 +99,13 @@ GFlops (double)          && 1170  & 1430  & 144     & 192   \\
 Memory (GB)              && 5     & 12    & 4       & 12    \\
 Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5 \\
 \cline{1-1}\cline{3-6}
+\\[-1.5ex]
 \end{tabular}
 \caption{Properties of the GPUs used in the evaluation}
 \label{table-gpus}
 \end{table}
 
-\subsection{Analysis of GPU Parallelism}
+\subsubsection{Analysis of GPU Parallelism}
 As discussed in Section~\ref{gpu-design}, there are 10 distinct flavors of the
 GPU version of the algorithm. Specifically, there is the naive strategy, the
 shared strategy and 8 variations of the code generation strategy. This
@@ -225,7 +226,7 @@ different strategy-performance orderings.
   \label{gpus-v-sweep}
 \end{figure}
 
-\subsection{Comparison of Compute Devices}
+\subsubsection{Comparison of Compute Devices}
 Figure~\ref{gpus-fig} compares the highest speedup achieved by each of the
 GTX TitanX, GTX980, K40c, K20m and the Intel Xeon CPU relative to the baseline
 sequential C++ version. These results are consistent with the relative

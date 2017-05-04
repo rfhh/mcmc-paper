@@ -1,4 +1,4 @@
-\section{System Design}
+\subsection{System Design}
 \label{design-section}
 
 \begin{comment}
@@ -104,10 +104,13 @@ considerably more programming effort.
 
 % intro parallelisation, distribution
 
-This section describes how we parallelized the algorithm, which had been
-implemented sequentially in~C++.
-The usage of multi-threaded parallelism
-is straightforward, therefore, we will discuss its details only where appropriate. The
+This section describes how we created a distributed version of the C++
+algorithm. We didn't use the advanced intra-node parallelisation techniques
+described in the previous section, but found that straightforward
+multi-threaded parallelization techniques sufficed: the distributed performance
+is dominated by (remote) memory latency, not by node parallelism.
+The details of the multi-threaded parallelism
+will be discussed only where appropriate. The
 distributed design follows a master-worker paradigm, where
 the master controls the sequence of parallel operations and the workers perform the
 calculations. For thread parallelism, we annotate the program with
@@ -202,25 +205,6 @@ However,
 the paper shows this only holds for small payload packets, up to 256B. A $\pi$
 packet in our application is typically thousands to hundreds of thousands
 of 4-byte floats.
-
-% horrible hack to move the table up
-\begin{table*}
-  \centering
-  \begin{tabular}{l r r r l}
-    Name            & \#Vertices &       \#Edges & \#Ground-truth & Description \\
-                    &            &               & communities    &             \\
-    \hline
-    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography collaboration network \\
-    com-Amazon      &    334,863 &       925,872 & 75,149         & Product co-purchasing network \\
-    \hline
-  \end{tabular}
-  \caption{Summary of SNAP graph data sets used for evaluation.}
-  \label{tab-datasets}
-\end{table*}
 
 % each of the stages
 

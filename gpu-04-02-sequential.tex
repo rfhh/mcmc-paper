@@ -1,8 +1,8 @@
 \subsection{An Efficient Sequential Baseline Version}
 \label{sec-design-sequential}
 
-The initial implementation of the algorithm was developed by its authors in
-Python as is common with machine learning researchers and practitioners. It
+Initially, the algorithm was implemented in Python~\cite{LiAW15}, as is common
+with machine learning researchers and practitioners. It
 relied on numpy~\cite{numpy} to perform the numerical computations without the
 overhead associated with Python's interpreter. However, the algorithm also
 depended on native Python data structures such as sets, dictionaries and
@@ -11,14 +11,14 @@ This section presents how the Python implementation was
 converted into an efficient sequential C++ application which serves as a
 baseline for the parallel implementations.
 
-Initially, the Python code base was ported into equivalent C++ code. Namely,
-the program structure remained unchanged and the Python data structures were
+Initially, the Python code base was ported into equivalent C++ code.
+The program structure remained unchanged and the Python data structures were
 simply substituted with their corresponding alternatives in C++.
 
 The next step was to remove a number of inefficiencies in the C++
 implementation. For example, one recurring idiom in the Python implementation
 was an expression of the form $a^y b^{1-y}$, implemented with floating-point
-exponentiation. A study of the algorithm showed that $y$ is a variable that can
+exponentiation, where $y$ is a variable that can
 only hold values of 0 or~1. Therefore, the expression is simply a choice
 between $a$ for $y=1$ and $b$ for $y=0$. However, as the compiler cannot infer
 the value of $y$, both expressions $a$ and $b$ were computed and their

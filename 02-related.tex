@@ -1,5 +1,7 @@
 \section{Related Work}
 
+\subsection{Related work on Accelerators for Bayesian methods}
+
 In this section, we discuss related machine learning projects that use
 accelerators.
 Immediately when GPUs evolved into generally programmable accelerators, machine
@@ -69,6 +71,35 @@ MCMC (not SG):
 \end{comment}
 
 \begin{comment}
+In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
+store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
+Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
+use RDMA to implement a D-KV store. However, all of them are far more powerful
+than our custom implementation -- and this power comes at a cost that we
+can avoid. They implement a generic D-KV store that controls concurrency,
+supports dynamic inserts and deletes, supports variable-sized values
+(whose size may change at an update), and keys of arbitrary type. Because
+of the nature of our distributed algorithm, we have to deal with none of
+these issues. For us, values are fixed-size, allocated only at the initial
+population, and remain alive forever. We have no concurrency between writes
+and reads or other writes. Our keys are a contiguous range of integers. All
+these properties together allow an extremely low-overhead implementation
+that does not involve the remote host in any transaction.
+\end{comment}
+
+\subsection{Related work on parallel community detection}
+
+Among previous work on parallelizing MMSB algorithms, we mention the Online
+Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13} on GPUs.
+There are a few projects that did a distributed implementation
+for community detection on very large network graphs. In contrast to our work,
+they all detect non-overlapping communities: \cite{Bu2013246} investigate a
+large number of networks; \cite{2015arXiv150302115L} investigate hierarchical
+stochastic blockmodels; \cite{Prat-Perez:2014:HQS:2566486.2568010} use
+multi-core machines.
+
+\begin{comment}
+\subsection{Related work on RDMA Key-Value stores}
 In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
 store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
 Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
