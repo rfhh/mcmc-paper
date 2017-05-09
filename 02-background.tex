@@ -45,7 +45,7 @@ here $g_d(\ta_{k})$ is the gradient of the log posterior w.r.t. $\ta_{k}$ on a d
 \subsection{Scalable MCMC for a-MMSB}
 This section describes the SG-MCMC algorithm for a-MMSB. Please refer to~\cite{LiAW15} for more details. The algorithm iterates updating local parameter $\pi$ and global parameter $\beta$. Since both parameters lie on the probability simplex, SGRLD is applied to make the sampling process more efficient. Here, the parameters $\phi$ and $\ta$ are used to re-parameterize $\pi$ and $\beta$ respectively. After updating $\phi$ and $\ta$, we can obtain $\pi$ and $\beta$ by normalizing $\phi$ and $\ta$ respectively, see Table~\ref{tbl-symbols}. In the following, we briefly sketch the iterative update steps.
 
-\paragraph{\textbf{Sampling global parameters}} The update rule for global parameter $\theta$ is
+\paragraph*{\textbf{Sampling global parameters}} the update rule for global parameter $\theta$ is
 \bea
 \ta_{ki}^* \law \left| \ta_{ki} + \f{\ep}{2} \left( \eta - \ta_{ki} + h(\Minibatcht)\sum_{(a,b) \in \Minibatcht}g_{ab}(\ta_{ki})\right) \right.\nn \\ \left.+ (\ta_{ki})^{\ha}\xi_{ki} \right|, \label{eqn:global_update}
 \eea
@@ -65,8 +65,8 @@ f_{ab}^{(y)}(k,l)=
 \eea
 $Z_{ab}^{(y)}$ is the normalization constant which we can compute in $\cO(K)$ time \cite{LiAW15}.
 
-\paragraph{\textbf{Sampling local parameters}}
-The update rule for the local parameters $\phi$ is
+\paragraph*{\textbf{Sampling local parameters}}
+the update rule for the local parameters $\phi$ is
 \bea
 \phi_{ak}^* \law \left| \phi_{ak} + \f{\ep}{2} \left( \al - \phi_{ak} + \f{N}{|\Neighbors|} \sum_{b \in \Neighbors} g_{ab}(\phi_{ak})\right) \right. \nn \\ \left. + (\phi_{ak})^{\ha} \xi_{ak}\right|,
 \label{eqn:local_update}

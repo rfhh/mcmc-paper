@@ -5,7 +5,7 @@ In this section we describe the computational aspects of the SG-MCMC MMSB
 algorithm. Moreover, we will introduce the data structures and notation that
 will be used throughout this paper.
 %
-Kindly refer to~\cite{DBLP:journals/corr/LiAW15} for a detailed explanation of
+Kindly refer to~\cite{LiAW15} for a detailed explanation of
 the statistical concepts of the algorithm.
 
 The network graph $G$ consists of the undirected edges~$E$ and has $N$ vertices.
@@ -52,7 +52,7 @@ determines the opportunities for parallelism.
 \end{figure}
 
 The first stage (line~2 in the listing) randomly draws a mini-batch $M$,
-using the "stratified random node" strategy~\cite{DBLP:journals/corr/LiAW15}.
+using the "stratified random node" strategy~\cite{LiAW15}.
 In this strategy, a coin toss is used to decide between two sample types.
 %
 The first sample type
@@ -90,7 +90,7 @@ evaluating the perplexity over the edges in the validation set $H$. The
 a given point in time. It is used to detect the algorithm's
 convergence.
 The
-perplexity, as defined in~\cite{DBLP:journals/corr/LiAW15}, is the exponential
+perplexity, as defined in~\cite{LiAW15}, is the exponential
 of the average over time of the negative
 log-likelihood of meeting a link edge. In this 7th stage, $\beta$ is used,
 as are $\pi_a$ and $\pi_b$ for each edge $(a,b)$ in~$H$.

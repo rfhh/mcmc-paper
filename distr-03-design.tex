@@ -1,4 +1,4 @@
-\subsection{System Design}
+% \subsection{System Design}
 \label{design-section}
 
 \begin{comment}
@@ -108,7 +108,9 @@ This section describes how we created a distributed version of the C++
 algorithm. We didn't use the advanced intra-node parallelisation techniques
 described in the previous section, but found that straightforward
 multi-threaded parallelization techniques sufficed: the distributed performance
-is dominated by (remote) memory latency, not by node parallelism.
+is dominated by (remote) memory latency, not by node parallelism. As our
+analysis will show, our pipelining optimizations will fully overlap the
+parallel calculations with (pre)loading the data from remote hosts.
 The details of the multi-threaded parallelism
 will be discussed only where appropriate. The
 distributed design follows a master-worker paradigm, where
