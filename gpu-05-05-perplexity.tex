@@ -3,7 +3,7 @@
 \begin{figure}[t]	% [htb]
   \centering
   \epsfig{file=plots/ppx-gpu.eps, width=\columnwidth}
-  \caption{Perplexity convergence of com-DBLP on the GTX~Titan-X~GPU. Number
+  \caption{Perplexity convergence of com-DBLP on the GTX~\mbox{Titan-X}~GPU. Number
   of communities chosen to maximally fill the GPU memory.}
   \label{fig-ppx-gpu}
 \end{figure}
@@ -17,14 +17,14 @@
 \end{figure}
 \end{comment}
 
-\begin{figure*}[t]	% [htb]
+\begin{figure}[t]	% [htb]
   \centering
-  \epsfig{file=plots/ppx-gpu-cpu.eps, width=\textwidth}
-  \caption{Perplexity convergence. (a)~com-DBLP on the GTX~Titan-X~CPU.
+  \epsfig{file=plots/ppx-gpu-cpu.eps, width=0.45\textwidth}
+  \caption{Perplexity convergence. (a)~com-DBLP on the GTX~\mbox{Titan-X}~CPU.
   (b)~com-LiveJournal on the multi-core~CPU. Number of communities chosen to
   maximally fill the memory of GPU and CPU respectively.}
   \label{fig-ppx-gpu-cpu}
-\end{figure*}
+\end{figure}
 
 \subsubsection{Algorithm Convergence}
 
@@ -42,12 +42,12 @@ the other hand, the number of iterations required to achieve sufficient
 convergence does grow with the size of the graph.
 
 Figure~\ref{fig-ppx-gpu-cpu}(a) shows the perplexity development for the dataset
-com-DBLP, with $N=317,080$. It is computed on the GTX Titan-X GPU with input
+com-DBLP, with $N=317,080$. It is computed on the GTX~\mbox{Titan-X} GPU with input
 parameter set $K=4096$, $m=4096$, $n=32$. Convergence is reached after 6~hours.
 
-Figure~\ref{fig-ppx-gpu-cpu}(b) shows the perplexity development convergence for
+Figure~\ref{fig-ppx-gpu-cpu}(b) shows the perplexity convergence for
 com-LiveJournal, with $N=3,997,962$, computed on a multi-core DAS5 node.
 To fill the CPU core memory~(64GB), the input parameter set is $K$=3072,
-$M$=4096, |\Neighbors|=32. Sufficient convergence is reached after 18~hours. Note
-that this network graph is so large that the GTX Titan-X would be unable to
+$M$=4096, $|\Neighbors|$=32. Sufficient convergence is reached after 18~hours. Note
+that this network graph is so large that the GTX~\mbox{Titan-X} would be unable to
 process more than $K$=256 communities.

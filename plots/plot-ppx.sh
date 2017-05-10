@@ -1,11 +1,11 @@
 #!/bin/bash
 
 cat << EOF | gnuplot --persist
-w = 0.6
-h = 0.4
+w = 0.4
+h = 0.3
 k = 0.0
-nr = 1
-nc = 2
+nr = 2
+nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
@@ -25,7 +25,7 @@ set yrange [62:95]
 set title '(a) Com-DBLP K=4K m=4K n=32'
 plot "< perl ./get_time.perl ppx-DBLP-K4K-m4K-n32 " using (\$1/3600):3 notitle with lines
 
-set origin col(1),row(0)
+set origin col(0),row(1)
 set size w,h
 
 set xrange [-0.3:18.3]

@@ -52,6 +52,7 @@
 
 
 \documentclass[10pt,journal,compsoc]{IEEEtran}
+% \documentclass[10pt,conference,compsoc]{IEEEtran}
 % Some/most Computer Society conferences require the compsoc mode option,
 % but others may want the standard conference format.
 %
@@ -340,7 +341,17 @@
 
 
 % correct bad hyphenation here
-\hyphenation{CLCuda-API op-tical net-works semi-conduc-tor}
+\hyphenation{
+	CLCuda-API
+	op-tical
+	net-works
+	semi-conduc-tor
+	re-para-meteri-zation
+	bi-bli-o-gra-phy
+	col-la-bo-ra-tion
+	net-work
+	co-pur-cha-sing
+}
 
 % from SuperComputing Glasswing paper
 \usepackage{epsfig}
@@ -406,10 +417,10 @@ Wenzhe Li\IEEEauthorrefmark{2},
 Sungjin Ahn\IEEEauthorrefmark{3},
 Max Welling\IEEEauthorrefmark{4} and
 Henri Bal\IEEEauthorrefmark{1}\\}
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Vrije Universiteit Amsterdam, The Netherlands\\ Email: \{ielhelw,rutger,bal\}@cs.vu.nl}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}University of Southern California, USA\\ Email: wenzheli@usc.edu}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}University of Montreal, Canada \\ Email: sungjia@ics.uci.edu}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}University of Amsterdam, The Netherlands\\ Email: m.welling@uva.nl}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Vrije Universiteit Amsterdam, The Netherlands. Email: \{ielhelw,rutger,bal\}@cs.vu.nl \\}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}University of Southern California, USA. Email: wenzheli@usc.edu \\}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}University of Montreal, Canada. Email: sungjia@ics.uci.edu \\}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}University of Amsterdam, The Netherlands. Email: m.welling@uva.nl}}
 
 
 % conference papers do not typically use \thanks and this command
@@ -519,14 +530,16 @@ communities has been learned for problems of such a large scale.
 \input{02-background}
 \input{02-related}
 
-\section{Accelerating MCMC-AMMSB on one Many-core Machine}
+% \section{Accelerating MCMC-AMMSB on one Many-core Machine}
+\section{Accelerating on one Many-core Machine}
 \label{sec-gpu}
 
 % \input{gpu-03-problem-statement}
 \input{gpu-04-design}
 \input{gpu-05-evaluation}
 
-\section{Scaling MCMC-AMMSB on a Distributed Cluster}
+% \section{Scaling MCMC-AMMSB on a Distributed Cluster}
+\section{Scaling on a Distributed Cluster}
 \label{sec-distr}
 
 \input{distr-03-design}
@@ -711,27 +724,27 @@ communities has been learned for problems of such a large scale.
 
 
 
-\begin{IEEEbiography}{Ismail El-Helw}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{ismail-el-helw}}]{Ismail El-Helw}
 Biography text here.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}{Rutger Hofman}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{rutger-hofman-piccolo}}]{Rutger Hofman}
 Biography text here.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}{Wenzhe Li}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{wenzhe-li}}]{Wenzhe Li}
 Biography text here.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}{Sungjin Ahn}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{sungjin-ahn-2}}]{Sungjin Ahn}
 Biography text here.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}{Max Welling}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{max-welling}}]{Max Welling}
 Biography text here.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}{Henri Bal}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{file-henri-bal}}]{Henri Bal}
 Biography text here.
 \end{IEEEbiography}
 

@@ -1,0 +1,9 @@
+- do another survey for related work
+- rewrite related work to integrate better with background
+- write on OpenMP implementation in python -> C++
+
+- unify captions/keys/texts within figures: point size etc
+
+- squeeze citations
+- squeeze figures: Fig. 7 1x2 iso 2x1: only 1 separator white
+- squeeze table 4 into 2 columns

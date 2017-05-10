@@ -31,8 +31,8 @@ Starting from an existing implementation in Python/Numpy, we will present
 how this algorithm can be implemented much more efficiently in C++. Then,
 we will describe our two key contributions: first, how to scale up our
 implementation to run on GPUs and multicore CPUs, second, to scale out
-our implementation to overcome the memory bounds posed by GPUs or general
-single-machine systems.
+our implementation to overcome the memory bounds posed by GPUs or
+single-machine systems in general.
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
 
 The focus of the first part of our work is on the computational efficiency and parallel
@@ -59,17 +59,20 @@ loop unrolling and explicit vectorization.
 \end{comment}
 
 The second part of our work, scaling out to the largest publicly available
-community graphs, also necessitated overcoming several challenges. First,
-the algorithm's state grows rapidly with larger graphs and number of latent
+community graphs, also necessitated overcoming several challenges.
+The algorithm's state grows rapidly with larger graphs and number of latent
 communities.  Since the full state for the larger graphs does not fit in a
 single machine's memory, it is partitioned and distributed across a cluster
-of machines. Second, to access the full state, each cluster node must read
-remote memory hosted by its peers. We leveraged RDMA to limit the high latency
-of such operations and increase the communication bandwidth. To reduce the
-latency further, we pipelined the algorithm's computations such that data can
-be fetched in advance over the network. Finally, the algorithm's computation
+of machines. Hence, to access the full state, each cluster node must read
+remote memory hosted by its peers. We leveraged RDMA to improve the latency and
+bandwidth
+of such operations. To reduce the
+latency further, we pipelined the algorithm's computations by fetching
+data in advance over the network.
+\begin{comment} Finally, the algorithm's computation
 is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
+\end{comment}
 
 The remainder of this paper is organized as follows.
 Section~\ref{sec-background} provides an overview of the

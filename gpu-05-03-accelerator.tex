@@ -48,7 +48,7 @@ the dual 8-core processor's vectorization capabilities, the speedup relative to
 the baseline sequential C++ version is~9.8.
 
 % CPU
-\begin{figure}[htb]
+\begin{figure}[tb]
 \centering
 \epsfig{file=plots/cpu-vector.eps, width=\columnwidth}
 \caption{Performance of CPU for varying vector width.}
@@ -109,32 +109,41 @@ Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5 \\
 As discussed in Section~\ref{gpu-design}, there are 10 distinct flavors of the
 GPU version of the algorithm. Specifically, there is the naive strategy, the
 shared strategy and 8 variations of the code generation strategy. This
-section investigates the effectiveness of each flavor on Nvidia's GTX TitanX,
+section investigates the effectiveness of each flavor on Nvidia's GTX~\mbox{Titan-X},
 GTX980, K40c and K20m.
 
 % TITANX
 \begin{figure*}[t]	% [htb]
   \centering
-  \epsfig{file=plots/titanx-1024-strategies-w1.eps, width=\textwidth}
-  \caption{Execution time of 1000 \textit{update\_phi} invocations using the TitanX GPU,
+  \setlength\tabcolsep{0em}
+  \begin{tabular}{c c c}
+  \epsfig{file=plots/titanx-1024-strategies-w1.eps, width=0.33\textwidth} &
+  \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=0.33\textwidth} &
+  \epsfig{file=plots/k40-1024-strategies-w2.eps, width=0.33\textwidth}
+  \end{tabular}
+  \caption{Execution time of 1000 \textit{update\_phi} invocations using the
+  \mbox{Titan-X} GPU,
   without explicit kernel vectorization, across a sweep of
   \textit{update\_phi} thread block
   sizes. Relevant model parameters: K=1024, M=4096, n=32.}
   \label{titanx-w1-sweep}
 \end{figure*}
 
+\begin{comment}
 % TITANX K=2K
 \begin{figure*}[t]	% [htb]
   \centering
   \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=\textwidth}
-  \caption{Execution time of 1000 \textit{update\_phi} invocations using the TitanX GPU,
+  \caption{Execution time of 1000 \textit{update\_phi} invocations using the
+  \mbox{Titan-X} GPU,
   without explicit kernel vectorization, across a sweep of
   \textit{update\_phi} thread block
   sizes. Relevant model parameters: K=2048, M=4096, n=32.}
   \label{titanx-w1-sweep-2k}
 \end{figure*}
+\end{comment}
 
-Figure \ref{titanx-w1-sweep}(a) presents the performance of the GTX TitanX GPU
+Figure \ref{titanx-w1-sweep}(a) presents the performance of the GTX~\mbox{Titan-X} GPU
 for all 10 strategy flavors, without explicitly vectorizing the kernels. The
 x-axis represents different \textit{update\_phi} thread block sizes while the y-axis presents
 the total execution time of 1000 invocations of the \textit{update\_phi} kernel. The
@@ -153,9 +162,9 @@ differ in one aspect. Namely, \textit{GEN-SSS} explicitly unrolls the internal
 loops of the kernel. However, there is no significant performance difference
 between them. The other flavors of the code generation strategy attain higher
 performance as they unroll internal loops as well as cache data in
-registers. The TitanX obtains the best performance with the \textit{GEN-RSS}
+registers. The \mbox{Titan-X} obtains the best performance with the \textit{GEN-RSS}
 strategy and a thread block size of 64. The results of explicitly vectorized kernels
-are omitted as they obtain worse performance on the TitanX.
+are omitted as they obtain worse performance on the \mbox{Titan-X}.
 
 A key model parameter that affects the behavior of the optimization strategies
 is the number of communities $K$. Figure~\ref{titanx-w1-sweep-2k} presents the
@@ -174,6 +183,7 @@ size of 32 due to their low occupancy. This limitation can be counteracted by
 selecting a larger thread block size which in turn increases the computation
 concurrency and occupancy.
 
+\begin{comment}
 % K40
 \begin{figure*}[t]	% [hbt]
   \centering
@@ -184,10 +194,11 @@ concurrency and occupancy.
   sizes. Relevant model parameters: K=1024, M=4096, n=32.}
   \label{k40-w2-sweep}
 \end{figure*}
+\end{comment}
 
 % \looseness=-1
 Figures~\ref{k40-w2-sweep} (a) and (b) present the performance of the K40c GPU
-for the same experimental configuration as shown for the TitanX in
+for the same experimental configuration as shown for the \mbox{Titan-X} in
 Figure~\ref{titanx-w1-sweep} with one exception. Namely, the code version used
 for this plot is explicitly vectorized with a vector width of~2. The results
 for the other code versions with vector width 4 and no vectorization are
@@ -202,7 +213,7 @@ as it caches repeated reads across streaming multiprocessors. However, the
 highest performance is attained by \textit{GEN-RRS} which explicitly employs
 registers for both $Probs_i$ and $Grads_i$.
 
-The performance results obtained from the GTX TitanX and Tesla K40c GPUs
+The performance results obtained from the GTX~\mbox{Titan-X} and Tesla~K40c GPUs
 reinforce the importance of customizing compute kernels to each GPU's specific
 architecture and capabilities. For instance, each GPU achieved its highest
 performance by employing a different strategy. Moreover, each GPU displayed
@@ -228,10 +239,10 @@ different strategy-performance orderings.
 
 \subsubsection{Comparison of Compute Devices}
 Figure~\ref{gpus-fig} compares the highest speedup achieved by each of the
-GTX TitanX, GTX980, K40c, K20m and the Intel Xeon CPU relative to the baseline
+GTX~\mbox{Titan-X}, GTX980, K40c, K20m and the Intel Xeon CPU relative to the baseline
 sequential C++ version. These results are consistent with the relative
 capabilities of each device as listed in Table~\ref{table-gpus}. For instance,
-the TitanX achieves the highest speedup of 86 relative to the baseline. At the
+the \mbox{Titan-X} achieves the highest speedup of 86 relative to the baseline. At the
 other end, the parallel CPU version attains a speedup factor of~20.9.
 
 As vectorization is a popular GPU optimization, it is important to note that
@@ -240,7 +251,7 @@ On the other hand, the Tesla GPUs obtained the best performance with a vector
 width of~2. Figure~\ref{gpus-v-sweep} presents the execution time of the best
 performing strategy for each of the 4 GPUs. In this figure, the performance is
 normalized over the non-vectorized kernel version for each GPU. For instance,
-the TitanX exhibits an overhead factor of approximately 1.8 when using a vector
+the \mbox{Titan-X} exhibits an overhead factor of approximately 1.8 when using a vector
 width of~4. On the other hand, the K40c improves its performance by roughly
 20\% when it uses a vector width of~2 compared to the non-vectorized kernel.
 Therefore, explicit vectorization of the kernels can be either useful or

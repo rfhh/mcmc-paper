@@ -83,16 +83,17 @@ set xlabel "Number of Communities (K)"
 set ylabel "Time per iteration (milliseconds)"
 #set xrange [256:]
 set grid ytics
-set key below
+# set key below
+set key left
 
 
 set origin col(0),row(0)
 set size w,h
 set title '(a) HPC Cloud (16 and 40 cores) vs. 1 DAS5 node (16 cores) using com-DBLP'
 plot \
-     "$$.tmp.hpc40" u 1:(1000*\$2) w lp ls 1 t 'HPC Cloud 40-cores', \
-     "$$.tmp.hpc16" u 1:(1000*\$2) w lp ls 2 t 'HPC Cloud 16-cores', \
-     "$$.tmp.4" u 1:(1000*\$2)     w lp ls 3 t 'Single DAS5 node 16-cores'
+     "$$.tmp.hpc40" u 1:(1000*\$2) w lp ls 1 t 'HPC Cloud 40 cores', \
+     "$$.tmp.hpc16" u 1:(1000*\$2) w lp ls 2 t 'HPC Cloud 16 cores', \
+     "$$.tmp.4" u 1:(1000*\$2)     w lp ls 3 t 'Single DAS5 node 16 cores'
 
 set origin col(0),row(1)
 set size w,h

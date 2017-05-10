@@ -15,7 +15,7 @@ cat $$.tmp
 cat <<EOF | gnuplot --persist
 
 w = 0.6
-h = 0.4
+h = 0.3
 
 set terminal postscript eps enhanced color font ',10'
 set output 'sweep-over-K-proportional-np.eps'

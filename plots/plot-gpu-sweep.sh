@@ -22,11 +22,11 @@ MID=128
 #cat $TFILE
 
 cat <<EOF | gnuplot --persist
-w = 0.6
-h = 0.4
+w = 0.3
+h = 0.32
 k = 0.05
-nr = 1
-nc = 2
+nr = 2
+nc = 1
 row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
@@ -66,7 +66,7 @@ plot \
   '< cat $TFILE | grep RRS' u 2:4 w lp title 'GEN-RRS', \
   '< cat $TFILE | grep RRR' u 2:4 w lp title 'GEN-RRR'
 
-set origin col(1),row(0)
+set origin col(0),row(1)
 set size w,h
 set title '(b) Focused on optimal settings'
 set xrange [32:128]
