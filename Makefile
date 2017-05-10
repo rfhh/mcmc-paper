@@ -11,13 +11,13 @@ PAPER_PART += $(TARGETS:%.pdf=%.tex)
 # PAPER_PART += paper.bib
 # PAPER_PART += abstract.tex
 
-# PAPER_PART += 01-intro.tex
+PAPER_PART += 01-intro.tex
 PAPER_PART += 02-related.tex
 PAPER_PART += 02-background.tex
 
 # GPU part
 # PAPER_PART += gpu-00-abstract.tex
-PAPER_PART += gpu-01-intro.tex
+# PAPER_PART += gpu-01-intro.tex
 PAPER_PART += gpu-04-02-sequential.tex
 PAPER_PART += gpu-04-03-accelerator.tex
 PAPER_PART += gpu-04-design.tex
@@ -26,15 +26,16 @@ PAPER_PART += gpu-05-03-accelerator.tex
 PAPER_PART += gpu-05-04-distributed.tex
 PAPER_PART += gpu-05-05-perplexity.tex
 PAPER_PART += gpu-05-evaluation.tex
-PAPER_PART += gpu-06-conclusion.tex
 
 # Distr part
-PAPER_PART += distr-01-intro.tex
+# PAPER_PART += distr-01-intro.tex
 PAPER_PART += distr-03-design.tex
 PAPER_PART += distr-04-evaluation.tex
 PAPER_PART += distr-05-conclusion.tex
 PAPER_PART += distr-06-acks.tex
-# PAPER_PART += 06-conclusion.tex
+
+PAPER_PART += 06-conclusion.tex
+
 # PAPER_PART += bucket.tex
 # add .tex files
 

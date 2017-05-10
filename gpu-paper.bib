@@ -1,10 +1,12 @@
-@inproceedings{LiAW15,
+@article{LiAW15,
   author    = {Wenzhe Li and
                Sungjin Ahn and
                Max Welling},
   title     = {Scalable {MCMC} for Mixed Membership Stochastic Blockmodels},
-  booktitle = {AISTATS'16},
+  journal   = {To appear in Proceedings of The 19th International Conference on Artificial Intelligence and Statistics},
+  series    = {AISTATS'16},
   year      = {2016},
+  url       = {http://arxiv.org/abs/1510.04815},
 }
 
 @article{hoffman2013stochastic,
@@ -102,10 +104,7 @@ Ethernet Switching},
 } 
 
 @article{Ousterhout:2015:RSS:2818727.2806887,
- author = {Ousterhout, John and Gopalan, Arjun and Gupta, Ashish and Kejriwal, Ankita
-and Lee, Collin and Montazeri, Behnam and Ongaro, Diego and Park, Seo Jin and Qin,
-Henry and Rosenblum, Mendel and Rumble, Stephen and Stutsman, Ryan and Yang,
-Stephen},
+ author = {Ousterhout, John and Gopalan, Arjun and Gupta, Ashish and others },
  title = {The {RAMCloud} Storage System},
  journal = {ACM Trans. Comput. Syst.},
  issue_date = {September 2015},
@@ -217,7 +216,7 @@ IGNOREpublisher = {USENIX Association},
 @article{blei2003latent,
   title={{Latent Dirichlet Allocation}},
   author={Blei, David M and Ng, Andrew Y and Jordan, Michael I},
-  journal={the Journal of machine Learning research},
+  journal={The Journal of Machine Learning Research},
   volume={3},
   pages={993--1022},
   year={2003},
@@ -227,7 +226,7 @@ IGNOREpublisher = {USENIX Association},
 @article{ahn2012bayesian,
   title={Bayesian posterior sampling via stochastic gradient {F}isher scoring},
   author={Ahn, Sungjin and Korattikara, Anoop and Welling, Max},
-  journal={ICML (Best Paper Award)},
+  journal={arXiv preprint arXiv:1206.6380},
   year={2012}
 }
 
@@ -396,6 +395,20 @@ howpublished = {\url{https://community.mellanox.com/docs/DOC-1326}}
   month        = {September}
 }
 
+@Article{DBLP:journals/corr/LiAW15,
+  author    = {Wenzhe Li and
+               Sungjin Ahn and
+               Max Welling},
+  title     = {{Scalable MCMC for Mixed Membership Stochastic Blockmodels}},
+  journal   = {CoRR},
+  XXXvolume    = {abs/1510.04815},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1510.04815},
+  timestamp = {Sun, 01 Nov 2015 17:30:45 +0100},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/LiAW15},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
 @electronic{numpy,
   IGNORETHIS={author        = "Ste'fan van der Walt c.s."},
   title         = "{NumPy} {H}ome {P}age",
@@ -437,7 +450,6 @@ howpublished = {\url{https://community.mellanox.com/docs/DOC-1326}}
   journal =     "Journal of Statistical Software",
   XXXjournal-URL =  "http://www.jstatsoft.org/",
 }
-
 @article {beam2014fast,
 	title = {{Fast Hamiltonian Monte Carlo using GPU Computing}},
 	journal = {arXiv preprint arXiv:1402.4089},
@@ -466,17 +478,25 @@ cost are now feasible.},
 }
 
 @article{journals/bioinformatics/MedlarGSBK13,
-	author = {Medlar, Alan and Głowacka, Dorota and Stanescu, Horia and Bryson, Kevin and
-	Kleta, Robert},
-	title = {{SwiftLink}: parallel {MCMC} linkage analysis using multicore {CPU} and {GPU}},
-	journal = {Bioinformatics},
-	volume = {29},
-	number = {4},
-	year = {2013},
-	doi = {10.1093/bioinformatics/bts704},
-	URL = { http://dx.doi.org/10.1093/bioinformatics/bts704},
-	eprint =
-	{/oup/backfile/content_public/journal/bioinformatics/29/4/10.1093/bioinformatics/bts704/2/bts704.pdf}
+  added-at = {2013-02-20T00:00:00.000+0100},
+  author = {Medlar, Alan and Glowacka, Dorota and Stanescu, Horia and Bryson,
+Kevin and Kleta, Robert},
+  biburl =
+{http://www.bibsonomy.org/bibtex/2519e391c28bb78f0e6312dd4ddc995a5/dblp},
+  ee = {http://dx.doi.org/10.1093/bioinformatics/bts704},
+  interhash = {4842845f97448d755d09a9f04ddd8ff6},
+  intrahash = {519e391c28bb78f0e6312dd4ddc995a5},
+  journal = {Bioinformatics},
+  keywords = {dblp},
+  number = 4,
+  pages = {413-419},
+  timestamp = {2013-02-21T11:38:39.000+0100},
+  title = {{SwiftLink: parallel MCMC linkage analysis using multicore CPU and
+GPU.}},
+  url =
+{http://dblp.uni-trier.de/db/journals/bioinformatics/bioinformatics29.html#MedlarGSBK13},
+  volume = 29,
+  year = 2013
 }
 
 @article{DBLP:journals/corr/Zhu0H14,
@@ -553,6 +573,23 @@ cost are now feasible.},
   bibsource = {dblp computer science bibliography, http://dblp.org}
 }
 
+@article{DBLP:journals/corr/HuangNHVA13,
+  author    = {Furong Huang and
+               U. N. Niranjan and
+               Mohammad Umar Hakeem and
+               Prateek Verma and
+               Animashree Anandkumar},
+  title     = {{Fast Detection of Overlapping Communities via Online Tensor Methods
+               on GPUs}},
+  journal   = {CoRR},
+  XXXvolume    = {abs/1309.0787},
+  year      = {2013},
+  url       = {http://arxiv.org/abs/1309.0787},
+  timestamp = {Wed, 16 Oct 2013 16:43:10 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/HuangNHVA13},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
 @MISC{opencl,
   title = {{OpenCL - The open standard for parallel programming of heterogeneous systems}},
   howpublished = "\url{http://www.khronos.org/opencl/}"
@@ -603,6 +640,14 @@ cost are now feasible.},
  keywords = {data structures, dictionaries, experiments, hashing, information
 retrieval, searching},
 } 
+
+@misc{snapnets,
+  author       = {Jure Leskovec and Andrej Krevl},
+  title        = {{SNAP Datasets}: {Stanford} Large Network Dataset Collection},
+  howpublished = {\url{http://snap.stanford.edu/data}},
+  month        = jun,
+  year         = 2014
+}
 
 @article{DBLP:journals/corr/GuptaAGN15,
   author    = {Suyog Gupta and Ankur Agrawal and Kailash Gopalakrishnan and Pritish Narayanan},
