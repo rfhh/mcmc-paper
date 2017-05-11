@@ -115,18 +115,26 @@ GTX980, K40c and K20m.
 % TITANX
 \begin{figure*}[t]	% [htb]
   \centering
+  \epsfig{file=plots/gpu-sweep-legends.eps, width=1.0\textwidth}
   \setlength\tabcolsep{0em}
   \begin{tabular}{c c c}
   \epsfig{file=plots/titanx-1024-strategies-w1.eps, width=0.33\textwidth} &
   \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=0.33\textwidth} &
   \epsfig{file=plots/k40-1024-strategies-w2.eps, width=0.33\textwidth}
   \end{tabular}
-  \caption{Execution time of 1000 \textit{update\_phi} invocations using the
-  \mbox{Titan-X} GPU,
-  without explicit kernel vectorization, across a sweep of
-  \textit{update\_phi} thread block
-  sizes. Relevant model parameters: K=1024, M=4096, n=32.}
-  \label{titanx-w1-sweep}
+  \caption{Execution time of 1000 \textit{update\_phi} invocations across a sweep of
+  	\textit{update\_phi} thread block sizes. The lower figures are a zoom-in into
+	the optimal block range of the upper figures.
+	Other relevant model parameters: M=4096, n=32.
+	% (a) \mbox{Titan-X} GPU, without explicit kernel vectorization;
+	% Relevant model parameters: K=1024, M=4096, n=32.
+  	% (b) \mbox{Titan-X} GPU, without explicit kernel vectorization;
+	% K=2048, M=4096, n=32.
+	% (c) K40c GPU, with explicit kernel vectorization of width 2;
+	% K=1024, M=4096, n=32.
+  }
+  % \label{titanx-w1-sweep}
+  \label{gpu-sweep}
 \end{figure*}
 
 \begin{comment}
@@ -143,7 +151,7 @@ GTX980, K40c and K20m.
 \end{figure*}
 \end{comment}
 
-Figure \ref{titanx-w1-sweep}(a) presents the performance of the GTX~\mbox{Titan-X} GPU
+Figure \ref{gpu-sweep}(a) presents the performance of the GTX~\mbox{Titan-X} GPU
 for all 10 strategy flavors, without explicitly vectorizing the kernels. The
 x-axis represents different \textit{update\_phi} thread block sizes while the y-axis presents
 the total execution time of 1000 invocations of the \textit{update\_phi} kernel. The
@@ -167,8 +175,8 @@ strategy and a thread block size of 64. The results of explicitly vectorized ker
 are omitted as they obtain worse performance on the \mbox{Titan-X}.
 
 A key model parameter that affects the behavior of the optimization strategies
-is the number of communities $K$. Figure~\ref{titanx-w1-sweep-2k} presents the
-same model configuration as in Figure~\ref{titanx-w1-sweep} but $K=2048$
+is the number of communities $K$. Figure~\ref{gpu-sweep}(b) presents the
+same model configuration as in Figure~\ref{gpu-sweep}(a) but $K=2048$
 instead of $K=1024$. One key difference between the two figures is the optimal
 thread block size. An increase in $K$ comes with a proportional increase in
 the size of shared memory space that is used by each thread block for the
@@ -197,14 +205,14 @@ concurrency and occupancy.
 \end{comment}
 
 % \looseness=-1
-Figures~\ref{k40-w2-sweep} (a) and (b) present the performance of the K40c GPU
+Figures~\ref{gpu-sweep}(c) present the performance of the K40c GPU
 for the same experimental configuration as shown for the \mbox{Titan-X} in
-Figure~\ref{titanx-w1-sweep} with one exception. Namely, the code version used
+Figure~\ref{gpu-sweep}(a) with one exception. Namely, the code version used
 for this plot is explicitly vectorized with a vector width of~2. The results
 for the other code versions with vector width 4 and no vectorization are
 omitted as they exhibit lower performance.
 %
-Surprisingly, Figure~\ref{k40-w2-sweep} shows that the NAIVE strategy
+Surprisingly, Figure~\ref{gpu-sweep}(c) shows that the NAIVE strategy
 outperforms SHARED and some of the GEN strategies. This can be explained by the
 unique properties of the Tesla Super Computing line of products to which the
 K40c belongs. These GPUs include enhanced L2 caching mechanisms that

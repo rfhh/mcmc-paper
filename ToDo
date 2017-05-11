@@ -3,6 +3,8 @@
 - write on OpenMP implementation in python -> C++
 
 - unify captions/keys/texts within figures: point size etc
+- make curve in GPU perplexity plots fatter
+- fix color of perplexity plots
 
 - squeeze citations
 - squeeze figures: Fig. 7 1x2 iso 2x1: only 1 separator white

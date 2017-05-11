@@ -2,6 +2,26 @@
 
 # splot '< ./collect.sh build-cu/log-phi-sweep-phi-*' u 1:3:4 w p
 
+PLOT_TITLE="Put your title here"
+while true ; do
+	case "$1" in
+		--title)
+			shift
+			PLOT_TITLE="$1"
+			shift
+			;;
+		--*)
+			echo "Unknown flag: $1"
+			exit 37
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
+# echo "Remaining args $@"
+
 NAME=$1
 shift
 
@@ -24,14 +44,13 @@ MID=128
 cat <<EOF | gnuplot --persist
 w = 0.3
 h = 0.32
-k = 0.05
 nr = 2
 nc = 1
-row(x) = ((nr-x-1)*h)+k
+row(x) = ((nr-x-1)*h)
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',8'
-set size (nc*w),(nr*h+k)
+set size (nc*w),(nr*h)
 set output '$NAME.eps'
 set multiplot layout nr,nc
 
@@ -53,7 +72,7 @@ unset key
 
 set origin col(0),row(0)
 set size w,h
-set title '(a) Full sweep range'
+set title '$PLOT_TITLE'
 plot \
   '< cat $TFILE | grep NAIVE' u 2:4 w lp title 'NAIVE', \
   '< cat $TFILE | grep SHARED' u 2:4 w lp title 'SHARED', \
@@ -68,7 +87,7 @@ plot \
 
 set origin col(0),row(1)
 set size w,h
-set title '(b) Focused on optimal settings'
+set title 'Focus on optimal settings'
 set xrange [32:128]
 set autoscale y
 plot \
@@ -100,6 +119,9 @@ plot \
 #  '< cat $TFILE | grep RRS' u 2:4 w lp title 'GEN-RRS', \
 #  '< cat $TFILE | grep RRR' u 2:4 w lp title 'GEN-RRR'
 
+unset multiplot
+set output 'gpu-sweep-legends.eps'
+
 unset xtics
 unset ytics
 unset y2tics
@@ -111,11 +133,13 @@ unset y2label
 unset title
 unset border
 
+w = 0.8
 set origin 0,0
+k = 0.05
 set size (nc*w),k
 set key center horizontal
 set xrange[0:1]
-set yrange[0:1]
+set yrange[0:3]
 set y2range[0:1]
 plot  NaN w lp title 'NAIVE', \
       NaN w lp title 'SHARED', \

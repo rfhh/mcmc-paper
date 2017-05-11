@@ -1,7 +1,7 @@
-paper.aux
-paper.bbl
-paper.blg
-paper.log
-paper.pdf
+tpds-paper-ieee.aux
+tpds-paper-ieee.bbl
+tpds-paper-ieee.blg
+tpds-paper-ieee.log
+tpds-paper-ieee.pdf
 plots/*.pdf
 plots/*.eps
