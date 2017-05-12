@@ -10,6 +10,7 @@ row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',8'
+set colorsequence classic
 set size (nc*w),(nr*h+k)
 set output 'ppx-gpu-cpu.eps'
 set multiplot layout nr,nc
@@ -23,7 +24,7 @@ set ylabel 'Perplexity'
 set xrange [-0.15:6.15]
 set yrange [62:95]
 set title '(a) Com-DBLP K=4K m=4K n=32'
-plot "< perl ./get_time.perl ppx-DBLP-K4K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 5
+plot "< perl ./get_time.perl ppx-DBLP-K4K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 4
 
 set origin col(0),row(1)
 set size w,h
@@ -31,5 +32,5 @@ set size w,h
 set xrange [-0.3:18.3]
 set yrange [53:83]
 set title '(b) Com-LiveJournal K=3K m=4K n=32'
-plot "< perl ./get_time.perl ppx-LJ-K3K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 5
+plot "< perl ./get_time.perl ppx-LJ-K3K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 4
 EOF

@@ -1,7 +1,7 @@
 \subsubsection{Analysis of CPU Parallelism}
 
 \begin{comment}
-  \begin{table}[t]
+  \begin{table}[tb]
     \centering
     \begin{tabular}{l l c c c c}
       Comparison & Data Set        & K    & M    & n  & Iterations \\
@@ -15,7 +15,7 @@
   \end{table}
 \end{comment}
 
-\begin{table}[b]	% [htb]
+\begin{table}[tb]	% [htb]
   \centering
   \begin{tabular}{l d{2.8} d{2.8}}
     Kernel & Time (seconds) \\
@@ -65,7 +65,7 @@ bottleneck. Moreover, using 16-wide SIMD instructions gave a slight performance
 penalty compared to 8-wide SIMD. The 8-wide vector version improves the speedup
 relative to the baseline version from 9.8 to~20.9.
 
-\begin{table}[b]	% [htb]
+\begin{table}[tb]	% [htb]
 % \center\begin{tabular}{l c c c c c c c c d{3.1}}
 % Device & Architecture & cores & Clock & \multicolumn{2}{c}{GFlops} & L2 Cache & Memory & Bandwidth \\ 
 %        &              &       & MHz   & single & double            & KB       & GB     & (GB/s) \\ 
@@ -113,7 +113,7 @@ section investigates the effectiveness of each flavor on Nvidia's GTX~\mbox{Tita
 GTX980, K40c and K20m.
 
 % TITANX
-\begin{figure*}[t]	% [htb]
+\begin{figure*}[tb]	% [htb]
   \centering
   \epsfig{file=plots/gpu-sweep-legends.eps, width=1.0\textwidth}
   \setlength\tabcolsep{0em}
@@ -139,7 +139,7 @@ GTX980, K40c and K20m.
 
 \begin{comment}
 % TITANX K=2K
-\begin{figure*}[t]	% [htb]
+\begin{figure*}[tb]	% [htb]
   \centering
   \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=\textwidth}
   \caption{Execution time of 1000 \textit{update\_phi} invocations using the
@@ -160,7 +160,7 @@ each flavor of the code generation strategy is labeled by GEN followed by the 3
 choices that identify it.
 %
 The wide performance range inhibits the readability of the figure,
-therefore, a more focused Figure~\ref{titanx-w1-sweep}(b) is provided. As would
+therefore, a more focused Figure~\ref{gpu-sweep}(a), bottom figure, is provided. As would
 be expected, the naive strategy exhibits the worst performance over all
 thread block
 sizes, as it does not explicitly cache repeated device memory read operations.
@@ -193,7 +193,7 @@ concurrency and occupancy.
 
 \begin{comment}
 % K40
-\begin{figure*}[t]	% [hbt]
+\begin{figure*}[tb]	% [hbt]
   \centering
   \epsfig{file=plots/k40-1024-strategies-w2.eps, width=\textwidth}
   \caption{Execution time of 1000 \textit{update\_phi} invocations using the K40c GPU, with
@@ -227,7 +227,7 @@ architecture and capabilities. For instance, each GPU achieved its highest
 performance by employing a different strategy. Moreover, each GPU displayed
 different strategy-performance orderings.
 
-\begin{figure}[b]	% [htb]
+\begin{figure}[tb]	% [htb]
   \centering
   \epsfig{file=plots/gpus.eps, width=0.9\columnwidth}
   \caption{Speedup comparison of best performing parallel configurations of
@@ -236,7 +236,7 @@ different strategy-performance orderings.
   \label{gpus-fig}
 \end{figure}
 
-\begin{figure}[b]	% [htb]
+\begin{figure}[tb]	% [htb]
   \centering
   \epsfig{file=plots/gpu-vector-sweep.eps, width=0.9\columnwidth}
   \caption{Performance of the best performing strategy per GPU, varying the

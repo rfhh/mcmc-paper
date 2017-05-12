@@ -43,7 +43,7 @@ collection of data sets used.
 %################################################
 \subsubsection{Weak Scaling}
 
-\begin{figure}[t] % [htbp]
+\begin{figure}[tb] % [htbp]
   \centering
   \epsfig{file=plots/sweep-over-K-proportional-np.eps, width=\columnwidth}
   \caption{Average execution time per algorithm iteration when varying
@@ -73,7 +73,7 @@ is large enough for the given cluster size.
 %################################################
 \subsubsection{Strong Scaling}
 
-\begin{figure}[t] % [htb]
+\begin{figure}[tb] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-np-fixed-K.eps, width=\columnwidth}
   \caption{(a)~Execution time of 2048 algorithm iterations for the
@@ -128,7 +128,7 @@ overlaps drawing of the mini-batch at the master's with \textit{update\_phi}
 at the workers. The second pipeline overlaps loading of $\pi$ with the
 computation within \textit{update\_pi} within each worker.
 
-\begin{table}[t] % [htbp]
+\begin{table}[tb] % [htbp]
   \centering
   \begin{tabular}{l d{5.1} d{5.1}}
     \textbf{Iteration (sub)stages}  & \multicolumn{1}{c}{non-pipelined}
@@ -156,7 +156,7 @@ loading $\pi$ from the DKV store is dominant.
 The pipelining optimization significantly overlaps loading $\pi$ both with generation and
 deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
-\begin{figure}[t] % [htb]
+\begin{figure}[tb] % [htb]
   \centering
   \epsfig{file=plots/sweep-over-K-fixed-np.eps, width=\columnwidth}
   \caption{Performance effect of varying the number of communities on the
@@ -181,7 +181,7 @@ fetch $(C-1)/C$ of all read requests over the network.
 
 %################################################
 \subsubsection{Horizontal vs. Vertical Scalability}
-\begin{figure}[t] % [htb]
+\begin{figure}[tb] % [htb]
   \centering
   \epsfig{file=plots/hpc-cloud.eps, width=\columnwidth}
   \caption{Performance comparison between the distributed implementation
@@ -225,7 +225,7 @@ a single-node implementation.
 %################################################
 \subsubsection{Cluster Communication Efficiency}
 
-\begin{figure}[t] % [htbp]
+\begin{figure}[tb] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=\columnwidth}
   \caption{Performance of DKV store vs.\ \textit{qperf} and MPI roundtrip.}

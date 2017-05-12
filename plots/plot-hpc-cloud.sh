@@ -69,6 +69,7 @@ row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',10'
+set colorsequence classic
 set size (nc*w),(nr*h+k)
 set output 'hpc-cloud.eps'
 set multiplot layout nr,nc

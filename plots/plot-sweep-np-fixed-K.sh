@@ -51,6 +51,7 @@ row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',10'
+set colorsequence classic
 set size (nc*w),(nr*h+k)
 set output 'sweep-over-np-fixed-K.eps'
 set multiplot layout nr,nc

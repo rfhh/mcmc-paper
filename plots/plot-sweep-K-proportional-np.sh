@@ -18,6 +18,7 @@ w = 0.6
 h = 0.3
 
 set terminal postscript eps enhanced color font ',10'
+set colorsequence classic
 set output 'sweep-over-K-proportional-np.eps'
 set size w,h
 

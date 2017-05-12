@@ -9,6 +9,7 @@ TFILE="$$.tmp"
 
 cat <<EOF | gnuplot --persist
 set terminal postscript eps enhanced color font ',8' size 3.3,1.6
+set colorsequence classic
 set output '$NAME'
 
 set style data histogram

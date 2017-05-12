@@ -50,6 +50,7 @@ row(x) = ((nr-x-1)*h)
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',8'
+set colorsequence classic
 set size (nc*w),(nr*h)
 set output '$NAME.eps'
 set multiplot layout nr,nc
@@ -87,7 +88,7 @@ plot \
 
 set origin col(0),row(1)
 set size w,h
-set title 'Focus on optimal settings'
+set title 'As above, zoom-in around optimal settings'
 set xrange [32:128]
 set autoscale y
 plot \
