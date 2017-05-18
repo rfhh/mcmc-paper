@@ -1,8 +1,7 @@
 % \subsection{System Design and Implementation}
 
-The process of designing an accelerated version of the SG-MCMC MMSB algorithm
-involved multiple transformations. First, an efficient C++ baseline version
-was created. Further, changes to the algorithm and the data structures
+Based on the efficient C++ baseline version,
+changes to the algorithm and the data structures
 were carried out, for both efficient resource utilization and parallelization.
 This section provides an overview of the system's evolution in incremental
 phases, identifying the key contributions and differences between consecutive
@@ -10,6 +9,6 @@ states. This section concludes with an in-depth evaluation of the performance
 of our various optimizations, on multi-core CPUs as well as a number of GPU
 accelerators.
 
-\input{gpu-04-02-sequential}
+% \input{gpu-04-02-sequential}
 
 \input{gpu-04-03-accelerator}

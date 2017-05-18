@@ -1,4 +1,4 @@
-\subsection{Restructuring for Parallelism}
+% \section{Accelerating on one Many-core Machine}
 
 % Accelerator friendliness
 The design of an accelerated version of the MCMC algorithm necessitated several
@@ -193,20 +193,20 @@ deterministic memory usage patterns of $Probs_i$, $Grads_i$ and $\pi_i$ for each
 vertex in the mini-batch.
 
 % Naive strategy
-\paragraph*{\textbf{The naive strategy}} simply allocate temporary vectors in thread
-local memory to store $Probs$ and $Grads$ which physically resides in
+\paragraph*{\textbf{Naive strategy}} simply allocate temporary vectors in thread
+local memory to store $Probs$ and $Grads$ which physically reside in
 device memory. All memory accesses are coalesced to achieve the highest
 possible bandwidth to and from device memory.
 
 % Shared memory caching strategy
-\paragraph*{\textbf{The shared memory strategy}} allocate the temporary vectors
+\paragraph*{\textbf{Shared memory strategy}} allocate the temporary vectors
 $Probs_i$ and $Grads_i$
 in shared memory. Furthermore, this strategy copies the $\pi_i$ of the selected
 mini-batch vertex to shared memory in order to avoid repeated reads of the same
 memory locations in device memory
 
 % Register and shared memory using code generation and loop unrolling 
-\paragraph*{\textbf{The code generation strategy}} dynamically generate the code of the kernel to
+\paragraph*{\textbf{Code generation strategy}} dynamically generate the code of the kernel to
 custom tailor its properties. For example, this strategy can control whether a
 vector should be placed or cached in shared memory. Additionally, it can
 control which vectors explicitly reside in registers by allocating space on the

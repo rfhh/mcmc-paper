@@ -343,7 +343,7 @@
 % correct bad hyphenation here
 \hyphenation{
 	CLCuda-API
-	op-tical
+	op-ti-cal
 	net-works
 	semi-conduc-tor
 	re-para-meteri-zation
@@ -351,6 +351,7 @@
 	col-la-bo-ra-tion
 	net-work
 	co-pur-cha-sing
+	lar-gest
 }
 
 % from SuperComputing Glasswing paper
@@ -462,7 +463,7 @@ Henri Bal\IEEEauthorrefmark{1}\\}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Recent advancements in machine learning algorithms have transformed the data
+Recent advances in machine learning algorithms have transformed the data
 analytics domain and provided innovative solutions to inherently difficult
 problems. However, training models at speed as well as at scale over large
 data sets remains a
@@ -482,8 +483,8 @@ the problem complexity.
 % number of trade-off decisions.
 
 In this paper, we discuss our experience in accelerating and scaling an existing
-data-intensive algorithm that detects overlapping communities
-in graphs. First, we present our methodology and findings in parallelizing the
+data-intensive algorithm for overlapping community detection.
+First, we present our methodology and findings in parallelizing the
 computation using either a multi-core CPU or one of several GPUs. A thorough
 analysis of the algorithm's computation and data dependencies resulted in a
 75\% reduction in its memory footprint and data intensity. We
@@ -493,13 +494,14 @@ empirical evaluation of these contributions and show that the parallelization
 achieves speedups up to 86x compared to an already optimized sequential
 version.
 
-Next, we present our solution to scaling this algorithm by an efficient
-parallel and distributed implementation, where the memory requirements are
-the foremost bottleneck. We show that the algorithm can scale and process
-graphs consisting of billions of edges and tens of millions of vertices on
-a compute cluster of 65 nodes. To the best of our knowledge, this is the first
-time that the problem of deducing overlapping
-communities has been learned for problems of such a large scale.
+Next, we scale this algorithm out towards very large datasets, where memory
+requirements become the foremost bottleneck. Our solution is an efficient
+parallel and distributed implementation. We show that the algorithm can
+scale and process graphs consisting of billions of edges and tens of millions
+of vertices on a compute cluster of 65 nodes. To the best of our knowledge,
+this is the first time that the problem of deducing overlapping communities
+has been learned for problems of such a large scale.
+
 \end{abstract}
 
 % no keywords
@@ -528,12 +530,17 @@ communities has been learned for problems of such a large scale.
 \input{01-intro}
 
 \input{02-background}
-\input{02-related}
+\input{03-related}
+\input{04-experimental-setup}
 
 % \section{Accelerating MCMC-AMMSB on one Many-core Machine}
+\section{An Efficient Sequential Baseline Version}
+\label{sec-design-sequential}
+\input{gpu-04-02-sequential}
+\input{gpu-05-02-sequential}
+
 \section{Accelerating on one Many-core Machine}
 \label{sec-gpu}
-
 % \input{gpu-03-problem-statement}
 \input{gpu-04-design}
 \input{gpu-05-evaluation}

@@ -1,17 +1,15 @@
-\subsection{An Efficient Sequential Baseline Version}
-\label{sec-design-sequential}
-
-Initially, the algorithm was implemented in Python~\cite{LiAW15}, as is common
+The MCMC-aMMSB algorithm that is the subject of this paper was initially
+implemented in Python~\cite{LiAW15}, as is common
 with machine learning researchers and practitioners. It
 relied on numpy~\cite{numpy} to perform the numerical computations without the
 overhead associated with Python's interpreter. However, the algorithm also
-depended on native Python data structures such as sets, dictionaries and
+depended on Python data structures such as sets, dictionaries and
 lists, which are far less efficient.
-This section presents how the Python implementation was
+This section describes how the Python implementation was
 converted into an efficient sequential C++ application which serves as a
-baseline for the parallel implementations.
+baseline for the parallel and distributed implementations.
 
-Initially, the Python code base was ported into equivalent C++ code.
+First, the Python code base was ported into equivalent C++ code.
 The program structure remained unchanged and the Python data structures were
 simply substituted with their corresponding alternatives in C++.
 

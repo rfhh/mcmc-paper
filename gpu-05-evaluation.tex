@@ -1,19 +1,9 @@
 \subsection{Evaluation}
 \label{sec-evaluation}
 
-The following subsections discuss the performance evaluation of the algorithm
-across its different stages. As the system underwent multiple design mutations,
-a careful analysis is needed to identify the contributions of each change
-independently.
-%
-First, an examination is provided detailing the construction of an efficient
-sequential baseline version.
-This spans
-the code conversion from Python to C++ as well as the effects of applying
-the localized optimizations discussed in
-Section~\ref{sec-design-sequential}.
-%
-Second, we explore the performance benefits of parallelizing the computations
+The following sections provide a detailed experimental performance analysis
+of the optimizations described above. We start by discussing the performance
+effects of parallelizing the computations
 on a multi-core CPU using OpenCL.
 %
 Next, we assess the trade-offs associated with each of the GPU optimization
@@ -21,56 +11,13 @@ strategies and their performance effects on four GPUs spanning two chip
 architecture generations.
 %
 Finally, we present the overall outcome of accelerating the algorithm by
-displaying its fast convergence over large networks.
+displaying its fast convergence over the largest networks that fit in the
+memory of one GPU or CPU.
 
-All experiments were conducted on the VU Amsterdam DAS5 cluster. The cluster
-consists of 68 compute nodes each equipped with a dual 8-core Intel Xeon
-E5-2630v3 CPU clocked at 2.40GHz, 64GB of memory and 8TB of storage.
-Additionally, the cluster is fitted with a number of Nvidia GPUs including
-GTX~\mbox{Titan-X}, GTX980, K40c and K20m; see Table~\ref{table-gpus} for an overview of
-their properties. Table~\ref{table-snap} outlines the graph
-properties of the networks used to evaluate the algorithm's performance. These
-networks were obtained from the SNAP collection~\cite{snapnets}.
+As noted in Section~\ref{sec-experimental}, all experiments were conducted on the VU Amsterdam DAS5 cluster.
+Table~\ref{table-gpus} presents the properties of the various GPUs in
+the DAS5 cluster.
 
-\begin{comment}
-\begin{table}[tb]
-\center\begin{tabular}{l r r c}
-Network & \#Vertices & \#Edges \\
-\hline
-CA-HepPh        &    12,008 &    118,521 \\
-com-DBLP        &   317,080 &  1,049,866 \\
-% com-Youtube     & 1,134,890 &  2,987,624 \\
-com-LiveJournal & 3,997,962 & 34,681,189 \\
-\hline
-\\[-1ex]
-\end{tabular}
-\caption{Network graphs from the Stanford Snap collection}
-\label{table-snap}
-\end{table}
-\end{comment}
-
-\begin{table}
-  \centering
-  \def\tabcolsep{0.2em}
-  \begin{tabular}{l r r r p{9em}}
-    Name            & \#Vertices &       \#Edges & \multicolumn{1}{c}{\#Ground-} & Description \\
-                    &            &               & \multicolumn{1}{c}{truths}    &             \\
-    \hline
-    CA-HepPh        &    12,008  &    118,521    & \multicolumn{1}{c}{n/a}       & Paper citation network \\
-    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
-    com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography network \\
-    com-Amazon      &    334,863 &       925,872 & 75,149         & Product copurchasing network \\
-    \hline
-    \\[-1ex]
-  \end{tabular}
-  \caption{Summary of SNAP graph data sets used for evaluation.}
-  \label{table-snap}
-\end{table}
-
-
-\input{gpu-05-02-sequential}
+% \input{gpu-05-02-sequential}
 \input{gpu-05-03-accelerator}
 \input{gpu-05-05-perplexity}

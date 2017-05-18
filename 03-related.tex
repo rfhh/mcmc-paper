@@ -1,37 +1,23 @@
 \section{Related Work}
 \label{sec-related}
 
-\textbf{\textit{\large Need to rewrite to better fit the Background Section}}
-
-Immediately when GPUs evolved into generally programmable accelerators, machine
-learners recognized the potential of GPUs for their science.
-Much research
-has been devoted to deep-learning implementations on GPUs. However, Mixed
-Membership deduction (MMSB) is usually considered untractable for deep-learning
-algorithms. In contrast, our algorithm belongs to the family of Bayesian
-(approximative, stochastic) methods, where efficient algorithms for large-scale
-data have recently been developed. A broad survey of Bayesian methods is given
-in~\cite{DBLP:journals/corr/Zhu0H14}. Broadly speaking, Bayesian approximative
-algorithms are subdivided into variational and Monte Carlo methods; Markov
-Chain Monte Carlo (MCMC) is a subgroup of the latter. GPUs have been put to
-use in MCMC algorithms, e.g.\ \cite{journals/bioinformatics/MedlarGSBK13}
-uses GPUs to analyse parental linkage patterns in a biology context and
+We consider related work for both parts of this paper: acceleration and scaling
+of our MCMC-MMSB algorithm. Acceleration of deep learning algorithms on GPUs
+is an ongoing success story. Although approximative Baysian algorithms are
+not such a natural fit for GPUs, a number of projects explores this terrain.
+E.g.~\cite{journals/bioinformatics/MedlarGSBK13} uses GPUs with their
+MCMC approach to analyse parental linkage patterns in a biology context and
 \cite{DBLP:journals/csda/WhiteP14} does the same to model terrorist activity.
-Variational inference on MMSB is described
-in~\cite{DBLP:conf/nips/GopalanMGFB12}, but they don't use GPUs. Latent
-Dirichlet Allocation, another variety of Bayesian Approximation, is used on
-GPUs by~\cite{DBLP:conf/nips/YanXQ09}.
-
-Still, for high-dimension problems, the standard MCMC algorithms fall short in
-performance. Recently, varieties of MCMC algorithms have been developed where
-gradient information is used to speed up convergence. Langevin and Hamiltonian
-dynamics are representatives of these
-varieties~\cite{Girolami_riemannmanifold}.  Our algorithm uses Riemann Manifold
-Langevin dynamics. In \cite{beam2014fast}, GPUs are used to perform Hamiltonian
-descent, using Python interfaces to access the standard cuBLAS
-library~\cite{cuBLAS}. They limit their optimizations for the GPU to
-saving on data transfers between host and device memory. They do not apply
-their framework to MMSB.
+Latent Dirichlet Allocation, another variety of Bayesian Approximation,
+is used on GPUs by~\cite{DBLP:conf/nips/YanXQ09}. There is also related
+work on the variants of MCMC algorithms that use the gradient to speed
+up convergence. Langevin and Hamiltonian dynamics are representatives of
+these varieties~\cite{Girolami_riemannmanifold}. Our algorithm uses Riemann
+Manifold Langevin dynamics. In \cite{beam2014fast}, GPUs are used to perform
+Hamiltonian descent, using Python interfaces to access the standard cuBLAS
+library~\cite{cuBLAS}. They limit their optimizations for the GPU to saving
+on data transfers between host and device memory. They do not apply their
+framework to MMSB.
 
 A different MMSB algorithm with stochastic gradient descent on the GPU is
 the Online Tensor approach~\cite{DBLP:journals/corr/HuangNHVA13}. They deduce
@@ -42,9 +28,12 @@ kernels. Additionally, the algorithmic approach to solve the problem is
 fundamentally different.
 Since they target GPUs only, the datasets they
 can handle are limited by the device memory of the GPU. Our implementation converges
-quickly on the GPU but can also function with reduced speedup on a multicore
-CPU. In the latter case, the dataset
-size is only limited by the memory of the host machine.
+quickly on the GPU but can also use multicore CPUs. In the latter case, speedup is
+limited but the larger memory allows tackling larger datasets.
+
+\cite{liakos-bigdata16} also addresses overlapping community detection, but their
+algorithm uses a local dispersion-aware approach. They find communities for 5000
+nodes in each of the large SNAP datasets, see Table~\ref{table-snap}.
 
 \begin{comment}
 Since our SG-MCMC algorithm is completely different from deep-learning
@@ -86,13 +75,17 @@ these properties together allow an extremely low-overhead implementation
 that does not involve the remote host in any transaction.
 \end{comment}
 
-There are a few projects that did a distributed implementation
+There are a few projects that implemented a distributed algorithm
 for community detection on very large network graphs. In contrast to our work,
 they all detect non-overlapping communities: \cite{Bu2013246} investigate a
 large number of networks; \cite{2015arXiv150302115L} investigate hierarchical
 stochastic blockmodels; \cite{Prat-Perez:2014:HQS:2566486.2568010} use
-multi-core machines.
+multi-core machines. The results of our distributed MCMC-aMMSB implementation
+have been previously published at the 2016 ParLearning
+workshop~\cite{DBLP:conf/ipps/El-HelwHLAWB16}, where it earned a best-paper
+award.
 
+\textbf{\emph{QUESTION: Re-insert related work on RDMA KV stores?}}
 \begin{comment}
 \subsection{Related work on RDMA Key-Value stores}
 In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)

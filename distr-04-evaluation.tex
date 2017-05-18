@@ -1,7 +1,7 @@
 \subsection{Evaluation}
 
-This section presents an in-depth empirical analysis of the design discussed in
-Section~\ref{design-section}. To this end, we assess the scalability and
+This section presents an in-depth empirical analysis of our distributed design.
+To this end, we assess the scalability and
 efficiency of the solution using multiple criteria.
 %
 First, the \textit{weak scaling} of the solution is assessed with respect to increasing
@@ -21,16 +21,12 @@ communication} between cluster nodes.
 %
 Finally, we apply the algorithm to large data sets and comment on its execution time.
 
-Empirical results for the distributed implementation were obtained from experiments on the VU and
-Leiden University
-DAS5 clusters which consist of 68 and 24 compute nodes respectively. Each
-compute node is equipped with a dual 8-core Intel Xeon E5-2630v3 CPU clocked
-at 2.40GHz, 64GB of memory and 8TB of storage. Moreover, the compute nodes of
-each site are interconnected by
-FDR~InfiniBand. The MPI implementation used is OpenMPI, which supports
+As noted in Section~\ref{sec-experimental}, experimental results
+were obtained using the DAS5 clusters.
+The MPI implementation used is OpenMPI, which supports
 user-space Infiniband~\cite{gabriel04:_open_mpi}.
 
-We compared the distributed performance against a shared-memory virtual machine
+Moreover, we compared the distributed performance against a shared-memory virtual machine
 at SURFsara's HPC Cloud system with 40~cores and 1TB of memory; its underlying
 physical system contains 40 Intel Xeon E7-4850 cores clocked at 2.00GHz, and
 it does not oversubscribe resources.

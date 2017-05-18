@@ -12,8 +12,9 @@ PAPER_PART += $(TARGETS:%.pdf=%.tex)
 # PAPER_PART += abstract.tex
 
 PAPER_PART += 01-intro.tex
-PAPER_PART += 02-related.tex
 PAPER_PART += 02-background.tex
+PAPER_PART += 03-related.tex
+PAPER_PART += 04-experimental-setup.tex
 
 # GPU part
 # PAPER_PART += gpu-00-abstract.tex

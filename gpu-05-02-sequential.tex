@@ -1,4 +1,4 @@
-\subsubsection{Achieving an Efficient Baseline Sequential Version}
+\subsection{Performance of Sequential Versions}
 
 This subsection presents the results of transforming the algorithm implementation
 from Python to C++, and then removing obvious inefficiencies, to achieve a
@@ -17,7 +17,8 @@ affects data intensity because the data sizes are halved.
 Due to the performance limitations of the Python implementation, the
 experimental configuration of this section is minimal.
 %
-Namely, we use the CA-HepPh dataset; the number of
+Namely, we use the small CA-HepPh dataset from the SNAP graph collection, see
+Table~\ref{table-snap}; the number of
 iterations is 1000.
 %Note that these trial runs stop very far before convergence; using a small
 %number of
@@ -57,8 +58,8 @@ perplexity*             &    178    &  0.18 &  0.18 & 0.26 \\
 \hline
 \\[-1ex]
 \end{tabular}
-\caption{Performance comparison between Python, C++ that follows the Python
-idioms, and our baseline C++ implementations. 1000 iterations, times in
+\caption{Performance comparison between Python; C++ that follows the Python
+idioms; and our baseline C++ implementations. 1000 iterations, times in
 \textrm{ms} per iteration; *perplexity time divided by 100 iterations.}
 \label{table-python-comparison}
 \end{table}
@@ -103,6 +104,16 @@ The total performance gain between Python and the 64-bit float baseline C++
 implementation exceeds a factor of~1000, and this grows to a factor of over~1500
 if the floating-point precision is reduced to 32~bits. The 32-bit precision
 implementation will be the baseline for the parallel performance comparison.
+
+A first multi-threaded version was created by annotating the
+baseline implementation with OpenMP primitives in a straightforward
+fashion. This accelerated the stages \textit{update\_phi} and
+\textit{update\_pi} with a factor~4 for the very small problem instance
+in Table~\ref{table-python-comparison}. For larger problem instances, the
+speedup for these dominant phases grew to a factor~10. The vectorizing OpenCL
+backend described in the next Section again significantly improves the
+performance, but at the cost of substantial coding effort.
+\textbf{\emph{Question: speak about the other stages? they are pipelined.}}
 
 \begin{comment}
 The introduction of a custom user-space random generator brings at most
