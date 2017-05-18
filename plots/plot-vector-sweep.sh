@@ -15,7 +15,7 @@ set output '$NAME'
 set style data histogram
 set style histogram cluster gap 1
 
-set xlabel 'GPU'
+# set xlabel 'GPU'
 set ylabel 'Time (normalized over non-vectorized version)'
 # set key below
 
