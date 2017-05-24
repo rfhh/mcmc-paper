@@ -6,3 +6,4 @@ tpds-paper-ieee*.pdf
 plots/*.pdf
 plots/*.eps
 ieeetran-final_sub.tar
+*.tex.bak

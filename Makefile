@@ -32,8 +32,6 @@ PAPER_PART += gpu-05-evaluation.tex
 # PAPER_PART += distr-01-intro.tex
 PAPER_PART += distr-03-design.tex
 PAPER_PART += distr-04-evaluation.tex
-PAPER_PART += distr-05-conclusion.tex
-PAPER_PART += distr-06-acks.tex
 
 PAPER_PART += 06-conclusion.tex
 
@@ -72,6 +70,9 @@ export BSTINPUTS=.:./IEEEtranBST/
 
 view: ${TARGETS}
 	${VIEW_TOOL} $?
+
+spell:
+	for f in *.tex ; do aspell --lang=en --mode=tex check $$f ; done
 
 clean:
 	rm -f *.aux *.log *.dvi *.pdf *.bbl *.blg

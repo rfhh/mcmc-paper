@@ -2,7 +2,7 @@
 \label{design-section}
 
 \begin{comment}
-- distributed parallelisation:
+- distributed parallelization:
   cut up into stages like the CC-Grid paper:
   pipeline:
     1) sample mini-batch
@@ -105,7 +105,7 @@ considerable implementation effort.
 % intro parallelisation, distribution
 
 This section describes how we created a distributed version of the C++
-algorithm. We didn't use the advanced intra-node parallelisation techniques
+algorithm. We didn't use the advanced intra-node parallelization techniques
 described in the previous section, but found that straightforward
 multi-threaded parallelization techniques sufficed: the distributed performance
 is dominated by (remote) memory latency, not by node parallelism. As our
@@ -126,7 +126,7 @@ MPI~\cite{Forum:1994:MMI:898758}.
 
 The largest data structures of the algorithm are \Edges, $\cE_h$, $\pi$
 and~$\phi$, see Table~\ref{tbl-symbols}.
-For the largest dataset in this paper, com-Friendster, \Edges has 1.8~billion
+For the largest data set in this paper, com-Friendster, \Edges has 1.8~billion
 undirected edges. In our representation with directed edges, this takes
 up 13.5GB. Our design lets \Edges reside only at the master's. We observe that
 the calculations in the update stages only require the subset of \Edges that
