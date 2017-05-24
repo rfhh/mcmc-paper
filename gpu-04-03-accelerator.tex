@@ -121,16 +121,12 @@ halves the memory footprint of the algorithm.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Single floating point vs double
 Another modification to the original algorithm is migrating all of its
-computation from double to single precision floating-point.
+computation from double to single precision floating-point, analogous to the change
+for the baseline implementation in Section~\ref{sec-seq-performance}.
 %
-This change affects the algorithm in multiple ways. For instance, it reduces
+This change affects the algorithm in multiple ways. For instance, on a GPU it reduces
 both the computation and data intensity. It again reduces the memory
-footprint of the algorithm and frees registers, enabling more
-effective data reuse.
-%
-It has been previously shown that stochastic learning algorithms do not require
-high precision in the presence of statistical approximations and the addition
-of random noise~\cite{DBLP:journals/corr/GuptaAGN15}.
+footprint of the algorithm and frees registers.
 
 %Finally, the algorithm requires randomly generated values from 3 different
 %distributions. 
