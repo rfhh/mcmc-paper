@@ -1,21 +1,34 @@
 % \section{Accelerating on one Many-core Machine}
 
+\subsection{Design of GPU Optimizations}
+
 % Accelerator friendliness
 The design of an accelerated version of the MCMC algorithm necessitated several
 crucial modifications to allow for efficient parallelization. This section
-discusses the key design contributions to attain two optimized
-parallel versions, catering for multi-core CPUs and GPUs. First, we present
-common structural changes that provide a foundation for compute device specific
-optimizations. Next, we provide an in-depth description of the optimized CPU
-and GPU versions respectively.
+discusses the key design contributions to attain optimized
+parallel versions. The state represented by $\pi$ and $\phi$ is permanently
+stored in the GPU memory, because staging of the relevant portions of these
+data structures in each iteration is too costly compared to the amount
+of computation. The graph is stored at the host, because mini-batch
+selection is cheap, and the data required for a minibatch is small.
+
+Since the algorithm is memory-bound, many of the optimizations concern
+memory usage. We offer a fast, memory-efficient hash table taylored towards
+the algorithm's usage patterns. Some optimizations reduce the total memory
+footprint of the algorithm, following analysis of the algorithm. Other
+optimizations explore the opportunities offered by the faster regions of the
+GPU memory hierarchy: data can be put into thread-local memory, in shared
+GPU memory, or in registers which requires a more complicated analysis. One
+other optimization exploits the vectorization possibilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Using OpenCL and CUDA}
+% \subsection*{Using OpenCL and CUDA}
 %OpenCL/CUDA
+\textit{\bf !!! Remove the history approach !!!}
 Initially, the system was developed using OpenCL~\cite{opencl} in order to
 accelerate the computations of the algorithm. OpenCL was chosen as it provides
-a common abstraction for a variety of compute devices which fulfilled our
-requirements of employing CPUs or GPUs. However, Nvidia's OpenCL SDK limits the
+a common abstraction for a variety of compute devices.
+However, NVidia's OpenCL SDK limits the
 total memory allocations within a context to 4GB which severely limits the
 problem sizes that can be tackled on GPUs. Therefore, we migrated the system to
 use the abstraction layer CLCudaAPI~\cite{claduc}
@@ -30,7 +43,7 @@ and preprocessor macros to abstract away the differences between OpenCL's and
 CUDA's primitive types, address spaces and functions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Fast Lookup of Graph Edges}
+\subsubsection{Fast Lookup of Graph Edges}
 % Set/Cuckoo Hash
 
 The algorithm relies on a set data structure to store the edges of the graph.
@@ -51,11 +64,10 @@ significantly.
 %% FIXME: Talk lookup hit/miss with 4 keys per bucket?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Parallelization \& Data Dependencies}
+\subsubsection{Parallelization \& Data Dependencies}
 % Division into kernels
-The original algorithm was structurally reorganized into 4 main sections with
-one or more kernels in each depending on data dependencies and the applicable
-synchronization requirements.
+The original algorithm was structurally reorganized into 4 main sections, each with
+one or more kernels, data dependencies and synchronization requirements.
 %
 First, the sampling of a mini-batch of edges is done on the host as it is a
 cheap operation. The mini-batch sampling is followed by the neighbor sampling
@@ -63,17 +75,17 @@ kernel which generates uniformly random neighbors for each vertex in the
 mini-batch. 
 %
 Second, the predominant kernel, \textit{update\_phi} is invoked to calculate the
-gradients for each vertex $i$ in the mini-batch \Minibatch and updates the value of $ \phi_i
+gradients for each vertex $i$ in the mini-batch \Minibatch and update the value of $\phi_i
 \mid i \in \Minibatch$. Next, the \textit{update\_pi} kernel is invoked to normalize the
 individual $\phi_i$ and store the result in the corresponding~$\pi_i$.
 %
 Third, the kernels \textit{update\_theta} and \textit{update\_beta} are invoked to modify the
 global parameters.
 %
-Finally, the perplexity calculation is performed in a dedicated kernel.
+Finally, perplexity calculation is performed in a dedicated kernel.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Memory Footprint Reduction}
+\subsubsection{Memory Footprint Reduction}
 % Memory footprint halved
 
 A key structural change applied to the algorithm is the lossless compression of
@@ -124,32 +136,30 @@ Another modification to the original algorithm is migrating all of its
 computation from double to single precision floating-point, analogous to the change
 for the baseline implementation in Section~\ref{sec-seq-performance}.
 %
-This change affects the algorithm in multiple ways. For instance, on a GPU it reduces
-both the computation and data intensity. It again reduces the memory
+This change affects the algorithm in multiple ways. For instance, on some GPUs it
+reduces
+the computation intensity besides the data intensity. It again halves the memory
 footprint of the algorithm and frees registers.
 
 %Finally, the algorithm requires randomly generated values from 3 different
 %distributions. 
 
-\subsection*{CPU-Specific Optimization}
-The multi-core
-CPU version of the algorithm uses OpenCL to perform its computations. The
-work decomposition of the CPU kernels ensures that each thread performs
+\subsubsection{Edge-centric and Vertex-centric kernels}
+The work decomposition of the kernels ensures that each thread performs
 independent computation in order to avoid expensive synchronization operations.
-Edge-centric kernels, which operate over mini-batch edges perform computations
+Edge-centric kernels, which operate over mini-batch edges, perform computations
 over every edge in parallel.  Similarly, vertex-centric kernels that operate
 over vertices in the mini-batch exploit parallelism across the selected
 vertices.
 % vectorization
-Additionally, the kernels were vectorized to decrease instruction overhead and
-utilize the SSE capabilities of the CPU cores.
+Additionally, the kernels were vectorized to decrease instruction overhead.
 
-\subsection*{GPU-Specific Optimization}
+\subsubsection{Memory Hierarchy Optimizations}
 \label{gpu-design}
-The GPU implementation builds on top of the CPU work decomposition scheme.
-However, instead of having every thread perform independent computations, each
-block of threads shares the work associated with the single edge or vertex for
-edge-centric and vertex-centric kernels.
+% The GPU implementation builds on top of the CPU work decomposition scheme.
+% However, instead of having every thread perform independent computations, each
+% block of threads shares the work associated with the single edge or vertex for
+% edge-centric and vertex-centric kernels.
 
 Since all of the kernels are data-bound, several memory organization strategies
 of varying complexities were investigated to speedup the algorithm by

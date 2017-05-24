@@ -122,9 +122,10 @@ baseline implementation with OpenMP primitives in a straightforward
 fashion. This accelerated the stages \textit{update\_phi} and
 \textit{update\_pi} with a factor~4 for the very small problem instance
 in Table~\ref{table-python-comparison}. For larger problem instances, the
-speedup for these dominant phases grew to a factor~10. The vectorizing OpenCL
-backend described in the next Section again significantly improves the
-performance, but at the cost of substantial coding effort.
+speedup for these dominant phases grew to a factor~10.
+% The vectorizing OpenCL
+% backend described in the next Section again significantly improves the
+% performance, but at the cost of substantial coding effort.
 \textbf{\emph{Question: speak about the other stages? they are pipelined.}}
 
 \begin{comment}
