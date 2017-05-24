@@ -1,13 +1,13 @@
 \subsection{Performance of Sequential Versions}
 
-This subsection presents the results of transforming the algorithm implementation
-from Python to C++, and then removing obvious inefficiencies, to achieve a
-good baseline implementation for comparison with the parallel implementation.
+This subsection presents the results of transforming the algorithm
+implementation from Python to efficient C++.
+Our experiments use a DAS5 compute node, see Section~\ref{sec-experimental}.
 %
 We also investigate the performance impact of using
 32-bit floating point numbers in stead of 64-bit doubles.
-This hardly reduces the computation intensity for the Xeon, but it very much
-affects data intensity because the data sizes are halved.
+This hardly reduces the computation intensity for a DAS5 Xeon machine, but
+it certainly affects data intensity because the data sizes are halved.
 %
 % It has been previously shown that stochastic learning
 % algorithms do not require high precision in the presence
@@ -15,18 +15,20 @@ affects data intensity because the data sizes are halved.
 % noise [?].
 
 Due to the performance limitations of the Python implementation, the
-experimental configuration of this section is minimal.
+experimental configuration of this section is very small.
 %
-Namely, we use the small CA-HepPh data set from the SNAP graph collection, see
-Table~\ref{table-snap}; the number of
-iterations is 1000.
+We use the CA-HepPh dataset from the SNAP graph collection, see
+Table~\ref{table-snap} in Section~\ref{sec-experimental}. The number of
+iterations is~1000;
 %Note that these trial runs stop very far before convergence; using a small
 %number of
 %iterations is valid because the time spent in an iteration does not vary
 %during the lifetime of the algorithm.
-The selected number of communities is~1024, the mini-batch size~32, the
-neighbor sample size~32.
+The number of communities is $K=1024$, the mini-batch size is fixed at $M=32$, the
+neighbor sample size $\Neighbors=32$.
 
+\begin{comment}
+******** Unnecessary detail?
 The mini-batch sampling as described in Section~\ref{sec-background} randomly
 chooses either a mini-batch of link edges, whose size is the degree of one
 randomly selected vertex, or a mini-batch of nonlink edges, whose size is
@@ -35,6 +37,7 @@ of nonlink edges because that makes the mini-batch size, and hence the
 execution times, deterministic. We separately validated that the time spent
 \textit{per mini-batch vertex} for samples of link edges and nonlink edges
 is fully consistent.
+\end{comment}
 
 \begin{table}[tb]
 \center\begin{tabular}{l d{5.1} d{2.1} d{2.1} d{2.1}}
@@ -59,7 +62,7 @@ perplexity*             &    178    &  0.18 &  0.18 & 0.26 \\
 \\[-1ex]
 \end{tabular}
 \caption{Performance comparison between Python; C++ that follows the Python
-idioms; and our baseline C++ implementations. 1000 iterations, times in
+idioms; and our baseline C++ implementations. Times in
 \textrm{ms} per iteration; *perplexity time divided by 100 iterations.}
 \label{table-python-comparison}
 \end{table}
@@ -70,32 +73,35 @@ Python, then our baseline C++ version which has the inefficiencies removed,
 and finally the same with 32-bit floats.
 %
 We present timings for the compute stages of the algorithm described in
-Section~\ref{sec-background}, with the exception of
+Algorithm~\ref{algorithm}, with the exception of
 \textit{update\_theta\_beta} which combines \textit{update\_theta}
 and \textit{update\_beta}.
 %
-The numbers are times in ms. For all stages except perplexity, the times
-are per iteration.
+% The numbers are times in ms. For all stages except perplexity, the times
+% are per iteration.
 %
-Once every so many iterations (hundreds or thousands in production runs),
-the perplexity calculation is invoked. The perplexity time in the table
-has been divided by 100 iterations; per perplexity invocation, it is large in
-comparison with the iteration stage times, but it is amortized over those
-iterations.
+% Once every so many iterations (hundreds or thousands in production runs),
+% the perplexity calculation is invoked. The perplexity time in the table
+% has been divided by 100 iterations; per perplexity invocation, it is large in
+% comparison with the iteration stage times, but it is amortized over those
+% iterations.
+In production runs, the perplexity calculation is invoked once every hunderds
+or thousands iterations. Hence, the perplexity timings are amortized over
+100~iterations.
 
 In all implementations, \textit{update\_phi} dominates the computation.
 The translation from Python into 'Python Idiom' C++ speeds up this stage
-by a factor~171, even though the Python implementation uses numpy for its data
-structures. Comparison of the C++ table entries for 'Python idiom' and
-64-bit float baseline shows that our C++ optimizations speed up this stage
+by a factor~171. % , even though the Python implementation uses numpy for its data
+% structures. 
+Our C++ optimizations speed up this stage
 by another factor of~6. Reducing the floating-point precision to 32~bits
-doubles this factor, which shows that the algorithm is very much data-dominant.
+doubles this factor, which again shows that the algorithm is very much data-dominant.
 %
 \textit{update\_pi} has a disproportionately large speed
-gain after removing inefficiencies. This was attained by limiting the
-update to $\pi$ to only those values of $\pi$ that have changed in this
-iteration, in stead of the full $\pi$ array (which, incidentally, is handled
-rather efficiently by numpy).
+gain after removing inefficiencies. The numpy implementation updated the full
+$\pi$ array (incidentally, rather efficiently), whereas our C++ optimization
+limits the updates to only those values of $\pi$ that have changed.
+%
 \textit{update\_theta\_beta} gave fewer opportunities for C++ optimization,
 in the sampling stages there was none. In \textit{mini-batch-sampling} there
 is no speedup compared to Python because it consists of a call to
@@ -105,7 +111,9 @@ implementation exceeds a factor of~1000, and this grows to a factor of over~1500
 if the floating-point precision is reduced to 32~bits. The 32-bit precision
 implementation will be the baseline for the parallel performance comparison.
 
-A first multi-threaded version was created by annotating the
+\subsection{Multi-threading}
+
+A multi-threaded version was created by annotating loops in the
 baseline implementation with OpenMP primitives in a straightforward
 fashion. This accelerated the stages \textit{update\_phi} and
 \textit{update\_pi} with a factor~4 for the very small problem instance
