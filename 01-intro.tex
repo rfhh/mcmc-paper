@@ -28,24 +28,23 @@ the size of its intermediate data structures makes it difficult to scale to very
 community graphs.
 
 Starting from an existing implementation in Python/Numpy, we create an efficient
-baseline version in C++ to serve as the baseline for the parallel versions.
+C++ version to serve as the baseline for the parallel versions.
 This already improves performance by a factor of 1000 to 1500 compared to
-Python. Then, our key contributions are:
+Python. Then, our key contributions to the algorithm are:
+
 \begin{itemize}
-\item
-our implementation is scaled up to run on GPUs.
-We developed aggressive optimizations to solve the memory bandwidth issues for
-GPUs. This implementation achieves speedup factors up to~86,
-compared to the baseline.
+\item \textbf{scaling up to run on GPUs.}
+The application is not a natural fit for GPUs, because it is memory-bound and
+irregular in its data accesses. Nevertheless, we developed aggressive
+memory allocation optimizations to solve the data bandwidth issues for GPUs.
+This implementation achieves up to 86$\times$ speedup compared to the baseline.
 %
-Through careful analysis of the computation and data structures we show that
-the algorithm's full state can be reduced by roughly 75\%. Compressing the
-state significantly reduces the data intensity and allows for tackling larger
+We managed to reduce the algorithm's memory requirements by roughly 75\%, which
+significantly reduces the data intensity and allows for tackling larger
 problems; % while maintaining all state in memory.
 
-\item
-our implementation is scaled out to overcome the memory bounds posed by GPUs or
-single-machine systems in general, to solve the largest publicly available
+\item \textbf{scaling out to overcome the memory bounds posed by GPUs} or,
+generally, single-machine systems, to solve the largest publicly available
 community graphs. % This necessitated overcoming several challenges.
 % The algorithm's state grows rapidly with larger graphs and number of latent
 % communities.
@@ -62,9 +61,10 @@ is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
 
-\item we argue that it is valid to use a CPU version with straightforward
-intra-node thread parallelism for the distributed implementation, and
-that it is pointless to combine the GPU work into it.
+\item \textbf{the use of pipelining} allows to use straightforward intra-node
+thread parallelism in the distributed implementation, and it is pointless
+to combine the GPU work into it. The cause is that the computation can be
+fully overlapped with fulfilling the data requests for the next iteration.
 
 \end{itemize}
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
@@ -92,7 +92,7 @@ algorithm and its theoretical foundation, with related work in
 Section~\ref{sec-related}. Section~\ref{sec-design-sequential} describes how we
 arrived at an efficient sequential version that serves as the baseline for the
 parallel implementations. Section~\ref{sec-gpu} delves
-into the parallelization optimizations for GPUs and multi-core CPUs.
+into the parallelization optimizations for GPUs.
 Section~\ref{sec-distr} describes the design, implementation and evaluation of
 the scalable distributed solution. Finally, Section~\ref{sec-conclusion}
 provides concluding remarks.
