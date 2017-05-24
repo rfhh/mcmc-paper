@@ -1,4 +1,5 @@
 \subsection{Performance of Sequential Versions}
+\label{sec-seq-performance}
 
 This subsection presents the results of transforming the algorithm
 implementation from Python to efficient C++.
@@ -8,6 +9,9 @@ We also investigate the performance impact of using
 32-bit floating point numbers in stead of 64-bit doubles.
 This hardly reduces the computation intensity for a DAS5 Xeon machine, but
 it certainly affects data intensity because the data sizes are halved.
+It has been previously shown that stochastic learning algorithms do not require
+high precision in the presence of statistical approximations and the addition
+of random noise~\cite{DBLP:journals/corr/GuptaAGN15}.
 %
 % It has been previously shown that stochastic learning
 % algorithms do not require high precision in the presence
