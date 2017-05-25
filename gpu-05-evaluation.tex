@@ -2,17 +2,16 @@
 \label{sec-evaluation}
 
 The following sections provide a detailed experimental performance analysis
-of the optimizations described above. We start by discussing the performance
-effects of parallelizing the computations
-on a multi-core CPU using OpenCL.
+of the optimizations described above.
 %
-Next, we assess the trade-offs associated with each of the GPU optimization
+We assess the trade-offs associated with each of the GPU optimization
 strategies and their performance effects on four GPUs spanning two chip
 architecture generations.
 %
 Finally, we present the overall outcome of accelerating the algorithm by
-displaying its fast convergence over the largest networks that fit in the
-memory of one GPU or CPU.
+displaying its fast convergence over the largest sensible combination of
+community network and number of communities, so that the algorithm data fit in the
+memory of a GPU.
 
 \input{04-experimental-setup}
 

@@ -1,70 +1,3 @@
-\subsubsection{Analysis of CPU Parallelism}
-
-\begin{comment}
-  \begin{table}[tb]
-    \centering
-    \begin{tabular}{l l c c c c}
-      Comparison & Data Set        & K    & M    & n  & Iterations \\
-      \hline
-      Python/Baseline    & CA-HepPh        & 1024 & 32   & 32 & 1000 \\
-      Parallel CPU/GPU   & com-DBLP        & 1024 & 4096 & 32 & 1000 \\
-      Parallel CPU       & com-LiveJournal & 1024 & 4096 & 32 & 1000 \\
-    \end{tabular}
-    \caption{Experiment parameter reference.}
-    \label{exp-params}
-  \end{table}
-\end{comment}
-
-\begin{table}[tb]	% [htb]
-  \centering
-  \begin{tabular}{l d{2.8} d{2.8}}
-    Kernel & Time (seconds) \\
-    \hline
-    PPX CALC    &  0.0364737 \\
-    PPX ACCUM   &  0.083 \\
-    SAMPLING    &  0.535599 \\
-    UPDATE\_PHI & 25.6598 \\
-    UPDATE\_PI  &  0.645875 \\
-    THETA SUM   &  0.0483902 \\
-    GRADS PAR   &  1.92919 \\
-    GRADS SUM   &  9.31122 \\
-    UPDATE THETA&  0.0548013 \\
-    NORM THETA  &  0.001 \\
-    \hline
-    TOTAL    & 38.5858 \\
-  \end{tabular}
-  \caption{Performance break-down of multi-core CPU version without
-  vectorization. Model parameters: data set com-DBLP; K=1024, m=4096, n=32.}
-  \label{TABLE-CPU}
-\end{table}
-
-This section discusses the use of the multi-core CPU available on the DAS5
-cluster. The parallel OpenCL version divides the work across the CPU cores and
-performs independent calculations concurrently. As shown in
-Table~\ref{TABLE-CPU}, the dominant kernel in the computation is
-\textit{update\_phi},
-which accounts for 66.5\% of the computation time. Without exploiting
-the dual 8-core processor's vectorization capabilities, the speedup relative to
-the baseline sequential C++ version is~9.8.
-
-% CPU
-\begin{figure}[tb]
-\centering
-\epsfig{file=plots/cpu-vector.eps, width=\columnwidth}
-\caption{Performance of CPU for varying vector width.}
-\label{FIG-CPU-VECTOR}
-\end{figure}
-
-In addition to applying computations in parallel, we investigated the use of
-the CPU's SIMD instructions to maximize its resource utilization.
-Figure~\ref{FIG-CPU-VECTOR} presents the performance obtained by vectorizing
-the kernels with varying vector widths. A key aspect in this figure is the
-diminishing performance benefit for higher vector widths. As the computational
-performance increases, the memory throughput becomes the leading performance
-bottleneck. Moreover, using 16-wide SIMD instructions gave a slight performance
-penalty compared to 8-wide SIMD. The 8-wide vector version improves the speedup
-relative to the baseline version from 9.8 to~20.9.
-
 \begin{table}[tb]	% [htb]
 % \center\begin{tabular}{l c c c c c c c c d{3.1}}
 % Device & Architecture & cores & Clock & \multicolumn{2}{c}{GFlops} & L2 Cache & Memory & Bandwidth \\ 
@@ -73,6 +6,7 @@ relative to the baseline version from 9.8 to~20.9.
 % K20m        & Tesla   &  2496 &  706        & 3520 & 1170 &      &  5 & 208 \\
 % K40c        & Tesla   &  2880 &  745        & 4290 & 1430 &      & 12 & 208 \\
 % GTX 980     & Maxwell &  2816 & 1126 (1216) & 4612 &  144 &      &  4 & 336.5 \\
+
 % GTX Titan-X & Maxwell &  3072 & 1000 (1075) & 6144 &  192 & 2048 & 12 & 336.5 \\
 %
 %
@@ -247,11 +181,10 @@ different strategy-performance orderings.
 
 \subsubsection{Comparison of Compute Devices}
 Figure~\ref{gpus-fig} compares the highest speedup achieved by each of the
-GTX~\mbox{Titan-X}, GTX980, K40c, K20m and the Intel Xeon CPU relative to the baseline
+GTX~\mbox{Titan-X}, GTX980, K40c and K20m relative to the baseline
 sequential C++ version. These results are consistent with the relative
 capabilities of each device as listed in Table~\ref{table-gpus}. For instance,
-the \mbox{Titan-X} achieves the highest speedup of 86 relative to the baseline. At the
-other end, the parallel CPU version attains a speedup factor of~20.9.
+the \mbox{Titan-X} achieves the highest speedup of 86 relative to the baseline.
 
 As vectorization is a popular GPU optimization, it is important to note that
 both GTX GPUs achieved their highest performance with non-vectorized kernels.

@@ -8,7 +8,8 @@ BASELINE=374.667
 echo > $TFILE
 
 X=1
-for i in GeForceGTXTITANX GeForceGTX980 TeslaK40c TeslaK20m Intel-R-Xeon; do
+# for i in GeForceGTXTITANX GeForceGTX980 TeslaK40c TeslaK20m Intel-R-Xeon; do
+for i in GeForceGTXTITANX GeForceGTX980 TeslaK40c TeslaK20m ; do
   v=`grep -a TOTAL dblp-K1024/${i}* | sort -nk 7 | head -n 1 | awk '{print $7}'`
   v2=`perl -e "print $BASELINE / $v"`
   device=`echo $i | sed 's/GeForceGTXTITANX/Titan-X/;s/GeForceGTX980/GTX980/;s/TeslaK40c/K40c/;s/TeslaK20m/K20m/;s/Intel-R-Xeon/Xeon/'`
