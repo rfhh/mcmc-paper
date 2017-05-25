@@ -12,17 +12,17 @@ PAPER_PART += $(TARGETS:%.pdf=%.tex)
 # PAPER_PART += abstract.tex
 
 PAPER_PART += 01-intro.tex
-PAPER_PART += 02-background.tex
-PAPER_PART += 03-related.tex
+PAPER_PART += 02-01-background.tex
+PAPER_PART += 02-02-related.tex
 PAPER_PART += 04-experimental-setup.tex
+PAPER_PART += 03-sequential-design.tex
+PAPER_PART += 03-sequential-evaluation.tex
 
 # GPU part
 # PAPER_PART += gpu-00-abstract.tex
 # PAPER_PART += gpu-01-intro.tex
-PAPER_PART += gpu-04-02-sequential.tex
 PAPER_PART += gpu-04-03-accelerator.tex
 PAPER_PART += gpu-04-design.tex
-PAPER_PART += gpu-05-02-sequential.tex
 PAPER_PART += gpu-05-03-accelerator.tex
 PAPER_PART += gpu-05-04-distributed.tex
 PAPER_PART += gpu-05-05-perplexity.tex
