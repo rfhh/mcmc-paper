@@ -5,15 +5,15 @@ We consider related work for both parallelization contributions of this paper: a
 of our MCMC-MMSB algorithm. While acceleration of deep learning algorithms on GPUs
 is an ongoing success story, approximative Baysian algorithms are
 not such a natural fit for GPUs. Nevertheless, a number of projects explores this terrain.
-E.g.~\cite{journals/bioinformatics/MedlarGSBK13} uses GPUs with their
+Medlar~c.s.~\cite{journals/bioinformatics/MedlarGSBK13} use GPUs with their
 MCMC approach to analyze parental linkage patterns in a biology context and
-\cite{DBLP:journals/csda/WhiteP14} does the same to model terrorist activity.
+White and Porter~\cite{DBLP:journals/csda/WhiteP14} do the same to model terrorist activity.
 Latent Dirichlet Allocation, another variety of Bayesian Approximation,
-is used on GPUs by~\cite{DBLP:conf/nips/YanXQ09}. There is also related
+is used on GPUs by Yan~c.s.~\cite{DBLP:conf/nips/YanXQ09}. There is also related
 work on the variants of MCMC algorithms that use the gradient to speed
 up convergence. Langevin and Hamiltonian dynamics are representatives of
 these varieties~\cite{Girolami_riemannmanifold}. Our algorithm uses Riemann
-Manifold Langevin dynamics. In \cite{beam2014fast}, GPUs are used to perform
+Manifold Langevin dynamics. Beam~c.s.~\cite{beam2014fast} use GPUs to perform
 Hamiltonian descent, using Python interfaces to access the standard cuBLAS
 library~\cite{cuBLAS}. They limit their optimizations for the GPU to saving
 on data transfers between host and device memory. They do not apply their
@@ -31,7 +31,7 @@ can handle are limited by the device memory of the GPU. Our implementation conve
 quickly on the GPU but can also use multi-core CPUs. In the latter case, speedup is
 limited but the larger memory allows tackling larger data sets.
 
-\cite{liakos-bigdata16} also addresses overlapping community detection, but their
+Liakos~c.s.~\cite{liakos-bigdata16} also address overlapping community detection, but their
 algorithm uses a local dispersion-aware approach. They find communities for 5000
 nodes in each of the large SNAP data sets, see Table~\ref{table-snap}.
 
@@ -77,9 +77,9 @@ that does not involve the remote host in any transaction.
 
 There are a few projects that implemented a distributed algorithm
 for community detection on very large network graphs. In contrast to our work,
-they all detect non-overlapping communities: \cite{Bu2013246} investigate a
-large number of networks; \cite{2015arXiv150302115L} investigate hierarchical
-stochastic blockmodels; \cite{Prat-Perez:2014:HQS:2566486.2568010} use
+they all detect non-overlapping communities: Bu~c.s.~\cite{Bu2013246} investigate a
+large number of networks; Lyzinski~c.s.~\cite{2015arXiv150302115L} investigate hierarchical
+stochastic blockmodels; Prat-P{\'e}rez~c.s.~\cite{Prat-Perez:2014:HQS:2566486.2568010} use
 multi-core machines.
 
 \textbf{\emph{QUESTION: Re-insert related work on RDMA KV stores?}}

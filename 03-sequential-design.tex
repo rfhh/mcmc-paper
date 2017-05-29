@@ -19,7 +19,7 @@ substituted with their direct C++ alternatives.
 %
 The next step was to remove a number of inefficiencies.
 For example, one recurring idiom in the Python implementation
-was an expression of the form $a^y b^{1-y}$, where $y$ is either 0 or~1.
+was a choice expression of the form $a^y b^{1-y}$, where $y$ is either 0 or~1.
 % Therefore, the expression is simply a choice
 % between $a$ for $y=1$ and $b$ for $y=0$. However, as the compiler cannot infer
 % the value of $y$, both expressions $a$ and $b$ were computed and their
