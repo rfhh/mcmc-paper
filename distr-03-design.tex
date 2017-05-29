@@ -93,31 +93,34 @@
 
 % http://stanford.edu/~rezab/nips2014workshop/slides/jure.pdf
 
-The SG-MCMC a-MMSB algorithm has an abundance of
-opportunities for parallelism, for the multi-threaded shared-memory type as
-well as for distributed-memory parallelism. The benefit of multi-threaded
-parallelism is the speedup of the computation. Additionally, a distributed implementation
-allows the storage of data in the collective memory of a cluster
-and increases aggregate memory bandwidth. Both of these parameters scale with the number of
-machines. The downside of a distributed implementation is that it requires
-considerable implementation effort.
+The implementations in the previous section put a limit to the size of
+community networks and number of communities that can be processed: the
+state must fit into GPU memory. To tackle networks of much larger size, we
+created a distributed implementation that stores the data in the
+collective memory of a cluster. The downside of a distributed implementation
+is that the burden of memory access is increased for our already data-dominant
+algorithm.
 
 % intro parallelisation, distribution
 
 This section describes how we created a distributed version of the C++
-algorithm. We didn't use the advanced intra-node parallelization techniques
-described in the previous section, but found that straightforward
-multi-threaded parallelization techniques sufficed: the distributed performance
-is dominated by (remote) memory latency, not by node parallelism. As our
-analysis will show, our pipelining optimizations will fully overlap the
-parallel calculations with (pre)loading the data from remote hosts.
-The details of the multi-threaded parallelism
-will be discussed only where appropriate. The
-distributed design follows a master-worker paradigm, where
-the master controls the sequence of parallel operations and the workers perform the
-calculations. For thread parallelism, we annotate the program with
-OpenMP~\cite{OpenMPSpec}. For distributed communication, we use
-MPI~\cite{Forum:1994:MMI:898758}.
+algorithm. We used the multicore CPUs in the DAS5 with straightforward
+intra-node thread parallelisation, not the GPU implementations described
+in the previous section. The justification is twofold: in our DAS5 system,
+it is pointless to speed up the intra-node performance beyond straightforward
+multithreading, because distributed performance is dominated by remote memory
+latency; the analysis in Section~\ref{eval-pipeline} shows that the time for
+(pre)loading the data from remote hosts greatly exceeds the calculation time.
+The calculation time is fully overlapped in our pipelining implementation.
+Moreover, usage of GPUs in the distributed setting would necessitate staging of
+the relevant parts of $\pi/\phi$ from the host to GPU memory in each iteration,
+which would eat most of the performance gain offered by the GPU because
+the algorithm is so data-intensive.  % The details of the multi-threaded
+parallelism % will be discussed only where appropriate.  The distributed design
+follows a master-worker paradigm, where the master controls the sequence of
+parallel operations and the workers perform the calculations. For thread
+parallelism, we annotate the program with OpenMP~\cite{OpenMPSpec}. For
+distributed communication, we use MPI~\cite{Forum:1994:MMI:898758}.
 
 % largest data structures
 
