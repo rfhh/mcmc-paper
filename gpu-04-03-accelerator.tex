@@ -3,27 +3,32 @@
 \subsection{Design of GPU Optimizations}
 
 % Accelerator friendliness
-The design of an accelerated version of the MCMC algorithm necessitated several
-crucial modifications to allow for efficient parallelization. This section
-discusses the key design contributions to attain optimized
-parallel versions. The state represented by $\pi$ and $\phi$ is permanently
-stored in the GPU memory, because staging of the relevant portions of these
-data structures in each iteration is too costly compared to the amount
+% The design of an accelerated version of the MCMC algorithm necessitated several
+% crucial modifications to allow for efficient parallelization. This section
+% discusses the key design contributions to attain optimized
+% parallel versions.
+
+Since the algorithm is memory-bound, many of the optimizations we implemented
+are concerned with
+memory usage. For starters, we offer a fast, memory-efficient hash table on the GPU,
+taylored towards
+the algorithm's usage patterns. Some optimizations reduce the total memory
+footprint of the algorithm. Other
+optimizations explore the opportunities offered by the faster regions of the
+GPU memory hierarchy: data can be put into GPU shared memory, into thread-local
+memory, or in registers which requires a more complicated analysis. One
+other optimization is exploitation of the vectorization possibilities.
+
+The state for the combination of $\pi$ and $\phi$ is permanently
+stored in GPU memory, because copying of the relevant portions of these
+data structures to the GPU in each iteration is too costly compared to the amount
 of computation. The graph is stored at the host, because mini-batch
 selection is cheap, and the data required for a minibatch is small.
-
-Since the algorithm is memory-bound, many of the optimizations concern
-memory usage. We offer a fast, memory-efficient hash table taylored towards
-the algorithm's usage patterns. Some optimizations reduce the total memory
-footprint of the algorithm, following analysis of the algorithm. Other
-optimizations explore the opportunities offered by the faster regions of the
-GPU memory hierarchy: data can be put into thread-local memory, in shared
-GPU memory, or in registers which requires a more complicated analysis. One
-other optimization exploits the vectorization possibilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection*{Using OpenCL and CUDA}
 %OpenCL/CUDA
+\begin{comment}
 \textit{\bf !!! Remove the history approach !!!}
 Initially, the system was developed using OpenCL~\cite{opencl} in order to
 accelerate the computations of the algorithm. OpenCL was chosen as it provides
@@ -41,6 +46,12 @@ For example, the library provides abstractions for Device, Context, Queue and
 Buffer. Additionally, the implementations use a combination of inline functions
 and preprocessor macros to abstract away the differences between OpenCL's and
 CUDA's primitive types, address spaces and functions.
+\end{comment}
+The GPU code and interfacing was developed with CLCudaAPI~\cite{claduc}, which
+is an API that targets both CUDA for NVidia GPUs and OpenCL for other GPUs and
+multicore CPUs. It was not feasible to directly use OpenCL~\cite{opencl} since
+NVidia's OpenCL SDK limits the total memory allocations to 4GB, which is
+significantly smaller than the memory available in our GPUs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Fast Lookup of Graph Edges}
@@ -95,8 +106,8 @@ data-intensive, a reduction of the state is accompanied by a decrease in its
 data-intensity.
 %
 The data structures that occupy most memory are $\pi$ and~$\phi$, both of
-which are matrices of dimensions ${N}\times{K}$. However, the storage of both
-matrices is redundant as $\pi$ is a row-normalized copy of~$\phi$, see
+which are matrices of dimension ${N}\times{K}$. However, storing both
+is redundant as $\pi$ is a row-normalized copy of~$\phi$, see
 Table~\ref{tbl-symbols} in Section~\ref{sec-background}. The full storage for
 $\phi$ is discarded; $\phi_{ik}$ values are calculated as
 $\pi_{ik}/\phi^{sum}_i$, which requires maintenance of a vector
