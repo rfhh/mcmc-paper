@@ -30,11 +30,13 @@ community graphs.
 Starting from an existing implementation in Python/Numpy, we create an efficient
 C++ version to serve as the baseline for the parallel versions.
 This already improves performance by a factor of 1000 to 1500 compared to
-Python. Then, our key contributions to the algorithm are:
+Python.
+% This transformation is not considered one of our key contributions.
+Then, our key contributions to the algorithm are:
 
 \begin{itemize}
 \item \textbf{scaling up to run on GPUs.}
-The application is not a natural fit for GPUs, because it is memory-bound and
+The application is not a natural fit for GPUs, because it is data-bound and
 irregular in its data accesses. Nevertheless, we developed aggressive
 memory allocation optimizations to solve the data bandwidth issues for GPUs.
 This implementation achieves up to 86$\times$ speedup compared to the baseline.
@@ -51,7 +53,7 @@ community graphs. % This necessitated overcoming several challenges.
 Since the full state for the larger graphs does not fit in a
 single machine's memory, it is partitioned across a cluster
 of machines. Hence, the cluster nodes must read
-remote memory hosted by their peers. Since the algorithm is memory-bound, we
+remote memory hosted by their peers. Since the algorithm is data-bound, we
 substantially optimized remote memory accesses by implementing
 a custom RDMA store.
 On top of that, we pipelined the algorithm stages by fetching
@@ -61,10 +63,13 @@ is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
 
-\item \textbf{the use of pipelining} allows to use straightforward intra-node
-thread parallelism in the distributed implementation, and it is pointless
-to combine the GPU work into it. The cause is that the computation can be
+\item \textbf{the use of pipelining} \emph{in the distributed implementation}
+justifies straightforward intra-node thread parallelism, and it is pointless
+to combine the GPU implementations
+into it. The cause is that computing for an iteration takes less
+time than fetching the data from remote memory, and the computation is
 fully overlapped with fulfilling the data requests for the next iteration.
+Hence, it is useless to improve the computation time.
 
 \end{itemize}
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
