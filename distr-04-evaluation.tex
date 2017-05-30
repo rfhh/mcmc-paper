@@ -148,7 +148,7 @@ Table~\ref{table-pipeline} shows a breakdown of the (sub)stages that are
 overlapped by both pipelining optimizations. The left-hand column has
 all pipelining disabled, the right-hand
 column has pipelining enabled. Within \textit{update\_phi},
-loading $\pi$ from the D-KV store is dominant.
+loading $\pi$ from the DKV store is dominant.
 The pipelining optimization significantly overlaps loading $\pi$ both with generation and
 deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 
@@ -224,7 +224,7 @@ a single-node implementation.
 \begin{figure}[tb] % [htbp]
   \centering
   \epsfig{file=plots/qperf.eps, width=\columnwidth}
-  \caption{Performance of D-KV store vs.\ \textit{qperf} and MPI round-trip.}
+  \caption{Performance of DKV store vs.\ \textit{qperf} and MPI round-trip.}
   \label{fig-qperf}
 \end{figure}
 
@@ -253,16 +253,16 @@ thus lowers the bandwidth
 significantly.
 Note that the comparison is
 lopsided: \textit{qperf} and MPI are low-level point-to-point benchmarks without
-any D-KV store implementation on top.
+any DKV store implementation on top.
 The performance presented in this Figure
 is ample justification for using a low-level RDMA
-implementation for the D-KV store.
-The bandwidth achieved by our D-KV store falls short
+implementation for the DKV store.
+The bandwidth achieved by our DKV store falls short
 of the \textit{qperf} performance for packets less than 4KB; this is attributed
-to additional per-request overhead for the D-KV store. For the largest packet
-size, the D-KV store performance is hampered by the fact that its values
+to additional per-request overhead for the DKV store. For the largest packet
+size, the DKV store performance is hampered by the fact that its values
 are spread over a larger memory area, whereas \textit{qperf} and MPI always read
-from the same memory locations. For packets between 8KB and 512KB, our D-KV
+from the same memory locations. For packets between 8KB and 512KB, our DKV
 store achieves performance very close to \textit{qperf}.
 
 %################################################
