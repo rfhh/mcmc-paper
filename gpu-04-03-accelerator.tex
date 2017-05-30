@@ -103,7 +103,7 @@ A key structural change applied to the algorithm is the lossless compression of
 its state. This modification enabled the algorithm to process larger data sets
 while maintaining all program state in memory. Moreover, as the algorithm is
 data-intensive, a reduction of the state is accompanied by a decrease in its
-data-intensity.
+data intensity.
 %
 The data structures that occupy most memory are $\pi$ and~$\phi$, both of
 which are matrices of dimension ${N}\times{K}$. However, storing both
@@ -147,15 +147,20 @@ Another modification to the original algorithm is migrating all of its
 computation from double to single precision floating-point, analogous to the change
 for the baseline implementation in Section~\ref{sec-seq-performance}.
 %
-This change affects the algorithm in multiple ways. For instance, on some GPUs it
-reduces
-the computation intensity besides the data intensity. It again halves the memory
+This change affects the algorithm in multiple ways.
+It again halves the memory
 footprint of the algorithm and frees registers.
+Besides, on our GPUs it
+reduces
+the computation intensity besides the data intensity.
 
 %Finally, the algorithm requires randomly generated values from 3 different
 %distributions. 
 
-\subsubsection{Edge-centric and Vertex-centric kernels}
+% \subsubsection{Edge-centric and Vertex-centric kernels}
+\subsubsection{Memory Hierarchy Optimizations}
+\label{gpu-design}
+
 The work decomposition of the kernels ensures that each thread performs
 independent computation in order to avoid expensive synchronization operations.
 Edge-centric kernels, which operate over mini-batch edges, perform computations
@@ -165,15 +170,13 @@ vertices.
 % vectorization
 Additionally, the kernels were vectorized to decrease instruction overhead.
 
-\subsubsection{Memory Hierarchy Optimizations}
-\label{gpu-design}
 % The GPU implementation builds on top of the CPU work decomposition scheme.
 % However, instead of having every thread perform independent computations, each
 % block of threads shares the work associated with the single edge or vertex for
 % edge-centric and vertex-centric kernels.
 
 Since all of the kernels are data-bound, several memory organization strategies
-of varying complexities were investigated to speedup the algorithm by
+of varying complexity were investigated to speed up the algorithm by
 exploiting the GPU's memory hierarchy.
 % Update_phi
 As a case study, a discussion of the \textit{update\_phi} kernel is provided as it is
@@ -210,7 +213,7 @@ deterministic memory usage patterns of $Probs_i$, $Grads_i$ and $\pi_i$ for each
 vertex in the mini-batch.
 
 % Naive strategy
-\paragraph*{\textbf{Naive strategy}} simply allocate temporary vectors in thread
+\paragraph*{\textbf{Naive strategy}} allocate temporary vectors in thread
 local memory to store $Probs$ and $Grads$ which physically reside in
 device memory. All memory accesses are coalesced to achieve the highest
 possible bandwidth to and from device memory.
@@ -232,9 +235,9 @@ vector addressing with static values. The code generation strategy allows this
 flexibility for the three vectors of concern, namely, $Probs_i$, $Grads_i$
 and~$\pi_i$.
 Hence, this strategy allows for 8 possible configurations denoted by
-three letters each of which is a choice between $R$ or $S$ to represent
+three letters, each of which is a choice between $R$ or $S$ to represent
 $Register$ or $Shared$ respectively. For example, $SSR$ denotes that $Probs_i$,
-$Grads_i$ and $\pi_i$ were placed in $Shared$, $Shared$ and $Register$
+$Grads_i$ and $\pi_i$ are placed in $Shared$, $Shared$ and $Register$
 respectively.
 
 % vectorization

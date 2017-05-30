@@ -278,6 +278,7 @@ on $N$ or $|\cE^*|$, the size of the network graph. However, larger graphs are
 expected to require more iterations to achieve convergence.
 
 \subsection{Pipelining of computation and loading $\pi$}
+\label{sec-pipelining}
 
 The distributed design features two instances of pipeline parallelism. First,
 at the process level, sampling of the minibatch by the master is decoupled
@@ -287,7 +288,7 @@ current iteration. Second, at the threads level within the workers, loading of
 $\pi$ and \textit{update\_phi} are split up into chunks, and the calculation
 in \textit{update\_phi} for the current chunk is done simultaneously with
 loading $\pi$ for the next chunk. The rationale for implementing pipeline
-parallelism in these places of the program, is that loading $\pi$ is the
+parallelism in these places of the program is that loading $\pi$ is the
 dominant contribution within the dominant stage \textit{update\_phi}, as
 will be shown in Section~\ref{eval-pipeline}.  Since loading $\pi$ is the
 performance bottleneck of the distributed algorithm, performing other work
