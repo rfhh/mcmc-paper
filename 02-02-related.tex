@@ -59,12 +59,12 @@ MCMC (not SG):
 \end{comment}
 
 \begin{comment}
-In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
-store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
+In this paper, we describe our custom RDMA DKV (Distributed Key-Value)
+store. Current RMDA DKV store implementations are RamCloud~\cite{RamCloud},
 Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
-use RDMA to implement a D-KV store. However, all of them are far more powerful
+use RDMA to implement a DKV store. However, all of them are far more powerful
 than our custom implementation -- and this power comes at a cost that we
-can avoid. They implement a generic D-KV store that controls concurrency,
+can avoid. They implement a generic DKV store that controls concurrency,
 supports dynamic inserts and deletes, supports variable-sized values
 (whose size may change at an update), and keys of arbitrary type. Because
 of the nature of our distributed algorithm, we have to deal with none of
@@ -85,12 +85,12 @@ multi-core machines.
 \textbf{\emph{QUESTION: Re-insert related work on RDMA KV stores?}}
 \begin{comment}
 \subsection{Related work on RDMA Key-Value stores}
-In this paper, we describe our custom RDMA D-KV (Distributed Key-Value)
-store. Current RMDA D-KV store implementations are RamCloud~\cite{RamCloud},
+In this paper, we describe our custom RDMA DKV (Distributed Key-Value)
+store. Current RMDA DKV store implementations are RamCloud~\cite{RamCloud},
 Pilaf~\cite{Pilaf}, Herd~\cite{Herd} and FaRM~\cite{FaRM}. All these systems
-use RDMA to implement a D-KV store. However, all of them are far more powerful
+use RDMA to implement a DKV store. However, all of them are far more powerful
 than our custom implementation -- and this power comes at a cost that we
-can avoid. They implement a generic D-KV store that controls concurrency,
+can avoid. They implement a generic DKV store that controls concurrency,
 supports dynamic inserts and deletes, supports variable-sized values
 (whose size may change at an update), and keys of arbitrary type. Because
 of the nature of our distributed algorithm, we have to deal with none of
