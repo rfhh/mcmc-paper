@@ -21,18 +21,20 @@
 % K40: http://international.download.nvidia.com/pdf/kepler/TeslaK80-datasheet.pdf
 % K20 & K40: http://www.nvidia.com/content/tesla/pdf/nvidia-tesla-kepler-family-datasheet.pdf
 % GTX980 & TITANX: https://en.wikipedia.org/wiki/List_of_Nvidia_graphics_processing_units
-\center\begin{tabular}{lc c c c c}
-                         && \multicolumn{4} {c}{Device} \\
-\cline{3-6}
-Specification            && K20m  & K40c  & GTX 980 & GTX Titan-X \\
-\cline{1-1}\cline{3-6}
-Number of Cores          && 2496  & 2880  & 2048    & 3072  \\
-Clock (MHz)              && 706   & 745   & 1126    & 1000  \\
-GFlops (single)          && 3520  & 4290  & 4612    & 6144  \\
-GFlops (double)          && 1170  & 1430  & 144     & 192   \\
-Memory (GB)              && 5     & 12    & 4       & 12    \\
-Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5 \\
-\cline{1-1}\cline{3-6}
+\setlength\tabcolsep{0.4em}
+\center\begin{tabular}{lc c c c c c}
+                         && \multicolumn{5}{c}{Device} \\
+\cline{3-7}
+                         && K20m  & K40c  & GTX 980 & \multicolumn{2}{c}{GTX Titan-X} \\
+Specification            &&       &       &         & Maxwell     & Pascal \\
+\cline{1-1}\cline{3-7}
+Number of Cores          && 2496  & 2880  & 2048    & 3072        & 3584 \\
+Clock (MHz)              && 706   & 745   & 1126    & 1000        & 1417 \\
+GFlops (single)          && 3520  & 4290  & 4612    & 6144        & 10157 \\
+GFlops (double)          && 1170  & 1430  & 144     & 192         & 317 \\
+Memory (GB)              && 5     & 12    & 4       & 12          & 12 \\
+Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5       & 480 \\
+\cline{1-1}\cline{3-7}
 \\[-1.5ex]
 \end{tabular}
 \caption{Properties of the GPUs used in the evaluation}
@@ -43,7 +45,8 @@ Bandwidth (GB/s)         && 208   & 288   & 224     & 336.5 \\
 As discussed in Section~\ref{gpu-design}, there are 10 distinct flavors of the
 GPU version of the algorithm. Specifically, there is the naive strategy, the
 shared strategy and 8 variations of the code generation strategy. This
-section investigates the effectiveness of each flavor on NVidia's GTX~\mbox{Titan-X},
+section investigates the effectiveness of each flavor on Nvidia's GTX~\mbox{Titan-X}
+Maxwell and Pascal,
 GTX980, K40c and K20m.
 
 % TITANX
@@ -139,10 +142,10 @@ concurrency and occupancy.
 \end{comment}
 
 % \looseness=-1
-Figures~\ref{gpu-sweep}(c) present the performance of the K40c GPU
+Figure~\ref{gpu-sweep}(c) presents the performance of the K40c GPU
 for the same experimental configuration as shown for the \mbox{Titan-X} in
-Figure~\ref{gpu-sweep}(a) with one exception. Namely, the code version used
-for this plot is explicitly vectorized with a vector width of~2. The results
+Figure~\ref{gpu-sweep}(a) except that the code
+is explicitly vectorized with a vector width of~2. The results
 for the other code versions with vector width 4 and no vectorization are
 omitted as they exhibit lower performance.
 %

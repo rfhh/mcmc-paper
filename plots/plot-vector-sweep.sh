@@ -8,7 +8,7 @@ TFILE="$$.tmp"
 ./collect-v.sh > $TFILE
 
 cat <<EOF | gnuplot --persist
-set terminal postscript eps enhanced color font ',9' size 3.3,1.6
+set terminal postscript eps enhanced color font ',12' size 3.3,1.6
 set colorsequence classic
 set output '$NAME'
 
@@ -26,6 +26,7 @@ set ytics 0,0.2
 # set grid ytics mytics
 set grid ytics
 
+set bmargin 3.0
 set yrange [0:*]
 plot \
   '$TFILE' u (\$2/\$2):xtic(1) title col, \
