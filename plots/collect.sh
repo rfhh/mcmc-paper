@@ -1,6 +1,6 @@
 #!/bin/bash
-F1=$$.tmp.1
-F2=$$.tmp.2
+F1="$$.tmp.1"
+F2="$$.tmp.2"
 
 grep -aH PHI "$@" | grep -v LOG \
   | awk '{print $1 " " $7}' \

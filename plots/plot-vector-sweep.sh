@@ -26,6 +26,7 @@ set ytics 0,0.2
 # set grid ytics mytics
 set grid ytics
 
+set bmargin 3.0
 set yrange [0:*]
 plot \
   '$TFILE' u (\$2/\$2):xtic(1) title col, \
@@ -34,5 +35,5 @@ plot \
 
 EOF
 
-rm $TFILE
+# rm $TFILE
 
