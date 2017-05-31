@@ -57,12 +57,13 @@ remote memory hosted by their peers. Since the algorithm is data-bound, we
 substantially optimized remote memory accesses by implementing
 a custom RDMA store.
 On top of that, we pipelined the algorithm stages by fetching
-data in advance over the network;
+data in advance over the network.
 \begin{comment} Finally, the algorithm's computation
 is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
 
+\begin{comment}
 \item \textbf{the use of pipelining} \emph{in the distributed implementation}
 justifies straightforward intra-node thread parallelism, and it is pointless
 to combine the GPU implementations
@@ -70,6 +71,7 @@ into it. The cause is that computing for an iteration takes less
 time than fetching the data from remote memory, and the computation is
 fully overlapped with fulfilling the data requests for the next iteration.
 Hence, it is useless to improve the computation time.
+\end{comment}
 
 \end{itemize}
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
