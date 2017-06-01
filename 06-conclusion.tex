@@ -16,37 +16,47 @@ patterns are \emph{nondeterministic}. In this paper, we presented our methodolog
 improving the algorithm's performance by restructuring it to
 cater for concurrent and distributed parallelism.
 
-We showed that the algorithm's state can be reduced by 75\% after a thorough
-analysis of the computational patterns and data structures, thus significantly
+After a thorough
+analysis of the computational patterns and data structures,
+we showed that the algorithm's state can be reduced by 75\%,
+thus significantly
 reducing its data intensity.
 
-In our implementation for many-core processors, we navigated the complex optimization
-landscape by dynamically generating kernel code and investigating different
-combinations of optimizations. The outcome of these efforts culminated in
-significant speedup factors of 21 and 120 using a multi-core CPU and a GPU
+In our implementation for accelerators, we navigated the complex optimization
+landscape by dynamically generating kernel code for finest control of allocation in
+the GPU memory hierarchy, and by tuning parameters like kernel block size and vector
+width. These efforts resulted in
+a significant speedup of 21$\times$ and 120$\times$ using a multi-core CPU and a GPU
 respectively. These speedup numbers were achieved in comparison to an already
 optimized sequential implementation. The evaluation of the performance
 across several GPUs yielded one striking find. No single optimization strategy
 works best for all GPUs: different choices for memory allocation strategy,
 kernel block size and vector width were required for optimal results for
-different GPUs and application instances.
+different GPUs and problem instances. Counter-intuitively, some GPUs performed
+best with vectorization disabled.
 %
-Hence, the outcome of this study reinforces the significance of avoiding premature
+The outcome of this study therefore reinforces the significance of avoiding premature
 optimization. In particular, the success
 of common GPU optimizations depends on the device and the
 problem size it is applied to.
 
 We further created a highly scalable implementation to handle the largest existing
 community graphs on a distributed cluster machine.
-This design solved
-several problems to achieve scalability and high performance.
-We overlapped computation
-with communication to hide latency.  We use a
+We made several contributions to
+achieve scalability and high performance:
+the most important data structures are partitioned across the collective memory of the
+cluster nodes;
+we use a
 mixture of MPI and RDMA primitives to speed up the communication between cluster
-nodes.
+nodes; and
+we overlapped computation
+with communication to hide latency.
 %
-Further, we conducted a thorough empirical evaluation of the system to study its strong
-and weak scalability on 65 cluster nodes using large data sets.
+By evaluating the system empirically using 65 cluster nodes and large data sets,
+we show that its strong and weak scalability are both good. We also compared its
+performance against a 40-core shared-memory system with 1TB of memory.
+The distributed system has far stronger performance because it has more cores and
+more memory bandwidth, although it must fetch its data through the network.
 % Additionally, we assessed the efficiency of the algorithm's resource utilization.
 Finally, a
 demonstration of the implementation's utility was provided by processing 6
