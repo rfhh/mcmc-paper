@@ -47,8 +47,8 @@ structure is built as a variant of a cuckoo
 hash~\cite{Pagh:2004:CH:1006424.1006426} where each element is a 64-bit
 field containing a tuple of the two 32-bit vertices. The cuckoo hash
 uses two hash functions to index their corresponding spaces. Additionally, the
-cuckoo hash allows for 4 keys per bucket. This hash design allows for a load
-factor upwards of 90\% which allows a very economical memory usage.
+cuckoo hash supports upt to 4~keys per bucket. This hash design allows for a load
+factor upwards of 90\%, a very economical memory usage.
 %% FIXME: Talk lookup hit/miss with 4 keys per bucket?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
