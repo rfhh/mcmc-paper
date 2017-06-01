@@ -1,5 +1,7 @@
 % \section{Accelerating on one Many-core Machine}
 
+\subsection{Design of Accelerator Optimizations}
+
 % Accelerator friendliness
 The design of an accelerated version of the MCMC algorithm necessitated several
 crucial modifications to allow for efficient parallelization. This section
@@ -10,7 +12,7 @@ optimizations. Next, we provide an in-depth description of the optimized CPU
 and GPU versions respectively.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Using OpenCL and CUDA}
+\subsubsection{Using OpenCL and CUDA}
 %OpenCL/CUDA
 Initially, the system was developed using OpenCL~\cite{opencl} in order to
 accelerate the computations of the algorithm. OpenCL was chosen as it provides
@@ -30,28 +32,27 @@ and preprocessor macros to abstract away the differences between OpenCL's and
 CUDA's primitive types, address spaces and functions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Fast Lookup of Graph Edges}
+\subsubsection{Fast Lookup of Graph Edges}
 % Set/Cuckoo Hash
 
 The algorithm relies on a set data structure to store the edges of the graph.
 This set is queried frequently with randomly generated edges to check for their
 membership. In order to improve the performance of such lookups, a custom set
 implementation was developed that restricts the set's features based on an
-observation of its usage patterns. For example, the set is used as a container
-for the graph edges which are known in advance. Therefore, the set's maximum
+observation of its usage patterns.
+The graph is immutable, hence its maximum
 size can be specified at creation time and need not be adjustable or provide
-thread-safety guarantees as the graph is immutable. Further, the set data
+thread-safety guarantees. The set data
 structure is built as a variant of a cuckoo
 hash~\cite{Pagh:2004:CH:1006424.1006426} where each element is a 64-bit
 field containing a tuple of the two 32-bit vertices. The cuckoo hash
 uses two hash functions to index their corresponding spaces. Additionally, the
-cuckoo hash allows for 4 keys per bucket. This hash design allows for a loading
-factor upwards of 90\% which reduces the hash space overhead
-significantly.
+cuckoo hash allows for 4 keys per bucket. This hash design allows for a load
+factor upwards of 90\% which allows a very economical memory usage.
 %% FIXME: Talk lookup hit/miss with 4 keys per bucket?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Parallelization \& Data Dependencies}
+\subsubsection{Parallelization \& Data Dependencies}
 % Division into kernels
 The original algorithm was structurally reorganized into 4 main sections with
 one or more kernels in each depending on data dependencies and the applicable
@@ -73,7 +74,7 @@ global parameters.
 Finally, the perplexity calculation is performed in a dedicated kernel.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Memory Footprint Reduction}
+\subsubsection{Memory Footprint Reduction}
 % Memory footprint halved
 
 A key structural change applied to the algorithm is the lossless compression of
@@ -131,7 +132,7 @@ footprint of the algorithm and frees registers.
 %Finally, the algorithm requires randomly generated values from 3 different
 %distributions. 
 
-\subsection*{CPU-Specific Optimization}
+\subsubsection{CPU-Specific Optimization}
 The multi-core
 CPU version of the algorithm uses OpenCL to perform its computations. The
 work decomposition of the CPU kernels ensures that each thread performs
@@ -144,7 +145,7 @@ vertices.
 Additionally, the kernels were vectorized to decrease instruction overhead and
 utilize the SSE capabilities of the CPU cores.
 
-\subsection*{GPU-Specific Optimization}
+\subsubsection{GPU-Specific Optimization}
 \label{gpu-design}
 The GPU implementation builds on top of the CPU work decomposition scheme.
 However, instead of having every thread perform independent computations, each
