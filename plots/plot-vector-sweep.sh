@@ -35,5 +35,5 @@ plot \
 
 EOF
 
-# rm $TFILE
+rm $TFILE
 
