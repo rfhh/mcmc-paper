@@ -25,7 +25,6 @@ data structures to the GPU in each iteration is too costly compared to the amoun
 of computation. The graph is stored at the host, because mini-batch
 selection is cheap, and the data required for a minibatch is small.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection*{Using OpenCL and CUDA}
 %OpenCL/CUDA
 \begin{comment}
@@ -61,17 +60,16 @@ The algorithm relies on a set data structure to store the edges of the graph.
 This set is queried frequently with randomly generated edges to check for their
 membership. In order to improve the performance of such lookups, a custom set
 implementation was developed that restricts the set's features based on an
-observation of its usage patterns. For example, the set is used as a container
-for the graph edges which are known in advance. Therefore, the set's maximum
+observation of its usage patterns.
+The graph is immutable, hence its maximum
 size can be specified at creation time and need not be adjustable or provide
-thread-safety guarantees as the graph is immutable. Further, the set data
+thread-safety guarantees. The set data
 structure is built as a variant of a cuckoo
 hash~\cite{Pagh:2004:CH:1006424.1006426} where each element is a 64-bit
 field containing a tuple of the two 32-bit vertices. The cuckoo hash
 uses two hash functions to index their corresponding spaces. Additionally, the
-cuckoo hash allows for 4 keys per bucket. This hash design allows for a loading
-factor upwards of 90\% which reduces the hash space overhead
-significantly.
+cuckoo hash allows for 4 keys per bucket. This hash design allows for a load
+factor upwards of 90\% which allows a very economical memory usage.
 %% FIXME: Talk lookup hit/miss with 4 keys per bucket?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
