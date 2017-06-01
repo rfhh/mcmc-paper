@@ -7,8 +7,8 @@ consists of 68 and 24 compute nodes respectively. Each node is equipped with
 a dual 8-core Intel Xeon E5-2630v3 CPU clocked at 2.40GHz, 64GB of memory and
 8TB of storage. The nodes of each site are interconnected by FDR~InfiniBand.
 Additionally, the VU cluster is fitted with a number of NVidia GPUs including
-GTX~\mbox{Titan-X/Pascal},
-GTX~\mbox{Titan-X/Maxwell}, GTX980, K40c and K20m.
+GTX~\mbox{Titan-X(Pascal)},
+GTX~\mbox{Titan-X(Maxwell)}, GTX980, K40c and K20m.
 
 To evaluate our implementations, we use publicly available
 community networks from the SNAP collection~\cite{snapnets}.
@@ -23,12 +23,12 @@ outlines the graph properties of the networks used.
                     &            &               & \multicolumn{1}{c}{truths}    &             \\
     \hline
     CA-HepPh        &    12,008  &    118,521    & \multicolumn{1}{c}{n/a}       & Paper citation network \\
-    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
-    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
-    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
-    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
     com-DBLP        &    317,080 &     1,049,866 & 13,477         & Computer science bibliography network \\
     com-Amazon      &    334,863 &       925,872 & 75,149         & Product copurchasing network \\
+    com-Youtube     &  1,134,890 &     2,987,624 & 8,385          & Video-sharing social network \\
+    com-Orkut       &  3,072,441 &   117,185,083 & 6,288,363      & Online social network \\
+    com-LiveJournal &  3,997,962 &    34,681,189 & 287,512        & Online blogging social network \\
+    com-Friendster  & 65,608,366 & 1,806,067,135 & 957,154        & Online gaming social network \\
     \hline
     \\[-1ex]
   \end{tabular}

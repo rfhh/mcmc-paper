@@ -23,7 +23,8 @@ set ylabel 'Perplexity'
 
 set xrange [-0.15:6.15]
 set yrange [62:95]
-set title '(a) Com-DBLP K=4K m=4K n=32'
+# set title '(a) Com-DBLP K=4K M=4K |Neighbor sample|=32'
+set title '(a) Com-DBLP K=4K'
 plot "< perl ./get_time.perl ppx-DBLP-K4K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 4
 
 # set origin col(0),row(1)
@@ -31,6 +32,7 @@ plot "< perl ./get_time.perl ppx-DBLP-K4K-m4K-n32 " using (\$1/3600):3 notitle w
 
 # set xrange [-0.3:18.3]
 # set yrange [53:83]
-# set title '(b) Com-LiveJournal K=3K m=4K n=32'
+# # set title '(b) Com-LiveJournal K=3K M=4K |Neighbor sample|=32'
+# set title '(b) Com-LiveJournal K=3K'
 # plot "< perl ./get_time.perl ppx-LJ-K3K-m4K-n32 " using (\$1/3600):3 notitle with lines lw 4
 EOF

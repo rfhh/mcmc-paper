@@ -3,7 +3,7 @@
 \begin{figure}[tb]	% [htb]
   \centering
   \epsfig{file=plots/ppx-gpu.eps, width=\columnwidth}
-  \caption{Perplexity convergence of com-DBLP on the GTX~\mbox{Titan-X}~GPU. Number
+  \caption{Perplexity convergence of com-DBLP on the Maxwell \mbox{Titan-X}~GPU. Number
   of communities chosen to maximally fill the GPU memory.}
   \label{fig-ppx-gpu}
 \end{figure}
@@ -20,9 +20,10 @@
 \begin{figure}[tb]	% [htb]
   \centering
   \epsfig{file=plots/ppx-gpu-cpu.eps, width=0.45\textwidth}
-  \caption{Perplexity convergence. com-DBLP on the GTX~\mbox{Titan-X}~GPU.
+  \caption{Perplexity convergence. com-DBLP on the Maxwell \mbox{Titan-X}~GPU.
   Number of communities chosen to
-  maximally fill the GPU memory.}
+  maximally fill the GPU memory.
+  M=4K, $|\Neighbors|$=32.}
   \label{fig-ppx-gpu-cpu}
 \end{figure}
 
@@ -42,7 +43,7 @@ the other hand, the number of iterations required to achieve sufficient
 convergence does grow with the size of the graph.
 
 Figure~\ref{fig-ppx-gpu-cpu}(a) shows the perplexity development for the dataset
-com-DBLP, with $N=317,080$. It is computed on the GTX~\mbox{Titan-X} GPU with input
+com-DBLP, with $N=317,080$. It is computed on the Maxwell \mbox{Titan-X} GPU with input
 parameter set $K=4096$, $M=4096$, $|\Neighbors|=32$. Convergence is reached after 6~hours.
 %
 Note that the GTX~\mbox{Titan-X} would be unable to
