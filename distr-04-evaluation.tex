@@ -32,9 +32,7 @@ physical system contains 40 Intel Xeon E7-4850 cores clocked at 2.00GHz, and
 it does not oversubscribe resources.
 
 All of the experiments reported in this section utilized
-publicly available graphs from the Stanford Large Network Data set
-Collection~(SNAP) \cite{snapnets}. Table~\ref{table-snap} lists the
-collection of data sets used.
+publicly available graphs from the SNAP collection, see Table~\ref{table-snap}.
 
 %################################################
 \subsubsection{Weak Scaling}
@@ -94,11 +92,11 @@ time steadily decreases by increasing the cluster size.
 A deeper analysis of the individual execution phases of the algorithm provides
 insights into the scalability of its building blocks.
 %
-In addition to the total execution time, Figure~\ref{fig-strong-scaling}-a
+In addition to the total execution time, \mbox{Figure~\ref{fig-strong-scaling}(a)}
 presents the cumulative time spent in individual computational phases across
-iterations. Moreover, Figure~\ref{fig-strong-scaling}-b presents the speedup
+iterations. Moreover, \mbox{Figure~\ref{fig-strong-scaling}(b)} presents the speedup
 achieved for the same experiments reported in
-Figure~\ref{fig-strong-scaling}-a. As is clearly shown, the dominant phase of
+Figure~\ref{fig-strong-scaling}(a). As is clearly shown, the dominant phase of
 the execution is \textit{update\_phi\_pi}.
 The reported total time for each cluster size is significantly less than the
 sum of the execution times of the individual phases. This is due to the
@@ -164,8 +162,8 @@ deployment of the mini-batch, and with the calculation of \textit{update\_phi}.
 Figure~\ref{fig-pipeline} presents the execution time of 1024 algorithm
 iterations on a 64-node cluster with the pipelines enabled and disabled.
 Naturally, increasing the number of communities causes a proportional increase
-in execution time. However, when pipelining is enabled, some of the
-incurred network latency is hidden by overlapping it with computation.
+in execution time. However, when pipelining is enabled, the
+incurred network latency is partly hidden by overlapping it with computation.
 Moreover, since both computation time and network latency increase with larger
 $K$, the benefit of pipelining increases. This can be observed through the
 widening gap between both lines depicted in Figure~\ref{fig-pipeline}.
