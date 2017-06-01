@@ -28,8 +28,8 @@ kernels. Additionally, the algorithmic approach to solve the problem is
 fundamentally different.
 Since they target GPUs only, the data sets they
 can handle are limited by the device memory of the GPU. Our implementation converges
-quickly on the GPU but can also use multi-core CPUs. In the latter case, speedup is
-limited but the larger memory allows tackling larger data sets.
+quickly on the GPU but can also use clusters of multi-core CPUs. In the latter case, speedup is
+lower but the distributed memory allows tackling much larger data sets.
 
 Liakos~c.s.~\cite{liakos-bigdata16} also address overlapping community detection, but their
 algorithm uses a local dispersion-aware approach. They find communities for 5000
