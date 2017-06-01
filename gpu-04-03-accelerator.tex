@@ -17,7 +17,7 @@ and GPU versions respectively.
 Initially, the system was developed using OpenCL~\cite{opencl} in order to
 accelerate the computations of the algorithm. OpenCL was chosen as it provides
 a common abstraction for a variety of compute devices which fulfilled our
-requirements of employing CPUs or GPUs. However, Nvidia's OpenCL SDK limits the
+requirements of employing CPUs or GPUs. However, NVidia's OpenCL SDK limits the
 total memory allocations within a context to 4GB which severely limits the
 problem sizes that can be tackled on GPUs. Therefore, we migrated the system to
 use the abstraction layer CLCudaAPI~\cite{claduc}
