@@ -101,9 +101,10 @@ collective memory of a cluster. The downside of a distributed implementation
 is that the burden of memory access is increased for our already data-dominant
 algorithm.
 
+\subsection{Design of distributed implementation}
 % intro parallelisation, distribution
 
-This section describes how we created a distributed version of the C++
+This section describes how we create and evaluate a distributed version of the C++
 algorithm. We used the multicore CPUs in the DAS5 with straightforward
 intra-node thread parallelisation, not the GPU implementations described
 in the previous section. The justification is twofold: in our DAS5 system,
@@ -115,8 +116,10 @@ The calculation time is fully overlapped in our pipelining implementation.
 Moreover, usage of GPUs in the distributed setting would necessitate staging of
 the relevant parts of $\pi/\phi$ from the host to GPU memory in each iteration,
 which would eat most of the performance gain offered by the GPU because
-the algorithm is so data-intensive.  % The details of the multi-threaded
-parallelism % will be discussed only where appropriate.  The distributed design
+the algorithm is so data-intensive.
+% The details of the multi-threaded parallelism
+% will be discussed only where appropriate.
+The distributed design
 follows a master-worker paradigm, where the master controls the sequence of
 parallel operations and the workers perform the calculations. For thread
 parallelism, we annotate the program with OpenMP~\cite{OpenMPSpec}. For
@@ -124,7 +127,7 @@ distributed communication, we use MPI~\cite{Forum:1994:MMI:898758}.
 
 % largest data structures
 
-\subsection{Data distribution}
+\subsubsection{Data distribution}
 
 
 The largest data structures of the algorithm are \Edges, $\cE_h$, $\pi$
@@ -159,7 +162,7 @@ $\Neighbors$.
 Hence, there is no opportunity to exploit data locality through caching of
 $\pi$.
 
-\subsection{RDMA Distributed Key-Value Store}
+\subsubsection{RDMA Distributed Key-Value Store}
 
 %\looseness=-1
 Modern network technology allows for Remote Direct Memory Access (RDMA)
@@ -183,12 +186,12 @@ build our own DKV store on top of the Infiniband ib-verbs~API.
 %
 This is motivated by the fact that our use case is unique in a number
 of important aspects. First, the number of keys and values to be stored are
-constant throughout the execution of the algorithm. For instance, no records
-are dynamically inserted or deleted from the DKV after their initial insertion,
-although the value associated with each key can be updated. Additionally, all
-keys are of the same type and represent a unique vertex in the graph.
-Therefore, keys can be represented as integer identifiers. Moreover, each key
-points to a vector of $K+1$ floats as its value.
+constant throughout the execution of the algorithm: no records
+are dynamically inserted or deleted from the DKV store after their initial insertion,
+although the value for any key can be updated. Additionally, all
+keys are of the same type and represent a unique vertex in the graph
+so, they can be represented as integer identifiers. Each key
+has a vector of $K+1$ floats as its value.
 %
 This data representation can be exploited to simplify the management of
 read and write requests. Similarly, the keys can be deterministically
@@ -196,9 +199,9 @@ partitioned across the cluster using a fast hash function.
 
 The algorithm's access pattern is well controlled because the
 computation is partitioned into stages that are separated by barriers. A
-single stage either reads values or updates values. The algorithm ensures that updates
-are always targeting unique elements,
-therefore, there are no read/write or write/write hazards. The existing DKV
+single stage either reads values or updates values, and the algorithm ensures that updates
+are always targeting unique elements.
+Therefore, there are no read/write or write/write hazards. The existing DKV
 stores (RamCloud~\cite{Ousterhout:2015:RSS:2818727.2806887}, FaRM~\cite{179767},
 and Herd~\cite{Kalia:2014:URE:2740070.2626299}) incur
 overhead for insert/delete flexibility, concurrency control, or variable-sized
@@ -215,17 +218,18 @@ of 4-byte floats.
 
 % each of the stages
 
-\subsection{Implementation of distributed parallelism}
+\subsubsection{Implementation of distributed parallelism}
 
-This section describes the parallelization of each of the stages of the
-algorithm's main loop. All but the first stage justify parallelization for
+This section describes the parallelization of the stages of the
+algorithm's main loop. All but the first stage,
+mini-batch selection (line 3 in Algorithm~\ref{algorithm}),
+justify parallelization for
 high values of combinations of the parameters mini-batch size $|\Minibatch|$,
 number of vertices in the mini-batch $M$,
-number of communities $K$, neighbor sample size $|\Neighbors|$, and held-out set
-size $|\cE_h|$.
+number of communities $K$, and sizes of neighbor sample set~$|\Neighbors|$ and held-out
+set~$|\cE_h|$.
 
-The first stage, mini-batch selection (line 3 in Algorithm~\ref{algorithm}),
-is done by the master and it is
+Mini-batch selection is done by the master and it is
 not itself parallelized. However, the distributed implementation overlaps
 its execution using pipeline parallelism while the workers are
 performing \textit{update\_phi}. The mini-batch is partitioned equally over
@@ -249,14 +253,14 @@ independently using thread parallelism.
 These updates are used by \textit{update\_pi} (line 9 in
 Algorithm~\ref{algorithm}) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires
-$M \times K$ operations, and it is done in parallel over mini-batch vertices. Because of
+$M \times K$ operations, and it is done in parallel over mini-batch vertices. For
 memory consistency, this stage awaits completion of \textit{update\_phi} with
 an MPI barrier. After the calculation, the updated values of $\pi,~\sum\phi$
 are written to the DKV store.
 
 \textit{update\_beta} (lines 12 and 15 in Algorithm~\ref{algorithm}) requires $|\Minibatch| \times K$ operations. It is preceded by an MPI
 barrier to ensure that up-to-date $\pi$ values are read. \textit{update\_beta}
-is split into four steps. The first stage partitions the mini-batch across
+is split into four steps. The first step partitions the mini-batch across
 machines to calculate contributions to $g_{ab}(\theta)$. The values of $\pi$ for
 the local mini-batch vertices are loaded from the DKV store. These calculations
 are done with thread parallelism over the mini-batch vertices. In the second step,
@@ -277,7 +281,7 @@ Note that the calculation requirements per iteration do not depend
 on $N$ or $|\cE^*|$, the size of the network graph. However, larger graphs are
 expected to require more iterations to achieve convergence.
 
-\subsection{Pipelining of computation and loading $\pi$}
+\subsubsection{Pipelining of computation and loading $\pi$}
 \label{sec-pipelining}
 
 The distributed design features two instances of pipeline parallelism. First,

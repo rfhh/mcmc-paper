@@ -1,17 +1,17 @@
 The MCMC-aMMSB algorithm that is the subject of this paper was initially
 implemented in Python~\cite{LiAW15}, as is common
-with machine learning researchers and practitioners.
+in the machine learning community.
 We converted this implementation into an efficient sequential C++ application
 to serve as a baseline for the parallel and distributed implementations.
-This is certainly not one of our contributions to the parallelization
+We certainly do not consider this to be a contribution to the parallelization
 of the algorithm, but for a fair analysis of the parallel implementations
 a good baseline is necessary.
 
 The Python implementation
-relied on numpy~\cite{numpy} to perform numerical computations efficiently.
+relied on Numpy~\cite{numpy} to perform numerical computations efficiently.
 Besides, the algorithm
 made heavy use of Python data structures such as sets, dictionaries and
-lists, which have no efficient numpy equivalent.
+lists, which have no efficient Numpy equivalent.
 
 First, the Python code base was ported into equivalent C++ code.
 The program structure remained unchanged and the Python data structures were
