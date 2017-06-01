@@ -90,19 +90,19 @@ and \textit{update\_beta}.
 % comparison with the iteration stage times, but it is amortized over those
 % iterations.
 In production runs, the perplexity calculation is invoked once every hunderds
-or thousands iterations. Hence, the perplexity timings are amortized over
+or thousands of iterations. Hence, the perplexity timings are amortized over
 100~iterations.
 
 In all implementations, \textit{update\_phi} dominates the computation.
 The translation from Python into 'Python Idiom' C++ speeds up this stage
-by a factor~171. % , even though the Python implementation uses numpy for its data
+by a factor~171. % , even though the Python implementation uses Numpy for its data
 % structures. 
 Our C++ optimizations speed up this stage
 by another factor of~6. Reducing the floating-point precision to 32~bits
 doubles this factor, which again shows that the algorithm is very much data-dominant.
 %
 \textit{update\_pi} has a disproportionately large speed
-gain after removing inefficiencies. The numpy implementation updated the full
+gain after removing inefficiencies. The Numpy implementation updated the full
 $\pi$ array (incidentally, rather efficiently), whereas our C++ optimization
 limits the updates to only those values of $\pi$ that have changed.
 %
