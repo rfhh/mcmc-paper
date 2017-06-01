@@ -10,9 +10,9 @@
 
 Since the algorithm is memory-bound, many of the optimizations we implemented
 are concerned with
-memory usage. For starters, we offer a fast, memory-efficient hash table on the GPU,
+memory usage. For starters, we describe our fast, memory-efficient hash table on the GPU,
 taylored towards
-the algorithm's usage patterns. Some optimizations reduce the total memory
+the algorithm's usage patterns. Then some optimizations reduce the total memory
 footprint of the algorithm. Other
 optimizations explore the opportunities offered by the faster regions of the
 GPU memory hierarchy: data can be put into GPU shared memory, into thread-local
@@ -22,8 +22,9 @@ other optimization is exploitation of the vectorization possibilities.
 The state for the combination of $\pi$ and $\phi$ is permanently
 stored in GPU memory, because copying of the relevant portions of these
 data structures to the GPU in each iteration is too costly compared to the amount
-of computation. The graph is stored at the host, because mini-batch
-selection is cheap, and the data required for a minibatch is small.
+of computation. The graph is stored both at the host and in GPU memory. The
+host draws the mini-batches, because that operation is cheap,
+and the data required for a minibatch is small.
 
 % \subsection*{Using OpenCL and CUDA}
 %OpenCL/CUDA
