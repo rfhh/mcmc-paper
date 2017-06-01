@@ -1,13 +1,19 @@
 % \subsection{System Design and Implementation}
 
-Based on the efficient C++ baseline version,
-changes to the algorithm and the data structures
-were carried out, for both efficient resource utilization and parallelization.
-This section provides an overview of the system's evolution in incremental
-phases, identifying the key contributions and differences between consecutive
-states. This section concludes with an in-depth evaluation of the performance
-of our various optimizations, on multi-core CPUs as well as a number of GPU
-accelerators.
+As the first contribution of this paper, we created optimized versions for
+accelerators of the MCMC-aMMSB
+algorithm, based on the efficient C++ baseline version.
+The algorithm is data-intensive and nondeterministic in its memory accesses,
+which makes an efficient GPU implementation highly nontrivial. Hence, profound
+changes to the algorithm and the data structures were necessary,
+both for efficient resource utilization and parallelization.
+% This section provides an overview of the system's evolution in incremental
+% phases, identifying the key contributions and differences between consecutive
+% states.
+This section describes the various optimization steps in technical detail.
+It concludes with an in-depth evaluation of the performance
+of our optimizations,
+on multi-core CPUs as well as a number of GPU accelerators.
 
 % \input{gpu-04-02-sequential}
 
