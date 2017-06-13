@@ -105,20 +105,21 @@ algorithm.
 % intro parallelisation, distribution
 
 This section describes how we create and evaluate a distributed version of the C++
-algorithm. We used the multicore CPUs in the DAS5 with straightforward
+algorithm. We used multicore CPUs with straightforward
 intra-node thread parallelisation, not the GPU implementations described
-in the previous section. The justification is twofold: in our DAS5 system,
+in the previous section. The justification is twofold:
 it is pointless to speed up the intra-node performance beyond straightforward
 multithreading, because distributed performance is dominated by remote memory
 latency; the analysis in Section~\ref{eval-pipeline} shows that the time for
 (pre)loading the data from remote hosts greatly exceeds the calculation time.
 The calculation time is fully overlapped in our pipelining implementation.
-Moreover, usage of GPUs in the distributed setting would necessitate staging of
+Secondly, usage of GPUs in the distributed setting would necessitate staging of
 the relevant parts of $\pi/\phi$ from the host to GPU memory in each iteration,
-which would eat most of the performance gain offered by the GPU because
+which would consume most of the performance gain offered by the GPU because
 the algorithm is so data-intensive.
 % The details of the multi-threaded parallelism
 % will be discussed only where appropriate.
+
 The distributed design
 follows a master-worker paradigm, where the master controls the sequence of
 parallel operations and the workers perform the calculations. For thread

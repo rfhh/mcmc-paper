@@ -1,7 +1,11 @@
 \section{Introduction}
-The tremendous amount of data that we generate through our daily applications such as social networking services, online shopping, and news recommendations, provides us with an opportunity to extract hidden but useful, even invaluable information. Realizing this opportunity, however, requires a significant amount of effort because traditional machine learning algorithms often become extremely inefficient with large amounts of data.
+The tremendous amount of data that we generate through our daily applications such as
+social networking services, online shopping, and news recommendations, provides us
+with an opportunity to extract hidden but useful, even invaluable information.
+Realizing this opportunity, however, requires a significant amount of effort because
+traditional machine learning algorithms may become inefficient with large amounts of data.
 
-There have been two main approaches to resolving this issue; machine learning researchers have developed new scalable algorithms~\cite{bottou2010large, boyd2011distributed}, while systems and networking researchers have worked on developing new generic infrastructure systems which can be leveraged to construct machine learning solutions more efficiently~\cite{dean2008mapreduce, chang2008bigtable}.
+There have been two main approaches to resolving this issue; machine learning researchers have developed new scalable algorithms~\cite{bottou2010large, boyd2011distributed}, while systems and networking researchers have worked on developing new generic software infrastructure systems which can be leveraged to construct machine learning solutions more efficiently~\cite{dean2008mapreduce, chang2008bigtable}.
 However, the best possible performance is often achieved by carefully integrating both of these approaches in a single solution.
 
 One such big data problem is analyzing large graphs such as social networks where it is not unusual to see a network consisting of billions of edges and tens of million of vertices~\cite{yang2015defining}. In particular, we are interested in the overlapping community detection problem~\cite{xie2013overlapping}, where the goal is to learn the probability distribution of each vertex to participate in each community, given a set of vertices, the links between them (which are usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of vertices that are only sparsely connected to the rest of the network. This problem is significantly more complex than the related domain of detecting disjoint communities.
@@ -13,9 +17,7 @@ There have been two main recent advances in this direction of scalable Bayesian 
 
 In this paper, we focus on the SG-MCMC method applied to the a-MMSB model. Recent
 work of the authors of this paper~\cite{LiAW15} showed that this methodology is faster and more accurate than the
-SVB method. That work further proposes a heuristic to scale up the number of
-communities at the cost of less precision; the work in this paper considers the
-algorithm without that heuristic.
+SVB method.
 
 From a computational point of view, our SG-MCMC a-MMSB algorithm differs
 from widespread machine learning algorithms like deep learning in several
@@ -39,14 +41,14 @@ Then, our key contributions to the algorithm are:
 The application is not a natural fit for GPUs, because it is data-bound and
 irregular in its data accesses. Nevertheless, we developed aggressive
 memory allocation optimizations to solve the data bandwidth issues for GPUs.
-This implementation achieves up to 120$\times$ speedup compared to the baseline.
+This implementation achieves up to 120$\times$ speedup compared to the C++ baseline.
 %
-We managed to reduce the algorithm's memory requirements by roughly 75\%, which
+We reduced the algorithm's memory requirements by roughly 75\%, which
 significantly reduces the data intensity and allows for tackling larger
 problems; % while maintaining all state in memory.
 
-\item \textbf{scaling out to overcome the memory bounds posed by GPUs} or,
-generally, single-machine systems, to solve the largest publicly available
+\item \textbf{scaling out to overcome the memory bounds} posed by 
+single-machine systems, to be the first to solve the largest publicly available
 community graphs. % This necessitated overcoming several challenges.
 % The algorithm's state grows rapidly with larger graphs and number of latent
 % communities.
@@ -63,15 +65,11 @@ is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
 
-\begin{comment}
-\item \textbf{the use of pipelining} \emph{in the distributed implementation}
-justifies straightforward intra-node thread parallelism, and it is pointless
-to combine the GPU implementations
-into it. The cause is that computing for an iteration takes less
+The use of pipelining makes it pointless to combine GPU acceleration
+into the distributed implementation: computing for an iteration takes less
 time than fetching the data from remote memory, and the computation is
 fully overlapped with fulfilling the data requests for the next iteration.
-Hence, it is useless to improve the computation time.
-\end{comment}
+% Hence, it is useless to improve the computation time.
 
 \end{itemize}
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
@@ -86,7 +84,7 @@ optimizations include caching in shared memory, caching in the register file,
 loop unrolling and explicit vectorization.
 \end{comment}
 
-A bird's eye-view of the work in this paper, without any technical detail, has been
+A bird's-eye view of the work in this paper, without any technical detail, has been
 published at CCGrid-2016~\cite{10.1109/CCGrid.2016.98}.
 The results of our distributed MCMC-aMMSB implementation
 have been previously published at the 2016 ParLearning

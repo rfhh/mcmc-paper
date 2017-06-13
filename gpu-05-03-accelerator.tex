@@ -54,20 +54,23 @@ GTX980, K40c and K20m.
   \centering
   \epsfig{file=plots/gpu-sweep-legends.eps, width=1.0\textwidth}
   \setlength\tabcolsep{0em}
-  \begin{tabular}{c c c}
-  \epsfig{file=plots/titanx-1024-strategies-w1.eps, width=0.33\textwidth} &
-  \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=0.33\textwidth} &
-  \epsfig{file=plots/k40-1024-strategies-w2.eps, width=0.33\textwidth}
+  \begin{tabular}{c c c c}
+  \epsfig{file=plots/titanx-maxwell-1024-strategies-w2.eps, width=0.25\textwidth} &
+  \epsfig{file=plots/titanx-maxwell-2048-strategies-w2.eps, width=0.25\textwidth} &
+  \epsfig{file=plots/titanx-pascal-1024-strategies-w2.eps, width=0.25\textwidth} &
+  \epsfig{file=plots/k40-1024-strategies-w2.eps, width=0.25\textwidth}
   \end{tabular}
   \caption{Execution time of 1000 \textit{update\_phi} invocations across a sweep of
   	\textit{update\_phi} thread block sizes. The lower figures are a zoom-in into
 	the optimal block range of the upper figures.
 	Other relevant model parameters: M=4096, $|\Neighbors|$=32.
-	% (a) \mbox{Titan-X} GPU, without explicit kernel vectorization;
+	% (a) \mbox{Titan-X(Pascal)} GPU, with kernel vectorization of width 2;
 	% Relevant model parameters: K=1024, M=4096, $|\Neighbors|$=32.
-  	% (b) \mbox{Titan-X} GPU, without explicit kernel vectorization;
+	% (b) \mbox{Titan-X} GPU, without explicit kernel vectorization;
+	% Relevant model parameters: K=1024, M=4096, $|\Neighbors|$=32.
+  	% (c) \mbox{Titan-X} GPU, without explicit kernel vectorization;
 	% K=2048, M=4096, $|\Neighbors|$=32.
-	% (c) K40c GPU, with explicit kernel vectorization of width 2;
+	% (d) K40c GPU, with explicit kernel vectorization of width 2;
 	% K=1024, M=4096, $|\Neighbors|$=32.
   }
   % \label{titanx-w1-sweep}
@@ -78,7 +81,7 @@ GTX980, K40c and K20m.
 % TITANX K=2K
 \begin{figure*}[tb]	% [htb]
   \centering
-  \epsfig{file=plots/titanx-2048-strategies-w1.eps, width=\textwidth}
+  \epsfig{file=plots/titanx-maxwell-2048-strategies-w1.eps, width=\textwidth}
   \caption{Execution time of 1000 \textit{update\_phi} invocations using the
   \mbox{Titan-X(Maxwell)} GPU,
   without explicit kernel vectorization, across a sweep of
@@ -88,8 +91,8 @@ GTX980, K40c and K20m.
 \end{figure*}
 \end{comment}
 
-Figure \ref{gpu-sweep}(a) presents the performance of the Maxwell \mbox{Titan-X} GPU
-for all 10 strategy flavors, without explicitly vectorizing the kernels. The
+Figure \ref{gpu-sweep}(a) presents the performance of the Pascal \mbox{Titan-X} GPU
+for all 10 strategy flavors, with an explicit vector width~2 in the kernels. The
 x-axis represents different \textit{update\_phi} thread block sizes while the y-axis presents
 the total execution time of 1000 invocations of the \textit{update\_phi} kernel. The
 naive and shared strategies are labeled NAIVE and SHARED respectively. Further,
@@ -97,27 +100,27 @@ each flavor of the code generation strategy is labeled by GEN followed by the 3
 choices that identify it.
 %
 The wide performance range inhibits the readability of the figure,
-therefore, a more focused Figure~\ref{gpu-sweep}(a), bottom figure, is provided. As would
+therefore, a zoomed-in version of Figure~\ref{gpu-sweep}(a), is provided as the bottom figure. As would
 be expected, the naive strategy exhibits the worst performance over all
 thread block
 sizes, as it does not explicitly cache repeated device memory read operations.
 The SHARED and \textit{GEN-SSS} strategies come next in terms of performance.
 Both strategies cache $Grads_i$, $Probs_i$ and $\pi_i$ in shared memory but
-differ in one aspect. Namely, \textit{GEN-SSS} explicitly unrolls the internal
+differ in one aspect: \textit{GEN-SSS} explicitly unrolls the internal
 loops of the kernel. However, there is no significant performance difference
 between them. The other flavors of the code generation strategy attain higher
 performance as they unroll internal loops as well as cache data in
 registers. The Pascal Titan-X is fastest with the \textit{GEN-RSR} strategy and a
 block size of 96 and a vector width of~2, whereas
-the Maxwell Titan-X obtains the best performance with the \textit{GEN-RSS}
+the Maxwell Titan-X in Figure~\ref{gpu-sweep}(b) obtains the best performance with the \textit{GEN-RSS}
 strategy and a thread block size of 64 and no vectorization. The results of other
 vector widths
 are omitted as they obtain lower performance.
 
 A key model parameter that affects the behavior of the optimization strategies
-is the number of communities $K$. Figure~\ref{gpu-sweep}(b) presents the
-same model configuration as in Figure~\ref{gpu-sweep}(a) but $K=2048$
-instead of $K=1024$. One key difference between the two figures is the optimal
+is the number of communities~$K$. Figure~\ref{gpu-sweep}(c) presents the
+same model configuration as in Figure~\ref{gpu-sweep}(b) but $K=2048$
+instead of $K=1024$. The most important difference in performance between the two figures is the optimal
 thread block size. An increase in $K$ comes with a proportional increase in
 the size of shared memory space that is used by each thread block for the
 strategies that employ shared memory. Similarly, GEN strategies that use the
@@ -190,7 +193,7 @@ Figure~\ref{gpus-fig} compares the highest speedup achieved by each of the
 GTX~\mbox{Titan-X} Maxwell and Pascal, GTX980, K40c and K20m relative to the baseline
 sequential C++ version. These results are consistent with the relative
 capabilities of each device as listed in Table~\ref{table-gpus}. For instance,
-the \mbox{Titan-X(Pascal)} achieves the highest speedup of 120 relative to the baseline.
+the Pascal \mbox{Titan-X} achieves the highest speedup of 120 relative to the baseline.
 
 As vectorization is a popular GPU optimization, it is important to note that
 the Maxwell \mbox{Titan-X} and GTX980 achieve their highest performance with non-vectorized kernels.

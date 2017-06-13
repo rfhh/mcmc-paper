@@ -89,7 +89,7 @@ plot \
 set origin col(0),row(1)
 set size w,h
 set title 'As above, zoom-in around optimal settings'
-set xrange [32:128]
+set xrange [32:$MID]
 set autoscale y
 plot \
   "< cat $TFILE | grep NAIVE  | awk '{if (\$2 <= $MID) print \$0 }'" u 2:4 w lp title 'NAIVE', \

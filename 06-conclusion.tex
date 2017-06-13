@@ -26,7 +26,7 @@ In our implementation for accelerators, we navigated the complex optimization
 landscape by dynamically generating kernel code for finest control of allocation in
 the GPU memory hierarchy, and by tuning parameters like kernel block size and vector
 width. These efforts resulted in
-a significant speedup of 21$\times$ on a GPU.
+a significant speedup of 120$\times$ on a GPU.
 This speedup is achieved in comparison to an already
 optimized sequential implementation. The evaluation of the performance
 across several GPUs yielded one striking find. No single optimization strategy
@@ -41,14 +41,14 @@ of common GPU optimizations depends on the device and the
 problem size it is applied to.
 
 We further created a highly scalable implementation to handle the largest existing
-community graphs on a distributed cluster machine.
-We made several contributions to
-achieve scalability and high performance:
-the most important data structures are partitioned across the collective memory of the
-cluster nodes;
-we use a
-mixture of MPI and RDMA primitives to speed up the communication between cluster
-nodes; and
+community graphs on a distributed cluster machine. The most important data structures
+are partitioned across the collective memory of the cluster nodes, which
+significantly increases data access latency for our already data-dominant algorithm.
+We made several contributions to improve performance and still maintain scalabitiy:
+we created a custom distributed Key-Value store implemented with high-speed RDMA
+primitives that exploits the algorithm's structure to avoid concurrency issues; we
+use MPI for synchronization and work distribution between the master and worker nodes;
+and
 we overlapped computation
 with communication to hide latency.
 %
@@ -56,7 +56,7 @@ By evaluating the system empirically using 65 cluster nodes and large data sets,
 we show that its strong and weak scalability are both good. We also compared its
 performance against a 40-core shared-memory system with 1TB of memory.
 The distributed system has far stronger performance because it has more cores and
-more memory bandwidth, although it must fetch its data through the network.
+more collective memory bandwidth, even though it must fetch its data through the network.
 % Additionally, we assessed the efficiency of the algorithm's resource utilization.
 Finally, a
 demonstration of the implementation's utility was provided by processing 6

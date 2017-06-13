@@ -151,6 +151,11 @@ The pseudo-code of the sequential algorithm is presented in Algorithm~\ref{algor
 \label{algorithm}
 \end{algorithm}
 
+In another publication~\cite{LiAW15},
+authors of this paper
+propose a heuristic to scale up the number of
+communities at the cost of less precision; the work in this paper considers the
+algorithm without that heuristic.
 
 \begin{comment}
 Assortative mixed-membership stochastic blockmodel (a-MMSB) [1] is a special case of MMSB [8] that models the group-structure in a network of $N$ nodes. In particular, each node $a$ in the node set \Vertices has a $K$-dimension probability distribution $\pi_a$ of participating in the $K$ members of the community set $\cK$. For every possible peer $b$ in the network, each node $a$ randomly draws a community $z_{ab}$. If a pair of nodes ($a,b$) in the edge set \Edges are in the same community: $z_{ab}=z_{ba} = k$, then they have a significant probability $\bt_k$ to connect, i.e., $y_{ab}=1$. Otherwise this probability is small. Each community has its connection strength $\beta_{k} \in (0,1)$ which explains how likely its members are linked to each other.  
