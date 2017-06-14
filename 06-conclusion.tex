@@ -43,10 +43,10 @@ problem size it is applied to.
 We further created a highly scalable implementation to handle the largest existing
 community graphs on a distributed cluster machine. The most important data structures
 are partitioned across the collective memory of the cluster nodes, which
-significantly increases data access latency for our already data-dominant algorithm.
-We made several contributions to improve performance and still maintain scalabitiy:
+significantly hurts data access latency and bandwidth for our already data-dominant algorithm.
+We made several contributions to improve performance and still maintain scalability:
 we created a custom distributed Key-Value store implemented with high-speed RDMA
-primitives that exploits the algorithm's structure to avoid concurrency issues; we
+primitives, that exploits the algorithm's structure to avoid concurrency issues; we
 use MPI for synchronization and work distribution between the master and worker nodes;
 and
 we overlapped computation
