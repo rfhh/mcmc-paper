@@ -24,7 +24,6 @@ PAPER_PART += 03-sequential-evaluation.tex
 PAPER_PART += gpu-04-03-accelerator.tex
 PAPER_PART += gpu-04-design.tex
 PAPER_PART += gpu-05-03-accelerator.tex
-PAPER_PART += gpu-05-04-distributed.tex
 PAPER_PART += gpu-05-05-perplexity.tex
 PAPER_PART += gpu-05-evaluation.tex
 
