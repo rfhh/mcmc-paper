@@ -465,7 +465,7 @@ Henri Bal\IEEEauthorrefmark{1}\\}
 \begin{abstract}
 Recent advances in machine learning algorithms have transformed the data
 analytics domain and provided innovative solutions to inherently difficult
-problems. However, training models at speed as well as at scale over large
+problems. However, achieving good performance whilte training models at scale over large
 data sets remains a
 daunting challenge. One such problem is the detection of overlapping
 communities within graphs. For example, a social network can be modeled as a
@@ -484,17 +484,18 @@ the problem complexity.
 
 In this paper, we discuss our experience in accelerating and scaling an existing
 data-intensive algorithm for overlapping community detection.
-First, we present our methodology and findings in parallelizing the
-computation using one of several GPUs. A thorough
-analysis of the algorithm's computation and data dependencies resulted in a
+As our first contribution, we present our methodology and findings in parallelizing the
+computation using multiple classes of GPUs.
+Analysis of the algorithm's computation and data dependencies resulted in a
 75\% reduction in its memory footprint and data intensity. We
-employed a customizable code generation strategy to test and identify the
+employed a customizable code generation strategy to thoroughly explore the
+optimization design space and identify the
 optimal combination of optimizations for each compute device. We present an
-empirical evaluation of these contributions and show that the parallelization
-achieves speedups up to 120$\times$ compared to an already optimized sequential
+empirical evaluation and show that the parallelization
+achieves speedups of up to 120$\times$ compared to an already optimized sequential
 version.
 
-Next, we scale this algorithm out towards very large data sets, where memory
+As our second contribution, we scale this algorithm out towards very large data sets, where memory
 requirements become the foremost bottleneck. Our solution is an efficient
 parallel and distributed implementation. We show that the algorithm can
 scale and process graphs consisting of billions of edges and tens of millions

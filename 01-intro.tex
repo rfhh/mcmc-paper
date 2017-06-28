@@ -5,13 +5,13 @@ with an opportunity to extract hidden but useful, even invaluable information.
 Realizing this opportunity, however, requires a significant amount of effort because
 traditional machine learning algorithms may become inefficient with large amounts of data.
 
-There have been two main approaches to resolving this issue; machine learning researchers have developed new scalable algorithms~\cite{bottou2010large, boyd2011distributed}, while systems and networking researchers have worked on developing new generic software infrastructure systems which can be leveraged to construct machine learning solutions more efficiently~\cite{dean2008mapreduce, chang2008bigtable}.
-However, the best possible performance is often achieved by carefully integrating both of these approaches in a single solution.
+There have been two main approaches to solving this issue; machine learning researchers have developed new scalable algorithms~\cite{bottou2010large, boyd2011distributed}, while systems and networking researchers have worked on developing new generic software infrastructure systems which can be leveraged to construct machine learning solutions more efficiently~\cite{dean2008mapreduce, chang2008bigtable}.
+However, the best performance is often achieved by carefully integrating both of these approaches in a single solution.
 
-One such big data problem is analyzing large graphs such as social networks where it is not unusual to see a network consisting of billions of edges and tens of million of vertices~\cite{yang2015defining}. In particular, we are interested in the overlapping community detection problem~\cite{xie2013overlapping}, where the goal is to learn the probability distribution of each vertex to participate in each community, given a set of vertices, the links between them (which are usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of vertices that are only sparsely connected to the rest of the network. This problem is significantly more complex than the related domain of detecting disjoint communities.
+One such big data problem is analyzing large graphs such as social networks where it is not unusual to see a network consisting of billions of edges and tens of millions of vertices~\cite{yang2015defining}. In this paper, we address the overlapping community detection problem~\cite{xie2013overlapping}, where the goal is to learn the probability distribution of each vertex to participate in each community, given a set of vertices, the links between them (which are usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of vertices that are only sparsely connected to the rest of the network. This problem is significantly more complex than the related domain of detecting disjoint communities.
 
-The problem of detecting overlapping communities is modeled by the mixed membership stochastic block model (MMSB)~\cite{airoldi2009mixed} and in this paper we are particularly interested in a variant of MMSB, called assortative MMSB (a-MMSB\footnote{Although we work on a-MMSB for simplicity, it is also straightforward to apply the proposed method to the general MMSB model.}) \cite{gopalan2012scalable}.
-The MMSB model is a probabilistic graphical model~\cite{koller2009probabilistic} that represents a convenient paradigm for modeling complex relationships between a potentially large number of random variables. Bayesian graphical models, where we define priors and infer posteriors over parameters, also allow us to quantify model uncertainty and facilitate model selection and averaging. However, an increasingly urgent question is whether these models and their inference procedures will be up to the challenge of handling very large graphs.
+The problem of detecting overlapping communities is modeled by the mixed membership stochastic block model (MMSB)~\cite{airoldi2009mixed} and in this paper we investigate a variant of MMSB, called assortative MMSB (a-MMSB\footnote{Although we work on a-MMSB for simplicity, it is also straightforward to apply the proposed method to the general MMSB model.}) \cite{gopalan2012scalable}.
+The MMSB model is a probabilistic graphical model~\cite{koller2009probabilistic} that represents a convenient paradigm for modeling complex relationships between a potentially large number of random variables. Bayesian graphical models, where we define priors and infer posteriors over parameters, also allow us to quantify model uncertainty and facilitate model selection and averaging. However, an increasingly urgent question is whether these models and their inference procedures will be up to the challenge of handling very large graphs, since their computation and memory demands increase quickly with the graph size.
 
 There have been two main recent advances in this direction of scalable Bayesian inference: methods based on stochastic variational Bayes (SVB)~\cite{gopalan2012scalable,hoffman2013stochastic,gopalan2013efficient} and stochastic gradient Markov chain Monte Carlo (SG-MCMC)~\cite{welling2011bayesian,patterson2013stochastic,ahn2014distributed,ahn2012bayesian}. Both methods have the important property that they only require a small subset of the data for every iteration. In other words, they can be applied to (infinite) streaming data.
 
@@ -30,7 +30,7 @@ the size of its intermediate data structures makes it difficult to scale to very
 community graphs.
 
 Starting from an existing implementation in Python/Numpy, we create an efficient
-C++ version to serve as the baseline for the parallel versions.
+single-threaded C++ version to serve as the baseline for the parallel versions.
 This already improves performance by a factor of 1000 to 1500 compared to
 Python.
 % This transformation is not considered one of our key contributions.
@@ -38,7 +38,7 @@ Then, our key contributions to the algorithm are:
 
 \begin{itemize}
 \item \textbf{scaling up to run on GPUs.}
-The application is not a natural fit for GPUs, because it is data-bound and
+The application is not a natural fit for GPUs, because it is data-intensive and
 irregular in its data accesses. Nevertheless, we developed aggressive
 memory allocation optimizations to solve the data bandwidth issues for GPUs.
 This implementation achieves up to 120$\times$ speedup compared to the C++ baseline.
@@ -48,7 +48,7 @@ significantly reduces the data intensity and allows for tackling larger
 problems; % while maintaining all state in memory.
 
 \item \textbf{scaling out to overcome the memory bounds} posed by 
-single-machine systems, to be the first to solve the largest publicly available
+single-machine systems. Our implementation is the first to solve the largest publicly available
 community graphs. % This necessitated overcoming several challenges.
 % The algorithm's state grows rapidly with larger graphs and number of latent
 % communities.
@@ -58,18 +58,20 @@ of machines. Hence, the cluster nodes must read
 remote memory hosted by their peers. Since the algorithm is data-bound, we
 substantially optimized remote memory accesses by implementing
 a custom RDMA store.
-On top of that, we pipelined the algorithm stages by fetching
-data in advance over the network.
+On top of that, we pipelined the algorithm stages by prefetching
+data over the network.
 \begin{comment} Finally, the algorithm's computation
 is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
 
+\begin{comment}
 The use of pipelining makes it pointless to combine GPU acceleration
 into the distributed implementation: computing for an iteration takes less
 time than fetching the data from remote memory, and the computation is
 fully overlapped with fulfilling the data requests for the next iteration.
 % Hence, it is useless to improve the computation time.
+\end{comment}
 
 \end{itemize}
 % To this end, we propose a design of a parallel and distributed system specifically tailored to solve the a-MMSB problem. In particular, we use a mixture of OpenMP, MPI and RDMA in order to efficiently scale and accelerate the algorithm's computation.
@@ -85,8 +87,10 @@ loop unrolling and explicit vectorization.
 \end{comment}
 
 A bird's-eye view of the work in this paper, without any technical detail, has been
-published at CCGrid-2016~\cite{10.1109/CCGrid.2016.98}.
-The results of our distributed MCMC-aMMSB implementation
+published at CCGrid-2016~\cite{10.1109/CCGrid.2016.98}. The technical description and
+evaluation of our accelerator contributions, which make up half of this paper's
+content, have not been published before.
+The results of our distributed contribution
 have been previously published at the 2016 ParLearning
 workshop~\cite{DBLP:conf/ipps/El-HelwHLAWB16}, where it earned a best-paper
 award.

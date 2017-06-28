@@ -52,14 +52,19 @@ and
 we overlapped computation
 with communication to hide latency.
 %
-By evaluating the system empirically using 65 cluster nodes and large data sets,
-we show that its strong and weak scalability are both good. We also compared its
+We argued that it is sensible to use multicore CPUs in stead of GPUs in this
+distributed setting, because GPUs require staging the data piecemeal into GPU
+memory, thus counter-balancing any speed gain. Moreover, the computation time is
+fully hidden by the latency of remote data accesses.
+%
+Our empirical evaluation using 65 cluster nodes and large data sets
+shows that the system exhibits good strong and weak scalability. We also compared its
 performance against a 40-core shared-memory system with 1TB of memory.
-The distributed system has far stronger performance because it has more cores and
+The distributed system has superior performance because it has more cores and
 more collective memory bandwidth, even though it must fetch its data through the network.
 % Additionally, we assessed the efficiency of the algorithm's resource utilization.
-Finally, a
-demonstration of the implementation's utility was provided by processing 6
+Finally, we provide a
+demonstration of the implementation's utility by processing 6
 large real-world data sets.
 To the best of
 our knowledge, this is the first time that the problem of deducing overlapping
