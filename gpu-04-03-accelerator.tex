@@ -75,7 +75,7 @@ factor upwards of 90\%, a very economical memory usage.
 %% FIXME: Talk lookup hit/miss with 4 keys per bucket?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Parallelization \& Data Dependencies}
+\subsubsection{Parallelization and Data Dependencies}
 % Division into kernels
 The original algorithm was structurally reorganized into 4 main sections, each with
 one or more kernels, data dependencies and synchronization requirements.
@@ -152,7 +152,7 @@ It again halves the memory
 footprint of the algorithm and frees registers.
 Besides, on our GPUs it
 reduces
-the computation intensity besides the data intensity.
+the computation intensity as well as the data intensity.
 
 %Finally, the algorithm requires randomly generated values from 3 different
 %distributions. 

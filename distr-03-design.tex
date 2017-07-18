@@ -256,7 +256,7 @@ Algorithm~\ref{algorithm}) locally, besides the value of
 $\pi/\phi$ for the mini-batch vertices. The update to $\pi$ requires
 $M \times K$ operations, and it is done in parallel over mini-batch vertices. For
 memory consistency, this stage awaits completion of \textit{update\_phi} with
-an MPI barrier. After the calculation, the updated values of $\pi,~\sum\phi$
+an MPI barrier. After the calculation, the updated values of $\pi$ and $\sum\phi$
 are written to the DKV store.
 
 \textit{update\_beta} (lines 12 and 15 in Algorithm~\ref{algorithm}) requires $|\Minibatch| \times K$ operations. It is preceded by an MPI

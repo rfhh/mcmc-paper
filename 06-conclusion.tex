@@ -18,7 +18,7 @@ cater for concurrent and distributed parallelism.
 
 After a thorough
 analysis of the computational patterns and data structures,
-we showed that the algorithm's state can be reduced by 75\%,
+we showed that the algorithm's state size can be reduced by 75\%,
 thus significantly
 reducing its data intensity.
 
@@ -53,7 +53,7 @@ we overlapped computation
 with communication to hide latency.
 %
 We argued that it is sensible to use multicore CPUs in stead of GPUs in this
-distributed setting, because GPUs require staging the data piecemeal into GPU
+distributed setting, because GPUs require piecemeal staging of the data into GPU
 memory, thus counter-balancing any speed gain. Moreover, the computation time is
 fully hidden by the latency of remote data accesses.
 %

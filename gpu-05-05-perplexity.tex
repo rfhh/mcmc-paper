@@ -31,8 +31,8 @@
 
 This section presents the evolution of the perplexity, i.e.\ the metric for
 the solution quality, as a function of time for
-two datasets, whose properties are given in Table~\ref{table-snap}. This
-analysis shows that our implementations of the algorithm indeed achieve
+the DBLP dataset whose properties is given in Table~\ref{table-snap}. This
+analysis shows that our implementation of the algorithm indeed achieves
 convergence, and it gives an impression of the time required to achieve
 convergence for the largest datasets and community sizes that fit into the memory
 of a GPU. The dominant customer of memory is the
@@ -42,7 +42,7 @@ product of~$K$, the mini-batch size~$M$, and the neighbor sample size~$|\Neighbo
 the other hand, the number of iterations required to achieve sufficient
 convergence does grow with the size of the graph.
 
-Figure~\ref{fig-ppx-gpu-cpu}(a) shows the perplexity development for the dataset
+Figure~\ref{fig-ppx-gpu-cpu} shows the perplexity development for the dataset
 com-DBLP, with $N=317,080$. It is computed on the Maxwell \mbox{Titan-X} GPU with input
 parameter set $K=4096$, $M=4096$, $|\Neighbors|=32$. Convergence is reached after 6~hours.
 %

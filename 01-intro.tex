@@ -2,13 +2,13 @@
 The tremendous amount of data that we generate through our daily applications such as
 social networking services, online shopping, and news recommendations, provides us
 with an opportunity to extract hidden but useful, even invaluable information.
-Realizing this opportunity, however, requires a significant amount of effort because
+Realizing this opportunity, however, requires significant efforts because
 traditional machine learning algorithms may become inefficient with large amounts of data.
 
 There have been two main approaches to solving this issue; machine learning researchers have developed new scalable algorithms~\cite{bottou2010large, boyd2011distributed}, while systems and networking researchers have worked on developing new generic software infrastructure systems which can be leveraged to construct machine learning solutions more efficiently~\cite{dean2008mapreduce, chang2008bigtable}.
 However, the best performance is often achieved by carefully integrating both of these approaches in a single solution.
 
-One such big data problem is analyzing large graphs such as social networks where it is not unusual to see a network consisting of billions of edges and tens of millions of vertices~\cite{yang2015defining}. In this paper, we address the overlapping community detection problem~\cite{xie2013overlapping}, where the goal is to learn the probability distribution of each vertex to participate in each community, given a set of vertices, the links between them (which are usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of vertices that are only sparsely connected to the rest of the network. This problem is significantly more complex than the related domain of detecting disjoint communities.
+One big data problem is analysis of large graphs such as social networks where it is not unusual to see a network consisting of billions of edges and tens of millions of vertices~\cite{yang2015defining}. In this paper, we address the overlapping community detection problem~\cite{xie2013overlapping}, where the goal is to learn the probability distribution of each vertex to participate in each community, given a set of vertices, the links between them (which are usually very sparse), and the number of latent communities. A community can be seen as a densely connected group of vertices that are only sparsely connected to the rest of the network. This problem is significantly more complex than the related domain of detecting disjoint communities.
 
 The problem of detecting overlapping communities is modeled by the mixed membership stochastic block model (MMSB)~\cite{airoldi2009mixed} and in this paper we investigate a variant of MMSB, called assortative MMSB (a-MMSB\footnote{Although we work on a-MMSB for simplicity, it is also straightforward to apply the proposed method to the general MMSB model.}) \cite{gopalan2012scalable}.
 The MMSB model is a probabilistic graphical model~\cite{koller2009probabilistic} that represents a convenient paradigm for modeling complex relationships between a potentially large number of random variables. Bayesian graphical models, where we define priors and infer posteriors over parameters, also allow us to quantify model uncertainty and facilitate model selection and averaging. However, an increasingly urgent question is whether these models and their inference procedures will be up to the challenge of handling very large graphs, since their computation and memory demands increase quickly with the graph size.
@@ -29,7 +29,7 @@ of the memory access patterns either fail or lead to non-intuitive results. Thir
 the size of its intermediate data structures makes it difficult to scale to very large
 community graphs.
 
-Starting from an existing implementation in Python/Numpy, we create an efficient
+Starting from an existing implementation in Python/Numpy, we created an efficient
 single-threaded C++ version to serve as the baseline for the parallel versions.
 This already improves performance by a factor of 1000 to 1500 compared to
 Python.

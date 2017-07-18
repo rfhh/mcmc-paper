@@ -63,6 +63,10 @@ This figure shows that the system's overall
 overhead is minimal. Additionally, the experimental results show that the
 implementation is capable of achieving good speedups provided the input problem
 is large enough for the given cluster size.
+%
+The x-axis starts from 8 worker nodes
+as the data set is too large to fit into the collective memory of a smaller
+cluster.
 
 %################################################
 \subsubsection{Strong Scaling}
@@ -83,9 +87,7 @@ sizes while holding the problem size constant. For this study, we used the
 com-Friendster graph as it contains the largest number of vertices and edges.
 %
 Figure~\ref{fig-strong-scaling}-a presents the execution time of 2048 algorithm
-iterations across multiple cluster sizes. The x-axis starts from 8 worker nodes
-as the data set is too large to fit into the collective memory of a smaller
-cluster.
+iterations across multiple cluster sizes.
 %
 As shown in the figure, the execution
 time steadily decreases by increasing the cluster size.
