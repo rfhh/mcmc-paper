@@ -47,23 +47,23 @@ We reduced the algorithm's memory requirements by roughly 75\%, which
 significantly reduces the data intensity and allows for tackling larger
 problems; % while maintaining all state in memory.
 
-\item \textbf{scaling out to overcome the memory bounds} posed by 
-single-machine systems. Our implementation is the first to solve the largest publicly available
-community graphs. % This necessitated overcoming several challenges.
-% The algorithm's state grows rapidly with larger graphs and number of latent
-% communities.
-Since the full state for the larger graphs does not fit in a
-single machine's memory, it is partitioned across a cluster
-of machines. Hence, the cluster nodes must read
-remote memory hosted by their peers. Since the algorithm is data-bound, we
-substantially optimized remote memory accesses by implementing
-a custom RDMA store.
+\item \textbf{scaling out to overcome the memory bounds} posed by
+GPUs which are highly effective when the problem state
+fits in GPU memory. In order to address larger graphs and numbers of communities,
+we created another implementation
+that partitions the state across a cluster of machines. This allows processing
+much larger problem instances at the cost of (memory) speed, because the
+cluster nodes must read remote memory hosted by their peers. Since the
+algorithm is data-bound, we substantially optimized remote memory accesses
+by implementing a custom RDMA store.
 On top of that, we pipelined the algorithm stages by prefetching
 data over the network.
 \begin{comment} Finally, the algorithm's computation
 is effectively distributed across the cluster nodes and parallelized further
 within each node by exploiting their multi-core CPUs.
 \end{comment}
+This implementation is the first to solve the largest publicly available
+community graphs.
 
 \begin{comment}
 The use of pipelining makes it pointless to combine GPU acceleration
