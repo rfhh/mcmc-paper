@@ -463,16 +463,20 @@ Henri Bal\IEEEauthorrefmark{1}\\}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Recent advances in machine learning algorithms have transformed the data
-analytics domain and provided innovative solutions to inherently difficult
-problems. However, achieving good performance while training models at scale over large
+Although recent advances in machine learning algorithms have % transformed the data
+% analytics domain and
+provided innovative solutions to inherently difficult
+problems, achieving good performance while training models % at scale
+over large
 data sets remains a
-daunting challenge. One such problem is the detection of overlapping
-communities within graphs. For example, a social network can be modeled as a
-graph where the vertices and edges represent individuals and their
-relationships. In contrast to the problem of graph partitioning or clustering, an
-individual can be part of multiple communities which significantly increases
-the problem complexity.
+daunting challenge. An example is the detection of overlapping
+communities within graphs.
+% For example, a social network can be modeled as a
+% graph where the vertices and edges represent individuals and their
+% relationships.
+% In contrast to the problem of graph partitioning or clustering, an
+% individual can be part of multiple communities which significantly increases
+% the problem complexity.
 % same as above:
 % Accelerating sequential algorithms in order to achieve high performance is
 % often a nontrivial task. However, there are certain properties that can
@@ -482,23 +486,22 @@ the problem complexity.
 % context, the optimization landscape can be extremely complex owing to the large
 % number of trade-off decisions.
 
-In this paper, we discuss our experience in accelerating and scaling an existing
+We discuss accelerating and scaling of an existing
 data-intensive algorithm for overlapping community detection.
-As our first contribution, we present our methodology and findings in parallelizing the
-computation using multiple classes of GPUs.
-Analysis of the algorithm's computation and data dependencies resulted in a
-75\% reduction in its memory footprint and data intensity. We
+Our first contribution is analysis of parallelization of the algorithm
+using multiple classes of GPUs.
+We reduced the memory footprint by~75\%. We
 employed a customizable code generation strategy to thoroughly explore the
-optimization design space and identify the
-optimal combination of optimizations for each compute device. We present an
-empirical evaluation and show that the parallelization
-achieves speedups of up to 120$\times$ compared to an already optimized sequential
+optimization design space and find
+the best combination of optimizations for each compute device.
+Empirical evaluation shows that we
+achieve speedups of up to 120$\times$ compared to an optimized sequential
 version.
 
 As our second contribution, we scale this algorithm out towards very large data sets, where memory
-requirements become the foremost bottleneck. Our solution is an efficient
-parallel and distributed implementation. We show that the algorithm can
-scale and process graphs consisting of billions of edges and tens of millions
+requirements become the foremost bottleneck. We created an efficient
+parallel and distributed implementation which can
+process graphs consisting of billions of edges and tens of millions
 of vertices on a compute cluster of 65 nodes. To the best of our knowledge,
 this is the first time that the problem of deducing overlapping communities
 has been learned for problems of such a large scale.
