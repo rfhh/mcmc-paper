@@ -48,7 +48,7 @@ significantly reduces the data intensity and allows for tackling larger
 problems; % while maintaining all state in memory.
 
 \item \textbf{scaling out to overcome the memory bounds} posed by
-GPUs which are highly effective when the problem state
+GPUs. The GPUs are highly effective but only when the problem state
 fits in GPU memory. In order to address larger graphs and numbers of communities,
 we created another implementation
 that partitions the state across a cluster of machines. This allows processing
