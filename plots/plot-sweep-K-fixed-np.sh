@@ -23,7 +23,7 @@ grep iteration ../data/sweep-over-K-fixed-np/*/* \
 cat <<EOF | gnuplot --persist
 
 set terminal postscript eps enhanced color font ',10' size 3.3,1.6
-set colorsequence classic
+if (GPVAL_VERSION >= 5.0) { set colorsequence classic }
 
 set xlabel "Number of Communities (K)"
 set ylabel "Time (seconds)"

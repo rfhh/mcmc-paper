@@ -1,7 +1,7 @@
 cat <<EOI | gnuplot --persist
 
 set terminal postscript eps enhanced color font ',10' size 3.3,1.6
-set colorsequence classic
+if (GPVAL_VERSION >= 5.0) { set colorsequence classic }
 set output 'qperf.eps'
 
 set style line 1 lt 1 lw 2 linecolor rgb "red"

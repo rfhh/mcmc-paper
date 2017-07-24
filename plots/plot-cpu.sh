@@ -4,7 +4,7 @@ cat <<EOF | gnuplot --persist
 
 set terminal postscript eps enhanced color font 'Helvetica,10' size 3.3,1.6
 set output 'cpu-vector.eps'
-set colorsequence classic
+if (GPVAL_VERSION >= 5.0) { set colorsequence classic }
 
 set boxwidth 0.5
 set style fill solid

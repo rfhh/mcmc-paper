@@ -50,7 +50,7 @@ row(x) = ((nr-x-1)*h)
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',8'
-set colorsequence classic
+if (GPVAL_VERSION >= 5.0) { set colorsequence classic }
 set size (nc*w),(nr*h)
 set output '$NAME.eps'
 set multiplot layout nr,nc

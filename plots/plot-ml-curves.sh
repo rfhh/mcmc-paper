@@ -17,7 +17,7 @@ row(x) = ((nr-x-1)*h)+k
 col(x) = x*w
 
 set terminal postscript eps enhanced color font ',8.5'
-set colorsequence classic
+if (GPVAL_VERSION >= 5.0) { set colorsequence classic }
 set size (nc*w),(nr*h+k)
 set output 'ppx.eps'
 set multiplot layout nr,nc
