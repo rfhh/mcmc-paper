@@ -15,4 +15,4 @@ all:
 	./plot-ppx.sh
 
 clean:
-	rm *.eps *.pdf
+	-rm -f *.eps *.pdf
